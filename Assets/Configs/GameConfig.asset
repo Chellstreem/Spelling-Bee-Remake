@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56792b09d0a6c634c967c07a0d96ac4a, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  speed: 20
+  minSpeed: 5
+  speedBoostOnWordCompleted: 10
+  speedDrop: -4
+  backgroundPosition: {x: -6.12, y: 9.5, z: 0.68}
+  thresholdZ: -56
+  extraLettersCount: 4
+  alphabetLetters: abcdefghijklmnopqrstuvwxyz
+  missileSpeed: 50
+  missileSpawnFrequency: 0.5
+  delayBeforeLaunching: 2
+  missileSateDuration: 3.5

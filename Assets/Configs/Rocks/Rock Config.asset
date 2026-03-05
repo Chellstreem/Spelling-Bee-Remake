@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f77a432bc17c9e4e98c5bad6e9d8cc6, type: 3}
+  m_Name: Rock Config
+  m_EditorClassIdentifier: 
+  rockCollection: {fileID: 11400000, guid: 6257fdd22eb66ec439edcb1c28fa33d3, type: 2}
+  rockAmount: 10
+  rockFallSpeed: 18
+  spawnInterval: 0.17
+  spawnRange: 15
+  xPositon: 7
+  yPosition: 15

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a969be43573b64a90c36c7784a83a4, type: 3}
+  m_Name: Pudu
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7889858966683018560, guid: 94bb4301600e52143844421cbd7a05c9, type: 3}
+  startLocalPosition: {x: 0, y: -6, z: 0}
+  targetLocalPosition: {x: -0.68, y: -3, z: 3.69}
+  targetLocalRotation: {x: -2, y: 154, z: 0}
