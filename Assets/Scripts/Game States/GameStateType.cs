@@ -3,8 +3,10 @@ namespace GameStates
     public enum GameStateType
     {
         Countdown,
-        Moving,
         Victory,
-        Loss
+        Loss,
+        Safe,
+        Interactive,
+        Missile
     }
 }

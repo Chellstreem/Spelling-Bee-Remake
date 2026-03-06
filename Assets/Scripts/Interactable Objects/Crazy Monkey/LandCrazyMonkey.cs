@@ -4,12 +4,12 @@ using Zenject;
 
 namespace InteractableObjects
 {
-    public class LandCrazyMonkey : InteractableObject, IWhooshable, IEventSubscriber<OnLossStateEnter>
+    public class LandCrazyMonkey : InteractableObject, IWhooshable
     {
         private EventManager eventManager;
         private IParticlePlayer particlePlayer;
         private ISoundEffectPlayer soundEffectPlayer;
-        private IDamageDealer damageDealer;        
+        private IDamageDealer damageDealer;
         private Animator animator;
 
         private readonly int damageAmount = 1;
@@ -19,7 +19,7 @@ namespace InteractableObjects
 
         [Inject]
         public void Construct(
-            EventManager eventManager, 
+            EventManager eventManager,
             IParticlePlayer particlePlayer,
             ISoundEffectPlayer soundEffectPlayer,
             IDamageDealer damageDealer)
@@ -35,7 +35,7 @@ namespace InteractableObjects
         private void OnEnable()
         {
             PlayMonkeyNoise();
-            eventManager.Subscribe<OnLossStateEnter>(this);
+            //eventManager.Subscribe<OnLossStateEnter>(this);
         }
 
         protected override void OnPlayerCollision(Transform playerTransform)
@@ -44,16 +44,16 @@ namespace InteractableObjects
             animator.SetTrigger(isBitten);
             damageDealer.DamagePlayer(damageAmount);
             soundEffectPlayer.PlayEffectSequence(biteSequence);
-        }        
+        }
 
-        public void OnEvent(OnLossStateEnter eventData)
+        public void OnEvent()
         {
             animator.SetTrigger(isDead);
             PlayMonkeyNoise();
         }
 
         public void OnWhoosh() => PlayMonkeyNoise();
-        
-        private void PlayMonkeyNoise() => soundEffectPlayer.PlayEffect(SoundType.MonkeyNoise);        
+
+        private void PlayMonkeyNoise() => soundEffectPlayer.PlayEffect(SoundType.MonkeyNoise);
     }
 }

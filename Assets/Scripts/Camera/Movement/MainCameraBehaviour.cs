@@ -1,53 +1,42 @@
-﻿namespace Cameras
-{
-    public class MainCameraBehaviour : IEventSubscriber<OnCountdownStateEnter>, IEventSubscriber<OnMovingStateEnter>,
-        IEventSubscriber<OnVictory>, IEventSubscriber<OnLossStateEnter>
-    {
-        private readonly EventManager eventManager;
-        private readonly ISingleCameraMover cameraMover;        
+﻿using GameStates;
 
-        public MainCameraBehaviour(EventManager eventManager, ISingleCameraMover cameraMover)
+namespace Cameras
+{
+    public class MainCameraBehaviour
+    {
+        private readonly GameStateController _stateController;
+        private readonly EventManager eventManager;
+        private readonly ISingleCameraMover cameraMover;
+
+        public MainCameraBehaviour(GameStateController stateController, EventManager eventManager, ISingleCameraMover cameraMover)
         {
+            _stateController = stateController;
             this.eventManager = eventManager;
-            this.cameraMover = cameraMover;            
+            this.cameraMover = cameraMover;
 
             SubscribeToEvents();
         }
 
-        public void OnEvent(OnCountdownStateEnter eventData)
+        private void OnStateChanged()
         {
-            cameraMover.ChangeState(CameraStateType.Start);
+            switch (_stateController.CurrentState.StateType)
+            {
+                case GameStateType.Victory:
+                    cameraMover.ChangeStateSmoothly(CameraStateType.Victory, 1.5f);
+                    break;
+                case GameStateType.Loss:
+                    cameraMover.ChangeStateSmoothly(CameraStateType.Loss, 1.5f);
+                    break;
+                case GameStateType.Countdown:
+                    cameraMover.ChangeState(CameraStateType.Start);
+                    break;
+                default:
+                    cameraMover.ChangeStateSmoothly(CameraStateType.Move, 1f);
+                    break;
+            }
         }
 
-        public void OnEvent(OnMovingStateEnter eventData)
-        {
-            cameraMover.ChangeStateSmoothly(CameraStateType.Move, 1f);
-        }
-
-        public void OnEvent(OnVictory eventData)
-        {
-            cameraMover.ChangeStateSmoothly(CameraStateType.Victory, 1.5f);
-        }
-
-        public void OnEvent(OnLossStateEnter eventData)
-        {
-            cameraMover.ChangeStateSmoothly(CameraStateType.Loss, 1.5f);
-        }
-
-        private void SubscribeToEvents()
-        {
-            eventManager.Subscribe<OnCountdownStateEnter>(this);
-            eventManager.Subscribe<OnMovingStateEnter>(this);
-            eventManager.Subscribe<OnVictory>(this);
-            eventManager.Subscribe<OnLossStateEnter>(this);
-        }
-
-        private void UnsubscribeFromEvents()
-        {
-            eventManager.Unsubscribe<OnCountdownStateEnter>(this);
-            eventManager.Unsubscribe<OnMovingStateEnter>(this);
-            eventManager.Unsubscribe<OnVictory>(this);
-            eventManager.Unsubscribe<OnLossStateEnter>(this);
-        }
+        private void SubscribeToEvents() => _stateController.OnStateChanged += OnStateChanged;
+        private void UnsubscribeFromEvents() => _stateController.OnStateChanged -= OnStateChanged;
     }
 }

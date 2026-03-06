@@ -1,33 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using GameStates;
 
-public class EndgameObjectHandler : IEventSubscriber<OnLossStateEnter>, IEventSubscriber<OnVictoryStateEnter>
+public class EndgameObjectHandler
 {
-    private readonly EventManager eventManager;
-    private readonly IEndgameObjectActivator objectActivator;
+    private readonly GameStateController _stateController;
+    private readonly IEndgameObjectActivator _objectActivator;
 
-    public EndgameObjectHandler(EventManager eventManager, IEndgameObjectActivator objectActivator)
+    public EndgameObjectHandler(GameStateController stateController, IEndgameObjectActivator objectActivator)
     {
-        this.eventManager = eventManager;
-        this.objectActivator = objectActivator;
+        _stateController = stateController;
+        _objectActivator = objectActivator;
 
         SubscribeToEvents();
     }
 
-    public void OnEvent(OnLossStateEnter eventData)
+    private void OnStateChanged()
     {
-        objectActivator.ActivateObject(EndgameObjectType.Loss);
-    }
-
-    public void OnEvent(OnVictoryStateEnter eventData)
-    {
-        objectActivator.ActivateObject(EndgameObjectType.Victory);
+        switch (_stateController.CurrentState.StateType)
+        {
+            case GameStateType.Victory:
+                _objectActivator.ActivateObject(EndgameObjectType.Victory);
+                break;
+            case GameStateType.Loss:
+                _objectActivator.ActivateObject(EndgameObjectType.Loss);
+                break;
+        }
     }
 
     private void SubscribeToEvents()
     {
-        eventManager.Subscribe<OnLossStateEnter>(this);
-        eventManager.Subscribe<OnVictoryStateEnter>(this);
+        _stateController.OnStateChanged += OnStateChanged;
     }
 }

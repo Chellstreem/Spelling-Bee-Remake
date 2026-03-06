@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 public class EventManager
 {
-    private readonly Dictionary<Type, List<object>> subscribers;
-
-    public EventManager() => subscribers = new();
+    private readonly Dictionary<Type, List<object>> subscribers = new();
 
     public void Subscribe<T>(IEventSubscriber<T> subscriber) where T : IEvent
     {

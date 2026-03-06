@@ -1,35 +1,40 @@
 using System;
+using GameStates;
 
 namespace PlayerMobility
 {
-    public class PlayerMovementHandler : IDisposable, IEventSubscriber<OnVictory>
+    public class PlayerMovementHandler : IDisposable
     {
-        private readonly EventManager eventManager;
+        private readonly GameStateController _stateController;
         private readonly IPlayerMover playerMover;
         private readonly IInput input;
-        private readonly IDeathInvoker deathInvoker;               
+        private readonly IDeathInvoker deathInvoker;
 
-        public PlayerMovementHandler(EventManager eventManager, IPlayerMover playerMover, IDeathInvoker deathInvoker,
+        public PlayerMovementHandler(GameStateController stateController, IPlayerMover playerMover, IDeathInvoker deathInvoker,
             IInput input)
         {
-            this.eventManager = eventManager;
-            this.playerMover = playerMover;           
+            _stateController = stateController;
+            this.playerMover = playerMover;
             this.input = input;
             this.deathInvoker = deathInvoker;
 
-            SubscribeToEvents();            
+            SubscribeToEvents();
         }
 
-        public void OnEvent(OnVictory eventData) => playerMover.GoDown();        
+        private void OnStateChanged()
+        {
+            if (_stateController.CurrentState.StateType == GameStateType.Victory)
+                playerMover.GoDown();
+        }
 
-        public void Dispose() => UnsubscribeFromEvents();        
+        public void Dispose() => UnsubscribeFromEvents();
 
         private void SubscribeToEvents()
         {
             input.ClickUp += playerMover.GoUp;
             input.ClickDown += playerMover.GoDown;
             input.ClickDeath += deathInvoker.InvokeDeath;
-            eventManager.Subscribe<OnVictory>(this);           
+            _stateController.OnStateChanged += OnStateChanged;
         }
 
         private void UnsubscribeFromEvents()
@@ -37,7 +42,7 @@ namespace PlayerMobility
             input.ClickUp -= playerMover.GoUp;
             input.ClickDown -= playerMover.GoDown;
             input.ClickDeath -= deathInvoker.InvokeDeath;
-            eventManager.Unsubscribe<OnVictory>(this);
+            _stateController.OnStateChanged -= OnStateChanged;
         }
     }
 }

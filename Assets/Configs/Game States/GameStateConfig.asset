@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07d0f8acb34eeb4a9cf43051db501bf, type: 3}
   m_Name: GameStateConfig
   m_EditorClassIdentifier: 
-  count: 3
-  fontSize: 320
-  fontSizeDecrement: 45
-  finalFontSize: 350
-  safeSubstateDuration: 1
+  _gameStates:
+  - {fileID: 11400000, guid: c0a8c363fd3a0cb46b0db29efc278dce, type: 2}
+  - {fileID: 11400000, guid: 78050917ec9e3bc4dbe57402a244beb7, type: 2}
+  - {fileID: 11400000, guid: c6bdec62557a76c49a5fe4fdb8a21714, type: 2}
+  - {fileID: 11400000, guid: 4ada9ab161661d0469190f95ddc21c05, type: 2}
+  - {fileID: 11400000, guid: 471a8497f673f1940b2769da1c3bd3d2, type: 2}
+  - {fileID: 11400000, guid: 6b1a7fd436c447540aa4e66cae7565ba, type: 2}

@@ -1,24 +1,27 @@
 using System;
+using GameStates;
 
 namespace Sounds
 {
-    public class SoundEffectHandler : IEventSubscriber<OnLetterChecked>, IEventSubscriber<OnLossStateEnter>,
+    public class SoundEffectHandler : IEventSubscriber<OnLetterChecked>,
         IEventSubscriber<OnMissileStateEnter>, IEventSubscriber<OnCountdownTick>,
         IEventSubscriber<OnWordCompleted>
     {
+        private readonly GameStateController _stateController;
         private readonly EventManager eventManager;
-        private readonly ISoundEffectPlayer player; 
+        private readonly ISoundEffectPlayer player;
         private readonly IScreenObjectOnTargetPositionInformer screenObjectOnTargetPositionInformer;
 
-        public SoundEffectHandler(EventManager eventManager, ISoundEffectPlayer soundEffectPlayer,
+        public SoundEffectHandler(GameStateController stateController, EventManager eventManager, ISoundEffectPlayer soundEffectPlayer,
             IScreenObjectOnTargetPositionInformer screenObjectOnTargetPositionInformer)
         {
+            _stateController = stateController;
             this.eventManager = eventManager;
-            player = soundEffectPlayer; 
+            player = soundEffectPlayer;
             this.screenObjectOnTargetPositionInformer = screenObjectOnTargetPositionInformer;
 
             SubscribeToEvents();
-        }        
+        }
 
         public void OnEvent(OnLetterChecked eventData)
         {
@@ -28,11 +31,16 @@ namespace Sounds
                 player.PlayEffect(SoundType.Buzzer);
         }
 
-        public void OnEvent(OnLossStateEnter eventData)
+        private void OnStateChanged()
         {
-            SoundType type = UnityEngine.Random.value > 0.5 ? SoundType.Willhelm : SoundType.TomScream;
-            player.PlayEffect(type);
-            player.PlayEffect(SoundType.SadTrombone);
+            switch (_stateController.CurrentState.StateType)
+            {
+                case GameStateType.Loss:
+                    SoundType type = UnityEngine.Random.value > 0.5 ? SoundType.Willhelm : SoundType.TomScream;
+                    player.PlayEffect(type);
+                    player.PlayEffect(SoundType.SadTrombone);
+                    break;
+            }
         }
 
         public void OnEvent(OnMissileStateEnter eventData) => player.PlayEffect(SoundType.MissileLockOn);
@@ -49,22 +57,22 @@ namespace Sounds
                 player.PlayEffect(SoundType.Tick);
             else
                 player.PlayEffect(SoundType.Go);
-        }  
-        
+        }
+
         public void OnScreenObjectShown()
         {
-            SoundType type = UnityEngine.Random.value > 0.5 ? SoundType.OMG: SoundType.Huh;
+            SoundType type = UnityEngine.Random.value > 0.5 ? SoundType.OMG : SoundType.Huh;
             player.PlayEffect(type);
         }
 
         private void SubscribeToEvents()
         {
-            eventManager.Subscribe<OnCountdownTick>(this);            
+            eventManager.Subscribe<OnCountdownTick>(this);
             eventManager.Subscribe<OnLetterChecked>(this);
-            eventManager.Subscribe<OnLossStateEnter>(this);
             eventManager.Subscribe<OnMissileStateEnter>(this);
             eventManager.Subscribe<OnWordCompleted>(this);
             screenObjectOnTargetPositionInformer.OnReachingTargetPosition += OnScreenObjectShown;
-        }        
+            _stateController.OnStateChanged += OnStateChanged;
+        }
     }
 }

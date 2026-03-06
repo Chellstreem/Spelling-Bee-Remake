@@ -1,46 +1,39 @@
 using DG.Tweening;
+using GameStates;
 using UnityEngine;
 using Zenject;
 
-public class GameOverMenuHandler : IInitializable, IEventSubscriber<OnVictoryStateEnter>,
-    IEventSubscriber<OnLossStateEnter>
+public class GameOverMenuHandler : IInitializable
 {
+    private readonly GameStateController _stateController;
     private readonly EventManager eventManager;
     private readonly IScaler scaler;
     private readonly RectTransform gameoverMenu;
-    
-    public GameOverMenuHandler(EventManager eventManager, IScaler scaler,
+
+    public GameOverMenuHandler(GameStateController stateController, EventManager eventManager, IScaler scaler,
         [Inject(Id = UiObjectType.GameoverMenu)] RectTransform gameoverMenu)
     {
+        _stateController = stateController;
         this.eventManager = eventManager;
         this.scaler = scaler;
         this.gameoverMenu = gameoverMenu;
     }
 
-    public void Initialize()
+    public void Initialize() => SubscribeToEvents();
+
+    private void OnStateChanged()
     {
-        SubscribeToEvents();
+        switch (_stateController.CurrentState.StateType)
+        {
+            case GameStateType.Victory:
+                scaler.ActivateWithScale(gameoverMenu, 1f, 0, Ease.Linear);
+                break;
+            case GameStateType.Loss:
+                scaler.ActivateWithScale(gameoverMenu, 1f, 0, Ease.Linear);
+                break;
+        }
     }
 
-    public void OnEvent(OnVictoryStateEnter eventData)
-    {
-        scaler.ActivateWithScale(gameoverMenu, 1f, 0, Ease.Linear);
-    }
-
-    public void OnEvent(OnLossStateEnter eventData)
-    {
-        scaler.ActivateWithScale(gameoverMenu, 1f, 0, Ease.Linear);
-    }
-
-    private void SubscribeToEvents()
-    {
-        eventManager.Subscribe<OnVictoryStateEnter>(this);
-        eventManager.Subscribe<OnLossStateEnter>(this);
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        eventManager.Unsubscribe<OnVictoryStateEnter>(this);
-        eventManager.Unsubscribe<OnLossStateEnter>(this);
-    }
+    private void SubscribeToEvents() => _stateController.OnStateChanged += OnStateChanged;
+    private void UnsubscribeFromEvents() => _stateController.OnStateChanged -= OnStateChanged;
 }
