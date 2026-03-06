@@ -6,11 +6,9 @@ public class GameConfig : ScriptableObject
     [Header("Speed Config")]
     [SerializeField] private float gameSpeed = 20f;
     [SerializeField, Min(1f)] private float minGameSpeed = 5f;
-    [SerializeField] private float monkeySpeedIncrease = 5f;
 
     public float GameSpeed => gameSpeed;
     public float MinGameSpeed => minGameSpeed;
-    public float MonkeySpeed => gameSpeed + monkeySpeedIncrease;
 
     //
 

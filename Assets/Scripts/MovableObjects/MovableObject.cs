@@ -1,33 +1,33 @@
 ﻿using System.Collections;
+using GameStates;
 using UnityEngine;
 using Zenject;
 
-namespace Movement
+namespace MovableObjects
 {
     public abstract class MovableObject : MonoBehaviour
     {
-        protected EventManager _eventManager;
+        protected GameStateController _stateController;
         protected ISpawnableObjectReturner _objectReturner;
         protected float _thresholdZ;
-
-        private Coroutine moveCoroutine;
+        private Coroutine _moveCoroutine;
 
         [Inject]
-        public virtual void Construct(EventManager eventManager, ISpawnableObjectReturner objectReturner, GameConfig gameConfig)
+        public virtual void Construct(GameStateController stateController, ISpawnableObjectReturner objectReturner, GameConfig gameConfig)
         {
-            _eventManager = eventManager;
+            _stateController = stateController;
             _objectReturner = objectReturner;
             _thresholdZ = gameConfig.ThresholdZ;
         }
 
-        protected void StartMoving() => moveCoroutine ??= StartCoroutine(MoveCoroutine());
+        public void StartMoving() => _moveCoroutine ??= StartCoroutine(MoveCoroutine());
 
-        protected void StopMoving()
+        public void StopMoving()
         {
-            if (moveCoroutine != null)
-                StopCoroutine(moveCoroutine);
+            if (_moveCoroutine != null)
+                StopCoroutine(_moveCoroutine);
 
-            moveCoroutine = null;
+            _moveCoroutine = null;
         }
 
         protected virtual IEnumerator MoveCoroutine()
@@ -40,14 +40,12 @@ namespace Movement
                 if (newPosition.z <= _thresholdZ)
                 {
                     StopMoving();
-                    ReturnToOriginalState();
+                    _objectReturner.ReturnObject(gameObject);
                 }
 
                 transform.position = newPosition;
                 yield return null;
             }
         }
-
-        protected virtual void ReturnToOriginalState() => _objectReturner.ReturnObject(gameObject);
     }
 }

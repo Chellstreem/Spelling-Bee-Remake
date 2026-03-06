@@ -1964,8 +1964,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3bc2855e278582b4d9167a631807517b, type: 2}
   - {fileID: 11400000, guid: 9aa2b9a6025edac44ad446d3836480b9, type: 2}
   _monoInstallers:
-  - {fileID: 1832041377}
   - {fileID: 1572737784}
+  - {fileID: 1832041377}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -2009,5 +2009,5 @@ SceneRoots:
   - {fileID: 311529395}
   - {fileID: 248292228}
   - {fileID: 2129670482}
-  - {fileID: 1572737785}
   - {fileID: 1832041378}
+  - {fileID: 1572737785}

@@ -2,11 +2,10 @@ using UnityEngine;
 
 namespace Sounds
 {
-    public class MusicHandler : IEventSubscriber<OnMovingStateEnter>, IEventSubscriber<OnMovingStateExit>,
-        IEventSubscriber<OnVictory>
+    public class MusicHandler : IEventSubscriber<OnMovingStateEnter>, IEventSubscriber<OnMovingStateExit>
     {
         private readonly EventManager eventManager;
-        private readonly IMusicPlayer musicPlayer;        
+        private readonly IMusicPlayer musicPlayer;
 
         public MusicHandler(EventManager eventManager, IMusicPlayer musicPlayer)
         {
@@ -26,16 +25,11 @@ namespace Sounds
             musicPlayer.StopSound(SoundType.GamePlayMusic);
         }
 
-        public void OnEvent(OnVictory eventData)
-        {
-            musicPlayer.PlaySound(SoundType.Victory);
-        }
 
         private void SubscribeToEvents()
         {
             eventManager.Subscribe<OnMovingStateEnter>(this);
             eventManager.Subscribe<OnMovingStateExit>(this);
-            eventManager.Subscribe<OnVictory>(this);
-        }        
+        }
     }
 }

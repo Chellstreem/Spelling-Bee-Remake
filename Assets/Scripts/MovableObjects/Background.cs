@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Movement
+namespace MovableObjects
 {
     public class Background : MovableObject, IEventSubscriber<OnMovingStateEnter>, IEventSubscriber<OnMovingStateExit>
     {

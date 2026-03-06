@@ -23,7 +23,7 @@ namespace PlayerPerfomance
 
         public void OnEvent(OnAllWordsCompleted eventData)
         {
-            eventManager.Publish(new OnVictory());
+            // eventManager.Publish(new OnVictory());
         }
 
         public void InvokeDeath() => eventManager.Publish(new OnDeath());

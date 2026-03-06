@@ -13,12 +13,6 @@ namespace InteractableObjects
             this.playerTransform = playerTransform;
         }
 
-        protected abstract void OnPlayerCollision(Transform playerTransform);        
 
-        protected virtual void OnTriggerEnter(Collider other)
-        {
-            if (other.transform == playerTransform)            
-                OnPlayerCollision(playerTransform);                     
-        }
     }
 }

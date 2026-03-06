@@ -1,17 +1,19 @@
 ﻿using Zenject;
 using UnityEngine;
 using System.Collections;
+using GameStates;
 
-namespace Movement
+namespace MovableObjects
 {
     public class LaunchedMissile : MovableObject
     {
         private float speed;
 
         [Inject]
-        public override void Construct(EventManager eventManager, ISpawnableObjectReturner objectReturner,
+        public override void Construct(GameStateController stateController, EventManager eventManager, ISpawnableObjectReturner objectReturner,
             GameConfig gameConfig)
         {
+            this._stateController = stateController;
             this._eventManager = eventManager;
             this._objectReturner = objectReturner;
             speed = gameConfig.MissileSpeed;
@@ -28,7 +30,7 @@ namespace Movement
                 if (newPosition.z <= _thresholdZ)
                 {
                     StopMoving();
-                    ReturnToOriginalState();
+                    ReturnToPool();
                 }
 
                 transform.position = newPosition;
