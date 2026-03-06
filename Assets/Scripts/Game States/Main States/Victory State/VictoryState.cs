@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GameStates
 {
-    public class VictoryState : IGameState
+    public class VictoryState : GameState
     {
         private readonly IStateSwitcher stateSwitcher;
         private readonly EventManager eventManager;
@@ -13,12 +13,12 @@ namespace GameStates
             this.eventManager = eventManager;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             eventManager.Publish(new OnVictoryStateEnter());
             Debug.Log("Entering Victory State");
         }
 
-        public void Exit() { }
+        public override void Exit() { }
     }
 }

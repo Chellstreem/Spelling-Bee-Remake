@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace MovableObjects
+namespace Movement
 {
     public class CrazyMonkey : InteractableObject
     {
@@ -20,7 +20,7 @@ namespace MovableObjects
                 Vector3 newPosition = transform.position;
                 newPosition += Vector3.back * (speed * Time.deltaTime);
 
-                if (newPosition.z <= thresholdZ)
+                if (newPosition.z <= _thresholdZ)
                 {
                     StopMoving();
                     ReturnToOriginalState();

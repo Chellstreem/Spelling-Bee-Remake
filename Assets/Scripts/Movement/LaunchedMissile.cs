@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace MovableObjects
+namespace Movement
 {
     public class LaunchedMissile : MovableObject
     {
@@ -12,10 +12,10 @@ namespace MovableObjects
         public override void Construct(EventManager eventManager, ISpawnableObjectReturner objectReturner,
             GameConfig gameConfig)
         {
-            this.eventManager = eventManager;
-            this.objectReturner = objectReturner;
+            this._eventManager = eventManager;
+            this._objectReturner = objectReturner;
             speed = gameConfig.MissileSpeed;
-            thresholdZ = gameConfig.ThresholdZ;
+            _thresholdZ = gameConfig.ThresholdZ;
         }
 
         protected override IEnumerator MoveCoroutine()
@@ -25,7 +25,7 @@ namespace MovableObjects
                 Vector3 newPosition = transform.position;
                 newPosition += Vector3.back * (speed * Time.deltaTime);
 
-                if (newPosition.z <= thresholdZ)
+                if (newPosition.z <= _thresholdZ)
                 {
                     StopMoving();
                     ReturnToOriginalState();
@@ -36,8 +36,8 @@ namespace MovableObjects
             }
         }
 
-        private void OnEnable() => StartMoving();       
+        private void OnEnable() => StartMoving();
 
-        private void OnDisable() => StopMoving();       
+        private void OnDisable() => StopMoving();
     }
 }

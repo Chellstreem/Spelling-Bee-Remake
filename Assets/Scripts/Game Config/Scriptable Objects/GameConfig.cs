@@ -3,21 +3,21 @@
 [CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
 public class GameConfig : ScriptableObject
 {
-    [Header("Speed Config")]    
-    [SerializeField] private float gameSpeed = 20f;    
+    [Header("Speed Config")]
+    [SerializeField] private float gameSpeed = 20f;
     [SerializeField, Min(1f)] private float minGameSpeed = 5f;
     [SerializeField] private float monkeySpeedIncrease = 5f;
-    
-    public float GameSpeed => gameSpeed;  
+
+    public float GameSpeed => gameSpeed;
     public float MinGameSpeed => minGameSpeed;
     public float MonkeySpeed => gameSpeed + monkeySpeedIncrease;
 
     //
 
-    [Header("Movable Object Config")]    
+    [Header("Movable Object Config")]
     [SerializeField] private Vector3 backgroundPosition;
     [SerializeField] private float thresholdZ;
-    
+
     public Vector3 BackgroundPosition => backgroundPosition;
     public float ThresholdZ => thresholdZ;
 
@@ -27,8 +27,8 @@ public class GameConfig : ScriptableObject
     [SerializeField] private int extraLettersCount = 5;
     [SerializeField] private string alphabetLetters = "abcdefghijklmnopqrstuvwxyz";
 
-    public int ExtraLettersCount => extraLettersCount;   
-    public string AlphabetLetters => alphabetLetters;    
+    public int ExtraLettersCount => extraLettersCount;
+    public string AlphabetLetters => alphabetLetters;
 
     //
 

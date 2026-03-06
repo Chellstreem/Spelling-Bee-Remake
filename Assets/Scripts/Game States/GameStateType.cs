@@ -1,6 +1,6 @@
 namespace GameStates
 {
-    public enum GameState
+    public enum GameStateType
     {
         Countdown,
         Moving,

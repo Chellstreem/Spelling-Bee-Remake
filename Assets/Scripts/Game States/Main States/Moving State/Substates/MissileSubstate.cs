@@ -3,31 +3,31 @@ using UnityEngine;
 
 namespace GameStates.Moving
 {
-    public class MissileSubstate : IGameState
+    public class MissileSubstate : GameState
     {
         private readonly ISubstateSwitcher<MovingStateSubstate> substateSwitcher;
         private readonly EventManager eventManager;
         private readonly CoroutineRunner coroutineRunner;
         private readonly float duration;
 
-        private Coroutine coroutine;        
+        private Coroutine coroutine;
 
         public MissileSubstate(ISubstateSwitcher<MovingStateSubstate> substateSwitcher, EventManager eventManager, CoroutineRunner coroutineRunner, GameConfig gameConfig)
         {
             this.substateSwitcher = substateSwitcher;
             this.eventManager = eventManager;
-            this.coroutineRunner = coroutineRunner;  
+            this.coroutineRunner = coroutineRunner;
             duration = gameConfig.MissileSateDuration;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             Debug.Log("Entering Missile State...");
             eventManager.Publish(new OnMissileStateEnter());
             StartMissileCoroutine();
         }
 
-        public void Exit()
+        public override void Exit()
         {
             Debug.Log("Exiting Missile State...");
             eventManager.Publish(new OnMissileStateExit());

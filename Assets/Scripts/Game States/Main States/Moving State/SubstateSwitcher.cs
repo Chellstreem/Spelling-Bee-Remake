@@ -4,9 +4,9 @@ using UnityEngine;
 namespace GameStates.Moving
 {
     public class SubstateSwitcher : ISubstateSwitcher<MovingStateSubstate>
-    {      
+    {
         private readonly ISubstateInitializer<MovingStateSubstate> substateInitializer;
-        private IGameState currentSubstate;
+        private GameState currentSubstate;
         private MovingStateSubstate currentSubstateType;
 
         private readonly Dictionary<MovingStateSubstate, HashSet<MovingStateSubstate>> allowedTransitions =
@@ -19,13 +19,13 @@ namespace GameStates.Moving
 
         public SubstateSwitcher(ISubstateInitializer<MovingStateSubstate> substateInitializer)
         {
-            this.substateInitializer = substateInitializer;                
+            this.substateInitializer = substateInitializer;
         }
 
         public void SetSubstate(MovingStateSubstate substate)
-        {            
+        {
             if (CanTransitionTo(substate))
-            {                
+            {
                 currentSubstate?.Exit();
                 currentSubstate = substateInitializer.GetSubstate(substate);
                 currentSubstateType = substate;
@@ -42,8 +42,8 @@ namespace GameStates.Moving
         private bool CanTransitionTo(MovingStateSubstate substate)
         {
             if (currentSubstate == null)
-                return true;            
-            
+                return true;
+
             if (allowedTransitions.TryGetValue(currentSubstateType, out var possibleTransitions))
             {
                 return possibleTransitions.Contains(substate);

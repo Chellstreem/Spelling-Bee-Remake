@@ -5,40 +5,40 @@ using Zenject;
 namespace GameStates
 {
     public class GameStateSwitcher : IStateSwitcher
-    {   
+    {
         private readonly IStateInitializer stateInitializer;
-        private IGameState currentState;
-        private GameState currentStateName;
+        private GameState currentState;
+        private GameStateType currentStateName;
 
-        public IGameState CurrentState => currentState;
+        public GameState CurrentState => currentState;
 
-        private readonly Dictionary<GameState, HashSet<GameState>> allowedTransitions =
-            new Dictionary<GameState, HashSet<GameState>>
+        private readonly Dictionary<GameStateType, HashSet<GameStateType>> allowedTransitions =
+            new Dictionary<GameStateType, HashSet<GameStateType>>
             {
-                { GameState.Countdown, new HashSet<GameState> { GameState.Moving } },
-                { GameState.Moving, new HashSet<GameState> { GameState.Loss, GameState.Victory } },
-                { GameState.Loss, new HashSet<GameState> { }},
-                { GameState.Victory, new HashSet<GameState>{ }}
+                { GameStateType.Countdown, new HashSet<GameStateType> { GameStateType.Moving } },
+                { GameStateType.Moving, new HashSet<GameStateType> { GameStateType.Loss, GameStateType.Victory } },
+                { GameStateType.Loss, new HashSet<GameStateType> { }},
+                { GameStateType.Victory, new HashSet<GameStateType>{ }}
             };
 
         public GameStateSwitcher(IStateInitializer stateInitializer)
         {
             this.stateInitializer = stateInitializer;
-        }        
+        }
 
-        public void SetState(GameState newState)
+        public void SetState(GameStateType newState)
         {
             if (CanTransitionTo(newState))
             {
                 currentState?.Exit();
                 currentState = stateInitializer.GetGameState(newState);
                 currentStateName = newState;
-                
+
                 currentState.Enter();
             }
         }
 
-        private bool CanTransitionTo(GameState state)
+        private bool CanTransitionTo(GameStateType state)
         {
             if (currentState == null)
                 return true;

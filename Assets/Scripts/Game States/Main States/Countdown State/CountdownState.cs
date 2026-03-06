@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace GameStates
 {
-    public class CountdownState : IGameState
+    public class CountdownState : GameState
     {
         private readonly IStateSwitcher stateSwitcher;
         private readonly EventManager eventManager;
         private readonly CoroutineRunner coroutineRunner;
-        
+
         private readonly int count;
         private readonly int fontSize;
         private readonly int fontSizeDecrement;
-        private readonly int finalFontSize;        
+        private readonly int finalFontSize;
 
         public CountdownState(IStateSwitcher stateSwitcher, EventManager eventManager, CoroutineRunner runner, GameStateConfig config)
         {
@@ -26,10 +26,10 @@ namespace GameStates
             finalFontSize = config.FinalFontSize;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             eventManager.Publish(new OnCountdownStateEnter());
-            coroutineRunner.StartCor(CountDown(count, fontSize, finalFontSize));            
+            coroutineRunner.StartCor(CountDown(count, fontSize, finalFontSize));
         }
 
         private IEnumerator CountDown(int count, int fontSize, int finalFontSize)
@@ -42,11 +42,11 @@ namespace GameStates
                 fontSize -= fontSizeDecrement;
             }
 
-            stateSwitcher.SetState(GameState.Moving);
+            stateSwitcher.SetState(GameStateType.Moving);
         }
 
-        public void Exit()
-        {            
+        public override void Exit()
+        {
             eventManager.Publish(new OnCountdownStateExit());
         }
     }

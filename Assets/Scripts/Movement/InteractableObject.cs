@@ -1,9 +1,9 @@
 using Particles;
 using Zenject;
 
-namespace MovableObjects
+namespace Movement
 {
-    public class InteractableObject : MovableObject, IEventSubscriber<OnWordCompleted>, 
+    public class InteractableObject : MovableObject, IEventSubscriber<OnWordCompleted>,
         IEventSubscriber<OnMovingStateExit>, IEventSubscriber<OnMissileStateEnter>
     {
         [Inject]
@@ -38,20 +38,20 @@ namespace MovableObjects
             ReturnToOriginalState();
         }
 
-        public void OnEvent(OnMovingStateExit eventData) => StopMoving();        
+        public void OnEvent(OnMovingStateExit eventData) => StopMoving();
 
         private void SubscribeToEvents()
         {
-            eventManager.Subscribe<OnWordCompleted>(this);
-            eventManager.Subscribe<OnMovingStateExit>(this);
-            eventManager.Subscribe<OnMissileStateEnter>(this);
+            _eventManager.Subscribe<OnWordCompleted>(this);
+            _eventManager.Subscribe<OnMovingStateExit>(this);
+            _eventManager.Subscribe<OnMissileStateEnter>(this);
         }
 
         private void UnsubscribeFromEvents()
         {
-            eventManager.Unsubscribe<OnWordCompleted>(this);
-            eventManager.Unsubscribe<OnMovingStateExit>(this);
-            eventManager.Unsubscribe<OnMissileStateEnter>(this);
+            _eventManager.Unsubscribe<OnWordCompleted>(this);
+            _eventManager.Unsubscribe<OnMovingStateExit>(this);
+            _eventManager.Unsubscribe<OnMissileStateEnter>(this);
         }
     }
 }

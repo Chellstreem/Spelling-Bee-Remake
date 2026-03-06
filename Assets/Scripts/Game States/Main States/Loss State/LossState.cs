@@ -2,21 +2,21 @@ using UnityEngine;
 
 namespace GameStates
 {
-    public class LossState : IGameState
+    public class LossState : GameState
     {
         private readonly EventManager eventManager;
 
         public LossState(EventManager eventManager)
         {
             this.eventManager = eventManager;
-        }       
+        }
 
-        public void Enter()
+        public override void Enter()
         {
             eventManager.Publish(new OnLossStateEnter());
             Debug.Log("Entering Loss State");
         }
 
-        public void Exit() { }
+        public override void Exit() { }
     }
 }

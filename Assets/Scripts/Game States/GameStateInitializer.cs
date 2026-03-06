@@ -6,7 +6,7 @@ namespace GameStates
     public class GameStateInitializer : IStateInitializer
     {
         private readonly DiContainer container;
-        private Dictionary<GameState, IGameState> gameStates;
+        private Dictionary<GameStateType, GameState> gameStates;
 
         public GameStateInitializer(DiContainer container)
         {
@@ -15,18 +15,18 @@ namespace GameStates
 
         public void InitializeStates()
         {
-            gameStates = new Dictionary<GameState, IGameState>()
+            gameStates = new Dictionary<GameStateType, GameState>()
             {
-            { GameState.Countdown, container.Resolve<CountdownState>() },
-            { GameState.Moving, container.Resolve<MovingState>() },
-            { GameState.Loss, container.Resolve<LossState>() },
-            { GameState.Victory, container.Resolve<VictoryState>() }
+            { GameStateType.Countdown, container.Resolve<CountdownState>() },
+            { GameStateType.Moving, container.Resolve<MovingState>() },
+            { GameStateType.Loss, container.Resolve<LossState>() },
+            { GameStateType.Victory, container.Resolve<VictoryState>() }
         };
         }
 
-        public IGameState GetGameState(GameState gameState)
+        public GameState GetGameState(GameStateType gameState)
         {
-            return gameStates.TryGetValue(gameState, out IGameState StateObj) ? StateObj : null;
+            return gameStates.TryGetValue(gameState, out GameState StateObj) ? StateObj : null;
         }
     }
 }

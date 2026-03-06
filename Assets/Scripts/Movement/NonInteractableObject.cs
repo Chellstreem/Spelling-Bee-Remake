@@ -1,4 +1,4 @@
-namespace MovableObjects
+namespace Movement
 {
     public class NonInteractableObject : MovableObject, IEventSubscriber<OnMovingStateExit>
     {
@@ -7,18 +7,18 @@ namespace MovableObjects
         private void OnEnable()
         {
             StartMoving();
-            eventManager.Subscribe<OnMovingStateExit>(this);
-        }        
+            _eventManager.Subscribe<OnMovingStateExit>(this);
+        }
 
         private void OnDisable()
         {
             StopMoving();
-            eventManager.Unsubscribe<OnMovingStateExit>(this);            
+            _eventManager.Unsubscribe<OnMovingStateExit>(this);
         }
 
         private void OnDestroy()
         {
-            eventManager.Unsubscribe<OnMovingStateExit>(this);
+            _eventManager.Unsubscribe<OnMovingStateExit>(this);
         }
     }
 }

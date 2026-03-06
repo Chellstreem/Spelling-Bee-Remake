@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace GameStates.Moving
 {
-    public class SafeSubstate : IGameState
+    public class SafeSubstate : GameState
     {
         private readonly ISubstateSwitcher<MovingStateSubstate> substateSwitcher;
         private readonly CoroutineRunner coroutineRunner;
         private readonly float duration; // Продолжительность этого подсостояния
 
-        private Coroutine coroutine;        
+        private Coroutine coroutine;
 
         public SafeSubstate(ISubstateSwitcher<MovingStateSubstate> substateSwitcher,
             CoroutineRunner coroutineRunner, GameStateConfig gameStateConfig)
@@ -19,16 +19,16 @@ namespace GameStates.Moving
             duration = gameStateConfig.SafeSubstateDuration;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             Debug.Log("Entering Safe State...");
             coroutine = coroutineRunner.StartCor(SafetyCoroutine(duration));
         }
 
-        public void Exit()
+        public override void Exit()
         {
             Debug.Log("Exiting Safe State...");
-            StopSafetyCoroutine();            
+            StopSafetyCoroutine();
         }
 
         private IEnumerator SafetyCoroutine(float duration)
@@ -44,6 +44,6 @@ namespace GameStates.Moving
                 coroutineRunner.StopCor(coroutine);
                 coroutine = null;
             }
-        }         
+        }
     }
 }

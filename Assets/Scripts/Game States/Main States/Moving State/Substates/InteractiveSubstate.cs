@@ -2,27 +2,27 @@ using UnityEngine;
 
 namespace GameStates.Moving
 {
-    public class InteractiveSubstate : IGameState, IEventSubscriber<OnWordCompleted>
+    public class InteractiveSubstate : GameState, IEventSubscriber<OnWordCompleted>
     {
         private readonly EventManager eventManager;
-        private readonly ISubstateSwitcher<MovingStateSubstate> substateSwitcher;               
+        private readonly ISubstateSwitcher<MovingStateSubstate> substateSwitcher;
 
         public InteractiveSubstate(EventManager eventManager, ISubstateSwitcher<MovingStateSubstate> substateSwitcher)
         {
             this.eventManager = eventManager;
-            this.substateSwitcher = substateSwitcher;                      
+            this.substateSwitcher = substateSwitcher;
         }
 
-        public void Enter()
+        public override void Enter()
         {
-            Debug.Log("Entering Interactive State...");            
+            Debug.Log("Entering Interactive State...");
             eventManager.Publish(new OnInteractiveSubstateEnter());
             SubscribeToEvents();
         }
 
-        public void Exit()
+        public override void Exit()
         {
-            Debug.Log("Exiting Interactive State...");            
+            Debug.Log("Exiting Interactive State...");
             eventManager.Publish(new OnInteractiveSubstateExit());
             UnsubscribeFromEvents();
         }
@@ -36,17 +36,17 @@ namespace GameStates.Moving
             else
             {
                 substateSwitcher.SetSubstate(MovingStateSubstate.Safe);
-            }            
-        }        
+            }
+        }
 
         private void SubscribeToEvents()
         {
-            eventManager.Subscribe<OnWordCompleted>(this);            
+            eventManager.Subscribe<OnWordCompleted>(this);
         }
 
         private void UnsubscribeFromEvents()
         {
-            eventManager.Unsubscribe<OnWordCompleted>(this);            
+            eventManager.Unsubscribe<OnWordCompleted>(this);
         }
     }
 }

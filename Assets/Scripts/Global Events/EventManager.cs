@@ -3,12 +3,9 @@ using System.Collections.Generic;
 
 public class EventManager
 {
-    private Dictionary<Type, List<object>> subscribers;
+    private readonly Dictionary<Type, List<object>> subscribers;
 
-    public EventManager()
-    {
-        subscribers = new Dictionary<Type, List<object>>();        
-    }
+    public EventManager() => subscribers = new();
 
     public void Subscribe<T>(IEventSubscriber<T> subscriber) where T : IEvent
     {
@@ -42,7 +39,7 @@ public class EventManager
         var eventType = typeof(T);
 
         if (subscribers.ContainsKey(eventType))
-        {            
+        {
             var subscribersCopy = new List<object>(subscribers[eventType]);
 
             foreach (var subscriber in subscribersCopy)
