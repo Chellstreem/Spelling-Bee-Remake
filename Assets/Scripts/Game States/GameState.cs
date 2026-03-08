@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace GameStates
 {
@@ -12,7 +13,9 @@ namespace GameStates
         public abstract GameStateType StateType { get; }
         public bool AllowMoving => _allowMoving;
 
-        public abstract void Initialize(GameStateController stateController, EventManager eventManager, CoroutineRunner runner);
+        [Inject]
+        public abstract void Initialize(GameStateController stateController, CoroutineRunner runner);
+
         public abstract void Enter();
         public abstract void Exit();
 

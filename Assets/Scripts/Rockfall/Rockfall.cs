@@ -31,26 +31,26 @@ public class Rockfall : IRockDropper
 
     public void StartRockFall()
     {
-        if (coroutine == null) coroutine = coroutineRunner.StartCor(RockFallingCoroutine());
+        if (coroutine == null) coroutine = coroutineRunner.StartCoroutine(RockFallingCoroutine());
     }
 
     public void StopRockFall()
     {
         if (coroutine != null)
         {
-            coroutineRunner.StopCor(coroutine);
+            coroutineRunner.Stop(coroutine);
             coroutine = null;
-        }           
+        }
     }
 
     private IEnumerator RockFallingCoroutine()
-    {                
+    {
         float zPosition = playerTransform.position.z;
 
         while (true)
         {
             float randomOffsetZ = Random.Range(-spawnRange, spawnRange);
-            Vector3 spawnPosition = new Vector3(xPosition, yPosition, zPosition + randomOffsetZ);        
+            Vector3 spawnPosition = new Vector3(xPosition, yPosition, zPosition + randomOffsetZ);
             GameObject rock = rockGetter.GetRock();
             rock.transform.position = spawnPosition;
             rock.SetActive(true);

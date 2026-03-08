@@ -1,14 +1,15 @@
+using InteractableObjects;
 using TMPro;
 using UnityEngine;
 
 public class ValueBar : MonoBehaviour
 {
-    private ILetter letter;
-    [SerializeField] private TextMeshProUGUI valueText;    
+    private Letter letter;
+    [SerializeField] private TextMeshProUGUI valueText;
 
     private void Awake()
     {
-        letter = GetComponent<ILetter>();              
+        letter = GetComponent<Letter>();
     }
 
     private void OnEnable()
@@ -22,5 +23,5 @@ public class ValueBar : MonoBehaviour
         valueText.text = value.ToUpper();
     }
 
-    private void OnDestroy() => letter.OnLetterSet -= UpdateText;   
+    private void OnDestroy() => letter.OnLetterSet -= UpdateText;
 }

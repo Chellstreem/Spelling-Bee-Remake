@@ -3,12 +3,14 @@
 [CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
 public class GameConfig : ScriptableObject
 {
-    [Header("Speed Config")]
-    [SerializeField] private float gameSpeed = 20f;
-    [SerializeField, Min(1f)] private float minGameSpeed = 5f;
+    [Header("Movement Settings")]
+    [SerializeField] private float _gameSpeed = 20f;
+    [SerializeField, Min(0f)] private float _minGameSpeed = 5f;
+    [SerializeField] private Vector3 _moveDirection = Vector3.back;
 
-    public float GameSpeed => gameSpeed;
-    public float MinGameSpeed => minGameSpeed;
+    public float GameSpeed => _gameSpeed;
+    public float MinGameSpeed => _minGameSpeed;
+    public Vector3 MoveDirection => _moveDirection;
 
     //
 

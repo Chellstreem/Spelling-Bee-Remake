@@ -3,16 +3,14 @@ using System.Collections;
 
 namespace MovableObjects
 {
-    public class Background : MovableObject, IEventSubscriber<OnMovingStateEnter>, IEventSubscriber<OnMovingStateExit>
+    public class Background : MovableObject
     {
-        private Vector3 startPosition;
+        private Vector3 _startPosition;
 
         private void Awake()
         {
-            startPosition = transform.position;
-
-            _eventManager.Subscribe<OnMovingStateEnter>(this);
-            _eventManager.Subscribe<OnMovingStateExit>(this);
+            _startPosition = transform.position;
+            _stateController.OnStateChanged += OnStateChanged;
         }
 
         protected override IEnumerator MoveCoroutine()
@@ -20,26 +18,27 @@ namespace MovableObjects
             while (true)
             {
                 Vector3 newPosition = transform.position;
-                newPosition += Vector3.back * (GameSpeed.Speed * Time.deltaTime);
+                newPosition += _moveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
 
                 if (newPosition.z < _thresholdZ)
-                {
-                    newPosition = startPosition;
-                }
+                    newPosition = _startPosition;
 
                 transform.position = newPosition;
                 yield return null;
             }
         }
 
-        public void OnEvent(OnMovingStateEnter eventData) => StartMoving();
-
-        public void OnEvent(OnMovingStateExit eventData) => StopMoving();
-
-        private void OnDestroy()
+        private void OnStateChanged()
         {
-            _eventManager.Unsubscribe<OnMovingStateEnter>(this);
-            _eventManager.Unsubscribe<OnMovingStateExit>(this);
+            if (!_stateController.CurrentState.AllowMoving)
+            {
+                StopMoving();
+                return;
+            }
+
+            StartMoving();
         }
+
+        private void OnDisable() => _stateController.OnStateChanged -= OnStateChanged;
     }
 }

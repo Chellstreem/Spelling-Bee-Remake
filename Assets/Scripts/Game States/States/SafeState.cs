@@ -13,7 +13,7 @@ namespace GameStates
 
         public override GameStateType StateType => GameStateType.Safe;
 
-        public override void Initialize(GameStateController stateController, EventManager eventManager, CoroutineRunner runner)
+        public override void Initialize(GameStateController stateController, CoroutineRunner runner)
         {
             _stateController = stateController;
             _coroutineRunner = runner;
@@ -22,7 +22,7 @@ namespace GameStates
         public override void Enter()
         {
             Debug.Log("Entering Safe State...");
-            _coroutine = _coroutineRunner.StartCor(SafetyCoroutine(_duration));
+            _coroutine = _coroutineRunner.StartCoroutine(SafetyCoroutine(_duration));
         }
 
         public override void Exit()
@@ -41,7 +41,7 @@ namespace GameStates
         {
             if (_coroutine != null)
             {
-                _coroutineRunner.StopCor(_coroutine);
+                _coroutineRunner.Stop(_coroutine);
                 _coroutine = null;
             }
         }

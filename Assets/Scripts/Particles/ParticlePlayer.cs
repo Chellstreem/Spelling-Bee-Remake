@@ -5,28 +5,28 @@ namespace Particles
 {
     public class ParticlePlayer : IParticlePlayer
     {
-        private readonly IParticlePool particlePool;        
-        private readonly CoroutineRunner coroutineRunner;        
+        private readonly IParticlePool particlePool;
+        private readonly CoroutineRunner coroutineRunner;
 
         public ParticlePlayer(IParticlePool particlePool, CoroutineRunner coroutineRunner)
         {
-            this.particlePool = particlePool;            
-            this.coroutineRunner = coroutineRunner;                      
-        }         
+            this.particlePool = particlePool;
+            this.coroutineRunner = coroutineRunner;
+        }
 
         public void PlayParticle(ParticleType particleType, Vector3 position)
         {
-            ParticleSystem particle = particlePool.GetParticle(particleType);            
+            ParticleSystem particle = particlePool.GetParticle(particleType);
             particle.gameObject.transform.position = position;
             particle.gameObject.SetActive(true);
             particle.Play();
 
-            coroutineRunner.StartCor(ReturnToPoolAfterPlay(particleType, particle));
+            coroutineRunner.StartCoroutine(ReturnToPoolAfterPlay(particleType, particle));
         }
 
         public void PlayParticle(ParticleType particleType, Vector3 position, float delay)
         {
-            coroutineRunner.StartCor(DelayedParticleCoroutine(particleType, position, delay));
+            coroutineRunner.StartCoroutine(DelayedParticleCoroutine(particleType, position, delay));
         }
 
         private IEnumerator DelayedParticleCoroutine(ParticleType particleType, Vector3 position, float duration)
@@ -43,6 +43,6 @@ namespace Particles
             particle.Stop();
             particle.gameObject.SetActive(false);
             particlePool.ReturnParticle(particleType, particle);
-        }        
+        }
     }
 }

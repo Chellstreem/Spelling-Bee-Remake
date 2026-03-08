@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.ComponentModel;
+using System.Collections;
 using UnityEngine;
 
 namespace GameStates
@@ -12,29 +13,27 @@ namespace GameStates
         [SerializeField] private int _finalFontSize = 350; // Размер шрифта для надписи Go!
 
         private GameStateController _stateController;
-        private EventManager _eventManager;
         private CoroutineRunner _coroutineRunner;
 
         public override GameStateType StateType => GameStateType.Countdown;
 
-        public override void Initialize(GameStateController stateController, EventManager eventManager, CoroutineRunner runner)
+        public override void Initialize(GameStateController stateController, CoroutineRunner runner)
         {
             _stateController = stateController;
-            _eventManager = eventManager;
             _coroutineRunner = runner;
         }
 
         public override void Enter()
         {
-            _eventManager.Publish(new OnCountdownStateEnter());
-            _coroutineRunner.StartCor(CountDown(_count, _fontSize, _finalFontSize));
+            //_coroutineRunner.StartCoroutine(CountDown(_count, _fontSize, _finalFontSize));
+            Debug.Log("Enter Count DOwn");
         }
 
         private IEnumerator CountDown(int count, int fontSize, int finalFontSize)
         {
             while (count >= 0)
             {
-                _eventManager.Publish(new OnCountdownTick(count, fontSize, finalFontSize));
+                //_eventManager.Publish(new OnCountdownTick(count, fontSize, finalFontSize));
                 yield return new WaitForSeconds(1f);
                 count--;
                 fontSize -= _fontSizeDecrement;
@@ -45,7 +44,7 @@ namespace GameStates
 
         public override void Exit()
         {
-            _eventManager.Publish(new OnCountdownStateExit());
+
         }
     }
 }

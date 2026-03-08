@@ -1,14 +1,40 @@
 using Zenject;
 using UnityEngine;
+using CameraControl;
+using GameStates;
 
 public class Stage1Installer : MonoInstaller
 {
+    [Header("Configs")]
+    [SerializeField] private GameConfig _gameConfig;
+    [SerializeField] private CameraConfig _cameraConfig;
+
+    [Header("Scene References")]
+    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private CoroutineRunner _coroutineRunner;
+
     [SerializeField] private RectTransform gameoverMenuTransform;
     [SerializeField] private GameObject countdownBar;
     [SerializeField] private GameObject missileAlertBar;
+
+    [Inject]
+    private GameStateController _gameStateController;
+
     public override void InstallBindings()
     {
-        Container.Bind<RectTransform>()
+        Container.Bind<CoroutineRunner>()
+            .FromInstance(_coroutineRunner)
+            .AsSingle()
+            .NonLazy();
+
+        InstallCamera();
+
+        Container.Bind<GameSpeedController>()
+            .AsSingle()
+            .WithArguments(_gameConfig)
+            .NonLazy();
+
+        /*Container.Bind<RectTransform>()
             .WithId(UiObjectType.GameoverMenu)
             .FromInstance(gameoverMenuTransform)
             .AsSingle();
@@ -23,12 +49,12 @@ public class Stage1Installer : MonoInstaller
             .FromInstance(missileAlertBar)
             .AsTransient();
 
-        Container.Bind<EventManager>().AsSingle();                      
+        Container.Bind<EventManager>().AsSingle();
         Container.BindInterfacesTo<LetterGenerator>().AsSingle().NonLazy();
-        Container.Bind<GameSpeed>().AsSingle().NonLazy();
-        
-        InstallUIHandlers();        
-        InstallCursor();
+        Container.Bind<GameSpeedController>().AsSingle().NonLazy();
+
+        InstallUIHandlers();
+        InstallCursor();*/
     }
 
     private void InstallCursor()
@@ -41,5 +67,12 @@ public class Stage1Installer : MonoInstaller
     {
         Container.Bind<IInitializable>().To<GameOverMenuHandler>().AsSingle().NonLazy();
         Container.Bind<ActivatorUI>().AsSingle().NonLazy();
+    }
+
+    private void InstallCamera()
+    {
+        Container.Bind<Camera>().FromInstance(_mainCamera).AsSingle().NonLazy();
+        CameraMover cameraMover = new(_coroutineRunner, _cameraConfig);
+        CameraController cameraController = new(_mainCamera, cameraMover, _gameStateController);
     }
 }

@@ -1,4 +1,4 @@
-namespace Cameras
+namespace CameraControl
 {
     public enum CameraStateType
     {

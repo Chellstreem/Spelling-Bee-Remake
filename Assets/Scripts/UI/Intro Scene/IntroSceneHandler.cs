@@ -15,12 +15,12 @@ public class IntroSceneHandler
         this.sceneSwitcher = sceneSwitcher;
         this.sceneDuration = sceneDuration;
 
-        this.coroutineRunner.StartCor(IntroCoroutine());
+        this.coroutineRunner.StartCoroutine(IntroCoroutine());
     }
 
     private IEnumerator IntroCoroutine()
     {
-        yield return new WaitForSeconds(sceneDuration);        
+        yield return new WaitForSeconds(sceneDuration);
         sceneSwitcher.SwitchScene(SceneName.MainMenu);
     }
 }

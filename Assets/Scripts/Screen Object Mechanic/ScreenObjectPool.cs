@@ -9,9 +9,9 @@ public class ScreenObjectPool : IScreenObjectGetter
 
     private Queue<ScreenObject> screenObjects;
 
-    public ScreenObjectPool(ICameraGetter cameraGetter, ScreenObjectConfig screenObjectConfig)
+    public ScreenObjectPool(Camera camera, ScreenObjectConfig screenObjectConfig)
     {
-        mainCameraTransform = cameraGetter.GetCamera(CameraType.MainCamera).transform;
+        mainCameraTransform = camera.transform;
         screenObjectDatas = screenObjectConfig.ScreenObjects;
 
         InitializePool();
@@ -33,6 +33,6 @@ public class ScreenObjectPool : IScreenObjectGetter
     }
 
     public ScreenObject GetObject() => screenObjects.Dequeue();
-    
-    public void ReturnObject(ScreenObject screenObject) => screenObjects.Enqueue(screenObject);    
+
+    public void ReturnObject(ScreenObject screenObject) => screenObjects.Enqueue(screenObject);
 }

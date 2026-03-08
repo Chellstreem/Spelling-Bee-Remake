@@ -14,14 +14,14 @@ namespace Spawn
         public virtual void StartSpawning()
         {
             StopSpawning();
-            spawnCoroutine = runner.StartCor(SpawnObjects());
+            spawnCoroutine = runner.StartCoroutine(SpawnObjects());
         }
 
         public virtual void StopSpawning()
         {
             if (spawnCoroutine != null)
             {
-                runner.StopCor(spawnCoroutine);
+                runner.Stop(spawnCoroutine);
                 spawnCoroutine = null;
             }
         }
@@ -31,7 +31,7 @@ namespace Spawn
             while (true)
             {
                 yield return new WaitForSeconds(spawnFrequency);
-                SpawnableObject spawnObject = GetObject(ObjectType);                
+                SpawnableObject spawnObject = GetObject(ObjectType);
                 spawnObject.CachedTransform.position = GetPosition(spawnObject);
                 spawnObject.GameObject.SetActive(true);
             }

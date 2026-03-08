@@ -9,7 +9,7 @@ namespace Sounds
         private readonly CoroutineRunner coroutineRunner;
         private readonly ISoundLibrary library;
 
-        private readonly AudioSource audioSource;       
+        private readonly AudioSource audioSource;
 
         public SoundEffectPlayer(CoroutineRunner coroutineRunner, ISoundLibrary library)
         {
@@ -19,7 +19,7 @@ namespace Sounds
         }
 
         public void PlayEffect(SoundType soundType)
-        {            
+        {
             AudioClip clip = library.GetClip(soundType);
             if (clip != null)
             {
@@ -29,7 +29,7 @@ namespace Sounds
 
         public void PlayEffectSequence(SoundType[] soundTypes)
         {
-            coroutineRunner.StartCor(SoundEffectSequenceCoroutine(soundTypes));
+            coroutineRunner.StartCoroutine(SoundEffectSequenceCoroutine(soundTypes));
         }
 
         private IEnumerator SoundEffectSequenceCoroutine(SoundType[] soundTypes)
@@ -40,6 +40,6 @@ namespace Sounds
                 audioSource.PlayOneShot(clip);
                 yield return new WaitForSeconds(clip.length);
             }
-        }        
+        }
     }
 }

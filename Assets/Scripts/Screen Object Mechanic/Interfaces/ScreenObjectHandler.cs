@@ -9,7 +9,7 @@ public class ScreenObjectHandler : IEventSubscriber<OnMovingStateEnter>, IEventS
     private readonly float interval;
 
     private Coroutine coroutine;
-    
+
 
     public ScreenObjectHandler(EventManager eventManager, CoroutineRunner coroutineRunner,
         IScreenObjectMover screenObjectMover, ScreenObjectConfig config)
@@ -32,20 +32,20 @@ public class ScreenObjectHandler : IEventSubscriber<OnMovingStateEnter>, IEventS
             yield return new WaitForSeconds(interval);
             if (Random.value > 0.5)
                 screenObjectMover.ShowScreenObject();
-        }       
+        }
     }
 
     private void StartCoroutine()
     {
         if (coroutine == null)
-            coroutine = coroutineRunner.StartCor(ScreenObjectCoroutine());
+            coroutine = coroutineRunner.StartCoroutine(ScreenObjectCoroutine());
     }
 
     private void StopCoroutine()
     {
         if (coroutine != null)
         {
-            coroutineRunner.StopCor(coroutine);
+            coroutineRunner.Stop(coroutine);
             coroutine = null;
         }
     }

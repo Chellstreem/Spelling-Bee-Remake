@@ -6,7 +6,6 @@ using Zenject;
 
 public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnVictoryStateEnter>, IEventSubscriber<OnLetterChecked>
 {
-    private EventManager eventManager;
     private IMaskedWordGetter maskedWordGetter;
 
     private readonly string victoryMessage = "YOU DID IT!";
@@ -15,9 +14,8 @@ public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnVictoryStateEnter
     private TextMeshProUGUI text;
 
     [Inject]
-    public void Construct(EventManager eventManager, IMaskedWordGetter maskedWordGetter)
+    public void Construct(IMaskedWordGetter maskedWordGetter)
     {
-        this.eventManager = eventManager;
         this.maskedWordGetter = maskedWordGetter;
     }
 
@@ -31,7 +29,7 @@ public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnVictoryStateEnter
 
     public void OnEvent(OnVictoryStateEnter eventData)
     {
-        StartCoroutine(UpdateVictoryMessageWithDelay(delayBeforeVictoryMessage));        
+        StartCoroutine(UpdateVictoryMessageWithDelay(delayBeforeVictoryMessage));
     }
 
     public void OnEvent(OnLetterChecked eventData)
@@ -42,19 +40,19 @@ public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnVictoryStateEnter
 
     private void UpdateText()
     {
-        text.text = maskedWordGetter.GetMaskedWord().ToUpper();        
-    }        
+        text.text = maskedWordGetter.GetMaskedWord().ToUpper();
+    }
 
     private void SubscribeToEvents()
     {
-        eventManager.Subscribe<OnLetterChecked>(this);
-        eventManager.Subscribe<OnVictoryStateEnter>(this);
+        //eventManager.Subscribe<OnLetterChecked>(this);
+        //eventManager.Subscribe<OnVictoryStateEnter>(this);
     }
 
     private void UnsubscribeFromEvents()
-    {        
-        eventManager.Unsubscribe<OnLetterChecked>(this);
-        eventManager.Unsubscribe<OnVictoryStateEnter>(this);
+    {
+        //eventManager.Unsubscribe<OnLetterChecked>(this);
+        // eventManager.Unsubscribe<OnVictoryStateEnter>(this);
     }
 
     private IEnumerator UpdateVictoryMessageWithDelay(float duration)

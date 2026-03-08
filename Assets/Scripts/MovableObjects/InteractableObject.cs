@@ -1,25 +1,16 @@
+using System;
 using UnityEngine;
 
 namespace MovableObjects
 {
-    public abstract class InteractableObject : MovableObject, IEventSubscriber<OnWordCompleted>
+    public class InteractableObject : MovableObject, IEventSubscriber<OnWordCompleted>
     {
-        public abstract InteractableObjectType Type { get; }
-
         private void OnEnable() => SubscribeToEvents();
-
-        protected abstract void OnCollision(InteractableObjectType type);
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent<InteractableObject>(out var interactable))
-                OnCollision(Type);
-        }
 
         public void OnEvent(OnWordCompleted eventData)
         {
-            //particlePlayer.PlayParticle(ParticleType.Poof, transform.position);
             _objectReturner.ReturnObject(gameObject);
+            //particlePlayer.PlayParticle(ParticleType.Poof, transform.position);
         }
 
         private void OnStateChanged()
@@ -39,13 +30,13 @@ namespace MovableObjects
 
         private void SubscribeToEvents()
         {
-            _eventManager.Subscribe<OnWordCompleted>(this);
+            //_eventManager.Subscribe<OnWordCompleted>(this);
             _stateController.OnStateChanged += OnStateChanged;
         }
 
         private void UnsubscribeFromEvents()
         {
-            _eventManager.Unsubscribe<OnWordCompleted>(this);
+            //_eventManager.Unsubscribe<OnWordCompleted>(this);
             _stateController.OnStateChanged -= OnStateChanged;
         }
 

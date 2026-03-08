@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CoroutineRunner : MonoBehaviour
 {
-    public Coroutine StartCor(IEnumerator coroutine)
+    public Coroutine Run(IEnumerator coroutine)
     {
         if (coroutine == null) throw new ArgumentNullException(nameof(coroutine));
         return StartCoroutine(coroutine);
     }
 
-    public void StopCor(Coroutine coroutine)
+    public void Stop(Coroutine coroutine)
     {
         if (coroutine != null)
             StopCoroutine(coroutine);

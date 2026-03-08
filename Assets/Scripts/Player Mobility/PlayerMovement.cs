@@ -47,8 +47,8 @@ namespace PlayerMobility
         private void MoveTo(Vector3 position)
         {
             if (currentPosition == position) return;
-            if (moveCoroutine != null) coroutineRunner.StopCor(moveCoroutine);
-            moveCoroutine = coroutineRunner.StartCor(MoveCoroutine(position));
+            if (moveCoroutine != null) coroutineRunner.Stop(moveCoroutine);
+            moveCoroutine = coroutineRunner.StartCoroutine(MoveCoroutine(position));
             currentPosition = position;
         }
     }

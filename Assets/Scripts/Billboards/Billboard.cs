@@ -3,19 +3,19 @@ using Zenject;
 
 public abstract class Billboard : MonoBehaviour
 {
-    protected IActiveCamera activeCamera;
+    protected Camera _camera;
     protected Transform targetCameraTransform;
     [SerializeField, Range(-180, 180)] protected float horizontalAngleOffset = 0f;
 
     [Inject]
-    public virtual void Construct(IActiveCamera activeCamera)
+    public virtual void Construct(Camera activeCamera)
     {
-        this.activeCamera = activeCamera;
+        this._camera = activeCamera;
     }
 
     protected void UpdateTargetCamera()
     {
-        targetCameraTransform = activeCamera.ActiveCamera.transform;
+        targetCameraTransform = _camera.transform;
     }
 
     private void LateUpdate()
