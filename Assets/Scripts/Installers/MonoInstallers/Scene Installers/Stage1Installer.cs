@@ -5,9 +5,7 @@ using GameStates;
 
 public class Stage1Installer : MonoInstaller
 {
-    [Header("Configs")]
     [SerializeField] private GameConfig _gameConfig;
-    [SerializeField] private CameraConfig _cameraConfig;
 
     [Header("Scene References")]
     [SerializeField] private Camera _mainCamera;
@@ -33,6 +31,15 @@ public class Stage1Installer : MonoInstaller
             .AsSingle()
             .WithArguments(_gameConfig)
             .NonLazy();
+
+        Container.Bind<GameConfig>()
+            .FromInstance(_gameConfig)
+            .AsSingle()
+            .NonLazy();
+
+
+
+
 
         /*Container.Bind<RectTransform>()
             .WithId(UiObjectType.GameoverMenu)
@@ -72,7 +79,7 @@ public class Stage1Installer : MonoInstaller
     private void InstallCamera()
     {
         Container.Bind<Camera>().FromInstance(_mainCamera).AsSingle().NonLazy();
-        CameraMover cameraMover = new(_coroutineRunner, _cameraConfig);
+        CameraMover cameraMover = new(_coroutineRunner, _gameConfig.CameraConfig);
         CameraController cameraController = new(_mainCamera, cameraMover, _gameStateController);
     }
 }

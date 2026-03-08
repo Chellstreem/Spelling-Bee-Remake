@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
+using CameraControl;
 
 [CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
 public class GameConfig : ScriptableObject
 {
+    [SerializeField] private CameraConfig _cameraConfig;
+    [SerializeField] private SpawnConfig _spawnConfig;
+    public CameraConfig CameraConfig => _cameraConfig;
+    public SpawnConfig SpawnConfig => _spawnConfig;
+
+    //
+
     [Header("Movement Settings")]
     [SerializeField] private float _gameSpeed = 20f;
     [SerializeField, Min(0f)] private float _minGameSpeed = 5f;
     [SerializeField] private Vector3 _moveDirection = Vector3.back;
+    [SerializeField] private float _returnThreshold = 56f;
+    [SerializeField] private Vector3 backgroundPosition;
 
     public float GameSpeed => _gameSpeed;
     public float MinGameSpeed => _minGameSpeed;
     public Vector3 MoveDirection => _moveDirection;
-
-    //
-
-    [Header("Movable Object Config")]
-    [SerializeField] private Vector3 backgroundPosition;
-    [SerializeField] private float thresholdZ;
-
+    public float ReturnThreshold => _returnThreshold;
     public Vector3 BackgroundPosition => backgroundPosition;
-    public float ThresholdZ => thresholdZ;
 
     //
 

@@ -2,18 +2,19 @@ using Spawn;
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "SpawnInstaller", menuName = "Installers/SpawnInstaller")]
+[CreateAssetMenu(fileName = "Spawn Installer", menuName = "Installers/Spawn Installer")]
 public class SpawnInstaller : ScriptableObjectInstaller
 {
-    [SerializeField] private SpawnConfig spawnConfig;
+    [SerializeField] private SpawnConfig _spawnConfig;
     public override void InstallBindings()
     {
-        Container.Bind<SpawnConfig>()
-            .FromInstance(spawnConfig)
-            .AsSingle();
+        Container.Bind<ObjectPool>()
+            .AsSingle()
+            .WithArguments(_spawnConfig)
+            .NonLazy();
 
-        Container.BindInterfacesTo<SpawnableObjectPool>().AsSingle();         
-        Container.Bind<PoolInitializer>().AsSingle().NonLazy();
+
+        /*Container.Bind<PoolInitializer>().AsSingle().NonLazy();
 
         Container.Bind<ISpawner>()
             .WithId(SpawnerType.Decorative)
@@ -35,6 +36,6 @@ public class SpawnInstaller : ScriptableObjectInstaller
             .To<MonkeySpawner>()
             .AsSingle();
 
-        Container.Bind<SpawnEventHandler>().AsSingle().NonLazy();        
+        Container.Bind<SpawnEventHandler>().AsSingle().NonLazy();     */
     }
 }

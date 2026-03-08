@@ -1,34 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Spawn;
+using UnityEngine;
 
+[System.Serializable]
 public class SpawnableObject
 {
-    private GameObject gameObject;
-    private SpawnableObjectType objectGroup;
-    private float minPosX;
-    private float maxPosX;
-    private float minPosY;
-    private float maxPosY;
-    private int priorityWeight;
-    private Transform cachedTransform; // Поле для кэширования Transform
+    [SerializeField] private GameCharacterType _type;
+    [SerializeField] private GameObject _prefab;
+    [SerializeField] private SpawnPosition _spawnPosition;
 
-    public GameObject GameObject => gameObject;
-    public SpawnableObjectType ObjectGroup => objectGroup;
-    public float MinPosX => minPosX;
-    public float MaxPosX => maxPosX;
-    public float MinPosY => minPosY;
-    public float MaxPosY => maxPosY;
-    public int PriorityWeight => priorityWeight;
-    public Transform CachedTransform => cachedTransform;
+    [Range(0, 20)]
+    [SerializeField] private int _amount;
 
-    public SpawnableObject(GameObject gameObject, SpawnableObjectType objectGroup, float minPosX, float maxPosX, float minPosY, float maxPosY, int priorityWeight)
-    {
-        this.gameObject = gameObject;        
-        this.objectGroup = objectGroup;
-        this.minPosX = minPosX;
-        this.maxPosX = maxPosX;
-        this.minPosY = minPosY;
-        this.maxPosY = maxPosY;
-        this.priorityWeight = priorityWeight;
-        cachedTransform = gameObject.transform;
-    }
+    public Queue<GameObject> Pool { get; } = new();
+
+    public GameCharacterType Type => _type;
+    public GameObject Prefab => _prefab;
+    public int Amount => _amount;
+
+    public void GetSpawnPosition() => _spawnPosition.GetPosition(this);
 }

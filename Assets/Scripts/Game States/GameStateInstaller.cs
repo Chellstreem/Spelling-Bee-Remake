@@ -14,7 +14,5 @@ public class GameStateInstaller : ScriptableObjectInstaller
         Container.Bind<GameStateController>()
             .FromInstance(controller)
             .AsSingle();
-
-        controller.SetState(GameStateType.Countdown);
     }
 }

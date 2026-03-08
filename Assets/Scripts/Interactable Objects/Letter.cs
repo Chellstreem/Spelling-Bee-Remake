@@ -1,5 +1,6 @@
 using System;
 using Zenject;
+using MovableObjects;
 
 namespace InteractableObjects
 {
@@ -8,7 +9,7 @@ namespace InteractableObjects
         private ILetterProvider _letterProvider;
 
         public string Value { get; private set; }
-        public override InteractableObjectType Type => InteractableObjectType.Letter;
+        public override GameCharacterType Type => GameCharacterType.Letter;
 
         public event Action<string> OnLetterSet;
 

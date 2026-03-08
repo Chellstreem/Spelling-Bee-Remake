@@ -9,7 +9,7 @@ namespace MovableObjects
 
         public void OnEvent(OnWordCompleted eventData)
         {
-            _objectReturner.ReturnObject(gameObject);
+            _pool.ReturnObject(gameObject);
             //particlePlayer.PlayParticle(ParticleType.Poof, transform.position);
         }
 
@@ -24,7 +24,7 @@ namespace MovableObjects
             if (_stateController.CurrentState.StateType == GameStates.GameStateType.Missile)
             {
                 //particlePlayer.PlayParticle(ParticleType.Poof, transform.position);
-                _objectReturner.ReturnObject(gameObject);
+                _pool.ReturnObject(gameObject);
             }
         }
 

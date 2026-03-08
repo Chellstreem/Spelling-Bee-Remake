@@ -20,7 +20,7 @@ namespace MovableObjects
                 if (newPosition.z <= _thresholdZ)
                 {
                     StopMoving();
-                    _objectReturner.ReturnObject(gameObject);
+                    _pool.ReturnObject(gameObject);
                     yield break;
                 }
 

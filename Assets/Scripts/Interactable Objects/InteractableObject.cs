@@ -1,3 +1,4 @@
+using Spawn;
 using UnityEngine;
 using Zenject;
 
@@ -5,19 +6,19 @@ namespace InteractableObjects
 {
     public abstract class InteractableObject : MonoBehaviour
     {
-        protected ISpawnableObjectReturner _objectReturner;
-        public abstract InteractableObjectType Type { get; }
+        protected ObjectPool _pool;
 
+        public abstract GameCharacterType Type { get; }
         public delegate void OnCollision(InteractableObject sender, InteractableObject other);
         public event OnCollision OnInteractableCollision;
 
         [Inject]
-        public virtual void Construct(ISpawnableObjectReturner objectReturner) => _objectReturner = objectReturner;
+        public virtual void Construct(ObjectPool pool) => _pool = pool;
 
         protected virtual void HandleCollision(InteractableObject other)
         {
             OnInteractableCollision?.Invoke(this, other);
-            _objectReturner.ReturnObject(gameObject);
+            _pool.ReturnObject(gameObject);
         }
 
         private void OnTriggerEnter(Collider other)

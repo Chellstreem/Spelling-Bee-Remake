@@ -1,7 +1,7 @@
 using CameraControl;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CameraState", menuName = "Scriptable Objects/Camera/CameraState")]
+[CreateAssetMenu(fileName = "Camera State", menuName = "Scriptable Objects/Camera/Camera State")]
 public class CameraState : ScriptableObject
 {
     [SerializeField] private CameraStateType _state;

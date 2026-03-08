@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using GameStates;
+using Spawn;
 using UnityEngine;
 using Zenject;
 
@@ -9,23 +10,27 @@ namespace MovableObjects
     {
         protected GameStateController _stateController;
         protected GameSpeedController _speedController;
-        protected ISpawnableObjectReturner _objectReturner;
+        protected ObjectPool _pool;
         protected float _thresholdZ;
         protected Vector3 _moveDirection;
         private Coroutine _moveCoroutine;
 
         [Inject]
         public virtual void Construct(GameStateController stateController, GameSpeedController speedController,
-         ISpawnableObjectReturner objectReturner, GameConfig gameConfig)
+         ObjectPool pool, GameConfig gameConfig)
         {
             _stateController = stateController;
             _speedController = speedController;
-            _objectReturner = objectReturner;
-            _thresholdZ = gameConfig.ThresholdZ;
+            _pool = pool;
+            _thresholdZ = gameConfig.ReturnThreshold;
             _moveDirection = gameConfig.MoveDirection;
         }
 
-        public void StartMoving() => _moveCoroutine ??= StartCoroutine(MoveCoroutine());
+        public void StartMoving()
+        {
+            _moveCoroutine ??= StartCoroutine(MoveCoroutine());
+            Debug.Log("sdf");
+        }
 
         public void StopMoving()
         {
@@ -45,7 +50,7 @@ namespace MovableObjects
                 if (newPosition.z <= _thresholdZ)
                 {
                     StopMoving();
-                    _objectReturner.ReturnObject(gameObject);
+                    _pool.ReturnObject(gameObject);
                     yield break;
                 }
 
