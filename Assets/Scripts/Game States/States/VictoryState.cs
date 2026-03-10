@@ -7,7 +7,7 @@ namespace GameStates
     {
         public override GameStateType StateType => GameStateType.Victory;
 
-        public override void Initialize(GameStateController stateController, CoroutineRunner runner) { }
+        public override void Construct(GameStateController stateController, CoroutineRunner runner) { }
 
         public override void Enter() => Debug.Log("Entering Victory State");
 

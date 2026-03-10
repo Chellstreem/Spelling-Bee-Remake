@@ -9,7 +9,7 @@ namespace InteractableObjects
         private ILetterProvider _letterProvider;
 
         public string Value { get; private set; }
-        public override GameCharacterType Type => GameCharacterType.Letter;
+        public override SpawnableType Type => SpawnableType.Letter;
 
         public event Action<string> OnLetterSet;
 

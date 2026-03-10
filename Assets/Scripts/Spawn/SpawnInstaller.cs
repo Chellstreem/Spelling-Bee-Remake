@@ -13,6 +13,9 @@ public class SpawnInstaller : ScriptableObjectInstaller
             .WithArguments(_spawnConfig)
             .NonLazy();
 
+        Container.Bind<Spawner>()
+            .AsSingle()
+            .NonLazy();
 
         /*Container.Bind<PoolInitializer>().AsSingle().NonLazy();
 

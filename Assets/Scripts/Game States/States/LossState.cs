@@ -7,7 +7,7 @@ namespace GameStates
     {
         public override GameStateType StateType => GameStateType.Loss;
 
-        public override void Initialize(GameStateController stateController, CoroutineRunner runner) { }
+        public override void Construct(GameStateController stateController, CoroutineRunner runner) { }
 
         public override void Enter()
         {

@@ -8,7 +8,7 @@ namespace InteractableObjects
     {
         protected ObjectPool _pool;
 
-        public abstract GameCharacterType Type { get; }
+        public abstract SpawnableType Type { get; }
         public delegate void OnCollision(InteractableObject sender, InteractableObject other);
         public event OnCollision OnInteractableCollision;
 

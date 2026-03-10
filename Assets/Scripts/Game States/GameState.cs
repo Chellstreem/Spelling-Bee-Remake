@@ -14,7 +14,7 @@ namespace GameStates
         public bool AllowMoving => _allowMoving;
 
         [Inject]
-        public abstract void Initialize(GameStateController stateController, CoroutineRunner runner);
+        public abstract void Construct(GameStateController stateController, CoroutineRunner runner);
 
         public abstract void Enter();
         public abstract void Exit();

@@ -3,15 +3,17 @@ using UnityEngine;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Interactive State", menuName = "Game States/Interactive State")]
-    public class InteractiveState : GameState, IEventSubscriber<OnWordCompleted>
+    public class InteractiveState : SpawnState, IEventSubscriber<OnWordCompleted>
     {
         private GameStateController _stateController;
+        private CoroutineRunner _coroutineRunner;
 
         public override GameStateType StateType => GameStateType.Interactive;
 
-        public override void Initialize(GameStateController stateController, CoroutineRunner runner)
+        public override void Construct(GameStateController stateController, CoroutineRunner runner)
         {
             _stateController = stateController;
+            _coroutineRunner = runner;
         }
 
         public override void Enter()

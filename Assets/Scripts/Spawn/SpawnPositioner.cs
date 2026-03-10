@@ -7,7 +7,7 @@ namespace Spawn
         Random, Fixed
     }
 
-    public abstract class SpawnPosition : ScriptableObject
+    public abstract class SpawnPositioner : ScriptableObject
     {
         public abstract SpawnPositionType Type { get; }
         public abstract Vector3 GetPosition(SpawnableObject spawnableObject);

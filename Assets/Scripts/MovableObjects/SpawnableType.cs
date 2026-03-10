@@ -1,4 +1,4 @@
-public enum GameCharacterType
+public enum SpawnableType
 {
     Player,
     YellowFlower,

@@ -6,7 +6,7 @@ namespace Spawn
 {
     public class ObjectPool
     {
-        private readonly Dictionary<GameCharacterType, SpawnableObject> poolDictionary = new();
+        private readonly Dictionary<SpawnableType, SpawnableObject> poolDictionary = new();
         private readonly Dictionary<GameObject, SpawnableObject> returnMap = new();
         private Transform _poolHolderTransform;
 
@@ -18,7 +18,7 @@ namespace Spawn
 
             foreach (var spawnableObject in spawnConfig.SpawnableObjects)
             {
-                GameCharacterType type = spawnableObject.Type;
+                SpawnableType type = spawnableObject.Type;
 
                 if (!poolDictionary.ContainsKey(type))
                     poolDictionary[type] = spawnableObject;
@@ -34,7 +34,7 @@ namespace Spawn
             }
         }
 
-        public SpawnableObject GetSpawnableObject(GameCharacterType type)
+        public SpawnableObject GetSpawnableObject(SpawnableType type)
         {
             if (!poolDictionary.ContainsKey(type))
             {

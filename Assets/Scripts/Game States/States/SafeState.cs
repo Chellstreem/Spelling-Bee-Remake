@@ -13,7 +13,7 @@ namespace GameStates
 
         public override GameStateType StateType => GameStateType.Safe;
 
-        public override void Initialize(GameStateController stateController, CoroutineRunner runner)
+        public override void Construct(GameStateController stateController, CoroutineRunner runner)
         {
             _stateController = stateController;
             _coroutineRunner = runner;
