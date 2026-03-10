@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace GameStates
 {
@@ -10,6 +11,7 @@ namespace GameStates
 
         public override GameStateType StateType => GameStateType.Interactive;
 
+        [Inject]
         public override void Construct(GameStateController stateController, CoroutineRunner runner)
         {
             _stateController = stateController;
@@ -20,6 +22,8 @@ namespace GameStates
         {
             Debug.Log("Entering Interactive State...");
             SubscribeToEvents();
+
+            _spawnCoroutine = _coroutineRunner.StartCoroutine(RunSpawnCoroutine());
         }
 
         public override void Exit()

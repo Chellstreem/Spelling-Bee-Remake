@@ -3,14 +3,13 @@ using Zenject;
 
 namespace Spawn
 {
-    [CreateAssetMenu(fileName = "Random Spawn Positioner", menuName = "ScriptableObjects/Spawn/Random Spawn Positioner")]
+    [CreateAssetMenu(fileName = "Random Spawn Positioner", menuName = "Scriptable Objects/Spawn/Random Spawn Positioner")]
     public class RandomSpawnPositioner : SpawnPositioner
     {
         [Header("Spawn Range")]
         [SerializeField] private float _minX;
         [SerializeField] private float _maxX;
-        [SerializeField] private float _minY;
-        [SerializeField] private float _maxY;
+        [SerializeField] private float _yPosition;
         private Vector3 _originalSpawnPosition;
 
         public override SpawnPositionType Type => SpawnPositionType.Random;
@@ -21,10 +20,7 @@ namespace Spawn
         public override Vector3 GetPosition(SpawnableObject spawnableObject)
         {
             float x = Random.Range(_minX, _maxX);
-            float y = Random.Range(_minY, _maxY);
-            float z = _originalSpawnPosition.z;
-
-            return new Vector3(x, y, z);
+            return new Vector3(x, _yPosition, _originalSpawnPosition.z);
         }
     }
 }

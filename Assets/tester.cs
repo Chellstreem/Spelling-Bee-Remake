@@ -16,6 +16,6 @@ public class tester : MonoBehaviour
 
     private void Start()
     {
-        _gameStateController.SetState(GameStateType.Countdown);
+        _gameStateController.SetState(GameStateType.Interactive);
     }
 }

@@ -1,8 +1,16 @@
+using UnityEngine;
+
 namespace MovableObjects
 {
     public class NonInteractableObject : MovableObject
     {
-        private void OnEnable() => _stateController.OnStateChanged += OnStateChanged;
+        private void OnEnable()
+        {
+            StartMoving();
+
+            if (_stateController != null)
+                _stateController.OnStateChanged += OnStateChanged;
+        }
 
         private void OnStateChanged()
         {
@@ -16,7 +24,9 @@ namespace MovableObjects
         private void OnDisable()
         {
             StopMoving();
-            _stateController.OnStateChanged -= OnStateChanged;
+
+            if (_stateController != null)
+                _stateController.OnStateChanged -= OnStateChanged;
         }
     }
 }

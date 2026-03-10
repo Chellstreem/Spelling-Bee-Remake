@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 832237522386876669}
   - component: {fileID: 2781083001679676071}
   m_Layer: 0
-  m_Name: Yelllow Flower
+  m_Name: Yellow Flower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9120999237240820613
 Transform:
   m_ObjectHideFlags: 0

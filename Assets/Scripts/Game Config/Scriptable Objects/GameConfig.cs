@@ -6,8 +6,11 @@ public class GameConfig : ScriptableObject
 {
     [SerializeField] private CameraConfig _cameraConfig;
     [SerializeField] private SpawnConfig _spawnConfig;
+    [SerializeField] private GameStateConfig _gameStateConfig;
+
     public CameraConfig CameraConfig => _cameraConfig;
     public SpawnConfig SpawnConfig => _spawnConfig;
+    public GameStateConfig GameStateConfig => _gameStateConfig;
 
     //
 

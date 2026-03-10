@@ -13,7 +13,6 @@ namespace GameStates
         public abstract GameStateType StateType { get; }
         public bool AllowMoving => _allowMoving;
 
-        [Inject]
         public abstract void Construct(GameStateController stateController, CoroutineRunner runner);
 
         public abstract void Enter();

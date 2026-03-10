@@ -5,12 +5,12 @@ namespace GameStates
 {
     public class GameStateController
     {
-        private readonly Dictionary<GameStateType, GameState> gameStates = new();
+        private readonly Dictionary<GameStateType, GameState> stateMap = new();
 
         public GameState CurrentState { get; private set; }
         public event Action OnStateChanged;
 
-        public GameStateController(GameStateConfig config) => InitializeStates(config.GameStates);
+        public GameStateController(GameStateConfig config) => InitializeStateMap(config.GameStates);
 
         public void SetState(GameStateType newState)
         {
@@ -26,14 +26,14 @@ namespace GameStates
             }
         }
 
-        public GameState GetGameState(GameStateType type) => gameStates[type];
+        public GameState GetGameState(GameStateType type) => stateMap[type];
 
-        private void InitializeStates(GameState[] states)
+        private void InitializeStateMap(GameState[] states)
         {
             foreach (var state in states)
             {
-                if (!gameStates.ContainsKey(state.StateType))
-                    gameStates.Add(state.StateType, state);
+                if (!stateMap.ContainsKey(state.StateType))
+                    stateMap.Add(state.StateType, state);
             }
         }
 

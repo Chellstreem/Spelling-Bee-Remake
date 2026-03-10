@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eadf7db260b1434c988129fe7bf7113, type: 3}
-  m_Name: Config Installer
+  m_Script: {fileID: 11500000, guid: 694aa094b0dc0d84f8763ee027030e46, type: 3}
+  m_Name: Flower Spawn Positioner
   m_EditorClassIdentifier: 
-  _gameConfig: {fileID: 11400000, guid: 9a437d671443c9244b5317c57da52639, type: 2}
-  _cameraConfig: {fileID: 11400000, guid: 2cf1b24fbbb5334428e7ecb020ef3e57, type: 2}
+  _minX: -3
+  _maxX: 1
+  _yPosition: 1.33

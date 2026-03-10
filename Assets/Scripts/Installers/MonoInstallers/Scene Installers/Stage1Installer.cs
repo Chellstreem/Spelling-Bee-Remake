@@ -2,21 +2,20 @@ using Zenject;
 using UnityEngine;
 using CameraControl;
 using GameStates;
+using Spawn;
 
 public class Stage1Installer : MonoInstaller
 {
-    [SerializeField] private GameConfig _gameConfig;
-
     [Header("Scene References")]
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CoroutineRunner _coroutineRunner;
 
+    [Inject] private GameConfig _gameConfig;
+    private GameStateController _stateController;
+
     [SerializeField] private RectTransform gameoverMenuTransform;
     [SerializeField] private GameObject countdownBar;
     [SerializeField] private GameObject missileAlertBar;
-
-    [Inject]
-    private GameStateController _gameStateController;
 
     public override void InstallBindings()
     {
@@ -25,21 +24,25 @@ public class Stage1Installer : MonoInstaller
             .AsSingle()
             .NonLazy();
 
-        InstallCamera();
-
         Container.Bind<GameSpeedController>()
             .AsSingle()
-            .WithArguments(_gameConfig)
             .NonLazy();
 
-        Container.Bind<GameConfig>()
-            .FromInstance(_gameConfig)
+        InstallGameStates();
+        InstallCamera();
+
+        ObjectPool pool = new(Container, _gameConfig.SpawnConfig);
+
+        Container.Bind<ObjectPool>()
+            .FromInstance(pool)
             .AsSingle()
             .NonLazy();
 
+        pool.InitializePool();
 
-
-
+        Container.Bind<Spawner>()
+            .AsSingle()
+            .NonLazy();
 
         /*Container.Bind<RectTransform>()
             .WithId(UiObjectType.GameoverMenu)
@@ -57,8 +60,7 @@ public class Stage1Installer : MonoInstaller
             .AsTransient();
 
         Container.Bind<EventManager>().AsSingle();
-        Container.BindInterfacesTo<LetterGenerator>().AsSingle().NonLazy();
-        Container.Bind<GameSpeedController>().AsSingle().NonLazy();
+        Container.BindInterfacesTo<LetterGenerator>().AsSingle().NonLazy();        
 
         InstallUIHandlers();
         InstallCursor();*/
@@ -80,6 +82,22 @@ public class Stage1Installer : MonoInstaller
     {
         Container.Bind<Camera>().FromInstance(_mainCamera).AsSingle().NonLazy();
         CameraMover cameraMover = new(_coroutineRunner, _gameConfig.CameraConfig);
-        CameraController cameraController = new(_mainCamera, cameraMover, _gameStateController);
+
+        CameraController cameraController = new(_mainCamera, cameraMover, _stateController);
+    }
+
+    private void InstallGameStates()
+    {
+        _stateController = new(_gameConfig.GameStateConfig);
+
+        Container.Bind<GameStateController>()
+            .FromInstance(_stateController)
+            .AsSingle()
+            .NonLazy();
+
+        foreach (var state in _gameConfig.GameStateConfig.GameStates)
+        {
+            Container.Inject(state);
+        }
     }
 }

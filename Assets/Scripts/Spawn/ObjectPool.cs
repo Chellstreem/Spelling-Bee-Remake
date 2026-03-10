@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using Zenject;
 
@@ -6,26 +7,32 @@ namespace Spawn
 {
     public class ObjectPool
     {
+        private readonly DiContainer container;
+        private readonly SpawnConfig config;
         private readonly Dictionary<SpawnableType, SpawnableObject> poolDictionary = new();
         private readonly Dictionary<GameObject, SpawnableObject> returnMap = new();
         private Transform _poolHolderTransform;
 
-        public ObjectPool(SpawnConfig spawnConfig) => InitializePool(spawnConfig);
-
-        public void InitializePool(SpawnConfig spawnConfig)
+        public ObjectPool(DiContainer container, SpawnConfig config)
         {
-            _poolHolderTransform = new GameObject("Spawnable Object Pool").GetComponent<Transform>();
+            this.config = config;
+            this.container = container;
+        }
 
-            foreach (var spawnableObject in spawnConfig.SpawnableObjects)
+        public void InitializePool()
+        {
+            _poolHolderTransform = new GameObject("Object Pool").GetComponent<Transform>();
+
+            foreach (var spawnableObject in config.SpawnableObjects)
             {
                 SpawnableType type = spawnableObject.Type;
 
                 if (!poolDictionary.ContainsKey(type))
                     poolDictionary[type] = spawnableObject;
 
-                for (int i = 0; i < spawnableObject.Amount; i++)
+                for (int i = 0; i < spawnableObject.PoolAmount; i++)
                 {
-                    GameObject obj = Object.Instantiate(spawnableObject.Prefab, _poolHolderTransform);
+                    GameObject obj = container.InstantiatePrefab(spawnableObject.Prefab, _poolHolderTransform);
                     obj.SetActive(false);
 
                     poolDictionary[type].Pool.Enqueue(obj);

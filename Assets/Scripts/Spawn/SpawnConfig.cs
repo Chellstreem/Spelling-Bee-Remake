@@ -9,9 +9,6 @@ public class SpawnConfig : ScriptableObject
     [Header("Other")]
     [SerializeField] private Vector3 _spawnPosition;
 
-    [SerializeField] private float _desiredDistance = 10f;
-
     public SpawnableObject[] SpawnableObjects => _spawnableObjects;
     public Vector3 SpawnPosition => _spawnPosition;
-    public float InteractableSpawnFrequency => _desiredDistance;// / GameSpeedController.Speed;
 }
