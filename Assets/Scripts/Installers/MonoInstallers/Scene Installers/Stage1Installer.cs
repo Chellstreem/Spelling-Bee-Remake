@@ -33,6 +33,8 @@ public class Stage1Installer : MonoInstaller
         InstallGameStates();
         InstallCamera();
 
+        _pool.InitializePool();
+
         /*Container.Bind<RectTransform>()
             .WithId(UiObjectType.GameoverMenu)
             .FromInstance(gameoverMenuTransform)
@@ -104,8 +106,6 @@ public class Stage1Installer : MonoInstaller
             .FromInstance(_pool)
             .AsSingle()
             .NonLazy();
-
-        _pool.InitializePool();
     }
 
     private void InstallSpawner()

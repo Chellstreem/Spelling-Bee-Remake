@@ -1,3 +1,4 @@
+using Spawn;
 using UnityEngine;
 using Zenject;
 
@@ -27,5 +28,8 @@ namespace GameStates
 
             return false;
         }
+
+        public virtual GameState CreateGameState(GameStateController stateController, CoroutineRunner runner, Spawner spawner,
+         GameSpeedController speedController) => new(this, stateController, runner);
     }
 }

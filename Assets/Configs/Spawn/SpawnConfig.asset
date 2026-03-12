@@ -17,4 +17,12 @@ MonoBehaviour:
     _prefab: {fileID: 6920043916269279699, guid: d38a25bf605dbdf428906ee1f2bbeca1, type: 3}
     _spawnPositioner: {fileID: 11400000, guid: 1d5849685814a1a46b5f8b907b9888ef, type: 2}
     _poolAmount: 10
+  - _type: 2
+    _prefab: {fileID: 6082721139736869318, guid: ebb6791f3fdcc5748ac6e8e3ea5fd7b5, type: 3}
+    _spawnPositioner: {fileID: 11400000, guid: 1d5849685814a1a46b5f8b907b9888ef, type: 2}
+    _poolAmount: 10
+  - _type: 3
+    _prefab: {fileID: 491784303400851181, guid: cf31fa622f227a14b90072c4fb0fb74e, type: 3}
+    _spawnPositioner: {fileID: 11400000, guid: 1494a4532c4954444aa33dd00b77c6e7, type: 2}
+    _poolAmount: 10
   _spawnPosition: {x: 0, y: 0, z: 0}

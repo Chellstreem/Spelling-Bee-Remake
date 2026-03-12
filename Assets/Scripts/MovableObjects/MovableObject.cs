@@ -41,8 +41,6 @@ namespace MovableObjects
 
         protected virtual IEnumerator MoveCoroutine()
         {
-            if (_speedController == null)
-                Debug.Log("speed null");
             while (true)
             {
                 Vector3 newPosition = transform.position;

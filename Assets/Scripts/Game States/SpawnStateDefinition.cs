@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Spawn;
 using UnityEngine;
 
@@ -8,6 +9,12 @@ namespace GameStates
     {
         [Header("Spawn Settings")]
         [SerializeField] protected SpawnFlowInfo[] _spawnFlowInfos;
+
+        public override GameState CreateGameState(GameStateController stateController, CoroutineRunner runner, Spawner spawner,
+         GameSpeedController speedController)
+        {
+            return new SpawnState(this, stateController, runner, spawner, speedController);
+        }
 
         protected virtual IEnumerator RunSpawnCoroutine(Spawner spawner, GameSpeedController speedController)
         {

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 694aa094b0dc0d84f8763ee027030e46, type: 3}
-  m_Name: Flower Spawn Positioner
+  m_Name: Log Positioner
   m_EditorClassIdentifier: 
-  _minX: -3
-  _maxX: 1
-  _yPosition: 1.33
+  _minX: -4
+  _maxX: 4
+  _yPosition: 0.6

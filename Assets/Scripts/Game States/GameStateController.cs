@@ -19,17 +19,9 @@ namespace GameStates
         {
             foreach (var definition in config.GameStates)
             {
-                if (stateMap.ContainsKey(definition.StateType))
-                    continue;
-
-                if (definition is SpawnStateDefinition)
+                if (!stateMap.ContainsKey(definition.StateType))
                 {
-                    SpawnState state = new(definition, this, runner, spawner, speedController);
-                    stateMap.Add(definition.StateType, state);
-                }
-                else
-                {
-                    GameState state = new(definition, this, runner);
+                    var state = definition.CreateGameState(this, runner, spawner, speedController);
                     stateMap.Add(definition.StateType, state);
                 }
             }
