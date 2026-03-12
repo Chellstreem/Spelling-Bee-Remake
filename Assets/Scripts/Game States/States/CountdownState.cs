@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Countdown State", menuName = "Game States/Countdown State")]
-    public class CountdownState : GameState
+    public class CountdownState : GameStateDefinition
     {
         [SerializeField] private int _count = 3;
         [SerializeField] private int _fontSize = 320;
@@ -17,16 +17,15 @@ namespace GameStates
 
         public override GameStateType StateType => GameStateType.Countdown;
 
-        public override void Construct(GameStateController stateController, CoroutineRunner runner)
-        {
-            _stateController = stateController;
-            _coroutineRunner = runner;
-        }
-
-        public override void Enter()
+        public override void Enter(GameState state)
         {
             //_coroutineRunner.StartCoroutine(CountDown(_count, _fontSize, _finalFontSize));
             Debug.Log("Enter Count DOwn");
+        }
+
+        public override void Exit(GameState state)
+        {
+
         }
 
         private IEnumerator CountDown(int count, int fontSize, int finalFontSize)
@@ -40,11 +39,6 @@ namespace GameStates
             }
 
             _stateController.SetState(GameStateType.Interactive);
-        }
-
-        public override void Exit()
-        {
-
         }
     }
 }

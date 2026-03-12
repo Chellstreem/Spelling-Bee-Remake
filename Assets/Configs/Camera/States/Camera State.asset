@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e53c286aa234b419e346562e7e57c2, type: 3}
   m_Name: Camera State
   m_EditorClassIdentifier: 
-  _state: 0
+  _state: 1
   _cameraPosition: {x: 11, y: 6.49, z: -34.82}
   _cameraRotation: {x: 0, y: -90, z: 0}
   _transitionDuration: 0

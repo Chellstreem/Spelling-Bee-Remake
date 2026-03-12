@@ -17,7 +17,5 @@ MonoBehaviour:
   _spawnFlowInfos:
   - _binders:
     - _type: 1
-      _weight: 0.306
-    _spawnDistance: 0
-  - _binders: []
-    _spawnDistance: 0
+      _weight: 1
+    _spawnDistance: 5

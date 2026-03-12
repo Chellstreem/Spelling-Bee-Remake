@@ -3,31 +3,27 @@ using Zenject;
 
 namespace GameStates
 {
-    public abstract class GameState : ScriptableObject
+    public class GameState
     {
-        [SerializeField] private bool _allowMoving = false;
+        protected readonly GameStateDefinition definition;
 
-        [Tooltip("States that can be transitioned to from this state")]
-        [SerializeField] private GameStateType[] _allowedTransitions;
+        public GameStateController StateController { get; private set; }
+        public CoroutineRunner Runner { get; private set; }
+        public GameStateType StateType { get; private set; }
+        public bool AllowMoving { get; private set; }
 
-        public abstract GameStateType StateType { get; }
-        public bool AllowMoving => _allowMoving;
-
-        public abstract void Construct(GameStateController stateController, CoroutineRunner runner);
-
-        public abstract void Enter();
-        public abstract void Exit();
-
-        public bool AllowTransitionTo(GameStateType newStateType)
+        public GameState(GameStateDefinition definition, GameStateController stateController, CoroutineRunner runner)
         {
-            if (_allowedTransitions.Length == 0)
-                return false;
-
-            foreach (var stateType in _allowedTransitions)
-                if (stateType == newStateType)
-                    return true;
-
-            return false;
+            this.definition = definition;
+            StateController = stateController;
+            Runner = runner;
+            StateType = definition.StateType;
+            AllowMoving = definition.AllowMoving;
         }
+
+        public void Enter() => definition.Enter(this);
+        public void Exit() => definition.Exit(this);
+
+        public bool AllowTransitionTo(GameStateType newStateType) => definition.AllowTransitionTo(newStateType);
     }
 }

@@ -12,6 +12,9 @@ public class Stage1Installer : MonoInstaller
 
     [Inject] private GameConfig _gameConfig;
     private GameStateController _stateController;
+    private GameSpeedController _speedController;
+    private ObjectPool _pool;
+    private Spawner _spawner;
 
     [SerializeField] private RectTransform gameoverMenuTransform;
     [SerializeField] private GameObject countdownBar;
@@ -24,25 +27,11 @@ public class Stage1Installer : MonoInstaller
             .AsSingle()
             .NonLazy();
 
-        Container.Bind<GameSpeedController>()
-            .AsSingle()
-            .NonLazy();
-
+        InstallSpeedController();
+        InstallObjectPool();
+        InstallSpawner();
         InstallGameStates();
         InstallCamera();
-
-        ObjectPool pool = new(Container, _gameConfig.SpawnConfig);
-
-        Container.Bind<ObjectPool>()
-            .FromInstance(pool)
-            .AsSingle()
-            .NonLazy();
-
-        pool.InitializePool();
-
-        Container.Bind<Spawner>()
-            .AsSingle()
-            .NonLazy();
 
         /*Container.Bind<RectTransform>()
             .WithId(UiObjectType.GameoverMenu)
@@ -86,18 +75,46 @@ public class Stage1Installer : MonoInstaller
         CameraController cameraController = new(_mainCamera, cameraMover, _stateController);
     }
 
+    private void InstallSpeedController()
+    {
+        _speedController = new(_coroutineRunner, _gameConfig);
+
+        Container.Bind<GameSpeedController>()
+            .FromInstance(_speedController)
+            .AsSingle()
+            .NonLazy();
+    }
+
     private void InstallGameStates()
     {
         _stateController = new(_gameConfig.GameStateConfig);
+        _stateController.Initialize(_coroutineRunner, _spawner, _speedController);
 
         Container.Bind<GameStateController>()
             .FromInstance(_stateController)
             .AsSingle()
             .NonLazy();
+    }
 
-        foreach (var state in _gameConfig.GameStateConfig.GameStates)
-        {
-            Container.Inject(state);
-        }
+    private void InstallObjectPool()
+    {
+        _pool = new(Container, _gameConfig.SpawnConfig);
+
+        Container.Bind<ObjectPool>()
+            .FromInstance(_pool)
+            .AsSingle()
+            .NonLazy();
+
+        _pool.InitializePool();
+    }
+
+    private void InstallSpawner()
+    {
+        _spawner = new(_pool);
+
+        Container.Bind<Spawner>()
+        .FromInstance(_spawner)
+            .AsSingle()
+            .NonLazy();
     }
 }

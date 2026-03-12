@@ -4,47 +4,21 @@ using Zenject;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Interactive State", menuName = "Game States/Interactive State")]
-    public class InteractiveState : SpawnState, IEventSubscriber<OnWordCompleted>
+    public class InteractiveState : SpawnStateDefinition
     {
-        private GameStateController _stateController;
-        private CoroutineRunner _coroutineRunner;
-
         public override GameStateType StateType => GameStateType.Interactive;
 
-        [Inject]
-        public override void Construct(GameStateController stateController, CoroutineRunner runner)
-        {
-            _stateController = stateController;
-            _coroutineRunner = runner;
-        }
-
-        public override void Enter()
+        public override void Enter(GameState state)
         {
             Debug.Log("Entering Interactive State...");
-            SubscribeToEvents();
 
-            _spawnCoroutine = _coroutineRunner.StartCoroutine(RunSpawnCoroutine());
+            SpawnState spawnState = state as SpawnState;
+            spawnState.SpawnCoroutine = state.Runner.Run(RunSpawnCoroutine(spawnState.Spawner, spawnState.SpeedController));
         }
 
-        public override void Exit()
+        public override void Exit(GameState state)
         {
             Debug.Log("Exiting Interactive State...");
-            UnsubscribeFromEvents();
         }
-
-        public void OnEvent(OnWordCompleted eventData)
-        {
-            if (eventData.GameplayAction == GameplayActionType.Missiles)
-            {
-                _stateController.SetState(GameStateType.Missile);
-            }
-            else
-            {
-                _stateController.SetState(GameStateType.Safe);
-            }
-        }
-
-        private void SubscribeToEvents() { }// _eventManager.Subscribe<OnWordCompleted>(this);
-        private void UnsubscribeFromEvents() { }// _eventManager.Unsubscribe<OnWordCompleted>(this);
     }
 }

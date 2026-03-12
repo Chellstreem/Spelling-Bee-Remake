@@ -3,14 +3,12 @@ using UnityEngine;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Victory State", menuName = "Game States/Victory State")]
-    public class VictoryState : GameState
+    public class VictoryState : GameStateDefinition
     {
         public override GameStateType StateType => GameStateType.Victory;
 
-        public override void Construct(GameStateController stateController, CoroutineRunner runner) { }
+        public override void Enter(GameState state) => Debug.Log("Entering Victory State");
 
-        public override void Enter() => Debug.Log("Entering Victory State");
-
-        public override void Exit() { }
+        public override void Exit(GameState state) { }
     }
 }

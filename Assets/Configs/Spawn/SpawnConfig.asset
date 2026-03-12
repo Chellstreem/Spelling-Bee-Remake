@@ -15,6 +15,6 @@ MonoBehaviour:
   _spawnableObjects:
   - _type: 1
     _prefab: {fileID: 6920043916269279699, guid: d38a25bf605dbdf428906ee1f2bbeca1, type: 3}
-    _spawnPositioner: {fileID: 0}
+    _spawnPositioner: {fileID: 11400000, guid: 1d5849685814a1a46b5f8b907b9888ef, type: 2}
     _poolAmount: 10
   _spawnPosition: {x: 0, y: 0, z: 0}

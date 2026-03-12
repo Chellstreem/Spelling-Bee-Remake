@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   _cameraConfig: {fileID: 11400000, guid: 2cf1b24fbbb5334428e7ecb020ef3e57, type: 2}
+  _spawnConfig: {fileID: 11400000, guid: a389edab23ca73f4c9c6786bd3b61238, type: 2}
+  _gameStateConfig: {fileID: 11400000, guid: d7b604dbf9bdd7b43aef80f67ad85726, type: 2}
   _gameSpeed: 20
   _minGameSpeed: 5
   _moveDirection: {x: 0, y: 0, z: -1}

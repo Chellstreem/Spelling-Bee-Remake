@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e99b839e3bd614cba756cbeb877e34, type: 3}
   m_Name: Game Config Installer
   m_EditorClassIdentifier: 
-  _gameConfig: {fileID: 0}
+  _gameConfig: {fileID: 11400000, guid: 9a437d671443c9244b5317c57da52639, type: 2}

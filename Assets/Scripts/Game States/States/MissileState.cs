@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Missile State", menuName = "Game States/Missile State")]
-    public class MissileState : GameState
+    public class MissileState : GameStateDefinition
     {
         [SerializeField] private float duration = 5f;
         private GameStateController _stateController;
@@ -13,19 +13,13 @@ namespace GameStates
 
         public override GameStateType StateType => GameStateType.Missile;
 
-        public override void Construct(GameStateController stateController, CoroutineRunner runner)
-        {
-            _stateController = stateController;
-            _coroutineRunner = runner;
-        }
-
-        public override void Enter()
+        public override void Enter(GameState state)
         {
             Debug.Log("Entering Missile State...");
             StartMissileCoroutine();
         }
 
-        public override void Exit()
+        public override void Exit(GameState state)
         {
             Debug.Log("Exiting Missile State...");
             StopMissileCoroutine();

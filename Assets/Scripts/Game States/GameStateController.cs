@@ -1,23 +1,45 @@
 using System;
 using System.Collections.Generic;
+using Spawn;
+using Zenject;
 
 namespace GameStates
 {
     public class GameStateController
     {
+        private readonly GameStateConfig config;
         private readonly Dictionary<GameStateType, GameState> stateMap = new();
 
         public GameState CurrentState { get; private set; }
         public event Action OnStateChanged;
 
-        public GameStateController(GameStateConfig config) => InitializeStateMap(config.GameStates);
+        public GameStateController(GameStateConfig config) => this.config = config;
+
+        public void Initialize(CoroutineRunner runner, Spawner spawner, GameSpeedController speedController)
+        {
+            foreach (var definition in config.GameStates)
+            {
+                if (stateMap.ContainsKey(definition.StateType))
+                    continue;
+
+                if (definition is SpawnStateDefinition)
+                {
+                    SpawnState state = new(definition, this, runner, spawner, speedController);
+                    stateMap.Add(definition.StateType, state);
+                }
+                else
+                {
+                    GameState state = new(definition, this, runner);
+                    stateMap.Add(definition.StateType, state);
+                }
+            }
+        }
 
         public void SetState(GameStateType newState)
         {
             if (CanTransitionTo(newState))
             {
-                if (CurrentState != null)
-                    CurrentState.Exit();
+                CurrentState?.Exit();
 
                 CurrentState = GetGameState(newState);
                 CurrentState.Enter();
@@ -27,15 +49,6 @@ namespace GameStates
         }
 
         public GameState GetGameState(GameStateType type) => stateMap[type];
-
-        private void InitializeStateMap(GameState[] states)
-        {
-            foreach (var state in states)
-            {
-                if (!stateMap.ContainsKey(state.StateType))
-                    stateMap.Add(state.StateType, state);
-            }
-        }
 
         private bool CanTransitionTo(GameStateType stateType)
         {

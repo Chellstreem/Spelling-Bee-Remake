@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48dbbece365b66941aa0382b1ad7547f, type: 3}
   m_Name: SpawnInstaller
   m_EditorClassIdentifier: 
-  spawnConfig: {fileID: 11400000, guid: a389edab23ca73f4c9c6786bd3b61238, type: 2}

@@ -3,17 +3,15 @@ using UnityEngine;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Loss State", menuName = "Game States/Loss State")]
-    public class LossState : GameState
+    public class LossState : GameStateDefinition
     {
         public override GameStateType StateType => GameStateType.Loss;
 
-        public override void Construct(GameStateController stateController, CoroutineRunner runner) { }
-
-        public override void Enter()
+        public override void Enter(GameState state)
         {
             Debug.Log("Entering Loss State");
         }
 
-        public override void Exit() { }
+        public override void Exit(GameState state) { }
     }
 }
