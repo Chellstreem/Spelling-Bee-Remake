@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using CameraControl;
+using WordControl;
 
 [CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
 public class GameConfig : ScriptableObject
@@ -7,10 +8,12 @@ public class GameConfig : ScriptableObject
     [SerializeField] private CameraConfig _cameraConfig;
     [SerializeField] private SpawnConfig _spawnConfig;
     [SerializeField] private GameStateConfig _gameStateConfig;
+    [SerializeField] private WordControlConfig _wordControlConfig;
 
     public CameraConfig CameraConfig => _cameraConfig;
     public SpawnConfig SpawnConfig => _spawnConfig;
     public GameStateConfig GameStateConfig => _gameStateConfig;
+    public WordControlConfig WordControlConfig => _wordControlConfig;
 
     //
 
@@ -26,15 +29,6 @@ public class GameConfig : ScriptableObject
     public Vector3 MoveDirection => _moveDirection;
     public float ReturnThreshold => _returnThreshold;
     public Vector3 BackgroundPosition => backgroundPosition;
-
-    //
-
-    [Header("Random Letter Config")]
-    [SerializeField] private int extraLettersCount = 5;
-    [SerializeField] private string alphabetLetters = "abcdefghijklmnopqrstuvwxyz";
-
-    public int ExtraLettersCount => extraLettersCount;
-    public string AlphabetLetters => alphabetLetters;
 
     //
 

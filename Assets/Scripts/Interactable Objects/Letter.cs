@@ -1,33 +1,38 @@
 using System;
+using WordControl;
 using Zenject;
-using MovableObjects;
 
 namespace InteractableObjects
 {
     public class Letter : InteractableObject
     {
-        private ILetterProvider _letterProvider;
+        private WordController _wordController;
 
-        public string Value { get; private set; }
+        public string Value { get; private set; } = "-";
         public override SpawnableType Type => SpawnableType.Letter;
 
-        public event Action<string> OnLetterSet;
+        public event Action OnLetterUpdated;
 
         [Inject]
-        public void Construct(ILetterProvider letterProvider)
+        public void Construct(WordController wordController) => _wordController = wordController;
+        private void OnEnable() => UpdateValue();
+
+        protected override void HandleCollision(InteractableObject other)
         {
-            _letterProvider = letterProvider;
+            if (other.Type != SpawnableType.Player)
+                return;
+
+            _wordController.CheckLetter(Value);
+            _pool.ReturnObject(gameObject);
         }
 
-        private void OnEnable() => InitializeValue();
-
-        private void InitializeValue()
+        private void UpdateValue()
         {
-            string letter = GetRandomLetter();
-            OnLetterSet?.Invoke(letter);
-            Value = letter.ToLower();
-        }
+            if (_wordController == null)
+                return;
 
-        protected virtual string GetRandomLetter() => _letterProvider.GetRandomLetter();
+            Value = _wordController.GetRandomSymbol().ToLower();
+            OnLetterUpdated?.Invoke();
+        }
     }
 }

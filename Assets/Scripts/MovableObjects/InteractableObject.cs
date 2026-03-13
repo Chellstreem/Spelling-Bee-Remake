@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace MovableObjects
 {
-    public class InteractableObject : MovableObject, IEventSubscriber<OnWordCompleted>
+    public class InteractableObject : MovableObject
     {
-        private void OnEnable() => SubscribeToEvents();
-
-        public void OnEvent(OnWordCompleted eventData)
+        private void OnEnable()
         {
-            _pool.ReturnObject(gameObject);
-            //particlePlayer.PlayParticle(ParticleType.Poof, transform.position);
+            if (_stateController.CurrentState != null && _stateController.CurrentState.AllowMoving)
+                StartMoving();
+
+            SubscribeToEvents();
         }
 
         private void OnStateChanged()

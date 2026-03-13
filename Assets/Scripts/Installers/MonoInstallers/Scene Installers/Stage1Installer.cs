@@ -3,6 +3,7 @@ using UnityEngine;
 using CameraControl;
 using GameStates;
 using Spawn;
+using WordControl;
 
 public class Stage1Installer : MonoInstaller
 {
@@ -15,6 +16,7 @@ public class Stage1Installer : MonoInstaller
     private GameSpeedController _speedController;
     private ObjectPool _pool;
     private Spawner _spawner;
+    private WordController _wordController;
 
     [SerializeField] private RectTransform gameoverMenuTransform;
     [SerializeField] private GameObject countdownBar;
@@ -22,18 +24,17 @@ public class Stage1Installer : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<CoroutineRunner>()
-            .FromInstance(_coroutineRunner)
-            .AsSingle()
-            .NonLazy();
-
+        InstallWordController();
         InstallSpeedController();
         InstallObjectPool();
         InstallSpawner();
         InstallGameStates();
         InstallCamera();
 
+        _wordController.OnGameStarted();
         _pool.InitializePool();
+
+
 
         /*Container.Bind<RectTransform>()
             .WithId(UiObjectType.GameoverMenu)
@@ -113,7 +114,17 @@ public class Stage1Installer : MonoInstaller
         _spawner = new(_pool);
 
         Container.Bind<Spawner>()
-        .FromInstance(_spawner)
+            .FromInstance(_spawner)
+            .AsSingle()
+            .NonLazy();
+    }
+
+    private void InstallWordController()
+    {
+        _wordController = new(_gameConfig.WordControlConfig);
+
+        Container.Bind<WordController>()
+            .FromInstance(_wordController)
             .AsSingle()
             .NonLazy();
     }

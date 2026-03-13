@@ -1,17 +1,18 @@
 using TMPro;
 using UnityEngine;
 using Zenject;
+using WordControl;
 
 public class CurrentIndexBar : MonoBehaviour, IEventSubscriber<OnWordCompleted>, IEventSubscriber<OnVictoryStateEnter>
 {
     private EventManager eventManager;
-    private ICurrentIndexGetter indexGetter;
+    private WordController indexGetter;
 
     private TextMeshProUGUI text;
     private int wordCount;
 
     [Inject]
-    public void Construct(EventManager eventManager, ICurrentIndexGetter indexGetter)
+    public void Construct(EventManager eventManager, WordController indexGetter)
     {
         this.eventManager = eventManager;
         this.indexGetter = indexGetter;
@@ -19,7 +20,7 @@ public class CurrentIndexBar : MonoBehaviour, IEventSubscriber<OnWordCompleted>,
 
     private void Awake()
     {
-        wordCount = indexGetter.GetTotalWords();
+        wordCount = indexGetter.GetWordCount();
 
         text = GetComponent<TextMeshProUGUI>();
         UpdateIndex();
@@ -40,7 +41,7 @@ public class CurrentIndexBar : MonoBehaviour, IEventSubscriber<OnWordCompleted>,
 
     private void UpdateIndex()
     {
-        text.text = $"{indexGetter.GetCurrentWordIndex()} / {wordCount}";
+        text.text = $"{indexGetter.CurrentWordIndex} / {wordCount}";
     }
 
     private void OnDestroy()

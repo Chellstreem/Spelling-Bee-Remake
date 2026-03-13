@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using WordControl;
 using Zenject;
 
 public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnVictoryStateEnter>, IEventSubscriber<OnLetterChecked>
 {
-    private IMaskedWordGetter maskedWordGetter;
+    private WordController _wordController;
 
     private readonly string victoryMessage = "YOU DID IT!";
     private readonly float delayBeforeVictoryMessage = 1f;
@@ -14,9 +15,9 @@ public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnVictoryStateEnter
     private TextMeshProUGUI text;
 
     [Inject]
-    public void Construct(IMaskedWordGetter maskedWordGetter)
+    public void Construct(WordController wordController)
     {
-        this.maskedWordGetter = maskedWordGetter;
+        this._wordController = wordController;
     }
 
     private void Awake()
@@ -40,7 +41,7 @@ public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnVictoryStateEnter
 
     private void UpdateText()
     {
-        text.text = maskedWordGetter.GetMaskedWord().ToUpper();
+        text.text = _wordController.MaskedWord.CurrentMaskedWord.ToUpper();
     }
 
     private void SubscribeToEvents()

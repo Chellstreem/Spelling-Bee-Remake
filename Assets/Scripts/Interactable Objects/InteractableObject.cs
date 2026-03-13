@@ -7,19 +7,15 @@ namespace InteractableObjects
     public abstract class InteractableObject : MonoBehaviour
     {
         protected ObjectPool _pool;
-
         public abstract SpawnableType Type { get; }
-        public delegate void OnCollision(InteractableObject sender, InteractableObject other);
+
+        public delegate void OnCollision(InteractableObject sender);
         public event OnCollision OnInteractableCollision;
 
         [Inject]
         public virtual void Construct(ObjectPool pool) => _pool = pool;
 
-        protected virtual void HandleCollision(InteractableObject other)
-        {
-            OnInteractableCollision?.Invoke(this, other);
-            _pool.ReturnObject(gameObject);
-        }
+        protected abstract void HandleCollision(InteractableObject other);
 
         private void OnTriggerEnter(Collider other)
         {

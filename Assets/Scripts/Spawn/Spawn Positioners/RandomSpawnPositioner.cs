@@ -12,8 +12,6 @@ namespace Spawn
         [SerializeField] private float _yPosition;
         private Vector3 _originalSpawnPosition;
 
-        public override SpawnPositionType Type => SpawnPositionType.Random;
-
         [Inject]
         public void Construct(GameConfig config) => _originalSpawnPosition = config.SpawnConfig.SpawnPosition;
 

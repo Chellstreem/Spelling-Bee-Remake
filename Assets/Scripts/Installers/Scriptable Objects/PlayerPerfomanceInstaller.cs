@@ -13,9 +13,7 @@ public class PlayerPerfomanceInstaller : ScriptableObjectInstaller
             .FromInstance(config)
             .AsSingle();
 
-        Container.Bind<LetterChecker>().AsSingle().NonLazy();
-        Container.Bind<CorrectLetterHandler>().AsSingle().NonLazy();
-        Container.Bind<WrongLetterHandler>().AsSingle().NonLazy();        
+        Container.Bind<WrongLetterHandler>().AsSingle().NonLazy();
         Container.BindInterfacesTo<PlayerPerfomanceHandler>().AsSingle().NonLazy();
     }
 }
