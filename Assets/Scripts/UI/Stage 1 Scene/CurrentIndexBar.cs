@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 using WordControl;
 
-public class CurrentIndexBar : MonoBehaviour, IEventSubscriber<OnWordCompleted>, IEventSubscriber<OnVictoryStateEnter>
+public class CurrentIndexBar : MonoBehaviour, IEventSubscriber<OnWordCompleted>
 {
     private EventManager eventManager;
     private WordController indexGetter;
@@ -26,7 +26,7 @@ public class CurrentIndexBar : MonoBehaviour, IEventSubscriber<OnWordCompleted>,
         UpdateIndex();
 
         eventManager.Subscribe<OnWordCompleted>(this);
-        eventManager.Subscribe<OnVictoryStateEnter>(this);
+
     }
 
     public void OnEvent(OnWordCompleted eventData)
@@ -34,10 +34,6 @@ public class CurrentIndexBar : MonoBehaviour, IEventSubscriber<OnWordCompleted>,
         UpdateIndex();
     }
 
-    public void OnEvent(OnVictoryStateEnter eventData)
-    {
-        text.text = $"{wordCount} / {wordCount}";
-    }
 
     private void UpdateIndex()
     {
@@ -47,6 +43,6 @@ public class CurrentIndexBar : MonoBehaviour, IEventSubscriber<OnWordCompleted>,
     private void OnDestroy()
     {
         eventManager.Unsubscribe<OnWordCompleted>(this);
-        eventManager.Unsubscribe<OnVictoryStateEnter>(this);
+
     }
 }

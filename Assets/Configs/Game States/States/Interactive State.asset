@@ -18,12 +18,21 @@ MonoBehaviour:
   - _binders:
     - _type: 1
       _weight: 0.333
+      _spawnProbabilty: 1
     - _type: 2
       _weight: 0.333
+      _spawnProbabilty: 1
     - _type: 3
       _weight: 0.334
+      _spawnProbabilty: 1
     _spawnDistance: 13
   - _binders:
     - _type: 5
       _weight: 1
+      _spawnProbabilty: 1
     _spawnDistance: 10
+  - _binders:
+    - _type: 4
+      _weight: 1
+      _spawnProbabilty: 0.505
+    _spawnDistance: 30

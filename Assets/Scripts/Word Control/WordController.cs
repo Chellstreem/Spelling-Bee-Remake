@@ -58,8 +58,6 @@ namespace WordControl
             char[] maskedWordArray = CurrentWord.ToCharArray();
             Dictionary<string, int> maskedIndexes = new();
 
-            UnityEngine.Debug.Log(lettersToMask);
-
             while (maskedIndexes.Count < lettersToMask)
             {
                 int randomIndex = UnityEngine.Random.Range(0, maskedWordArray.Length);

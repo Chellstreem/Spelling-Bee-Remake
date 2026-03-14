@@ -1,0 +1,32 @@
+using System.Collections;
+using UnityEngine;
+
+namespace MovableObjects
+{
+    public class SpecialInteractableObject : InteractableObject
+    {
+        [Tooltip("How the speed changes compared to other objects.")]
+        [SerializeField] private float _speedDelta = 0;
+
+        protected override IEnumerator MoveCoroutine()
+        {
+            while (true)
+            {
+                Vector3 newPosition = transform.position;
+                float speed = _speedController.CurrentSpeed + _speedDelta;
+
+                newPosition += _moveDirection * (speed * Time.deltaTime);
+
+                if (newPosition.z <= _thresholdZ)
+                {
+                    StopMoving();
+                    _pool.ReturnObject(gameObject);
+                    yield break;
+                }
+
+                transform.position = newPosition;
+                yield return null;
+            }
+        }
+    }
+}

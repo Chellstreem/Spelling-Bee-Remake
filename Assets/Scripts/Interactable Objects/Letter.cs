@@ -15,6 +15,7 @@ namespace InteractableObjects
 
         [Inject]
         public void Construct(WordController wordController) => _wordController = wordController;
+
         private void OnEnable() => UpdateValue();
 
         protected override void HandleCollision(InteractableObject other)

@@ -4,6 +4,8 @@ using Zenject;
 
 namespace InteractableObjects
 {
+    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Rigidbody))]
     public abstract class InteractableObject : MonoBehaviour
     {
         protected ObjectPool _pool;
@@ -19,6 +21,7 @@ namespace InteractableObjects
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log(gameObject.name);
             if (other.TryGetComponent(out InteractableObject interactable))
                 HandleCollision(interactable);
         }

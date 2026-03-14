@@ -23,20 +23,17 @@ namespace MovableObjects
 
             if (_stateController.CurrentState.StateType == GameStates.GameStateType.Missile)
             {
-                //particlePlayer.PlayParticle(ParticleType.Poof, transform.position);
                 _pool.ReturnObject(gameObject);
             }
         }
 
         private void SubscribeToEvents()
         {
-            //_eventManager.Subscribe<OnWordCompleted>(this);
             _stateController.OnStateChanged += OnStateChanged;
         }
 
         private void UnsubscribeFromEvents()
         {
-            //_eventManager.Unsubscribe<OnWordCompleted>(this);
             _stateController.OnStateChanged -= OnStateChanged;
         }
 

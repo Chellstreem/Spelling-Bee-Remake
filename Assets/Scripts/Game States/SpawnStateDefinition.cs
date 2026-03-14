@@ -32,8 +32,10 @@ namespace GameStates
 
                     if (timers[i] >= interval)
                     {
-                        var type = GetRandomType(_spawnFlowInfos[i]);
-                        spawner.SpawnObject(type);
+                        var binder = GetRandomType(_spawnFlowInfos[i]);
+
+                        if (Random.value <= binder.SpawnProbabilty)
+                            spawner.SpawnObject(binder.Type);
 
                         timers[i] -= interval;
                     }
@@ -43,7 +45,7 @@ namespace GameStates
             }
         }
 
-        private SpawnableType GetRandomType(SpawnFlowInfo flow)
+        private SpawnBinder GetRandomType(SpawnFlowInfo flow)
         {
             float randomValue = Random.value;
 
@@ -54,10 +56,10 @@ namespace GameStates
                 randomValue -= binders[i].Weight;
 
                 if (randomValue <= 0f)
-                    return binders[i].Type;
+                    return binders[i];
             }
 
-            return binders[^1].Type;
+            return binders[^1];
         }
 
         private void OnValidate()

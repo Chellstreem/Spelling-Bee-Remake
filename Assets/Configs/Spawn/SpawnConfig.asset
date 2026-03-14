@@ -29,4 +29,8 @@ MonoBehaviour:
     _prefab: {fileID: 4997011247045342427, guid: 2871a530f61c40f4f85709a91a1ba6fc, type: 3}
     _spawnPositioner: {fileID: 11400000, guid: c6c203a1269ca9842951fe6466792c9c, type: 2}
     _poolAmount: 12
+  - _type: 4
+    _prefab: {fileID: 6491878870511137018, guid: 4ed36380d9c22b94687887f71b3d1388, type: 3}
+    _spawnPositioner: {fileID: 11400000, guid: fb1871231df3ca844b40ea51daa14da2, type: 2}
+    _poolAmount: 5
   _spawnPosition: {x: 0, y: 0, z: 0}
