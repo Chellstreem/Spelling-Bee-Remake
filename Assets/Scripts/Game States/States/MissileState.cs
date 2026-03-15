@@ -4,12 +4,9 @@ using UnityEngine;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Missile State", menuName = "Game States/Missile State")]
-    public class MissileState : GameStateDefinition
+    public class MissileState : SpawnStateDefinition
     {
-        [SerializeField] private float duration = 5f;
-        private GameStateController _stateController;
-        private CoroutineRunner _coroutineRunner;
-        private Coroutine _coroutine;
+        [SerializeField] private float _duration = 5f;
 
         public override GameStateType StateType => GameStateType.Missile;
 
@@ -31,7 +28,7 @@ namespace GameStates
             _stateController.SetState(GameStateType.Safe);
         }
 
-        private void StartMissileCoroutine() => _coroutine = _coroutineRunner.StartCoroutine(MissileCoroutine(duration));
+        private void StartMissileCoroutine() => _coroutine = _coroutineRunner.StartCoroutine(MissileCoroutine(_duration));
 
         private void StopMissileCoroutine()
         {

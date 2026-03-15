@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sounds
 {
-    public class MusicHandler : IEventSubscriber<OnMovingStateEnter>, IEventSubscriber<OnMovingStateExit>
+    public class MusicHandler
     {
         private readonly EventManager eventManager;
         private readonly IMusicPlayer musicPlayer;
@@ -15,21 +15,17 @@ namespace Sounds
             SubscribeToEvents();
         }
 
-        public void OnEvent(OnMovingStateEnter eventData)
+        public void OnEvent()
         {
             musicPlayer.PlaySound(SoundType.GamePlayMusic);
         }
 
-        public void OnEvent(OnMovingStateExit eventData)
-        {
-            musicPlayer.StopSound(SoundType.GamePlayMusic);
-        }
+
 
 
         private void SubscribeToEvents()
         {
-            eventManager.Subscribe<OnMovingStateEnter>(this);
-            eventManager.Subscribe<OnMovingStateExit>(this);
+
         }
     }
 }

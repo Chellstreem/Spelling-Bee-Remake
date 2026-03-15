@@ -1,21 +1,21 @@
-﻿using Zenject;
-using UnityEngine;
 using System.Collections;
-using GameStates;
+using UnityEngine;
 
-namespace MovableObjects
+namespace Movement
 {
-    public class Missile : InteractableObject
+    public class SpecialInteractableObject : InteractableObject
     {
-        [SerializeField] private int _damage = 1;
-        [SerializeField] private float _speedDelta = 5f;
+        [Tooltip("How the speed changes compared to other objects.")]
+        [SerializeField] private float _speedDelta = 0;
 
         protected override IEnumerator MoveCoroutine()
         {
             while (true)
             {
                 Vector3 newPosition = transform.position;
-                newPosition += _moveDirection * ((_speedDelta + _speedController.CurrentSpeed) * Time.deltaTime);
+                float speed = _speedController.CurrentSpeed + _speedDelta;
+
+                newPosition += _moveDirection * (speed * Time.deltaTime);
 
                 if (newPosition.z <= _thresholdZ)
                 {
@@ -28,8 +28,5 @@ namespace MovableObjects
                 yield return null;
             }
         }
-
-        private void OnEnable() => StartMoving();
-        private void OnDisable() => StopMoving();
     }
 }

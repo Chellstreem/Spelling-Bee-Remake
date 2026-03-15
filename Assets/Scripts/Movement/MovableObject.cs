@@ -4,7 +4,7 @@ using Spawn;
 using UnityEngine;
 using Zenject;
 
-namespace MovableObjects
+namespace Movement
 {
     public abstract class MovableObject : MonoBehaviour
     {

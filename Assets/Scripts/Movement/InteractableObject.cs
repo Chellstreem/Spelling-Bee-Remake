@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MovableObjects
+namespace Movement
 {
     public class InteractableObject : MovableObject
     {

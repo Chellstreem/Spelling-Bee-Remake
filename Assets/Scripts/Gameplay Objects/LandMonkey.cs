@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace InteractableObjects
+namespace GameplayObjects
 {
     public class LandMonkey : InteractableObject
     {

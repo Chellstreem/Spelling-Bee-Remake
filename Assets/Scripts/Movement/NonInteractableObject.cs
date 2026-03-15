@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MovableObjects
+namespace Movement
 {
     public class NonInteractableObject : MovableObject
     {

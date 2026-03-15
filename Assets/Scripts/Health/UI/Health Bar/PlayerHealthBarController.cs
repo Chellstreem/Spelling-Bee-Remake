@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using Zenject;
 
-public class PlayerHealthBarController : IInitializable, IEventSubscriber<OnMovingStateEnter>, IEventSubscriber<OnMovingStateExit>
-{   
+public class PlayerHealthBarController : IInitializable
+{
     private readonly EventManager eventManager;
     private readonly IScaler scaler;
     private readonly GameObject healthBarObj;
@@ -31,11 +31,9 @@ public class PlayerHealthBarController : IInitializable, IEventSubscriber<OnMovi
         SubsribeToEvents();
     }
 
-    public void OnEvent(OnMovingStateEnter eventData) => scaler.ActivateWithScale(healthBarTransform);
 
-    public void OnEvent(OnMovingStateExit eventData) => scaler.DeactivateWithScale(healthBarTransform);
 
-    private void ToggleActivation(bool isActive) => healthBarObj.SetActive(isActive);   
+    private void ToggleActivation(bool isActive) => healthBarObj.SetActive(isActive);
 
     private void SetParent()
     {
@@ -45,7 +43,6 @@ public class PlayerHealthBarController : IInitializable, IEventSubscriber<OnMovi
 
     private void SubsribeToEvents()
     {
-        eventManager.Subscribe<OnMovingStateEnter>(this);
-        eventManager.Subscribe<OnMovingStateExit>(this);
+
     }
 }

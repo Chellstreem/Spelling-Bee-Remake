@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ScreenObjectHandler : IEventSubscriber<OnMovingStateEnter>, IEventSubscriber<OnMovingStateExit>
+public class ScreenObjectHandler
 {
     private readonly EventManager eventManager;
     private readonly CoroutineRunner coroutineRunner;
@@ -21,9 +21,6 @@ public class ScreenObjectHandler : IEventSubscriber<OnMovingStateEnter>, IEventS
 
         SubscribeToEvents();
     }
-
-    public void OnEvent(OnMovingStateEnter eventData) => StartCoroutine();
-    public void OnEvent(OnMovingStateExit eventData) => StopCoroutine();
 
     private IEnumerator ScreenObjectCoroutine()
     {
@@ -52,7 +49,6 @@ public class ScreenObjectHandler : IEventSubscriber<OnMovingStateEnter>, IEventS
 
     private void SubscribeToEvents()
     {
-        eventManager.Subscribe<OnMovingStateEnter>(this);
-        eventManager.Subscribe<OnMovingStateExit>(this);
+
     }
 }

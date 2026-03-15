@@ -18,28 +18,28 @@ public class GameConfig : ScriptableObject
     //
 
     [Header("Movement Settings")]
-    [SerializeField] private float _gameSpeed = 20f;
     [SerializeField, Min(0f)] private float _minGameSpeed = 5f;
+    [SerializeField] private float _gameSpeed = 20f;
     [SerializeField] private Vector3 _moveDirection = Vector3.back;
     [SerializeField] private float _returnThreshold = 56f;
     [SerializeField] private Vector3 backgroundPosition;
 
-    public float GameSpeed => _gameSpeed;
     public float MinGameSpeed => _minGameSpeed;
+    public float GameSpeed => _gameSpeed;
     public Vector3 MoveDirection => _moveDirection;
     public float ReturnThreshold => _returnThreshold;
     public Vector3 BackgroundPosition => backgroundPosition;
 
     //
 
-    [Header("Missile Config")]
-    [SerializeField] private float missileSpeed = 30f;
-    [SerializeField] private float missileSpawnFrequency = 0.5f;
-    [SerializeField] private float delayBeforeLaunching = 2f;
-    [SerializeField] private float missileSateDuration = 3.5f;
+    [Header("Player Config")]
+    [SerializeField] private float _playerSpeed = 25f;
+    [SerializeField] private float _positionTolerance = 0.001f;
+    [SerializeField] private Vector3 _lowerPosition = new(-1.33f, 0, -42.74f);
+    [SerializeField] private Vector3 _upperPosition = new(-1.33f, 5, -42.74f);
 
-    public float MissileSpeed => missileSpeed;
-    public float MissileSpawnFrequency => missileSpawnFrequency;
-    public float DelayBeforeLaunching => delayBeforeLaunching;
-    public float MissileSateDuration => missileSateDuration;
+    public float PlayerSpeed => _playerSpeed;
+    public float PlayerPositionTolerance => _positionTolerance;
+    public Vector3 PlayerLowerPosition => _lowerPosition;
+    public Vector3 PlayerUpperPosition => _upperPosition;
 }

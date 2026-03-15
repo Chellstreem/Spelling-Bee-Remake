@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CameraControl
 {
-    public class CameraShakeHandler : IEventSubscriber<OnWordCompleted>, IEventSubscriber<OnMovingStateExit>
+    public class CameraShakeHandler : IEventSubscriber<OnWordCompleted>
     {
         private readonly EventManager eventManager;
         private readonly CameraShaker cameraShaker;
@@ -27,15 +27,11 @@ namespace CameraControl
             }
         }
 
-        public void OnEvent(OnMovingStateExit eventData)
-        {
-            cameraShaker.StopShaking();
-        }
+
 
         private void SubscribeToEvents()
         {
-            eventManager.Subscribe<OnWordCompleted>(this);
-            eventManager.Subscribe<OnMovingStateExit>(this);
+
         }
     }
 }

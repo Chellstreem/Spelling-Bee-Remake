@@ -2,7 +2,7 @@ using System;
 using WordControl;
 using Zenject;
 
-namespace InteractableObjects
+namespace GameplayObjects
 {
     public class Letter : InteractableObject
     {

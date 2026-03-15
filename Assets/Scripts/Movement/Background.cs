@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace MovableObjects
+namespace Movement
 {
     public class Background : MovableObject
     {

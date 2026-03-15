@@ -4,6 +4,7 @@ using CameraControl;
 using GameStates;
 using Spawn;
 using WordControl;
+using Input;
 
 public class Stage1Installer : MonoInstaller
 {
@@ -17,6 +18,7 @@ public class Stage1Installer : MonoInstaller
     private ObjectPool _pool;
     private Spawner _spawner;
     private WordController _wordController;
+    private IInput _input;
 
     [SerializeField] private RectTransform gameoverMenuTransform;
     [SerializeField] private GameObject countdownBar;
@@ -24,6 +26,12 @@ public class Stage1Installer : MonoInstaller
 
     public override void InstallBindings()
     {
+        Container.Bind<CoroutineRunner>()
+        .FromInstance(_coroutineRunner)
+        .AsSingle()
+        .NonLazy();
+
+        InstallInput();
         InstallWordController();
         InstallSpeedController();
         InstallObjectPool();
@@ -33,6 +41,7 @@ public class Stage1Installer : MonoInstaller
 
         _wordController.OnGameStarted();
         _pool.InitializePool();
+        _input.Enable();
 
 
 
@@ -125,6 +134,16 @@ public class Stage1Installer : MonoInstaller
 
         Container.Bind<WordController>()
             .FromInstance(_wordController)
+            .AsSingle()
+            .NonLazy();
+    }
+
+    private void InstallInput()
+    {
+        _input = new DesktopInput();
+
+        Container.Bind<IInput>()
+            .FromInstance(_input)
             .AsSingle()
             .NonLazy();
     }

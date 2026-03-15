@@ -2,7 +2,7 @@ using Particles;
 using UnityEngine;
 using Zenject;
 
-namespace InteractableObjects
+namespace GameplayObjects
 {
     public class Taipan
     {

@@ -1,26 +1,27 @@
 using System;
-using UnityEngine;
+using UnityEngine.InputSystem;
 
-namespace InputSystem
+namespace Input
 {
-    public class DesktopInput : IInput, IInputEnabler
+    public class DesktopInput : IInput
     {
-        private readonly Controls controls;
+        private readonly Controls controls = new();
 
-        public event Action ClickUp;
-        public event Action ClickDown;
-        public event Action ClickDeath;
+        public event Action OnMoveUp;
+        public event Action OnMoveDown;
+        public event Action OnGameOver;
 
         public DesktopInput()
         {
-            controls = new Controls();
-
-            controls.Gameplay.GoUp.performed += _ => ClickUp?.Invoke();
-            controls.Gameplay.GoDown.performed += _ => ClickDown?.Invoke();
-            controls.Gameplay.Die.performed += _ => ClickDeath?.Invoke();            
+            controls.Gameplay.GoUp.performed += MoveUp;
+            controls.Gameplay.GoDown.performed += MoveDown;
+            controls.Gameplay.Die.performed += CallGameOver;
         }
 
+        private void MoveUp(InputAction.CallbackContext context) => OnMoveUp?.Invoke();
+        private void MoveDown(InputAction.CallbackContext context) => OnMoveDown?.Invoke();
+        public void CallGameOver(InputAction.CallbackContext context) => OnGameOver?.Invoke();
         public void Enable() => controls.Enable();
-        public void Disable() => controls.Disable();         
+        public void Disable() => controls.Disable();
     }
 }

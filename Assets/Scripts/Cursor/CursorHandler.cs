@@ -1,4 +1,4 @@
-public class CursorHandler : IEventSubscriber<OnMovingStateEnter>, IEventSubscriber<OnMovingStateExit>
+public class CursorHandler
 {
     private readonly EventManager eventManager;
     private readonly CursorActivator cursorActivator;
@@ -6,24 +6,20 @@ public class CursorHandler : IEventSubscriber<OnMovingStateEnter>, IEventSubscri
     public CursorHandler(EventManager eventManager, CursorActivator cursorActivator)
     {
         this.eventManager = eventManager;
-        this.cursorActivator = cursorActivator;   
-        
+        this.cursorActivator = cursorActivator;
+
         SubscribeToEvents();
     }
 
-    public void OnEvent(OnMovingStateEnter eventData)
+    public void OnEvent()
     {
         cursorActivator.DeactivateCursor();
     }
 
-    public void OnEvent(OnMovingStateExit eventData)
-    {
-        cursorActivator.ActivateCursor();
-    }
+
 
     private void SubscribeToEvents()
     {
-        eventManager.Subscribe<OnMovingStateEnter>(this);
-        eventManager.Subscribe<OnMovingStateExit>(this);
+
     }
 }

@@ -8,7 +8,7 @@ public class RotateOnScroll : MonoBehaviour
 
     void Update()
     {
-        float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
+        float scrollWheelInput = UnityEngine.Input.GetAxis("Mouse ScrollWheel");
 
         if (scrollWheelInput != 0f)
         {

@@ -1,4 +1,4 @@
-using InteractableObjects;
+using GameplayObjects;
 using TMPro;
 using UnityEngine;
 
