@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Spawn;
 using UnityEngine;
+using Units;
 
 [System.Serializable]
 public class SpawnableObject
 {
-    [SerializeField] private SpawnableType _type;
+    [SerializeField] private UnitType _type;
     [SerializeField] private GameObject _prefab;
     [SerializeField] private SpawnPositioner _spawnPositioner;
 
@@ -14,7 +15,7 @@ public class SpawnableObject
 
     public Queue<GameObject> Pool { get; } = new();
 
-    public SpawnableType Type => _type;
+    public UnitType Type => _type;
     public GameObject Prefab => _prefab;
     public int PoolAmount => _poolAmount;
 

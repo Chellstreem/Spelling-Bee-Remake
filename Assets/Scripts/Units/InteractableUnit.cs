@@ -11,9 +11,11 @@ namespace Units
     {
         private Rigidbody _rigidbody;
         protected ObjectPool _pool;
-        public abstract SpawnableType Type { get; }
+
+        public abstract UnitType Type { get; }
 
         public event Action OnDeath;
+        public event Action OnCollision;
 
         private void Awake()
         {
@@ -23,9 +25,9 @@ namespace Units
 
         [Inject]
         public virtual void Construct(ObjectPool pool) => _pool = pool;
-
-        protected abstract void HandleCollision(InteractableUnit other);
         protected virtual void InvokeDeath() => OnDeath?.Invoke();
+        protected void InvokeCollision() => OnCollision?.Invoke();
+        protected abstract void HandleCollision(InteractableUnit other);
 
         private void OnTriggerEnter(Collider other)
         {

@@ -30,7 +30,7 @@ namespace Movement
             _moveDirection = gameConfig.MoveDirection;
         }
 
-        public void StartMoving()
+        public virtual void StartMoving()
         {
             if (_moveCoroutine == null)
             {
@@ -40,7 +40,7 @@ namespace Movement
             }
         }
 
-        public void StopMoving()
+        public virtual void StopMoving()
         {
             if (_moveCoroutine == null)
                 return;

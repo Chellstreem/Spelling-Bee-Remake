@@ -19,16 +19,19 @@ MonoBehaviour:
   _spawnFlowInfos:
   - _binders:
     - _type: 1
-      _weight: 0.25
+      _weight: 0.2
       _spawnProbabilty: 1
     - _type: 2
-      _weight: 0.25
+      _weight: 0.2
       _spawnProbabilty: 1
     - _type: 3
-      _weight: 0.25
+      _weight: 0.2
       _spawnProbabilty: 1
     - _type: 8
-      _weight: 0.25
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 9
+      _weight: 0.2
       _spawnProbabilty: 1
     _spawnDistance: 13
   - _binders:

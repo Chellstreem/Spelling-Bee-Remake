@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
+using Units;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +9,7 @@ namespace Spawn
     {
         private readonly DiContainer container;
         private readonly SpawnConfig config;
-        private readonly Dictionary<SpawnableType, SpawnableObject> poolDictionary = new();
+        private readonly Dictionary<UnitType, SpawnableObject> poolDictionary = new();
         private readonly Dictionary<GameObject, SpawnableObject> returnMap = new();
         private Transform _poolHolderTransform;
 
@@ -25,7 +25,7 @@ namespace Spawn
 
             foreach (var spawnableObject in config.SpawnableObjects)
             {
-                SpawnableType type = spawnableObject.Type;
+                UnitType type = spawnableObject.Type;
 
                 if (!poolDictionary.ContainsKey(type))
                     poolDictionary[type] = spawnableObject;
@@ -41,7 +41,7 @@ namespace Spawn
             }
         }
 
-        public SpawnableObject GetSpawnableObject(SpawnableType type)
+        public SpawnableObject GetSpawnableObject(UnitType type)
         {
             if (!poolDictionary.ContainsKey(type))
             {

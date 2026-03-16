@@ -14,7 +14,7 @@ namespace Units
         private ObjectMover _objectMover;
         private GameConfig _gameConfig;
 
-        public override SpawnableType Type => SpawnableType.Player;
+        public override UnitType Type => UnitType.Player;
 
         [Inject]
         public void Construct(IInput input, GameConfig config, CoroutineRunner runner)
@@ -41,11 +41,7 @@ namespace Units
                 InvokeDeath();
         }
 
-        protected override void HandleCollision(InteractableUnit other)
-        {
-            if (other is LandMonkey monkey)
-                monkey.Kill();
-        }
+        protected override void HandleCollision(InteractableUnit other) => InvokeCollision();
 
         private void OnMoveUp()
         {

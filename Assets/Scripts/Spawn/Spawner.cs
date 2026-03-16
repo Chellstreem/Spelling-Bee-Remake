@@ -1,4 +1,4 @@
-using System.Collections;
+using Units;
 using UnityEngine;
 
 namespace Spawn
@@ -9,7 +9,7 @@ namespace Spawn
 
         public Spawner(ObjectPool objectPool) => this.objectPool = objectPool;
 
-        public GameObject SpawnObject(SpawnableType type)
+        public GameObject SpawnObject(UnitType type)
         {
             var spawnableObject = objectPool.GetSpawnableObject(type);
             GameObject obj = spawnableObject.Pool.Dequeue();

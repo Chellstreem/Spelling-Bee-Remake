@@ -6,7 +6,7 @@ namespace Units
     {
         [SerializeField] private int _damage = 1;
 
-        public override SpawnableType Type => SpawnableType.Missile;
+        public override UnitType Type => UnitType.Missile;
 
         protected override void HandleCollision(InteractableUnit other)
         {

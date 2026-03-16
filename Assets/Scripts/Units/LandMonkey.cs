@@ -6,13 +6,11 @@ namespace Units
     {
         [SerializeField] private int _damage = 1;
 
-        public override SpawnableType Type => SpawnableType.LandMonkey;
-
-        public void Kill() => InvokeDeath();
+        public override UnitType Type => UnitType.LandMonkey;
 
         protected override void HandleCollision(InteractableUnit other)
         {
-            if (other.Type == SpawnableType.Letter)
+            if (other.Type == UnitType.Letter)
                 _pool.ReturnObject(other.gameObject);
 
             if (other.TryGetComponent<IDamageable>(out var damageable))

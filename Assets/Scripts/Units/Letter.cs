@@ -9,7 +9,7 @@ namespace Units
         private WordController _wordController;
 
         public string Value { get; private set; } = "-";
-        public override SpawnableType Type => SpawnableType.Letter;
+        public override UnitType Type => UnitType.Letter;
 
         public event Action OnLetterUpdated;
 
@@ -20,7 +20,7 @@ namespace Units
 
         protected override void HandleCollision(InteractableUnit other)
         {
-            if (other.Type != SpawnableType.Player)
+            if (other.Type != UnitType.Player)
                 return;
 
             _wordController.OnValueChecked(Value);
