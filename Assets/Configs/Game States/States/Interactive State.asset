@@ -13,17 +13,22 @@ MonoBehaviour:
   m_Name: Interactive State
   m_EditorClassIdentifier: 
   _allowMoving: 1
+  _killInteractableObjects: 0
   _allowedTransitions: 01000000020000000300000005000000
+  _spawnDelay: 0
   _spawnFlowInfos:
   - _binders:
     - _type: 1
-      _weight: 0.333
+      _weight: 0.25
       _spawnProbabilty: 1
     - _type: 2
-      _weight: 0.333
+      _weight: 0.25
       _spawnProbabilty: 1
     - _type: 3
-      _weight: 0.334
+      _weight: 0.25
+      _spawnProbabilty: 1
+    - _type: 8
+      _weight: 0.25
       _spawnProbabilty: 1
     _spawnDistance: 13
   - _binders:

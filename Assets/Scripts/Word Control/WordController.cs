@@ -15,7 +15,8 @@ namespace WordControl
         public int CurrentWordIndex { get; private set; }
         public MaskedWord MaskedWord { get; private set; }
 
-        public event Action OnCurrentWordUpdated;
+        public event Action OnWordCompleted;
+        public event Action OnAllWordsComleted;
 
         public WordController(WordControlConfig config) => this.config = config;
 
@@ -26,8 +27,6 @@ namespace WordControl
 
             MaskCurrentWord();
             GenerateAvailableSymbols();
-
-            OnCurrentWordUpdated?.Invoke();
         }
 
         public void MoveToNextWord()
@@ -35,16 +34,27 @@ namespace WordControl
             CurrentWordIndex++;
             MaskCurrentWord();
             GenerateAvailableSymbols();
-
-            OnCurrentWordUpdated?.Invoke();
         }
 
-        public void CheckLetter(string value)
+        public void OnValueChecked(string value)
         {
             if (!MaskedWord.TryGetHiddenLetterIndex(value, out int hiddenIndex))
                 return;
 
             MaskedWord.RevealHiddenLetter(value, hiddenIndex);
+
+            if (!MaskedWord.IsComplete)
+                return;
+
+            OnWordCompleted?.Invoke();
+
+            if (IsCurrentIndexLast())
+            {
+                OnAllWordsComleted?.Invoke();
+                return;
+            }
+
+            MoveToNextWord();
         }
 
         public string GetRandomSymbol() => _availableSymbols[UnityEngine.Random.Range(0, _availableSymbols.Length)].ToString();

@@ -11,6 +11,8 @@ namespace GameStates
         public CoroutineRunner Runner { get; private set; }
         public GameStateType StateType { get; private set; }
         public bool AllowMoving { get; private set; }
+        public bool KillInteractableObject { get; private set; }
+        public Coroutine StateCoroutine { get; set; }
 
         public GameState(GameStateDefinition definition, GameStateController stateController, CoroutineRunner runner)
         {
@@ -19,6 +21,7 @@ namespace GameStates
             Runner = runner;
             StateType = definition.StateType;
             AllowMoving = definition.AllowMoving;
+            KillInteractableObject = definition.KillInteractableObject;
         }
 
         public void Enter() => definition.Enter(this);

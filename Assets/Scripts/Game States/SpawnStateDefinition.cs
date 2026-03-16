@@ -8,6 +8,7 @@ namespace GameStates
     public abstract class SpawnStateDefinition : GameStateDefinition
     {
         [Header("Spawn Settings")]
+        [SerializeField, Min(0f)] private float _spawnDelay = 0f;
         [SerializeField] protected SpawnFlowInfo[] _spawnFlowInfos;
 
         public override GameState CreateGameState(GameStateController stateController, CoroutineRunner runner, Spawner spawner,
@@ -16,8 +17,10 @@ namespace GameStates
             return new SpawnState(this, stateController, runner, spawner, speedController);
         }
 
-        protected virtual IEnumerator RunSpawnCoroutine(Spawner spawner, GameSpeedController speedController)
+        public virtual IEnumerator SpawnCoroutine(Spawner spawner, GameSpeedController speedController)
         {
+            yield return new WaitForSeconds(_spawnDelay);
+
             float[] timers = new float[_spawnFlowInfos.Length];
 
             while (true)

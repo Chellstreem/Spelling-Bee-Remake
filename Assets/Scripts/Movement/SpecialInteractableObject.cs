@@ -8,6 +8,17 @@ namespace Movement
         [Tooltip("How the speed changes compared to other objects.")]
         [SerializeField] private float _speedDelta = 0;
 
+        protected override void OnStateChanged()
+        {
+            base.OnStateChanged();
+
+            if (_stateController.CurrentState.KillInteractableObject)
+            {
+                _pool.ReturnObject(gameObject);
+                return;
+            }
+        }
+
         protected override IEnumerator MoveCoroutine()
         {
             while (true)

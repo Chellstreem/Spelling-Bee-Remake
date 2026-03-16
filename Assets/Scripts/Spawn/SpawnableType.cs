@@ -7,5 +7,7 @@ public enum SpawnableType
     LandMonkey,
     Letter,
     Missile,
-    FlyingMonkey
+    FlyingMonkey,
+    Rock,
+    Bush
 }

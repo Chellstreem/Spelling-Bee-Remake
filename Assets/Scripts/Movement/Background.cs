@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 namespace Movement
 {
-    public class Background : MovableObject
+    public class Background : MovableUnit
     {
         private Vector3 _startPosition;
 
@@ -26,17 +27,6 @@ namespace Movement
                 transform.position = newPosition;
                 yield return null;
             }
-        }
-
-        private void OnStateChanged()
-        {
-            if (!_stateController.CurrentState.AllowMoving)
-            {
-                StopMoving();
-                return;
-            }
-
-            StartMoving();
         }
 
         private void OnDisable() => _stateController.OnStateChanged -= OnStateChanged;

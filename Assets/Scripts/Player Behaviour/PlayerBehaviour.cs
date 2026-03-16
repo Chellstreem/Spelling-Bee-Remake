@@ -10,7 +10,6 @@ public class PlayerBehaviour : IEventSubscriber<OnLetterCollision>,
     private readonly EventManager eventManager;
     private readonly IPlayerAnimationPlayer animations;
     private readonly IPhysicsModifier physics;
-    private readonly IHealth playerHealth;
     private readonly Vector3 newColliderCenter;
 
     private readonly Rigidbody rigidBody;
@@ -20,7 +19,7 @@ public class PlayerBehaviour : IEventSubscriber<OnLetterCollision>,
         EventManager eventManager,
         IPlayerAnimationPlayer animations,
         IPhysicsModifier physics,
-        IHealth health,
+
         [Inject(Id = InstantiatedObjectType.Player)] Transform playerTransform,
         PlayerBehaviourConfig config)
     {
@@ -28,7 +27,7 @@ public class PlayerBehaviour : IEventSubscriber<OnLetterCollision>,
         this.eventManager = eventManager;
         this.animations = animations;
         this.physics = physics;
-        playerHealth = health;
+
         newColliderCenter = config.NewColliderCenter;
 
         rigidBody = playerTransform.GetComponent<Rigidbody>();
@@ -65,7 +64,6 @@ public class PlayerBehaviour : IEventSubscriber<OnLetterCollision>,
     {
         eventManager.Subscribe<OnLetterCollision>(this);
         eventManager.Subscribe<OnDeath>(this);
-        playerHealth.OnHealthChanged += OnLifeChanged;
         _stateController.OnStateChanged += OnStateChanged;
     }
 
@@ -73,7 +71,7 @@ public class PlayerBehaviour : IEventSubscriber<OnLetterCollision>,
     {
         eventManager.Unsubscribe<OnLetterCollision>(this);
         eventManager.Unsubscribe<OnDeath>(this);
-        playerHealth.OnHealthChanged -= OnLifeChanged;
+
         _stateController.OnStateChanged -= OnStateChanged;
     }
 }

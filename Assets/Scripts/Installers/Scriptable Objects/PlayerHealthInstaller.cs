@@ -12,7 +12,7 @@ public class PlayerHealthInstaller : ScriptableObjectInstaller
             .FromInstance(config)
             .AsSingle();
 
-        Container.BindInterfacesTo<PlayerHealth>().AsSingle();
+        Container.BindInterfacesTo<Health>().AsSingle();
         Container.BindInterfacesTo<PlayerHealthBarController>().AsSingle().NonLazy();
     }
 }

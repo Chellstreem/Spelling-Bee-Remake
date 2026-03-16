@@ -23,13 +23,13 @@ namespace CameraControl
             switch (stateController.CurrentState.StateType)
             {
                 case GameStateType.Victory:
-                    cameraMover.SetState(cameraTransfrom, CameraStateType.Victory);
+                    cameraMover.SetState(cameraTransfrom, CameraStateType.Move);
                     break;
                 case GameStateType.Loss:
-                    cameraMover.SetState(cameraTransfrom, CameraStateType.Loss);
+                    cameraMover.SetState(cameraTransfrom, CameraStateType.Move);
                     break;
                 case GameStateType.Countdown:
-                    cameraMover.SetState(cameraTransfrom, CameraStateType.Start);
+                    cameraMover.SetState(cameraTransfrom, CameraStateType.Move);
                     break;
                 default:
                     cameraMover.SetState(cameraTransfrom, CameraStateType.Move);

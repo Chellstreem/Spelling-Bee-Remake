@@ -1,19 +1,22 @@
+using System.Diagnostics;
+using System;
 using System.Collections.Generic;
 
 namespace WordControl
 {
     public class MaskedWord
     {
-        public readonly string maskedWord;
+        public readonly string originalMaskedWord;
         public readonly Dictionary<string, int> hiddenIndices;
 
         public string CurrentMaskedWord { get; private set; }
+        public bool IsComplete { get; private set; }
 
         public MaskedWord(string maskedWord, Dictionary<string, int> hiddenIndices)
         {
-            this.maskedWord = maskedWord;
+            originalMaskedWord = maskedWord;
             this.hiddenIndices = hiddenIndices;
-            CurrentMaskedWord = this.maskedWord;
+            CurrentMaskedWord = originalMaskedWord;
         }
 
         public bool TryGetHiddenLetterIndex(string letter, out int hiddenIndex)
@@ -35,6 +38,9 @@ namespace WordControl
             CurrentMaskedWord = new string(maskedWordArray);
 
             hiddenIndices.Remove(letter);
+
+            if (hiddenIndices.Count == 0)
+                IsComplete = true;
         }
     }
 }

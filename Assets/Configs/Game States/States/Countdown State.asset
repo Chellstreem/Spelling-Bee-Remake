@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7daa4e92ed8b842957e16b0597af01, type: 3}
   m_Name: Countdown State
   m_EditorClassIdentifier: 
-  _allowMoving: 1
+  _allowMoving: 0
+  _killInteractableObjects: 0
   _allowedTransitions: 0400000003000000
   _count: 3
-  _fontSize: 320
+  _startFontSize: 320
   _fontSizeDecrement: 45
   _finalFontSize: 350
+  _text: Go!

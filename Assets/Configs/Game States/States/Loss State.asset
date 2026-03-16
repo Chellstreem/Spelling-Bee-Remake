@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Loss State
   m_EditorClassIdentifier: 
   _allowMoving: 0
+  _killInteractableObjects: 0
   _allowedTransitions: 

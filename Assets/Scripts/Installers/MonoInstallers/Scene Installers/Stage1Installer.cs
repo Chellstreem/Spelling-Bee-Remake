@@ -4,13 +4,15 @@ using CameraControl;
 using GameStates;
 using Spawn;
 using WordControl;
-using Input;
+using InputControl;
+using Units;
 
 public class Stage1Installer : MonoInstaller
 {
     [Header("Scene References")]
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CoroutineRunner _coroutineRunner;
+    [SerializeField] private Player _player;
 
     [Inject] private GameConfig _gameConfig;
     private GameStateController _stateController;
@@ -19,6 +21,7 @@ public class Stage1Installer : MonoInstaller
     private Spawner _spawner;
     private WordController _wordController;
     private IInput _input;
+    private GameplayController _gameplayController;
 
     [SerializeField] private RectTransform gameoverMenuTransform;
     [SerializeField] private GameObject countdownBar;
@@ -42,6 +45,7 @@ public class Stage1Installer : MonoInstaller
         _wordController.OnGameStarted();
         _pool.InitializePool();
         _input.Enable();
+        _gameplayController = new(_player, _wordController, _stateController);
 
 
 

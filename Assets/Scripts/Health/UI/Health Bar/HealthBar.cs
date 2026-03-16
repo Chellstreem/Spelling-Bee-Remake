@@ -6,13 +6,13 @@ using System.Collections;
 public class HealthBar : MonoBehaviour
 {
     private Image lifeBar;
-    private IHealth health;
+    private Health health;
 
     private Coroutine fillCoroutine;
     private readonly float transitionSpeed = 5f;
 
     [Inject]
-    public void Construct(IHealth health)
+    public void Construct(Health health)
     {
         this.health = health;
     }
@@ -20,15 +20,15 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         lifeBar = GetComponent<Image>();
-        UpdateHealthBar();        
+        UpdateHealthBar();
     }
 
-    private void UpdateHealthBar() => lifeBar.fillAmount = health.LifeRatio;
+    private void UpdateHealthBar() => lifeBar.fillAmount = health.HealthRatio;
 
     private void UpdateHealthBarSmoothly(HealthChangeType healthChage)
     {
         if (!gameObject.activeInHierarchy) return;
-        float targetFill = health.LifeRatio;
+        float targetFill = health.HealthRatio;
         fillCoroutine = StartCoroutine(SmoothFillTransition(targetFill));
     }
 
@@ -57,13 +57,12 @@ public class HealthBar : MonoBehaviour
         fillCoroutine = null;
     }
 
-    private void OnEnable() => health.OnHealthChanged += UpdateHealthBarSmoothly;
 
     private void OnDisable()
     {
         StopCoroutine();
-        health.OnHealthChanged -= UpdateHealthBarSmoothly;
+
     }
 
-    private void OnDestroy() => health.OnHealthChanged -= UpdateHealthBarSmoothly;
+
 }

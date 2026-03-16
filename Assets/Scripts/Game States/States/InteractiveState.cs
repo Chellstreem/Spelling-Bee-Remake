@@ -13,12 +13,15 @@ namespace GameStates
             Debug.Log("Entering Interactive State...");
 
             SpawnState spawnState = state as SpawnState;
-            spawnState.SpawnCoroutine = state.Runner.Run(RunSpawnCoroutine(spawnState.Spawner, spawnState.SpeedController));
+            spawnState.StartSpawning();
         }
 
         public override void Exit(GameState state)
         {
             Debug.Log("Exiting Interactive State...");
+
+            SpawnState spawnState = state as SpawnState;
+            spawnState.StopSpawning();
         }
     }
 }

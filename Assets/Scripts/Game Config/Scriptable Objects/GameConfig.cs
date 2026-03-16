@@ -37,9 +37,13 @@ public class GameConfig : ScriptableObject
     [SerializeField] private float _positionTolerance = 0.001f;
     [SerializeField] private Vector3 _lowerPosition = new(-1.33f, 0, -42.74f);
     [SerializeField] private Vector3 _upperPosition = new(-1.33f, 5, -42.74f);
+    [SerializeField] private int _maxLives = 3;
+    [SerializeField] private int _livesOnStart = 2;
 
     public float PlayerSpeed => _playerSpeed;
     public float PlayerPositionTolerance => _positionTolerance;
     public Vector3 PlayerLowerPosition => _lowerPosition;
     public Vector3 PlayerUpperPosition => _upperPosition;
+    public int PlayerMaxLives => _maxLives;
+    public int PlayerStartLives => _livesOnStart;
 }

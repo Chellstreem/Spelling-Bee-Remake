@@ -7,36 +7,37 @@ namespace GameStates
     public class MissileState : SpawnStateDefinition
     {
         [SerializeField] private float _duration = 5f;
+        [SerializeField] private GameStateType _nextState = GameStateType.Interactive;
 
         public override GameStateType StateType => GameStateType.Missile;
 
         public override void Enter(GameState state)
         {
             Debug.Log("Entering Missile State...");
-            StartMissileCoroutine();
+
+            SpawnState spawnState = state as SpawnState;
+            state.StateCoroutine = state.Runner.Run(MissileCoroutine(spawnState));
         }
 
         public override void Exit(GameState state)
         {
             Debug.Log("Exiting Missile State...");
-            StopMissileCoroutine();
-        }
+            SpawnState spawnState = state as SpawnState;
 
-        private IEnumerator MissileCoroutine(float duration)
-        {
-            yield return new WaitForSeconds(duration);
-            _stateController.SetState(GameStateType.Safe);
-        }
-
-        private void StartMissileCoroutine() => _coroutine = _coroutineRunner.StartCoroutine(MissileCoroutine(_duration));
-
-        private void StopMissileCoroutine()
-        {
-            if (_coroutine != null)
+            if (state.StateCoroutine != null)
             {
-                _coroutineRunner.Stop(_coroutine);
-                _coroutine = null;
+                spawnState.StopSpawning();
+                state.Runner.Stop(state.StateCoroutine);
+                state.StateCoroutine = null;
             }
+        }
+
+        private IEnumerator MissileCoroutine(SpawnState spawnState)
+        {
+            spawnState.StartSpawning();
+            yield return new WaitForSeconds(_duration);
+            spawnState.StopSpawning();
+            spawnState.StateController.SetState(_nextState);
         }
     }
 }
