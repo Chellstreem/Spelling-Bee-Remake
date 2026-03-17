@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 7621597769956089434}
   - component: {fileID: 5588011495103529790}
   - component: {fileID: 3019424171615590620}
-  - component: {fileID: 6428452509484182702}
+  - component: {fileID: 6828576126006570869}
   m_Layer: 7
   m_Name: Land Monkey
   m_TagString: Untagged
@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
---- !u!114 &6428452509484182702
+--- !u!114 &6828576126006570869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -501,12 +501,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1064be1c16e0d41459a77a3bf6305f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 4483028715053200385}
-  _movable: {fileID: 5588011495103529790}
   _idleSpeed: 1
   _moveSpeed: 1
-  _interactable: {fileID: 3019424171615590620}
   _deathAnimationSpeed: 1
+  _attackAnimationSpeed: 0.5
 --- !u!1 &6654769526575580307
 GameObject:
   m_ObjectHideFlags: 0

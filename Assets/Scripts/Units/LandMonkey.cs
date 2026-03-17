@@ -10,6 +10,8 @@ namespace Units
 
         protected override void HandleCollision(InteractableUnit other)
         {
+            InvokeAttack();
+
             if (other.Type == UnitType.Letter)
                 _pool.ReturnObject(other.gameObject);
 

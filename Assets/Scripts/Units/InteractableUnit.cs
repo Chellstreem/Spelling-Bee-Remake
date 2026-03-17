@@ -15,7 +15,8 @@ namespace Units
         public abstract UnitType Type { get; }
 
         public event Action OnDeath;
-        public event Action OnCollision;
+        public event Action OnAttack;
+        public event Action OnDance;
 
         private void Awake()
         {
@@ -25,9 +26,10 @@ namespace Units
 
         [Inject]
         public virtual void Construct(ObjectPool pool) => _pool = pool;
-        protected virtual void InvokeDeath() => OnDeath?.Invoke();
-        protected void InvokeCollision() => OnCollision?.Invoke();
         protected abstract void HandleCollision(InteractableUnit other);
+        protected virtual void InvokeDeath() => OnDeath?.Invoke();
+        protected virtual void InvokeAttack() => OnAttack?.Invoke();
+        protected virtual void InvokeDance() => OnDance?.Invoke();
 
         private void OnTriggerEnter(Collider other)
         {

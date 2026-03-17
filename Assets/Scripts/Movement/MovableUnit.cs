@@ -2,6 +2,7 @@
 using System.Collections;
 using GameStates;
 using Spawn;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -16,7 +17,7 @@ namespace Movement
         protected Vector3 _moveDirection;
         private Coroutine _moveCoroutine;
 
-        public bool IsMoving { get; private set; }
+        public bool IsMoving { get; protected set; }
         public event Action OnMovementChanged;
 
         [Inject]
@@ -30,17 +31,17 @@ namespace Movement
             _moveDirection = gameConfig.MoveDirection;
         }
 
-        public virtual void StartMoving()
+        protected virtual void StartMoving()
         {
             if (_moveCoroutine == null)
             {
                 _moveCoroutine = StartCoroutine(MoveCoroutine());
                 IsMoving = true;
-                OnMovementChanged?.Invoke();
+                InvokeMovementChanged();
             }
         }
 
-        public virtual void StopMoving()
+        protected virtual void StopMoving()
         {
             if (_moveCoroutine == null)
                 return;
@@ -49,7 +50,7 @@ namespace Movement
             _moveCoroutine = null;
             IsMoving = false;
 
-            OnMovementChanged?.Invoke();
+            InvokeMovementChanged();
         }
 
         protected virtual void OnStateChanged()
@@ -59,6 +60,8 @@ namespace Movement
             else
                 StartMoving();
         }
+
+        protected void InvokeMovementChanged() => OnMovementChanged?.Invoke();
 
         protected virtual IEnumerator MoveCoroutine()
         {

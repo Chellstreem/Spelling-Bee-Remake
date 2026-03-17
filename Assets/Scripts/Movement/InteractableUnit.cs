@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Movement
 {
-    public class InteractableObject : MovableUnit
+    public class InteractableUnit : MovableUnit
     {
         private void OnEnable()
         {

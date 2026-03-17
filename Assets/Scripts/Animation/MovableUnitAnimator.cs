@@ -7,34 +7,41 @@ using UnityEngine;
 namespace Animation
 {
     [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(MovableUnit))]
     public class MovableUnitAnimator : MonoBehaviour
     {
-        [SerializeField] protected Animator _animator;
-
-        [Header("Movement")]
-        [SerializeField] private MovableUnit _movable;
+        [Header("Speed Settings")]
         [SerializeField, Min(0.01f)] private float _idleSpeed = 1f;
         [SerializeField, Min(0.01f)] private float _moveSpeed = 1f;
+
+        protected MovableUnit _unit;
+        protected Animator _animator;
 
         private readonly int moveBoolHash = Animator.StringToHash("IsMoving");
         private readonly int idleSpeedHash = Animator.StringToHash("IdleSpeed");
         private readonly int moveSpeedHash = Animator.StringToHash("MoveSpeed");
 
+        protected virtual void Awake()
+        {
+            _unit = GetComponent<MovableUnit>();
+            _animator = GetComponent<Animator>();
+
+            _animator.SetFloat(idleSpeedHash, _idleSpeed);
+            _animator.SetFloat(moveSpeedHash, _moveSpeed);
+        }
+
         protected virtual void OnEnable()
         {
             SetAnimation();
-            _animator.SetFloat(idleSpeedHash, _idleSpeed);
-            _animator.SetFloat(moveSpeedHash, _moveSpeed);
-
-            _movable.OnMovementChanged += SetAnimation;
+            _unit.OnMovementChanged += SetAnimation;
         }
 
         private void SetAnimation()
         {
-            _animator.SetBool(moveBoolHash, _movable.IsMoving);
-            _animator.speed = _movable.IsMoving ? _moveSpeed : _idleSpeed;
+            _animator.SetBool(moveBoolHash, _unit.IsMoving);
+            _animator.speed = _unit.IsMoving ? _moveSpeed : _idleSpeed;
         }
 
-        protected virtual void OnDisable() => _movable.OnMovementChanged -= SetAnimation;
+        protected virtual void OnDisable() => _unit.OnMovementChanged -= SetAnimation;
     }
 }
