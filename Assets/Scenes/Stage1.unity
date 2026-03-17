@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6340864282bd9ee48bf26ca496bd8fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1581081631}
 --- !u!4 &319181424
 Transform:
   m_ObjectHideFlags: 0
@@ -1517,6 +1518,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 803183336073293253, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _deathAnimationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 803183336073293253, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _attackAnimationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527890186158423960, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527890186158423960, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527890186158423960, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527890186158423960, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: m_ImplicitTensor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3191624550175880182, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_Name
       value: Player

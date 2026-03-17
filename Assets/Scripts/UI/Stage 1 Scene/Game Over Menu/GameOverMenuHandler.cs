@@ -6,15 +6,13 @@ using Zenject;
 public class GameOverMenuHandler : IInitializable
 {
     private readonly GameStateController _stateController;
-    private readonly EventManager eventManager;
     private readonly IScaler scaler;
     private readonly RectTransform gameoverMenu;
 
-    public GameOverMenuHandler(GameStateController stateController, EventManager eventManager, IScaler scaler,
+    public GameOverMenuHandler(GameStateController stateController, IScaler scaler,
         [Inject(Id = UiObjectType.GameoverMenu)] RectTransform gameoverMenu)
     {
         _stateController = stateController;
-        this.eventManager = eventManager;
         this.scaler = scaler;
         this.gameoverMenu = gameoverMenu;
     }

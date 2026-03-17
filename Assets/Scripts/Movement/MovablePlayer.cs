@@ -25,6 +25,7 @@ namespace Movement
 
             _input.OnMoveUp += OnMoveUp;
             _input.OnMoveDown += OnMoveDown;
+            _stateController.OnStateChanged += OnStateChanged;
         }
 
         protected override void StartMoving()
@@ -55,6 +56,7 @@ namespace Movement
         {
             _input.OnMoveUp -= OnMoveUp;
             _input.OnMoveDown -= OnMoveDown;
+            _stateController.OnStateChanged -= OnStateChanged;
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using GameStates;
 using InputControl;
 using Movement;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -15,7 +16,12 @@ namespace Units
 
         [Inject]
         public void Construct(GameConfig config) => _gameConfig = config;
-        private void Awake() => _health = new(_gameConfig.PlayerMaxLives, _gameConfig.PlayerStartLives);
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _health = new(_gameConfig.PlayerMaxLives, _gameConfig.PlayerStartLives);
+        }
 
         private void OnEnable()
         {
@@ -29,6 +35,16 @@ namespace Units
 
             if (_health.CurrentHealth <= 0)
                 InvokeDeath();
+        }
+
+        protected override void InvokeDeath()
+        {
+            base.InvokeDeath();
+            _rigidbody.isKinematic = false;
+            _rigidbody.useGravity = true;
+
+            if (_collider is BoxCollider boxCollider)
+                boxCollider.center = _gameConfig.PlayerDeathColliderCenter;
         }
 
         protected override void HandleCollision(InteractableUnit other) => InvokeAttack();

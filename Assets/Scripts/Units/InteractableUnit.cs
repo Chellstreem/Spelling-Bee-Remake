@@ -9,7 +9,8 @@ namespace Units
     [RequireComponent(typeof(Rigidbody))]
     public abstract class InteractableUnit : MonoBehaviour
     {
-        private Rigidbody _rigidbody;
+        protected Rigidbody _rigidbody;
+        protected Collider _collider;
         protected ObjectPool _pool;
 
         public abstract UnitType Type { get; }
@@ -18,9 +19,11 @@ namespace Units
         public event Action OnAttack;
         public event Action OnDance;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _collider = GetComponent<Collider>();
+            _rigidbody.useGravity = false;
             _rigidbody.isKinematic = true;
         }
 

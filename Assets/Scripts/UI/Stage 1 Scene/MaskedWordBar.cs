@@ -5,7 +5,7 @@ using UnityEngine;
 using WordControl;
 using Zenject;
 
-public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnLetterChecked>
+public class MaskedWordBar : MonoBehaviour
 {
     private WordController _wordController;
 
@@ -31,12 +31,6 @@ public class MaskedWordBar : MonoBehaviour, IEventSubscriber<OnLetterChecked>
     public void OnEvent()
     {
         StartCoroutine(UpdateVictoryMessageWithDelay(delayBeforeVictoryMessage));
-    }
-
-    public void OnEvent(OnLetterChecked eventData)
-    {
-        if (eventData.IsCorrect)
-            UpdateText();
     }
 
     private void UpdateText()
