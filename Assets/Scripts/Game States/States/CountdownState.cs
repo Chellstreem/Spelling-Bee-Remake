@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Collections;
 using UnityEngine;
+using Palmmedia.ReportGenerator.Core.Reporting.Builders.Rendering;
 
 namespace GameStates
 {
@@ -11,10 +12,13 @@ namespace GameStates
         [SerializeField] private int _startFontSize = 320;
         [SerializeField] private int _fontSizeDecrement = 45;
         [SerializeField] private int _finalFontSize = 350;
-        [SerializeField] private string _text = "Go!";
+        [SerializeField] private string _text = "GO!";
 
         private readonly WaitForSeconds wait = new(1f);
         public override GameStateType StateType => GameStateType.Countdown;
+
+        public delegate void CountDown(string text, int fontSize);
+        public event CountDown OnCountDownUpdate;
 
         public override void Enter(GameState state)
         {
@@ -28,15 +32,16 @@ namespace GameStates
         {
             while (count > 0)
             {
-                Debug.Log(count);
+                OnCountDownUpdate?.Invoke(count.ToString(), fontSize);
                 yield return wait;
                 count--;
                 fontSize = Mathf.Max(1, fontSize - _fontSizeDecrement);
             }
 
-            Debug.Log(_text);
             fontSize = _finalFontSize;
+            OnCountDownUpdate?.Invoke(_text, fontSize);
             yield return wait;
+
             stateController.SetState(GameStateType.Interactive);
         }
     }

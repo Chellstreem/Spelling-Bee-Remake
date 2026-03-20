@@ -8,10 +8,10 @@ using Zenject;
 
 namespace Units
 {
-    public class Player : InteractableUnit, IDamageable
+    public class Player : InteractableUnit, IDamageable, IHealth
     {
         private GameConfig _gameConfig;
-        private Health _health;
+        public Health Health { get; private set; }
         public override UnitType Type => UnitType.Player;
 
         [Inject]
@@ -20,20 +20,20 @@ namespace Units
         protected override void Awake()
         {
             base.Awake();
-            _health = new(_gameConfig.PlayerMaxLives, _gameConfig.PlayerStartLives);
+            Health = new(_gameConfig.PlayerMaxLives, _gameConfig.PlayerStartLives);
         }
 
         private void OnEnable()
         {
             transform.position = _gameConfig.PlayerLowerPosition;
-            _health?.Refresh();
+            Health?.Refresh();
         }
 
         void IDamageable.Damage(int count)
         {
-            _health.Damage(count);
+            Health.Damage(count);
 
-            if (_health.CurrentHealth <= 0)
+            if (Health.CurrentHealth <= 0)
                 InvokeDeath();
         }
 

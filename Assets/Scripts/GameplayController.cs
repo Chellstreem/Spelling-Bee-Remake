@@ -16,8 +16,10 @@ public class GameplayController
 
         //wordController.OnWordCompleted += OnWordCompleted;
         player.OnDeath += OnPlayerDeath;
+        wordController.OnAllWordsComleted += OnAllWordsComleted;
     }
 
     private void OnWordCompleted() => stateController.SetState(GameStateType.Missile);
     private void OnPlayerDeath() => stateController.SetState(GameStateType.Loss);
+    private void OnAllWordsComleted() => stateController.SetState(GameStateType.Victory);
 }

@@ -16,7 +16,5 @@ public class SoundInstaller : ScriptableObjectInstaller
         Container.Bind<ISoundLibrary>().To<SoundPool>().AsSingle();
         Container.Bind<ISoundEffectPlayer>().To<SoundEffectPlayer>().AsSingle();
         Container.Bind<IMusicPlayer>().To<MusicPlayer>().AsSingle();
-        Container.Bind<SoundEffectHandler>().AsSingle().NonLazy();
-        Container.Bind<MusicHandler>().AsSingle().NonLazy();
     }
 }

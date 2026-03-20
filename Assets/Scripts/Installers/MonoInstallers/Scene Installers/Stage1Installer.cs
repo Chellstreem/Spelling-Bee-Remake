@@ -6,6 +6,7 @@ using Spawn;
 using WordControl;
 using InputControl;
 using Units;
+using UserInterface;
 
 public class Stage1Installer : MonoInstaller
 {
@@ -16,6 +17,7 @@ public class Stage1Installer : MonoInstaller
 
     [Inject] private GameConfig _gameConfig;
     private GameStateController _stateController;
+    private UIBarController _uIBarController;
     private GameSpeedController _speedController;
     private ObjectPool _pool;
     private Spawner _spawner;
@@ -23,9 +25,6 @@ public class Stage1Installer : MonoInstaller
     private IInput _input;
     private GameplayController _gameplayController;
 
-    [SerializeField] private RectTransform gameoverMenuTransform;
-    [SerializeField] private GameObject countdownBar;
-    [SerializeField] private GameObject missileAlertBar;
 
     public override void InstallBindings()
     {
@@ -40,47 +39,13 @@ public class Stage1Installer : MonoInstaller
         InstallObjectPool();
         InstallSpawner();
         InstallGameStates();
+        InstallUIBarController();
         InstallCamera();
 
-        _wordController.OnGameStarted();
+        _wordController.StartGame();
         _pool.InitializePool();
         _input.Enable();
         _gameplayController = new(_player, _wordController, _stateController);
-
-
-
-        /*Container.Bind<RectTransform>()
-            .WithId(UiObjectType.GameoverMenu)
-            .FromInstance(gameoverMenuTransform)
-            .AsSingle();
-
-        Container.Bind<GameObject>()
-            .WithId(UiObjectType.CountDownBar)
-            .FromInstance(countdownBar)
-            .AsTransient();
-
-        Container.Bind<GameObject>()
-            .WithId(UiObjectType.MissileAlertBar)
-            .FromInstance(missileAlertBar)
-            .AsTransient();
-
-        Container.Bind<EventManager>().AsSingle();
-        Container.BindInterfacesTo<LetterGenerator>().AsSingle().NonLazy();        
-
-        InstallUIHandlers();
-        InstallCursor();*/
-    }
-
-    private void InstallCursor()
-    {
-        Container.Bind<CursorActivator>().AsSingle();
-        Container.Bind<CursorHandler>().AsSingle().NonLazy();
-    }
-
-    private void InstallUIHandlers()
-    {
-        Container.Bind<IInitializable>().To<GameOverMenuHandler>().AsSingle().NonLazy();
-        Container.Bind<ActivatorUI>().AsSingle().NonLazy();
     }
 
     private void InstallCamera()
@@ -148,6 +113,16 @@ public class Stage1Installer : MonoInstaller
 
         Container.Bind<IInput>()
             .FromInstance(_input)
+            .AsSingle()
+            .NonLazy();
+    }
+
+    private void InstallUIBarController()
+    {
+        _uIBarController = new(_stateController);
+
+        Container.Bind<UIBarController>()
+            .FromInstance(_uIBarController)
             .AsSingle()
             .NonLazy();
     }

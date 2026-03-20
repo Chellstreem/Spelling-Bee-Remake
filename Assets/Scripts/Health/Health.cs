@@ -17,7 +17,11 @@ public class Health
         this.startHealth = startHealth;
     }
 
-    public void Refresh() => CurrentHealth = Math.Min(startHealth, maxHealth);
+    public void Refresh()
+    {
+        CurrentHealth = Math.Min(startHealth, maxHealth);
+        Debug.Log(CurrentHealth);
+    }
 
     public void Damage(int amount)
     {

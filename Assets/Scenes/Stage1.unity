@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 524373815}
   - component: {fileID: 524373814}
   m_Layer: 5
-  m_Name: Lap Text
+  m_Name: Index Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1446,7 +1446,7 @@ GameObject:
   - component: {fileID: 1401858525}
   - component: {fileID: 1401858524}
   m_Layer: 5
-  m_Name: Laps Parent
+  m_Name: Index Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1524,7 +1524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 803183336073293253, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: _attackAnimationSpeed
-      value: 2
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2527890186158423960, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_Constraints
@@ -2024,6 +2024,7 @@ GameObject:
   - component: {fileID: 2113536320}
   - component: {fileID: 2113536322}
   - component: {fileID: 2113536321}
+  - component: {fileID: 2113536323}
   m_Layer: 5
   m_Name: Top Bar
   m_TagString: Untagged
@@ -2090,6 +2091,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113536319}
   m_CullTransparentMesh: 1
+--- !u!114 &2113536323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113536319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a708b44b2df2dcc42971ab27bf962c99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activationStates: 
+  _currentWordText: {fileID: 1583827430}
+  _currentIndexText: {fileID: 524373814}
 --- !u!1 &2129670480
 GameObject:
   m_ObjectHideFlags: 0

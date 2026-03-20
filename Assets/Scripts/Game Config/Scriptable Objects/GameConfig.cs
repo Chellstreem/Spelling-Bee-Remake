@@ -48,4 +48,11 @@ public class GameConfig : ScriptableObject
     public int PlayerMaxLives => _maxLives;
     public int PlayerStartLives => _livesOnStart;
     public Vector3 PlayerDeathColliderCenter => _deathColliderCenter;
+
+    //
+
+    [Header("Other")]
+    [SerializeField] private string _victoryText = "YOU DID IT!";
+
+    public string VictoryText => _victoryText;
 }

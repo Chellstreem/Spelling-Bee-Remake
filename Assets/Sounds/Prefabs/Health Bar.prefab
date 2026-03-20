@@ -86,9 +86,8 @@ GameObject:
   - component: {fileID: 6391594306755469027}
   - component: {fileID: 776648206918212460}
   - component: {fileID: 7242673928428355607}
-  - component: {fileID: 5922798994803888988}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: Fill Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,18 +150,6 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5922798994803888988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343886567520994455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bf47ad6e737694084d9dc0c5196925, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8375581735939677268
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6587837336405737205}
   - component: {fileID: 1064452758906227558}
-  - component: {fileID: 81583757519632273}
+  - component: {fileID: 1057045354697047525}
   m_Layer: 5
   m_Name: Health Bar
   m_TagString: Untagged
@@ -224,7 +211,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &81583757519632273
+--- !u!114 &1057045354697047525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,10 +220,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8375581735939677268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7801d3ab4bab5044eb1c339e849328a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 99bf47ad6e737694084d9dc0c5196925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalAngleOffset: -30
+  _lifeBarImage: {fileID: 7242673928428355607}
+  _unit: {fileID: 0}
+  _transitionSpeed: 5
+  _statesToActivate: 
 --- !u!1 &8600128598301355323
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7711602985601067902}
   m_Layer: 5
-  m_Name: Health Bar Object
+  m_Name: Health Bar Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,6 +14,5 @@ public class ParticleInstaller : ScriptableObjectInstaller
 
         Container.Bind<IParticlePool>().To<ParticlePool>().AsSingle();
         Container.Bind<IParticlePlayer>().To<ParticlePlayer>().AsSingle().NonLazy();
-        Container.Bind<ParticleEventHandler>().AsSingle().NonLazy();
     }
 }

@@ -5,8 +5,7 @@ namespace GameStates
 {
     public class GameState
     {
-        protected readonly GameStateDefinition definition;
-
+        public GameStateDefinition Definition { get; }
         public GameStateController StateController { get; private set; }
         public CoroutineRunner Runner { get; private set; }
         public GameStateType StateType { get; private set; }
@@ -16,7 +15,7 @@ namespace GameStates
 
         public GameState(GameStateDefinition definition, GameStateController stateController, CoroutineRunner runner)
         {
-            this.definition = definition;
+            Definition = definition;
             StateController = stateController;
             Runner = runner;
             StateType = definition.StateType;
@@ -24,9 +23,9 @@ namespace GameStates
             KillInteractableObject = definition.KillInteractableObject;
         }
 
-        public void Enter() => definition.Enter(this);
-        public void Exit() => definition.Exit(this);
+        public void Enter() => Definition.Enter(this);
+        public void Exit() => Definition.Exit(this);
 
-        public bool AllowTransitionTo(GameStateType newStateType) => definition.AllowTransitionTo(newStateType);
+        public bool AllowTransitionTo(GameStateType newStateType) => Definition.AllowTransitionTo(newStateType);
     }
 }

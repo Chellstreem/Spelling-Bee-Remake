@@ -15,5 +15,4 @@ public class LetterValueBar : MonoBehaviour
 
     private void UpdateText() => _valueText.text = _letter.Value.ToUpper();
     private void OnDisable() => _letter.OnLetterUpdated -= UpdateText;
-    private void OnDestroy() => _letter.OnLetterUpdated -= UpdateText;
 }
