@@ -13,5 +13,14 @@ MonoBehaviour:
   m_Name: Missile State
   m_EditorClassIdentifier: 
   _allowMoving: 1
+  _killInteractableObjects: 1
   _allowedTransitions: 01000000020000000300000004000000
-  duration: 5
+  _spawnDelay: 1
+  _spawnFlowInfos:
+  - _binders:
+    - _type: 6
+      _weight: 1
+      _spawnProbabilty: 1
+    _spawnDistance: 12
+  _duration: 4
+  _nextState: 4

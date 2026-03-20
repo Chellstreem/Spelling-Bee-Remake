@@ -14,7 +14,7 @@ public class GameplayController
         this.wordController = wordController;
         this.stateController = stateController;
 
-        //wordController.OnWordCompleted += OnWordCompleted;
+        wordController.OnWordCompleted += OnWordCompleted;
         player.OnDeath += OnPlayerDeath;
         wordController.OnAllWordsComleted += OnAllWordsComleted;
     }

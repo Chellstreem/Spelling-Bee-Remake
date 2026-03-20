@@ -33,7 +33,6 @@ namespace WordControl
 
         public void MoveToNextWord()
         {
-            UnityEngine.Debug.Log("move");
             CurrentWordIndex++;
             MaskCurrentWord();
             GenerateAvailableSymbols();

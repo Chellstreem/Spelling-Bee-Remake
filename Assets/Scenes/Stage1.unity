@@ -878,6 +878,7 @@ GameObject:
   - component: {fileID: 914968729}
   - component: {fileID: 914968731}
   - component: {fileID: 914968730}
+  - component: {fileID: 914968732}
   m_Layer: 5
   m_Name: Countdown Bar
   m_TagString: Untagged
@@ -1001,6 +1002,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914968728}
   m_CullTransparentMesh: 1
+--- !u!114 &914968732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914968728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79e353142a87d341869a98bbd4049d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activationStates: 00000000
+  _text: {fileID: 914968730}
 --- !u!1 &974872596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,6 +1161,7 @@ GameObject:
   - component: {fileID: 1044337793}
   - component: {fileID: 1044337795}
   - component: {fileID: 1044337794}
+  - component: {fileID: 1044337797}
   - component: {fileID: 1044337796}
   m_Layer: 5
   m_Name: Missile Alert Bar
@@ -1153,7 +1169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1044337793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1163,14 +1179,14 @@ RectTransform:
   m_GameObject: {fileID: 1044337792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1642315989}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -302}
+  m_AnchoredPosition: {x: 0, y: -192}
   m_SizeDelta: {x: 785, y: 318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1044337794
@@ -1218,11 +1234,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044337792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e699a48c37d1bc459edee840d2088fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _image: {fileID: 1044337794}
+  _duration: 0.8
+  _minAlpha: 0.1
+  _isLooped: 1
+  _ease: 4
+--- !u!114 &1044337797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044337792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912181e3cdea5594593399187f0e52aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activationStates: 05000000
 --- !u!1 &1092920563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,13 +1268,14 @@ GameObject:
   - component: {fileID: 1092920564}
   - component: {fileID: 1092920566}
   - component: {fileID: 1092920565}
+  - component: {fileID: 1092920567}
   m_Layer: 5
   m_Name: Game Over Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1092920564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1300,6 +1335,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092920563}
   m_CullTransparentMesh: 1
+--- !u!114 &1092920567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092920563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912181e3cdea5594593399187f0e52aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activationStates: 02000000
 --- !u!1 &1167807756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,9 +1672,6 @@ MonoBehaviour:
   _mainCamera: {fileID: 45974215}
   _coroutineRunner: {fileID: 415710657}
   _player: {fileID: 1581081631}
-  gameoverMenuTransform: {fileID: 1092920564}
-  countdownBar: {fileID: 914968728}
-  missileAlertBar: {fileID: 1044337792}
 --- !u!4 &1572737785
 Transform:
   m_ObjectHideFlags: 0
@@ -1905,7 +1950,7 @@ GameObject:
   - component: {fileID: 1749074213}
   - component: {fileID: 1749074212}
   m_Layer: 5
-  m_Name: Go To Menu Button
+  m_Name: Game Over Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2103,7 +2148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a708b44b2df2dcc42971ab27bf962c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationStates: 
+  _activationStates: 040000000200000001000000
   _currentWordText: {fileID: 1583827430}
   _currentIndexText: {fileID: 524373814}
 --- !u!1 &2129670480

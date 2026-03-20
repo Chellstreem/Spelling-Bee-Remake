@@ -20,7 +20,7 @@ public class Health
     public void Refresh()
     {
         CurrentHealth = Math.Min(startHealth, maxHealth);
-        Debug.Log(CurrentHealth);
+        OnHealthChanged?.Invoke();
     }
 
     public void Damage(int amount)
@@ -29,7 +29,7 @@ public class Health
         OnHealthChanged?.Invoke();
     }
 
-    public void RestorePlayerLives(int amount)
+    public void Restore(int amount)
     {
         CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + amount);
         OnHealthChanged?.Invoke();

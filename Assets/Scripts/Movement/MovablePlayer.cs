@@ -28,6 +28,14 @@ namespace Movement
             _stateController.OnStateChanged += OnStateChanged;
         }
 
+        protected override void OnStateChanged()
+        {
+            base.OnStateChanged();
+
+            if (_stateController.CurrentState.StateType == GameStates.GameStateType.Victory)
+                OnMoveDown();
+        }
+
         protected override void StartMoving()
         {
             IsMoving = true;

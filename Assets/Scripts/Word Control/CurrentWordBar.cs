@@ -26,6 +26,12 @@ public class CurrentWordBar : UIBar
         _wordController.OnAllWordsComleted += OnAllWordsCompleted;
     }
 
+    private void OnEnable()
+    {
+        if (_wordController != null)
+            UpdateText();
+    }
+
     private void UpdateText()
     {
         _currentWordText.text = _wordController.MaskedWord.CurrentMaskedWord.ToUpper();
