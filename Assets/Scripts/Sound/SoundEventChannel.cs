@@ -7,7 +7,6 @@ namespace Sound
     public class SoundEventChannel : ScriptableObject
     {
         public Action<SoundUnit> OnSoundEventRaised;
-
         public void RaiseEvent(SoundUnit unit) => OnSoundEventRaised?.Invoke(unit);
     }
 }

@@ -16,12 +16,17 @@ MonoBehaviour:
   _spawnConfig: {fileID: 11400000, guid: a389edab23ca73f4c9c6786bd3b61238, type: 2}
   _gameStateConfig: {fileID: 11400000, guid: d7b604dbf9bdd7b43aef80f67ad85726, type: 2}
   _wordControlConfig: {fileID: 11400000, guid: 5fa575d4f69875047ba753ef0cebceb3, type: 2}
-  _gameSpeed: 20
+  _soundConfig: {fileID: 11400000, guid: b56233ec6cde3c1439deb61f1fc64281, type: 2}
   _minGameSpeed: 5
+  _gameSpeed: 20
   _moveDirection: {x: 0, y: 0, z: -1}
   _returnThreshold: -56
   backgroundPosition: {x: -6.12, y: 9.5, z: 0.68}
-  missileSpeed: 50
-  missileSpawnFrequency: 0.5
-  delayBeforeLaunching: 2
-  missileSateDuration: 3.5
+  _playerSpeed: 25
+  _positionTolerance: 0.001
+  _lowerPosition: {x: -1.33, y: 0, z: -42.74}
+  _upperPosition: {x: -1.33, y: 5, z: -42.74}
+  _maxLives: 3
+  _livesOnStart: 2
+  _deathColliderCenter: {x: 0, y: 1.3, z: 0.38}
+  _victoryText: YOU DID IT!

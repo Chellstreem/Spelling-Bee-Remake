@@ -1,8 +1,4 @@
-using System;
-using GameStates;
-using InputControl;
-using Movement;
-using Unity.VisualScripting;
+using Sound;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +6,7 @@ namespace Units
 {
     public class Player : InteractableUnit, IDamageable, IHealth
     {
+        [SerializeField] private SoundUnit _damageSound;
         private GameConfig _gameConfig;
         public Health Health { get; private set; }
         public override UnitType Type => UnitType.Player;
@@ -32,6 +29,7 @@ namespace Units
         void IDamageable.Damage(int count)
         {
             Health.Damage(count);
+            _channel.RaiseEvent(_damageSound);
 
             if (Health.CurrentHealth <= 0)
                 InvokeDeath();
@@ -47,6 +45,9 @@ namespace Units
                 boxCollider.center = _gameConfig.PlayerDeathColliderCenter;
         }
 
-        protected override void HandleCollision(InteractableUnit other) => InvokeAttack();
+        protected override void HandleCollision(InteractableUnit other)
+        {
+            InvokeAttack();
+        }
     }
 }

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7116427268454f746882cfd23c523d20, type: 3}
+  m_Name: Fah Effect
+  m_EditorClassIdentifier: 
+  _playType: 2
+  _audio: {fileID: 8300000, guid: d3c012dcf9b5d754b9bf4d51e35afb9c, type: 3}
+  _volume: 0.805
+  _pitch: 1.9
+  _channel: {fileID: 11400000, guid: 27e2149af074cca42886570c13b0a91d, type: 2}

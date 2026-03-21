@@ -1,4 +1,5 @@
 using System;
+using Sound;
 using Spawn;
 using UnityEngine;
 using Zenject;
@@ -11,7 +12,8 @@ namespace Units
     {
         protected Rigidbody _rigidbody;
         protected Collider _collider;
-        protected ObjectPool _pool;
+        protected ObjectPool _objectPool;
+        protected AudioSourcePool _audioPool;
 
         public abstract UnitType Type { get; }
 
@@ -28,7 +30,12 @@ namespace Units
         }
 
         [Inject]
-        public virtual void Construct(ObjectPool pool) => _pool = pool;
+        public virtual void Construct(ObjectPool objectPool, AudioSourcePool audioPool)
+        {
+            _objectPool = objectPool;
+            _audioPool = audioPool;
+        }
+
         protected abstract void HandleCollision(InteractableUnit other);
         protected virtual void InvokeDeath() => OnDeath?.Invoke();
         protected virtual void InvokeAttack() => OnAttack?.Invoke();

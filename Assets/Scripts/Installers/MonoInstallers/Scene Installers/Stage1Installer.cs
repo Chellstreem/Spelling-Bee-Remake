@@ -7,6 +7,7 @@ using WordControl;
 using InputControl;
 using Units;
 using UserInterface;
+using Sound;
 
 public class Stage1Installer : MonoInstaller
 {
@@ -24,6 +25,7 @@ public class Stage1Installer : MonoInstaller
     private WordController _wordController;
     private IInput _input;
     private GameplayController _gameplayController;
+    private SoundEventChannel _soundEventChannel;
 
 
     public override void InstallBindings()
@@ -41,6 +43,7 @@ public class Stage1Installer : MonoInstaller
         InstallGameStates();
         InstallUIBarController();
         InstallCamera();
+        InstallSound();
 
         _wordController.StartGame();
         _pool.InitializePool();
@@ -123,6 +126,19 @@ public class Stage1Installer : MonoInstaller
 
         Container.Bind<UIBarController>()
             .FromInstance(_uIBarController)
+            .AsSingle()
+            .NonLazy();
+    }
+
+    private void InstallSound()
+    {
+        AudioSourcePool pool = new(_gameConfig.SoundConfig);
+        SoundController soundController = new(pool, _gameConfig.SoundConfig);
+
+        _soundEventChannel = _gameConfig.SoundConfig.EventChannel;
+
+        Container.Bind<SoundEventChannel>()
+            .FromInstance(_soundEventChannel)
             .AsSingle()
             .NonLazy();
     }

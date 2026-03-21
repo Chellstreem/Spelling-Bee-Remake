@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
+  collisionSound: {fileID: 11400000, guid: c5dbd43b964a19942b0490716fc68694, type: 2}
 --- !u!114 &1370463172169403166
 MonoBehaviour:
   m_ObjectHideFlags: 0

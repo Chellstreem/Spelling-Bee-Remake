@@ -13,7 +13,7 @@ namespace Units
             InvokeAttack();
 
             if (other.Type == UnitType.Letter)
-                _pool.ReturnObject(other.gameObject);
+                _objectPool.ReturnObject(other.gameObject);
 
             if (other.TryGetComponent<IDamageable>(out var damageable))
                 damageable.Damage(_damage);

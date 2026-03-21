@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sound
@@ -7,8 +8,7 @@ namespace Sound
     {
         private readonly SoundConfig config;
         private readonly Transform poolHolder;
-        private AudioSource[] _sources;
-        private int _currentIndex;
+        private readonly List<AudioSource> sources = new();
 
         public AudioSourcePool(SoundConfig soundConfig)
         {
@@ -17,29 +17,39 @@ namespace Sound
             InitializePool();
         }
 
+        public AudioSource GetSource()
+        {
+            foreach (var source in sources)
+            {
+                if (!source.isPlaying)
+                    return source;
+            }
+
+            if (sources.Count >= config.MaxPoolSize)
+                return sources[0];
+
+            var newUnit = CreateSource();
+            sources.Add(newUnit);
+            return newUnit;
+        }
+
         private void InitializePool()
         {
-            _sources = new AudioSource[config.PoolSize];
-
             for (int i = 0; i < config.PoolSize; i++)
             {
-                GameObject gameObject = new("Audio Source");
-                gameObject.transform.SetParent(poolHolder);
-
-                var source = gameObject.AddComponent<AudioSource>();
-
-                source.playOnAwake = false;
-                source.loop = false;
-                source.spatialBlend = 1f;
-
-                _sources[i] = source;
+                var unit = CreateSource();
+                sources.Add(unit);
             }
         }
 
-        public AudioSource GetSource()
+        private AudioSource CreateSource()
         {
-            var source = _sources[_currentIndex];
-            _currentIndex = (_currentIndex + 1) % _sources.Length;
+            GameObject gameObject = new("Audio Source");
+            gameObject.transform.SetParent(poolHolder);
+
+            var source = gameObject.AddComponent<AudioSource>();
+            source.playOnAwake = false;
+            source.loop = false;
 
             return source;
         }

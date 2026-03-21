@@ -24,7 +24,7 @@ namespace Units
                 return;
 
             _wordController.OnValueChecked(Value);
-            _pool.ReturnObject(gameObject);
+            _objectPool.ReturnObject(gameObject);
         }
 
         private void UpdateValue()
