@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SoundConfig
   m_EditorClassIdentifier: 
   _poolSize: 10
-  _eventChannel: {fileID: 11400000, guid: 27e2149af074cca42886570c13b0a91d, type: 2}
+  _maxPoolSize: 20
+  _channel: {fileID: 11400000, guid: 9bd697c069974b14d93af71182f77884, type: 2}

@@ -6,11 +6,14 @@ namespace Units
         YellowFlower,
         RedFlower,
         Log,
-        LandMonkey,
         Letter,
         Missile,
-        FlyingMonkey,
         Rock,
-        Bush
+        Bush,
+        Bird,
+        Muskrat,
+        Gecko,
+        Snake,
+        LandMonkey
     }
 }

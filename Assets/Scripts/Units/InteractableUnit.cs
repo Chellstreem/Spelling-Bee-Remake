@@ -6,16 +6,22 @@ using Zenject;
 
 namespace Units
 {
+    public enum InteractableType
+    {
+        Letter, HostileAnimal, Player, Missile
+    }
+
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
     public abstract class InteractableUnit : MonoBehaviour
     {
+        [SerializeField] protected SoundUnit _unitSound;
+
         protected Rigidbody _rigidbody;
         protected Collider _collider;
         protected ObjectPool _objectPool;
-        protected AudioSourcePool _audioPool;
 
-        public abstract UnitType Type { get; }
+        public abstract InteractableType Type { get; }
 
         public event Action OnDeath;
         public event Action OnAttack;
@@ -30,10 +36,9 @@ namespace Units
         }
 
         [Inject]
-        public virtual void Construct(ObjectPool objectPool, AudioSourcePool audioPool)
+        public virtual void Construct(ObjectPool objectPool)
         {
             _objectPool = objectPool;
-            _audioPool = audioPool;
         }
 
         protected abstract void HandleCollision(InteractableUnit other);

@@ -18,9 +18,11 @@ namespace Spawn
     [System.Serializable]
     public struct SpawnFlowInfo
     {
+        [SerializeField] private float _delay;
         [SerializeField] private SpawnBinder[] _binders;
         [SerializeField] private float _spawnDistance;
 
+        public readonly float SpawnDelay => _delay;
         public readonly SpawnBinder[] Binders => _binders;
         public readonly float SpawnDistance => _spawnDistance;
     }

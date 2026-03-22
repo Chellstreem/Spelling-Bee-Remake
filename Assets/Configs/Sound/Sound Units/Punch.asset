@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7116427268454f746882cfd23c523d20, type: 3}
   m_Name: Punch
   m_EditorClassIdentifier: 
-  type: 13
-  clip: {fileID: 8300000, guid: de7682cdd57653043be499d969971e2f, type: 3}
+  _audio: {fileID: 8300000, guid: de7682cdd57653043be499d969971e2f, type: 3}
+  _volume: 0.905
+  _pitch: 1
+  _spatialBlend: 1
+  _channel: {fileID: 11400000, guid: 9bd697c069974b14d93af71182f77884, type: 2}

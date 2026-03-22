@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Movement
@@ -6,18 +7,20 @@ namespace Movement
     {
         private void OnEnable()
         {
-            StartMoving();
+            if (_stateController.CurrentState == null)
+                return;
 
-            if (_stateController != null)
-                _stateController.OnStateChanged += OnStateChanged;
+            OnStateChanged();
+            _stateController.OnStateChanged += OnStateChanged;
         }
 
         private void OnDisable()
         {
-            StopMoving();
+            if (_stateController.CurrentState == null)
+                return;
 
-            if (_stateController != null)
-                _stateController.OnStateChanged -= OnStateChanged;
+            StopMoving();
+            _stateController.OnStateChanged -= OnStateChanged;
         }
     }
 }

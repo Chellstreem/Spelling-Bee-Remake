@@ -6,10 +6,15 @@ namespace Units
 {
     public class Player : InteractableUnit, IDamageable, IHealth
     {
+        [SerializeField] private SoundUnit _attackSound;
+        [SerializeField] private SoundUnit _deathSound;
         [SerializeField] private SoundUnit _damageSound;
+
         private GameConfig _gameConfig;
         public Health Health { get; private set; }
-        public override UnitType Type => UnitType.Player;
+        public bool IsAlive { get; private set; } = true;
+
+        public override InteractableType Type => InteractableType.Player;
 
         [Inject]
         public void Construct(GameConfig config) => _gameConfig = config;
@@ -29,15 +34,20 @@ namespace Units
         void IDamageable.Damage(int count)
         {
             Health.Damage(count);
-            _channel.RaiseEvent(_damageSound);
+            _damageSound.PlayOneShot();
 
             if (Health.CurrentHealth <= 0)
+            {
+                IsAlive = false;
                 InvokeDeath();
+                _deathSound.PlayOneShot();
+            }
         }
 
         protected override void InvokeDeath()
         {
             base.InvokeDeath();
+
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
 

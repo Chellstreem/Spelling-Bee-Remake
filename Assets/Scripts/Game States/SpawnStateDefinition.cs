@@ -8,7 +8,6 @@ namespace GameStates
     public abstract class SpawnStateDefinition : GameStateDefinition
     {
         [Header("Spawn Settings")]
-        [SerializeField, Min(0f)] private float _spawnDelay = 0f;
         [SerializeField] protected SpawnFlowInfo[] _spawnFlowInfos;
 
         public override GameState CreateGameState(GameStateController stateController, CoroutineRunner runner, Spawner spawner,
@@ -19,9 +18,10 @@ namespace GameStates
 
         public virtual IEnumerator SpawnCoroutine(Spawner spawner, GameSpeedController speedController)
         {
-            yield return new WaitForSeconds(_spawnDelay);
-
             float[] timers = new float[_spawnFlowInfos.Length];
+
+            for (int i = 0; i < timers.Length; i++)
+                timers[i] = -_spawnFlowInfos[i].SpawnDelay;
 
             while (true)
             {
@@ -30,6 +30,9 @@ namespace GameStates
                 for (int i = 0; i < _spawnFlowInfos.Length; i++)
                 {
                     timers[i] += deltaTime;
+
+                    if (timers[i] < 0f)
+                        continue;
 
                     float interval = _spawnFlowInfos[i].SpawnDistance / speedController.CurrentSpeed;
 

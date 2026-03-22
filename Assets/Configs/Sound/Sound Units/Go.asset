@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7116427268454f746882cfd23c523d20, type: 3}
   m_Name: Go
   m_EditorClassIdentifier: 
-  type: 1
-  clip: {fileID: 8300000, guid: 9fd65274b44f2bcd585c5f233d3dd77d, type: 3}
+  _audio: {fileID: 8300000, guid: 9fd65274b44f2bcd585c5f233d3dd77d, type: 3}
+  _volume: 1
+  _pitch: 1
+  _spatialBlend: 1
+  _channel: {fileID: 11400000, guid: 9bd697c069974b14d93af71182f77884, type: 2}

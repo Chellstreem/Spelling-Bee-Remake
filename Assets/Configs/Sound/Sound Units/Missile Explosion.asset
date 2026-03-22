@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7116427268454f746882cfd23c523d20, type: 3}
   m_Name: Missile Explosion
   m_EditorClassIdentifier: 
-  _playType: 2
   _audio: {fileID: 8300000, guid: 8524588a69a4f3e40bb597b6221138f1, type: 3}
   _volume: 1
   _pitch: 1
-  _channel: {fileID: 0}
+  _spatialBlend: 1
+  _channel: {fileID: 11400000, guid: 9bd697c069974b14d93af71182f77884, type: 2}

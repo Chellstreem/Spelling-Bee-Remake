@@ -6,42 +6,26 @@ namespace Sound
     public class SoundController
     {
         private readonly AudioSourcePool pool;
-        private readonly SoundEventChannel channel;
+        private readonly SoundEffectChannel _channel;
+        private readonly AudioSource playOneShotSource;
 
         public SoundController(AudioSourcePool pool, SoundConfig config)
         {
             this.pool = pool;
-            channel = config.EventChannel;
+            _channel = config.Channel;
+            playOneShotSource = pool.CreateSource();
 
-            channel.OnSoundEventRaised += OnSoundPlay;
+            _channel.OnSoundEffectRaised += OnSoundEffectRaised;
         }
 
-        private void OnSoundPlay(SoundUnit soundUnit)
+        private void OnSoundEffectRaised(SoundUnit soundUnit)
         {
             if (soundUnit == null)
                 return;
 
-            Play(soundUnit);
-        }
-
-        private AudioSource Play(SoundUnit unit)
-        {
-            var source = pool.GetSource();
-            source.pitch = unit.Pitch;
-
-            switch (unit.PlayType)
-            {
-                case PlayType.OneShot:
-                    source.PlayOneShot(unit.Audio, unit.Volume);
-                    return source;
-            }
-
-            source.clip = unit.Audio;
-            source.volume = unit.Volume;
-            source.loop = unit.PlayType == PlayType.Loop;
-            source.Play();
-
-            return source;
+            playOneShotSource.spatialBlend = soundUnit.SpatialBlend;
+            playOneShotSource.pitch = soundUnit.Pitch;
+            playOneShotSource.PlayOneShot(soundUnit.Clip, soundUnit.Volume);
         }
     }
 }

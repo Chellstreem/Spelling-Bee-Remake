@@ -33,16 +33,7 @@ namespace Sound
             return newUnit;
         }
 
-        private void InitializePool()
-        {
-            for (int i = 0; i < config.PoolSize; i++)
-            {
-                var unit = CreateSource();
-                sources.Add(unit);
-            }
-        }
-
-        private AudioSource CreateSource()
+        public AudioSource CreateSource()
         {
             GameObject gameObject = new("Audio Source");
             gameObject.transform.SetParent(poolHolder);
@@ -52,6 +43,15 @@ namespace Sound
             source.loop = false;
 
             return source;
+        }
+
+        private void InitializePool()
+        {
+            for (int i = 0; i < config.PoolSize; i++)
+            {
+                var unit = CreateSource();
+                sources.Add(unit);
+            }
         }
     }
 }

@@ -25,8 +25,6 @@ public class Stage1Installer : MonoInstaller
     private WordController _wordController;
     private IInput _input;
     private GameplayController _gameplayController;
-    private SoundEventChannel _soundEventChannel;
-
 
     public override void InstallBindings()
     {
@@ -134,12 +132,5 @@ public class Stage1Installer : MonoInstaller
     {
         AudioSourcePool pool = new(_gameConfig.SoundConfig);
         SoundController soundController = new(pool, _gameConfig.SoundConfig);
-
-        _soundEventChannel = _gameConfig.SoundConfig.EventChannel;
-
-        Container.Bind<SoundEventChannel>()
-            .FromInstance(_soundEventChannel)
-            .AsSingle()
-            .NonLazy();
     }
 }

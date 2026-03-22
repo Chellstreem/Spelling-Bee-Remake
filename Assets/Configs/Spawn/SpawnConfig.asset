@@ -25,24 +25,40 @@ MonoBehaviour:
     _prefab: {fileID: 491784303400851181, guid: cf31fa622f227a14b90072c4fb0fb74e, type: 3}
     _spawnPositioner: {fileID: 11400000, guid: 1494a4532c4954444aa33dd00b77c6e7, type: 2}
     _poolAmount: 8
-  - _type: 5
+  - _type: 4
     _prefab: {fileID: 4997011247045342427, guid: 2871a530f61c40f4f85709a91a1ba6fc, type: 3}
     _spawnPositioner: {fileID: 11400000, guid: c6c203a1269ca9842951fe6466792c9c, type: 2}
     _poolAmount: 12
-  - _type: 4
+  - _type: 12
     _prefab: {fileID: 6491878870511137018, guid: 4ed36380d9c22b94687887f71b3d1388, type: 3}
     _spawnPositioner: {fileID: 11400000, guid: fb1871231df3ca844b40ea51daa14da2, type: 2}
     _poolAmount: 5
-  - _type: 8
+  - _type: 6
     _prefab: {fileID: 8188891096940556133, guid: 3402fb23a8b935543a63bc11931dfbeb, type: 3}
     _spawnPositioner: {fileID: 11400000, guid: 8fb28fdd9a88f8b40bc86cc2762ff8cc, type: 2}
     _poolAmount: 8
-  - _type: 9
+  - _type: 7
     _prefab: {fileID: 6920043916269279699, guid: 8be162b308ee38541b5eda191edac254, type: 3}
     _spawnPositioner: {fileID: 11400000, guid: 8fb28fdd9a88f8b40bc86cc2762ff8cc, type: 2}
     _poolAmount: 8
   - _type: 6
     _prefab: {fileID: 2621245100175183509, guid: 49c2e4b7e6ee7d84290b8f1befae27f3, type: 3}
     _spawnPositioner: {fileID: 11400000, guid: c6c203a1269ca9842951fe6466792c9c, type: 2}
+    _poolAmount: 5
+  - _type: 8
+    _prefab: {fileID: 3630908171105893502, guid: 55acecb90ffcf424880773ae51a14e8e, type: 3}
+    _spawnPositioner: {fileID: 11400000, guid: 97e21988e1906ac42a35926e8e9b9154, type: 2}
+    _poolAmount: 5
+  - _type: 9
+    _prefab: {fileID: 281249626742644201, guid: 51d4658c63dd7d348aaf4bd5b53b5701, type: 3}
+    _spawnPositioner: {fileID: 11400000, guid: b0bd8eb1450e71d46b2e2081fc749ab1, type: 2}
+    _poolAmount: 5
+  - _type: 10
+    _prefab: {fileID: 6181521243371427733, guid: 1b81072a4b12eae43aea7d140728ab1c, type: 3}
+    _spawnPositioner: {fileID: 11400000, guid: b0bd8eb1450e71d46b2e2081fc749ab1, type: 2}
+    _poolAmount: 5
+  - _type: 11
+    _prefab: {fileID: 749536727210604783, guid: 78f4b9056b0ef674d97dea6cb7e8fe52, type: 3}
+    _spawnPositioner: {fileID: 11400000, guid: e40d054e4468ae04f862a99279ca328f, type: 2}
     _poolAmount: 5
   _spawnPosition: {x: 0, y: 0, z: 0}

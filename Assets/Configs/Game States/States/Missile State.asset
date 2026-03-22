@@ -15,12 +15,31 @@ MonoBehaviour:
   _allowMoving: 1
   _killInteractableObjects: 1
   _allowedTransitions: 01000000020000000300000004000000
-  _spawnDelay: 1
   _spawnFlowInfos:
-  - _binders:
+  - _delay: 1.5
+    _binders:
     - _type: 6
       _weight: 1
       _spawnProbabilty: 1
     _spawnDistance: 12
+  - _delay: 0
+    _binders:
+    - _type: 1
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 2
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 3
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 8
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 9
+      _weight: 0.2
+      _spawnProbabilty: 1
+    _spawnDistance: 13
   _duration: 4
   _nextState: 4
+  _stateSound: {fileID: 11400000, guid: 9cb6f4f0a9e330c468d753bfdcd4ab9b, type: 2}

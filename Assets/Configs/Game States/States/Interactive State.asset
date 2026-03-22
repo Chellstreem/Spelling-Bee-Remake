@@ -15,32 +15,49 @@ MonoBehaviour:
   _allowMoving: 1
   _killInteractableObjects: 0
   _allowedTransitions: 01000000020000000300000005000000
-  _spawnDelay: 0
   _spawnFlowInfos:
-  - _binders:
-    - _type: 1
-      _weight: 0.2
+  - _delay: 0
+    _binders:
+    - _type: 7
+      _weight: 0.25
       _spawnProbabilty: 1
     - _type: 2
+      _weight: 0.15
+      _spawnProbabilty: 1
+    - _type: 1
       _weight: 0.2
       _spawnProbabilty: 1
     - _type: 3
       _weight: 0.2
       _spawnProbabilty: 1
-    - _type: 8
-      _weight: 0.2
-      _spawnProbabilty: 1
-    - _type: 9
+    - _type: 6
       _weight: 0.2
       _spawnProbabilty: 1
     _spawnDistance: 13
-  - _binders:
-    - _type: 5
+  - _delay: 0
+    _binders:
+    - _type: 12
       _weight: 1
+      _spawnProbabilty: 0.2
+    _spawnDistance: 50
+  - _delay: 0
+    _binders:
+    - _type: 10
+      _weight: 0.4
+      _spawnProbabilty: 1
+    - _type: 9
+      _weight: 0.3
+      _spawnProbabilty: 1
+    - _type: 8
+      _weight: 0.3
+      _spawnProbabilty: 1
+    _spawnDistance: 20
+  - _delay: 1
+    _binders:
+    - _type: 4
+      _weight: 0.9
+      _spawnProbabilty: 1
+    - _type: 11
+      _weight: 0.1
       _spawnProbabilty: 1
     _spawnDistance: 10
-  - _binders:
-    - _type: 4
-      _weight: 1
-      _spawnProbabilty: 0.505
-    _spawnDistance: 30

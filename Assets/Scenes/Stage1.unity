@@ -1575,6 +1575,10 @@ PrefabInstance:
       value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2527890186158423960, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527890186158423960, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
@@ -1591,12 +1595,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _deathSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 71800eb52b030e34db04e7602bc24ad7, type: 2}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: _damageSound
       value: 
       objectReference: {fileID: 11400000, guid: 2e11385ebc5a10c459a72e016a7f4579, type: 2}
     - target: {fileID: 3191624550175880182, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878156529964636325, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7293273079386275849, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_LocalPosition.x

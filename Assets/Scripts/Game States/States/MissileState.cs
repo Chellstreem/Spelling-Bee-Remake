@@ -1,4 +1,5 @@
 using System.Collections;
+using Sound;
 using UnityEngine;
 
 namespace GameStates
@@ -8,6 +9,7 @@ namespace GameStates
     {
         [SerializeField] private float _duration = 5f;
         [SerializeField] private GameStateType _nextState = GameStateType.Interactive;
+        [SerializeField] private SoundUnit _stateSound;
 
         public override GameStateType StateType => GameStateType.Missile;
 
@@ -17,6 +19,8 @@ namespace GameStates
 
             SpawnState spawnState = state as SpawnState;
             state.StateCoroutine = state.Runner.Run(MissileCoroutine(spawnState));
+
+            _stateSound.PlayOneShot();
         }
 
         public override void Exit(GameState state)

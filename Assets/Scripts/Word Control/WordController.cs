@@ -38,12 +38,22 @@ namespace WordControl
             GenerateAvailableSymbols();
         }
 
-        public void OnValueChecked(string value)
+        public bool IsCorrect(string value)
         {
             if (!MaskedWord.TryGetHiddenLetterIndex(value, out int hiddenIndex))
-                return;
+                return false;
 
-            MaskedWord.RevealHiddenLetter(value, hiddenIndex);
+            OnCorrectValue(value, hiddenIndex);
+            return true;
+        }
+
+        public string GetRandomSymbol() => _availableSymbols[UnityEngine.Random.Range(0, _availableSymbols.Length)].ToString();
+        public bool IsCurrentIndexLast() => CurrentWordIndex == _words.Count - 1;
+        public int GetWordCount() => _words.Count;
+
+        private void OnCorrectValue(string value, int index)
+        {
+            MaskedWord.RevealHiddenLetter(value, index);
             OnLetterRevealed?.Invoke();
 
             if (!MaskedWord.IsComplete)
@@ -58,10 +68,6 @@ namespace WordControl
             MoveToNextWord();
             OnWordCompleted?.Invoke();
         }
-
-        public string GetRandomSymbol() => _availableSymbols[UnityEngine.Random.Range(0, _availableSymbols.Length)].ToString();
-        public bool IsCurrentIndexLast() => CurrentWordIndex == _words.Count - 1;
-        public int GetWordCount() => _words.Count;
 
         private void MaskCurrentWord()
         {
