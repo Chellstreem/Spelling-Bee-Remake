@@ -6,10 +6,10 @@ using Zenject;
 public class GameOverMenuHandler : IInitializable
 {
     private readonly GameStateController _stateController;
-    private readonly IScaler scaler;
+    private readonly ScaleEffect scaler;
     private readonly RectTransform gameoverMenu;
 
-    public GameOverMenuHandler(GameStateController stateController, IScaler scaler,
+    public GameOverMenuHandler(GameStateController stateController, ScaleEffect scaler,
         [Inject(Id = UiObjectType.GameoverMenu)] RectTransform gameoverMenu)
     {
         _stateController = stateController;

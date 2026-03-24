@@ -4,8 +4,8 @@ using Zenject;
 public class FieldActivator : MonoBehaviour
 {
     [SerializeField] private GameObject[] fields;
-    
-    private IScaler scaler;
+
+    private ScaleEffect scaler;
     private int initiallyActiveFields;
     private int activeFieldIndex;
 
@@ -13,11 +13,11 @@ public class FieldActivator : MonoBehaviour
     public int FieldsLength => fields.Length;
 
     [Inject]
-    public void Construct(IScaler scaler, int initiallyActiveFields)
+    public void Construct(ScaleEffect scaler, int initiallyActiveFields)
     {
         this.scaler = scaler;
         this.initiallyActiveFields = initiallyActiveFields;
-    }        
+    }
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class FieldActivator : MonoBehaviour
         if (activeFieldIndex < fields.Length - 1)
         {
             activeFieldIndex++;
-            scaler.ActivateWithScale(fields[activeFieldIndex].transform, 0.4f, 0f);            
+            scaler.ActivateWithScale(fields[activeFieldIndex].transform, 0.4f, 0f);
         }
     }
 
@@ -43,7 +43,7 @@ public class FieldActivator : MonoBehaviour
         if (activeFieldIndex > 0)
         {
             scaler.DeactivateWithScale(fields[activeFieldIndex].transform, 0.3f, 0f);
-            activeFieldIndex--;            
+            activeFieldIndex--;
         }
-    }    
+    }
 }

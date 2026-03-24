@@ -2,7 +2,7 @@
 
 namespace WordControl
 {
-    [CreateAssetMenu(fileName = "Word Control Config", menuName = "Scriptable Objects/Word Control onfig")]
+    [CreateAssetMenu(fileName = "Word Control Config", menuName = "Scriptable Objects/Word Control Config")]
     public class WordControlConfig : ScriptableObject
     {
         [Tooltip("The number of additional symbol added to the letters of the current word in order to increase difficulty")]
