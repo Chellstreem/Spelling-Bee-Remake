@@ -15,13 +15,17 @@ namespace Units
     [RequireComponent(typeof(Rigidbody))]
     public abstract class InteractableUnit : MonoBehaviour
     {
-        [SerializeField] protected SoundUnit _unitSound;
+        [SerializeField] private UnitType _unitType;
+
+        [Header("Sound")]
+        [SerializeField] protected SoundUnit _characterSound;
 
         protected Rigidbody _rigidbody;
         protected Collider _collider;
         protected ObjectPool _objectPool;
 
-        public abstract InteractableType Type { get; }
+        public abstract InteractableType InteractableType { get; }
+        public UnitType UnitType => _unitType;
 
         public event Action OnDeath;
         public event Action OnAttack;
@@ -39,6 +43,14 @@ namespace Units
         public virtual void Construct(ObjectPool objectPool)
         {
             _objectPool = objectPool;
+        }
+
+        public virtual void InvokeCharacterSound()
+        {
+            if (_characterSound == null)
+                return;
+
+            _characterSound.PlayOneShot();
         }
 
         protected abstract void HandleCollision(InteractableUnit other);

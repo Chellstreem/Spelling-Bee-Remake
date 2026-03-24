@@ -1,3 +1,4 @@
+using Sound;
 using Spawn;
 using UnityEngine;
 using Zenject;
@@ -32,6 +33,6 @@ namespace GameStates
         }
 
         public virtual GameState CreateGameState(GameStateController stateController, CoroutineRunner runner, Spawner spawner,
-         GameSpeedController speedController) => new(this, stateController, runner);
+         GameSpeedController speedController, AudioSource audioSource) => new(this, stateController, runner, audioSource);
     }
 }

@@ -120,9 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7127348dd84a06842bbc73895c26b68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAlive: 1
-  _damageSound: {fileID: 0}
+  _unitType: 0
+  _characterSound: {fileID: 0}
+  _attackSound: {fileID: 0}
   _deathSound: {fileID: 0}
+  _damageSound: {fileID: 0}
 --- !u!114 &-7786477865131077828
 MonoBehaviour:
   m_ObjectHideFlags: 0

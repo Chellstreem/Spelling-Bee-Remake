@@ -15,3 +15,4 @@ MonoBehaviour:
   _allowMoving: 0
   _killInteractableObjects: 1
   _allowedTransitions: 
+  _stateSound: {fileID: 11400000, guid: 9b67268e9f2ac92489ca4a0f7bba890f, type: 2}

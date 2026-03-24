@@ -9,27 +9,39 @@ namespace Units
         [SerializeField] private SoundUnit _attackSound;
         [SerializeField] private SoundUnit _deathSound;
 
-        public override InteractableType Type => InteractableType.HostileAnimal;
-        public bool IsAlive { get; private set; } = true;
+        public override InteractableType InteractableType => InteractableType.HostileAnimal;
+        public bool IsDead { get; private set; } = true;
+
+        public void OnEnable() => IsDead = false;
 
         void IDamageable.Damage(int damage)
         {
-            IsAlive = false;
+            IsDead = true;
             InvokeDeath();
+            _deathSound.PlayOneShot();
+        }
+
+        public override void InvokeCharacterSound()
+        {
+            if (IsDead)
+                return;
+
+            base.InvokeCharacterSound();
         }
 
         protected override void HandleCollision(InteractableUnit other)
         {
-            if (other.Type == InteractableType.Letter)
-                _objectPool.ReturnObject(other.gameObject);
+            if (IsDead)
+                return;
 
             if (other.TryGetComponent<IDamageable>(out var damageable))
             {
-                if (!damageable.IsAlive)
+                if (damageable.IsDead)
                     return;
 
                 InvokeAttack();
                 damageable.Damage(_damage);
+
                 _attackSound.PlayOneShot();
             }
         }

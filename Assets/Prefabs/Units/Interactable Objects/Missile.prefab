@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c639fc2b012cf4b863817c5d891ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 3
+  _unitType: 5
   _unitSound: {fileID: 0}
   _damage: 1
   _collisionSound: {fileID: 11400000, guid: c5dbd43b964a19942b0490716fc68694, type: 2}

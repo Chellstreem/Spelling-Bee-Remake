@@ -12,9 +12,9 @@ namespace Units
 
         private GameConfig _gameConfig;
         public Health Health { get; private set; }
-        public bool IsAlive { get; private set; } = true;
+        public bool IsDead { get; private set; } = false;
 
-        public override InteractableType Type => InteractableType.Player;
+        public override InteractableType InteractableType => InteractableType.Player;
 
         [Inject]
         public void Construct(GameConfig config) => _gameConfig = config;
@@ -37,16 +37,15 @@ namespace Units
             _damageSound.PlayOneShot();
 
             if (Health.CurrentHealth <= 0)
-            {
-                IsAlive = false;
                 InvokeDeath();
-                _deathSound.PlayOneShot();
-            }
         }
 
         protected override void InvokeDeath()
         {
             base.InvokeDeath();
+
+            IsDead = true;
+            _deathSound.PlayOneShot();
 
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
@@ -57,6 +56,9 @@ namespace Units
 
         protected override void HandleCollision(InteractableUnit other)
         {
+            if (IsDead)
+                return;
+
             InvokeAttack();
         }
     }

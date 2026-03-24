@@ -7,7 +7,7 @@ namespace Units
     {
         [SerializeField] private int _damage = 1;
         [SerializeField] private SoundUnit _collisionSound;
-        public override InteractableType Type => InteractableType.Missile;
+        public override InteractableType InteractableType => InteractableType.Missile;
 
         protected override void HandleCollision(InteractableUnit other)
         {

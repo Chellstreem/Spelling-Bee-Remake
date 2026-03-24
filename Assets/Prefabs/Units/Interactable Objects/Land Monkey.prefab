@@ -488,10 +488,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba78906a327f194b8be0f7fd639ddf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 1
-  _unitSound: {fileID: 0}
+  _unitType: 12
+  _characterSound: {fileID: 11400000, guid: ac5b307bec4346a469862d9c9302ba03, type: 2}
   _damage: 1
   _attackSound: {fileID: 11400000, guid: 52f24ecf0b5969f42a00e3e1cb096e68, type: 2}
+  _deathSound: {fileID: 11400000, guid: cdc6ee0d7db2bb74b94f1d1b293218cd, type: 2}
 --- !u!114 &6828576126006570869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,7 +508,7 @@ MonoBehaviour:
   _idleSpeed: 1
   _moveSpeed: 1
   _deathAnimationSpeed: 1
-  _attackAnimationSpeed: 0.5
+  _attackAnimationSpeed: 1
   _danceAnimationSpeed: 1
 --- !u!1 &6654769526575580307
 GameObject:

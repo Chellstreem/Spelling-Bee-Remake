@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Sound;
 using Spawn;
 using Zenject;
 
@@ -15,13 +16,13 @@ namespace GameStates
 
         public GameStateController(GameStateConfig config) => this.config = config;
 
-        public void Initialize(CoroutineRunner runner, Spawner spawner, GameSpeedController speedController)
+        public void Initialize(CoroutineRunner runner, Spawner spawner, GameSpeedController speedController, AudioSourcePool audioSourcePool)
         {
             foreach (var definition in config.GameStates)
             {
                 if (!stateMap.ContainsKey(definition.StateType))
                 {
-                    var state = definition.CreateGameState(this, runner, spawner, speedController);
+                    var state = definition.CreateGameState(this, runner, spawner, speedController, audioSourcePool.GetSource());
                     stateMap.Add(definition.StateType, state);
                 }
             }

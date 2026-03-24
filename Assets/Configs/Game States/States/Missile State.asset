@@ -18,7 +18,7 @@ MonoBehaviour:
   _spawnFlowInfos:
   - _delay: 1.5
     _binders:
-    - _type: 6
+    - _type: 5
       _weight: 1
       _spawnProbabilty: 1
     _spawnDistance: 12

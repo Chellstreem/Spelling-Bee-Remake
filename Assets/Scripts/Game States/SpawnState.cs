@@ -1,3 +1,4 @@
+using Sound;
 using Spawn;
 using UnityEngine;
 using Zenject;
@@ -7,13 +8,14 @@ namespace GameStates
     public class SpawnState : GameState
     {
         private readonly SpawnStateDefinition spawnDefinition;
-        public Spawner Spawner { get; private set; }
-        public GameSpeedController SpeedController { get; private set; }
+        public Spawner Spawner { get; }
+        public GameSpeedController SpeedController { get; }
 
         private Coroutine _spawnCoroutine;
 
-        public SpawnState(GameStateDefinition definition, GameStateController stateController, CoroutineRunner runner, Spawner spawner, GameSpeedController speedController)
-        : base(definition, stateController, runner)
+        public SpawnState(GameStateDefinition definition, GameStateController stateController, CoroutineRunner runner,
+         Spawner spawner, GameSpeedController speedController, AudioSource audioSource)
+        : base(definition, stateController, runner, audioSource)
         {
             spawnDefinition = definition as SpawnStateDefinition;
             Spawner = spawner;

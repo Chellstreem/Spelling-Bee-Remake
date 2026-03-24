@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7116427268454f746882cfd23c523d20, type: 3}
   m_Name: Gameplay Music
   m_EditorClassIdentifier: 
-  type: 6
-  clip: {fileID: 8300000, guid: 10ea0c6ecdfbe594d85161c221bce875, type: 3}
+  _audio: {fileID: 8300000, guid: 10ea0c6ecdfbe594d85161c221bce875, type: 3}
+  _volume: 0.889
+  _pitch: 1
+  _spatialBlend: 1
+  _channel: {fileID: 11400000, guid: 9bd697c069974b14d93af71182f77884, type: 2}

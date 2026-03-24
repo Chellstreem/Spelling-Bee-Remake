@@ -14,6 +14,6 @@ namespace Units
         Muskrat,
         Gecko,
         Snake,
-        LandMonkey
+        Monkey
     }
 }

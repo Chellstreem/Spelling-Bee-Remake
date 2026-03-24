@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7116427268454f746882cfd23c523d20, type: 3}
-  m_Name: SnakeRattle
+  m_Name: Monkey Death
   m_EditorClassIdentifier: 
-  type: 3
-  clip: {fileID: 8300000, guid: 292ec877c1fa0d24380866c98a4b9d8b, type: 3}
+  _audio: {fileID: 8300000, guid: 8d225cb35c96c8b4bbfcd15cb3d93f48, type: 3}
+  _volume: 1
+  _pitch: 2.01
+  _spatialBlend: 1
+  _channel: {fileID: 11400000, guid: 9bd697c069974b14d93af71182f77884, type: 2}

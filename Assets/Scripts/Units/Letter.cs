@@ -13,7 +13,7 @@ namespace Units
         private WordController _wordController;
 
         public string Value { get; private set; } = "-";
-        public override InteractableType Type => InteractableType.Letter;
+        public override InteractableType InteractableType => InteractableType.Letter;
 
         public event Action OnLetterUpdated;
 
@@ -24,15 +24,20 @@ namespace Units
 
         protected override void HandleCollision(InteractableUnit other)
         {
-            if (other.Type != InteractableType.Player)
-                return;
+            switch (other.InteractableType)
+            {
+                case InteractableType.HostileAnimal:
+                    _objectPool.ReturnObject(gameObject);
+                    break;
+                case InteractableType.Player:
+                    if (_wordController.IsCorrect(Value))
+                        _currectValueSound.PlayOneShot();
+                    else
+                        _incorrectValueSound.PlayOneShot();
 
-            if (_wordController.IsCorrect(Value))
-                _currectValueSound.PlayOneShot();
-            else
-                _incorrectValueSound.PlayOneShot();
-
-            _objectPool.ReturnObject(gameObject);
+                    _objectPool.ReturnObject(gameObject);
+                    break;
+            }
         }
 
         private void UpdateValue()

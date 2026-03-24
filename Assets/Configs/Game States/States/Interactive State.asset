@@ -33,12 +33,12 @@ MonoBehaviour:
     - _type: 6
       _weight: 0.2
       _spawnProbabilty: 1
-    _spawnDistance: 13
+    _spawnDistance: 12
   - _delay: 0
     _binders:
     - _type: 12
       _weight: 1
-      _spawnProbabilty: 0.2
+      _spawnProbabilty: 1
     _spawnDistance: 50
   - _delay: 0
     _binders:
@@ -46,10 +46,10 @@ MonoBehaviour:
       _weight: 0.4
       _spawnProbabilty: 1
     - _type: 9
-      _weight: 0.3
+      _weight: 0.4
       _spawnProbabilty: 1
     - _type: 8
-      _weight: 0.3
+      _weight: 0.2
       _spawnProbabilty: 1
     _spawnDistance: 20
   - _delay: 1
@@ -61,3 +61,4 @@ MonoBehaviour:
       _weight: 0.1
       _spawnProbabilty: 1
     _spawnDistance: 10
+  _stateSound: {fileID: 11400000, guid: 3cce625a0f459d54b9bedcce8ab3c113, type: 2}

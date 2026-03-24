@@ -20,11 +20,12 @@ public class Stage1Installer : MonoInstaller
     private GameStateController _stateController;
     private UIBarController _uIBarController;
     private GameSpeedController _speedController;
-    private ObjectPool _pool;
+    private ObjectPool _objectPool;
     private Spawner _spawner;
     private WordController _wordController;
     private IInput _input;
     private GameplayController _gameplayController;
+    private AudioSourcePool _audioSourcePool;
 
     public override void InstallBindings()
     {
@@ -33,6 +34,7 @@ public class Stage1Installer : MonoInstaller
         .AsSingle()
         .NonLazy();
 
+        InstallSound();
         InstallInput();
         InstallWordController();
         InstallSpeedController();
@@ -41,10 +43,9 @@ public class Stage1Installer : MonoInstaller
         InstallGameStates();
         InstallUIBarController();
         InstallCamera();
-        InstallSound();
 
         _wordController.StartGame();
-        _pool.InitializePool();
+        _objectPool.InitializePool();
         _input.Enable();
         _gameplayController = new(_player, _wordController, _stateController);
     }
@@ -70,7 +71,7 @@ public class Stage1Installer : MonoInstaller
     private void InstallGameStates()
     {
         _stateController = new(_gameConfig.GameStateConfig);
-        _stateController.Initialize(_coroutineRunner, _spawner, _speedController);
+        _stateController.Initialize(_coroutineRunner, _spawner, _speedController, _audioSourcePool);
 
         Container.Bind<GameStateController>()
             .FromInstance(_stateController)
@@ -80,17 +81,17 @@ public class Stage1Installer : MonoInstaller
 
     private void InstallObjectPool()
     {
-        _pool = new(Container, _gameConfig.SpawnConfig);
+        _objectPool = new(Container, _gameConfig.SpawnConfig);
 
         Container.Bind<ObjectPool>()
-            .FromInstance(_pool)
+            .FromInstance(_objectPool)
             .AsSingle()
             .NonLazy();
     }
 
     private void InstallSpawner()
     {
-        _spawner = new(_pool);
+        _spawner = new(_objectPool);
 
         Container.Bind<Spawner>()
             .FromInstance(_spawner)
@@ -130,7 +131,13 @@ public class Stage1Installer : MonoInstaller
 
     private void InstallSound()
     {
-        AudioSourcePool pool = new(_gameConfig.SoundConfig);
-        SoundController soundController = new(pool, _gameConfig.SoundConfig);
+        _audioSourcePool = new(_gameConfig.SoundConfig);
+
+        Container.Bind<AudioSourcePool>()
+            .FromInstance(_audioSourcePool)
+            .AsSingle()
+            .NonLazy();
+
+        SoundController soundController = new(_audioSourcePool, _gameConfig.SoundConfig);
     }
 }

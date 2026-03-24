@@ -163,9 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba78906a327f194b8be0f7fd639ddf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitSound: {fileID: 0}
+  _unitType: 11
+  _characterSound: {fileID: 11400000, guid: 7627d247e5a6e7d45834445d88af8480, type: 2}
   _damage: 2
   _attackSound: {fileID: 11400000, guid: 52f24ecf0b5969f42a00e3e1cb096e68, type: 2}
+  _deathSound: {fileID: 11400000, guid: 7627d247e5a6e7d45834445d88af8480, type: 2}
 --- !u!114 &7856923169838119285
 MonoBehaviour:
   m_ObjectHideFlags: 0
