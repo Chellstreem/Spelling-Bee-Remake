@@ -11,14 +11,14 @@ public class GameConfig : ScriptableObject
     [SerializeField] private GameStateConfig _gameStateConfig;
     [SerializeField] private WordControlConfig _wordControlConfig;
     [SerializeField] private SoundConfig _soundConfig;
-    [SerializeField] private VisualEffectConfig _visualEffectConfig;
+    [SerializeField] private ParticleConfig _particleConfig;
 
     public CameraConfig CameraConfig => _cameraConfig;
     public SpawnConfig SpawnConfig => _spawnConfig;
     public GameStateConfig GameStateConfig => _gameStateConfig;
     public WordControlConfig WordControlConfig => _wordControlConfig;
     public SoundConfig SoundConfig => _soundConfig;
-    public VisualEffectConfig VisualEffectConfig => _visualEffectConfig;
+    public ParticleConfig ParticleConfig => _particleConfig;
 
     //
 

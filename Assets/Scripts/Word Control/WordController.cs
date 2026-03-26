@@ -80,12 +80,13 @@ namespace WordControl
             {
                 int randomIndex = UnityEngine.Random.Range(0, maskedWordArray.Length);
                 string hiddenLetter = maskedWordArray[randomIndex].ToString();
+
                 if (!maskedIndexes.ContainsKey(hiddenLetter))
-                {
                     maskedIndexes.Add(hiddenLetter, randomIndex);
-                    maskedWordArray[randomIndex] = '_';
-                }
             }
+
+            foreach (var kvp in maskedIndexes)
+                maskedWordArray[kvp.Value] = '_';
 
             string maskedWord = new(maskedWordArray);
             MaskedWord = new MaskedWord(maskedWord, maskedIndexes);

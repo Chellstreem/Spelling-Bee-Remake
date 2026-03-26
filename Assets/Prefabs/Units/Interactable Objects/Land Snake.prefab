@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de9fcbfee398304c96419e1815da8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _returnEffect: {fileID: 11400000, guid: aef42b28b69dd8a45b3592332acae428, type: 2}
 --- !u!114 &9215217673806390297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitType: 11
   _characterSound: {fileID: 11400000, guid: 7627d247e5a6e7d45834445d88af8480, type: 2}
-  _damage: 2
+  _damage: 1
   _attackSound: {fileID: 11400000, guid: 52f24ecf0b5969f42a00e3e1cb096e68, type: 2}
   _deathSound: {fileID: 11400000, guid: 7627d247e5a6e7d45834445d88af8480, type: 2}
 --- !u!114 &7856923169838119285

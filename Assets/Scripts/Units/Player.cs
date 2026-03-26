@@ -1,5 +1,6 @@
 using Sound;
 using UnityEngine;
+using VFX;
 using Zenject;
 
 namespace Units
@@ -9,6 +10,10 @@ namespace Units
         [SerializeField] private SoundUnit _attackSound;
         [SerializeField] private SoundUnit _deathSound;
         [SerializeField] private SoundUnit _damageSound;
+
+        [Header("VFX")]
+        [SerializeField] private ParticleEffect _deathEffect;
+        [SerializeField] private Vector3 _deathEffectOffset = new(0, 2f, 0);
 
         private GameConfig _gameConfig;
         public Health Health { get; private set; }
@@ -45,13 +50,14 @@ namespace Units
             base.InvokeDeath();
 
             IsDead = true;
-            _deathSound.PlayOneShot();
-
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
 
             if (_collider is BoxCollider boxCollider)
                 boxCollider.center = _gameConfig.PlayerDeathColliderCenter;
+
+            _deathSound.PlayOneShot();
+            _deathEffect.Invoke(transform.position + _deathEffectOffset);
         }
 
         protected override void HandleCollision(InteractableUnit other)

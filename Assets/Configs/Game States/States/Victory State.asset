@@ -16,3 +16,5 @@ MonoBehaviour:
   _killInteractableObjects: 1
   _allowedTransitions: 
   _stateSound: {fileID: 11400000, guid: 9b67268e9f2ac92489ca4a0f7bba890f, type: 2}
+  _victoryEffect: {fileID: 11400000, guid: faffad67392083b4e953dec00ef46a28, type: 2}
+  _effectPosition: {x: 2, y: 11, z: -37}

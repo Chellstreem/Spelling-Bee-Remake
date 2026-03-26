@@ -3,13 +3,17 @@ using WordControl;
 using Zenject;
 using UnityEngine;
 using Sound;
+using VFX;
 
 namespace Units
 {
     public class Letter : InteractableUnit
     {
+        [SerializeField] private ParticleEffect _correctValueEffect;
+        [SerializeField] private ParticleEffect _wrongValueEffect;
         [SerializeField] private SoundUnit _currectValueSound;
         [SerializeField] private SoundUnit _incorrectValueSound;
+
         private WordController _wordController;
 
         public string Value { get; private set; } = "-";
@@ -29,11 +33,21 @@ namespace Units
                 case InteractableType.HostileAnimal:
                     _objectPool.ReturnObject(gameObject);
                     break;
+
                 case InteractableType.Player:
+
+                    Vector3 position = transform.position;
+
                     if (_wordController.IsCorrect(Value))
+                    {
                         _currectValueSound.PlayOneShot();
+                        _correctValueEffect.Invoke(position);
+                    }
                     else
+                    {
                         _incorrectValueSound.PlayOneShot();
+                        _wrongValueEffect.Invoke(position);
+                    }
 
                     _objectPool.ReturnObject(gameObject);
                     break;

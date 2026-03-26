@@ -5,13 +5,14 @@ namespace VFX
 {
     public class ParticlePool
     {
-        private Dictionary<ParticleType, Queue<ParticleSystem>> poolDictionary;
-        private GameObject poolHolder;
+        private readonly ParticleConfig config;
+        private readonly Dictionary<ParticleType, Queue<ParticleSystem>> poolDictionary = new();
+        private readonly Transform poolHolder;
 
-        public ParticlePool()
+        public ParticlePool(ParticleConfig config)
         {
-
-
+            this.config = config;
+            poolHolder = new GameObject("Particle Pool").transform;
             InitializePools();
         }
 
@@ -23,33 +24,30 @@ namespace VFX
                 return null;
             }
 
-            ParticleSystem particle = poolDictionary[particleType].Dequeue();
-            return particle;
+            return poolDictionary[particleType].Dequeue();
         }
 
         public void ReturnParticle(ParticleType particleType, ParticleSystem particle)
         {
+            particle.transform.SetParent(poolHolder);
             poolDictionary[particleType].Enqueue(particle);
         }
 
         private void InitializePools()
         {
-            poolDictionary = new Dictionary<ParticleType, Queue<ParticleSystem>>();
-            poolHolder = new GameObject("Particle Pool");
-
-            foreach (var particleObject in particleConfig.ParticleObjects)
+            foreach (var particleInfo in config.Particles)
             {
-                var particleType = particleObject.Type;
+                var particleType = particleInfo.Type;
 
                 if (!poolDictionary.ContainsKey(particleType))
                     poolDictionary[particleType] = new Queue<ParticleSystem>();
 
-                for (int i = 0; i < particleObject.Amount; i++)
+                for (int i = 0; i < particleInfo.PoolAmount; i++)
                 {
-                    GameObject obj = Object.Instantiate(particleObject.Prefab, poolHolder.transform);
-                    obj.SetActive(false);
+                    var particle = Object.Instantiate(particleInfo.Prefab, poolHolder.transform);
+                    particle.gameObject.SetActive(false);
 
-                    poolDictionary[particleType].Enqueue(obj.GetComponent<ParticleSystem>());
+                    poolDictionary[particleType].Enqueue(particle);
                 }
             }
         }

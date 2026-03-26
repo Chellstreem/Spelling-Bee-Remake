@@ -150,7 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 4
-  _unitSound: {fileID: 0}
+  _characterSound: {fileID: 0}
+  _correctValueEffect: {fileID: 11400000, guid: b984e23aa7d526342ab40040b43b0337, type: 2}
+  _wrongValueEffect: {fileID: 11400000, guid: e7bcaf4328904e142bf667e512f6e84b, type: 2}
   _currectValueSound: {fileID: 11400000, guid: 94922a5a5a6f437469b27f0e16050aff, type: 2}
   _incorrectValueSound: {fileID: 11400000, guid: 72653b4a6f23a0448bafe1881f086d05, type: 2}
 --- !u!114 &6608492100268292977
@@ -165,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de9fcbfee398304c96419e1815da8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _returnEffect: {fileID: 11400000, guid: aef42b28b69dd8a45b3592332acae428, type: 2}
 --- !u!114 &8667303724740305325
 MonoBehaviour:
   m_ObjectHideFlags: 0

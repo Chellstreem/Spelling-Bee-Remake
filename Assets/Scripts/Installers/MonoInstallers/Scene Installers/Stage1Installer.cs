@@ -8,6 +8,7 @@ using InputControl;
 using Units;
 using UserInterface;
 using Sound;
+using VFX;
 
 public class Stage1Installer : MonoInstaller
 {
@@ -43,6 +44,7 @@ public class Stage1Installer : MonoInstaller
         InstallGameStates();
         InstallUIBarController();
         InstallCamera();
+        InstallVFX();
 
         _wordController.StartGame();
         _objectPool.InitializePool();
@@ -139,5 +141,11 @@ public class Stage1Installer : MonoInstaller
             .NonLazy();
 
         SoundController soundController = new(_audioSourcePool, _gameConfig.SoundConfig);
+    }
+
+    private void InstallVFX()
+    {
+        ParticlePool pool = new(_gameConfig.ParticleConfig);
+        ParticlePlayer particlePlayer = new(pool, _gameConfig.ParticleConfig.Channel, _coroutineRunner);
     }
 }

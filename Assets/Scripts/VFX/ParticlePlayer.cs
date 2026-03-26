@@ -6,39 +6,38 @@ namespace VFX
     public class ParticlePlayer
     {
         private readonly ParticlePool particlePool;
+        private readonly ParticleChannel channel;
         private readonly CoroutineRunner coroutineRunner;
 
-        public ParticlePlayer(ParticlePool particlePool, CoroutineRunner coroutineRunner)
+        public ParticlePlayer(ParticlePool particlePool, ParticleChannel channel, CoroutineRunner coroutineRunner)
         {
             this.particlePool = particlePool;
+            this.channel = channel;
             this.coroutineRunner = coroutineRunner;
+
+            channel.OnParticleInvoked += OnParticleEffect;
         }
 
-        public void PlayParticle(ParticleType particleType, Vector3 position)
+        public ParticleSystem Play(ParticleType particleType, Vector3 position, float scale = 1f)
         {
             ParticleSystem particle = particlePool.GetParticle(particleType);
-            particle.gameObject.transform.position = position;
+            particle.transform.position = position;
+            particle.transform.localScale = Vector3.one * scale;
             particle.gameObject.SetActive(true);
             particle.Play();
 
             coroutineRunner.StartCoroutine(ReturnToPoolAfterPlay(particleType, particle));
+            return particle;
         }
 
-        public void PlayParticle(ParticleType particleType, Vector3 position, float delay)
+        private void OnParticleEffect(ParticleEffect effect, Vector3 position)
         {
-            coroutineRunner.StartCoroutine(DelayedParticleCoroutine(particleType, position, delay));
+            Play(effect.ParticleType, position, effect.Scale);
         }
-
-        private IEnumerator DelayedParticleCoroutine(ParticleType particleType, Vector3 position, float duration)
-        {
-            yield return new WaitForSeconds(duration);
-            PlayParticle(particleType, position);
-        }
-
 
         private IEnumerator ReturnToPoolAfterPlay(ParticleType particleType, ParticleSystem particle)
         {
-            yield return new WaitWhile(() => particle.isPlaying);
+            yield return new WaitWhile(() => particle.IsAlive(true));
 
             particle.Stop();
             particle.gameObject.SetActive(false);

@@ -2,6 +2,11 @@ namespace VFX
 {
     public enum ParticleType
     {
-        Explosion
+        Explosion,
+        WrongText,
+        MildSparks,
+        SmokePoof,
+        Confetti,
+        SoulEscape
     }
 }

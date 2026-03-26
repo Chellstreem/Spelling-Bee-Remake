@@ -1,10 +1,13 @@
 using System;
 using UnityEngine;
+using VFX;
 
 namespace Movement
 {
     public class InteractableUnit : MovableUnit
     {
+        [SerializeField] private ParticleEffect _returnEffect;
+
         private void OnEnable()
         {
             if (_stateController.CurrentState != null && _stateController.CurrentState.AllowMoving)
@@ -19,6 +22,9 @@ namespace Movement
 
             if (_stateController.CurrentState.KillInteractableObject)
             {
+                if (_returnEffect != null)
+                    _returnEffect.Invoke(transform.position);
+
                 _pool.ReturnObject(gameObject);
                 return;
             }

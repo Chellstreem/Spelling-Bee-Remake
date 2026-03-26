@@ -1669,6 +1669,14 @@ PrefabInstance:
       propertyPath: _damageSound
       value: 
       objectReference: {fileID: 11400000, guid: 2e11385ebc5a10c459a72e016a7f4579, type: 2}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _deathEffect
+      value: 
+      objectReference: {fileID: 11400000, guid: 0da266346d3f75c41b03b2da6504240b, type: 2}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _deathEffectOffset.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3191624550175880182, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_Name
       value: Player

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Snake Death
   m_EditorClassIdentifier: 
   _audio: {fileID: 8300000, guid: 292ec877c1fa0d24380866c98a4b9d8b, type: 3}
-  _volume: 1
-  _pitch: 2.01
+  _volume: 0.847
+  _pitch: 1.16
   _spatialBlend: 1
   _channel: {fileID: 11400000, guid: 9bd697c069974b14d93af71182f77884, type: 2}
