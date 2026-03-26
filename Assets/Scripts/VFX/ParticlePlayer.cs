@@ -6,16 +6,12 @@ namespace VFX
     public class ParticlePlayer
     {
         private readonly ParticlePool particlePool;
-        private readonly ParticleChannel channel;
         private readonly CoroutineRunner coroutineRunner;
 
-        public ParticlePlayer(ParticlePool particlePool, ParticleChannel channel, CoroutineRunner coroutineRunner)
+        public ParticlePlayer(ParticlePool particlePool, CoroutineRunner coroutineRunner)
         {
             this.particlePool = particlePool;
-            this.channel = channel;
             this.coroutineRunner = coroutineRunner;
-
-            channel.OnParticleInvoked += OnParticleEffect;
         }
 
         public ParticleSystem Play(ParticleType particleType, Vector3 position, float scale = 1f)
@@ -28,11 +24,6 @@ namespace VFX
 
             coroutineRunner.StartCoroutine(ReturnToPoolAfterPlay(particleType, particle));
             return particle;
-        }
-
-        private void OnParticleEffect(ParticleEffect effect, Vector3 position)
-        {
-            Play(effect.ParticleType, position, effect.Scale);
         }
 
         private IEnumerator ReturnToPoolAfterPlay(ParticleType particleType, ParticleSystem particle)

@@ -17,10 +17,7 @@ namespace VFX
     [CreateAssetMenu(fileName = "Particle Config", menuName = "Scriptable Objects/VFX/Particle Config")]
     public class ParticleConfig : ScriptableObject
     {
-        [SerializeField] private ParticleChannel _channel;
         [SerializeField] private PoolParticleInfo[] _particles;
-
-        public ParticleChannel Channel => _channel;
         public PoolParticleInfo[] Particles => _particles;
     }
 }

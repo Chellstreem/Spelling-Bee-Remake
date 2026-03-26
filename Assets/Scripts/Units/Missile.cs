@@ -10,7 +10,7 @@ namespace Units
         [SerializeField] private SoundUnit _collisionSound;
 
         [Header("VFX")]
-        [SerializeField] private ParticleEffect _explosionEffect;
+        [SerializeField] private ParticleEffectInfo _explosionEffect;
 
         public override InteractableType InteractableType => InteractableType.Missile;
 
@@ -21,7 +21,7 @@ namespace Units
             if (other.TryGetComponent<IDamageable>(out var damageable))
                 damageable.Damage(_damage);
 
-            _explosionEffect.Invoke(transform.position);
+            PlayEffect(_explosionEffect);
             _objectPool.ReturnObject(gameObject);
         }
     }

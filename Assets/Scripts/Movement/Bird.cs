@@ -19,9 +19,9 @@ namespace Units
                 Vector3 newPosition = transform.position;
                 float speed = _speedController.CurrentSpeed + _speedDelta;
 
-                newPosition += _moveDirection * (speed * Time.deltaTime);
+                newPosition += _config.MoveDirection * (speed * Time.deltaTime);
 
-                if (newPosition.z <= _thresholdZ)
+                if (newPosition.z <= _config.ReturnThreshold)
                 {
                     StopMoving();
                     _pool.ReturnObject(gameObject);

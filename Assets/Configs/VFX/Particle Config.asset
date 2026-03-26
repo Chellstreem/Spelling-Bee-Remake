@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 494eb08764de58e4ebb34611f006289d, type: 3}
-  m_Name: Visual Effect Config
+  m_Name: Particle Config
   m_EditorClassIdentifier: 
-  _channel: {fileID: 11400000, guid: a3fd279425ad0044c8e1d724a91224c0, type: 2}
   _particles:
   - _particleType: 0
     _particlePrefab: {fileID: 8365791848008133096, guid: b64457afddb0491448570701b16b4370, type: 3}
@@ -28,4 +27,7 @@ MonoBehaviour:
     _poolAmount: 20
   - _particleType: 5
     _particlePrefab: {fileID: 5985634496115995770, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
+    _poolAmount: 2
+  - _particleType: 4
+    _particlePrefab: {fileID: 4126359638490815807, guid: 71fadd437f3584e4a8e4f08ef69fccb3, type: 3}
     _poolAmount: 2

@@ -9,10 +9,12 @@ namespace Units
 {
     public class Letter : InteractableUnit
     {
-        [SerializeField] private ParticleEffect _correctValueEffect;
-        [SerializeField] private ParticleEffect _wrongValueEffect;
         [SerializeField] private SoundUnit _currectValueSound;
         [SerializeField] private SoundUnit _incorrectValueSound;
+
+        [Header("VFX")]
+        [SerializeField] private ParticleEffectInfo _correctValueEffect;
+        [SerializeField] private ParticleEffectInfo _wrongValueEffect;
 
         private WordController _wordController;
 
@@ -41,12 +43,12 @@ namespace Units
                     if (_wordController.IsCorrect(Value))
                     {
                         _currectValueSound.PlayOneShot();
-                        _correctValueEffect.Invoke(position);
+                        PlayEffect(_correctValueEffect);
                     }
                     else
                     {
                         _incorrectValueSound.PlayOneShot();
-                        _wrongValueEffect.Invoke(position);
+                        PlayEffect(_wrongValueEffect);
                     }
 
                     _objectPool.ReturnObject(gameObject);

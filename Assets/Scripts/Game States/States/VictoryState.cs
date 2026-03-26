@@ -10,15 +10,14 @@ namespace GameStates
         [SerializeField] private SoundUnit _stateSound;
 
         [Header("VFX")]
-        [SerializeField] private ParticleEffect _victoryEffect;
-        [SerializeField] private Vector3 _effectPosition;
+        [SerializeField] private ParticleEffectInfo _victoryEffect;
 
         public override GameStateType StateType => GameStateType.Victory;
 
         public override void Enter(GameState state)
         {
             _stateSound.PlayOneShot();
-            _victoryEffect.Invoke(_effectPosition);
+            //_victoryEffect.Invoke(_effectPosition);
         }
 
         public override void Exit(GameState state) { }

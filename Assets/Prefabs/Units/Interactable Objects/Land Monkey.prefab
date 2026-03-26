@@ -475,7 +475,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7150be53f91c7634482a90b158041795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _returnEffect: {fileID: 11400000, guid: aef42b28b69dd8a45b3592332acae428, type: 2}
+  _returnEffect:
+    _particleType: 3
+    _scale: 1
+    _positionOffset: {x: 0, y: 0, z: 0}
   _speedDelta: 4
 --- !u!114 &3019424171615590620
 MonoBehaviour:

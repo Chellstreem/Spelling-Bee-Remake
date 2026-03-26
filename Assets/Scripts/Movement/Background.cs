@@ -19,9 +19,9 @@ namespace Movement
             while (true)
             {
                 Vector3 newPosition = transform.position;
-                newPosition += _moveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
+                newPosition += _config.MoveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
 
-                if (newPosition.z < _thresholdZ)
+                if (newPosition.z < _config.ReturnThreshold)
                     newPosition = _startPosition;
 
                 transform.position = newPosition;

@@ -12,8 +12,7 @@ namespace Movement
         protected GameStateController _stateController;
         protected GameSpeedController _speedController;
         protected ObjectPool _pool;
-        protected float _thresholdZ;
-        protected Vector3 _moveDirection;
+        protected GameConfig _config;
         private Coroutine _moveCoroutine;
 
         public bool IsMoving { get; protected set; }
@@ -26,8 +25,7 @@ namespace Movement
             _stateController = stateController;
             _speedController = speedController;
             _pool = pool;
-            _thresholdZ = gameConfig.ReturnThreshold;
-            _moveDirection = gameConfig.MoveDirection;
+            _config = gameConfig;
         }
 
         protected virtual void StartMoving()
@@ -67,9 +65,9 @@ namespace Movement
             while (true)
             {
                 Vector3 newPosition = transform.position;
-                newPosition += _moveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
+                newPosition += _config.MoveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
 
-                if (newPosition.z <= _thresholdZ)
+                if (newPosition.z <= _config.ReturnThreshold)
                 {
                     StopMoving();
                     _pool.ReturnObject(gameObject);

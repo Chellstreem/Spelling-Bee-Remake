@@ -2,7 +2,7 @@ using System;
 using Sound;
 using Spawn;
 using UnityEngine;
-using UnityEngine.VFX;
+using VFX;
 using Zenject;
 
 namespace Units
@@ -24,6 +24,7 @@ namespace Units
         protected Rigidbody _rigidbody;
         protected Collider _collider;
         protected ObjectPool _objectPool;
+        private ParticlePlayer _particlePlayer;
 
         public abstract InteractableType InteractableType { get; }
         public UnitType UnitType => _unitType;
@@ -41,9 +42,10 @@ namespace Units
         }
 
         [Inject]
-        public virtual void Construct(ObjectPool objectPool)
+        public virtual void Construct(ObjectPool objectPool, ParticlePlayer particlePlayer)
         {
             _objectPool = objectPool;
+            _particlePlayer = particlePlayer;
         }
 
         public virtual void InvokeCharacterSound()
@@ -58,6 +60,12 @@ namespace Units
         protected virtual void InvokeDeath() => OnDeath?.Invoke();
         protected virtual void InvokeAttack() => OnAttack?.Invoke();
         protected virtual void InvokeDance() => OnDance?.Invoke();
+
+        public ParticleSystem PlayEffect(ParticleEffectInfo info)
+        {
+            Vector3 position = transform.position + info.Offset;
+            return _particlePlayer.Play(info.Type, position, info.Scale);
+        }
 
         private void OnTriggerEnter(Collider other)
         {

@@ -146,6 +146,11 @@ public class Stage1Installer : MonoInstaller
     private void InstallVFX()
     {
         ParticlePool pool = new(_gameConfig.ParticleConfig);
-        ParticlePlayer particlePlayer = new(pool, _gameConfig.ParticleConfig.Channel, _coroutineRunner);
+        ParticlePlayer particlePlayer = new(pool, _coroutineRunner);
+
+        Container.Bind<ParticlePlayer>()
+            .FromInstance(particlePlayer)
+            .AsSingle()
+            .NonLazy();
     }
 }

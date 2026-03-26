@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using VFX;
+using Zenject;
 
 namespace Movement
 {
     public class InteractableUnit : MovableUnit
     {
-        [SerializeField] private ParticleEffect _returnEffect;
+        [SerializeField] private ParticleEffectInfo _returnEffect;
+        [Inject] private ParticlePlayer _particlePlayer;
 
         private void OnEnable()
         {
@@ -22,9 +24,7 @@ namespace Movement
 
             if (_stateController.CurrentState.KillInteractableObject)
             {
-                if (_returnEffect != null)
-                    _returnEffect.Invoke(transform.position);
-
+                _particlePlayer.Play(_returnEffect.Type, transform.position, _returnEffect.Scale);
                 _pool.ReturnObject(gameObject);
                 return;
             }

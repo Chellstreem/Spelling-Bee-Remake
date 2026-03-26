@@ -7,6 +7,7 @@ namespace VFX
         MildSparks,
         SmokePoof,
         Confetti,
-        SoulEscape
+        SoulEscape,
+        None
     }
 }

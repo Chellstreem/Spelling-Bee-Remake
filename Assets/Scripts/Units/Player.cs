@@ -12,7 +12,7 @@ namespace Units
         [SerializeField] private SoundUnit _damageSound;
 
         [Header("VFX")]
-        [SerializeField] private ParticleEffect _deathEffect;
+        [SerializeField] private ParticleEffectInfo _deathEffect;
         [SerializeField] private Vector3 _deathEffectOffset = new(0, 2f, 0);
 
         private GameConfig _gameConfig;
@@ -57,7 +57,6 @@ namespace Units
                 boxCollider.center = _gameConfig.PlayerDeathColliderCenter;
 
             _deathSound.PlayOneShot();
-            _deathEffect.Invoke(transform.position + _deathEffectOffset);
         }
 
         protected override void HandleCollision(InteractableUnit other)

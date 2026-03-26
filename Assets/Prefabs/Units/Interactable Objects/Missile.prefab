@@ -455,7 +455,10 @@ MonoBehaviour:
   _characterSound: {fileID: 0}
   _damage: 1
   _collisionSound: {fileID: 11400000, guid: c5dbd43b964a19942b0490716fc68694, type: 2}
-  _explosionEffect: {fileID: 11400000, guid: 813a31863ac931a4cbb284fee5f2f849, type: 2}
+  _explosionEffect:
+    _particleType: 0
+    _scale: 1
+    _positionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &1370463172169403166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7150be53f91c7634482a90b158041795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _returnEffect: {fileID: 11400000, guid: 813a31863ac931a4cbb284fee5f2f849, type: 2}
+  _returnEffect:
+    _particleType: 3
+    _scale: 1
+    _positionOffset: {x: 0, y: 0, z: 0}
   _speedDelta: 25
 --- !u!1 &2800955624720243417
 GameObject:
