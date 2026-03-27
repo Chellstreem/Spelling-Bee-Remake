@@ -1674,7 +1674,27 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0da266346d3f75c41b03b2da6504240b, type: 2}
     - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _deathEffect._scale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: _deathEffectOffset.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _statuses.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _statuses.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _deathEffect._particleType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _deathEffect._positionOffset.y
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3191624550175880182, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}

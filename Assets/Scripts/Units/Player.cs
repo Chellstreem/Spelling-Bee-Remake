@@ -13,16 +13,12 @@ namespace Units
 
         [Header("VFX")]
         [SerializeField] private ParticleEffectInfo _deathEffect;
-        [SerializeField] private Vector3 _deathEffectOffset = new(0, 2f, 0);
 
-        private GameConfig _gameConfig;
+        [Inject] private GameConfig _gameConfig;
         public Health Health { get; private set; }
         public bool IsDead { get; private set; } = false;
 
         public override InteractableType InteractableType => InteractableType.Player;
-
-        [Inject]
-        public void Construct(GameConfig config) => _gameConfig = config;
 
         protected override void Awake()
         {
@@ -59,7 +55,7 @@ namespace Units
             _deathSound.PlayOneShot();
         }
 
-        protected override void HandleCollision(InteractableUnit other)
+        public override void HandleCollision(InteractableUnit other)
         {
             if (IsDead)
                 return;

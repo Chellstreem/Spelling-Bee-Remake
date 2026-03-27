@@ -493,6 +493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 12
+  _defaultStatus: 0
+  _statuses:
+  - {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
   _characterSound: {fileID: 11400000, guid: ac5b307bec4346a469862d9c9302ba03, type: 2}
   _damage: 1
   _attackSound: {fileID: 11400000, guid: 52f24ecf0b5969f42a00e3e1cb096e68, type: 2}

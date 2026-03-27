@@ -452,6 +452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 5
+  _statuses:
+  - {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
   _characterSound: {fileID: 0}
   _damage: 1
   _collisionSound: {fileID: 11400000, guid: c5dbd43b964a19942b0490716fc68694, type: 2}

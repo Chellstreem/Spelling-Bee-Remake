@@ -28,7 +28,7 @@ namespace Units
 
         private void OnEnable() => UpdateValue();
 
-        protected override void HandleCollision(InteractableUnit other)
+        public override void HandleCollision(InteractableUnit other)
         {
             switch (other.InteractableType)
             {
@@ -43,12 +43,12 @@ namespace Units
                     if (_wordController.IsCorrect(Value))
                     {
                         _currectValueSound.PlayOneShot();
-                        PlayEffect(_correctValueEffect);
+                        UseParticleEffect(_correctValueEffect);
                     }
                     else
                     {
                         _incorrectValueSound.PlayOneShot();
-                        PlayEffect(_wrongValueEffect);
+                        UseParticleEffect(_wrongValueEffect);
                     }
 
                     _objectPool.ReturnObject(gameObject);

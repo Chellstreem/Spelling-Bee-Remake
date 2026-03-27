@@ -6,7 +6,6 @@ namespace Units
 {
     public class HostileAnimal : InteractableUnit, IDamageable
     {
-        [SerializeField] private int _damage = 1;
         [SerializeField] private SoundUnit _attackSound;
         [SerializeField] private SoundUnit _deathSound;
 
@@ -30,7 +29,7 @@ namespace Units
             base.InvokeCharacterSound();
         }
 
-        protected override void HandleCollision(InteractableUnit other)
+        public override void HandleCollision(InteractableUnit other)
         {
             if (IsDead)
                 return;

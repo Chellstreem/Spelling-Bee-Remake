@@ -58,9 +58,6 @@ public class GameConfig : ScriptableObject
     //
 
     [Header("Other")]
-    [SerializeField] private UnitStatusDefinition[] _statuses;
     [SerializeField] private string _victoryText = "YOU DID IT!";
-
-    public UnitStatusDefinition[] UnitStatuses => _statuses;
     public string VictoryText => _victoryText;
 }

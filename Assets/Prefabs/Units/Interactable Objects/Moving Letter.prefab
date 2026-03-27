@@ -150,6 +150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 4
+  _damage: 1
+  _defaultStatus: 0
+  _statuses:
+  - {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
   _characterSound: {fileID: 0}
   _currectValueSound: {fileID: 11400000, guid: 94922a5a5a6f437469b27f0e16050aff, type: 2}
   _incorrectValueSound: {fileID: 11400000, guid: 72653b4a6f23a0448bafe1881f086d05, type: 2}
