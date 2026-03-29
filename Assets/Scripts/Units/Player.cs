@@ -5,20 +5,16 @@ using Zenject;
 
 namespace Units
 {
-    public class Player : InteractableUnit, IDamageable, IHealth
+    public class Player : ComplexUnit, IHealth
     {
-        [SerializeField] private SoundUnit _attackSound;
-        [SerializeField] private SoundUnit _deathSound;
+        [Space(15f)]
         [SerializeField] private SoundUnit _damageSound;
-
-        [Header("VFX")]
         [SerializeField] private ParticleEffectInfo _deathEffect;
-
         [Inject] private GameConfig _gameConfig;
-        public Health Health { get; private set; }
-        public bool IsDead { get; private set; } = false;
 
-        public override InteractableType InteractableType => InteractableType.Player;
+        public Health Health { get; private set; }
+
+        public override ComplexUnitType ComplexUnitType => ComplexUnitType.Player;
 
         protected override void Awake()
         {
@@ -32,8 +28,23 @@ namespace Units
             Health?.Refresh();
         }
 
-        void IDamageable.Damage(int count)
+        public override void HandleCollision(Unit other)
         {
+            if (!IsInteractable)
+                return;
+
+            if (!StatusController.CurrentStatus.Definition.CanDealDamage)
+                return;
+
+            InvokeAttack();
+            other.Damage(_damage);
+        }
+
+        public override void Damage(int count)
+        {
+            if (!StatusController.CurrentStatus.Definition.CanTakeDamage)
+                return;
+
             Health.Damage(count);
             _damageSound.PlayOneShot();
 
@@ -45,22 +56,13 @@ namespace Units
         {
             base.InvokeDeath();
 
-            IsDead = true;
-            _rigidbody.isKinematic = false;
-            _rigidbody.useGravity = true;
+            _collider.isTrigger = false;
 
             if (_collider is BoxCollider boxCollider)
                 boxCollider.center = _gameConfig.PlayerDeathColliderCenter;
 
-            _deathSound.PlayOneShot();
-        }
-
-        public override void HandleCollision(InteractableUnit other)
-        {
-            if (IsDead)
-                return;
-
-            InvokeAttack();
+            _rigidbody.isKinematic = false;
+            _rigidbody.useGravity = true;
         }
     }
 }

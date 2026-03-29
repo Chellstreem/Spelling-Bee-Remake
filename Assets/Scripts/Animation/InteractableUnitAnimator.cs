@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Animation
 {
-    [RequireComponent(typeof(InteractableUnit))]
-    public class InteractableUnitAnimator : MovableUnitAnimator
+    [RequireComponent(typeof(ComplexUnit))]
+    public class ComplexUnitAnimator : MovableUnitAnimator
     {
         [SerializeField, Min(0.01f)] private float _deathAnimationSpeed = 1f;
         [SerializeField, Min(0.01f)] private float _attackAnimationSpeed = 1f;
         [SerializeField, Min(0.01f)] private float _danceAnimationSpeed = 1f;
-        private InteractableUnit _interactable;
+        private ComplexUnit _interactable;
 
         private readonly int deathTriggerHash = Animator.StringToHash("Die");
         private readonly int deathSpeedHash = Animator.StringToHash("DeathSpeed");
@@ -22,7 +22,7 @@ namespace Animation
         {
             base.Awake();
 
-            _interactable = GetComponent<InteractableUnit>();
+            _interactable = GetComponent<ComplexUnit>();
 
             _animator.SetFloat(deathSpeedHash, _deathAnimationSpeed);
             _animator.SetFloat(attackSpeedHash, _attackAnimationSpeed);

@@ -8,6 +8,7 @@ namespace VFX
         SmokePoof,
         Confetti,
         SoulEscape,
-        None
+        None,
+        BlueAura
     }
 }

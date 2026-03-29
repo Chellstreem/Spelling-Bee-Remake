@@ -11,10 +11,10 @@ namespace Sound
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.TryGetComponent<InteractableUnit>(out var unit))
+            if (!other.TryGetComponent<Unit>(out var unit))
                 return;
 
-            unit.InvokeCharacterSound();
+            unit.InvokeUnitSound();
         }
     }
 }

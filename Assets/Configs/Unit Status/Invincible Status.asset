@@ -9,6 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 146e8aa0af82fef46a580cffc6c4f6ea, type: 3}
-  m_Name: InputInstaller
+  m_Script: {fileID: 11500000, guid: 4390997b9ef60e04684601be162ee1fc, type: 3}
+  m_Name: Invincible Status
   m_EditorClassIdentifier: 
+  _type: 1
+  _canTakeDamage: 0
+  _canDealDamage: 1
+  _canMove: 1
+  _statusParticle:
+    _particleType: 7
+    _scale: 1.2
+    _positionOffset: {x: 0, y: 2, z: 0}

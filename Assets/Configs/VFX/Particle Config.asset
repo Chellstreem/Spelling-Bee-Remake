@@ -15,7 +15,7 @@ MonoBehaviour:
   _particles:
   - _particleType: 0
     _particlePrefab: {fileID: 8365791848008133096, guid: b64457afddb0491448570701b16b4370, type: 3}
-    _poolAmount: 5
+    _poolAmount: 10
   - _particleType: 1
     _particlePrefab: {fileID: 8060849681739745535, guid: 1edb87e664e5df344817d5d2ca08f599, type: 3}
     _poolAmount: 5
@@ -30,4 +30,10 @@ MonoBehaviour:
     _poolAmount: 2
   - _particleType: 4
     _particlePrefab: {fileID: 4126359638490815807, guid: 71fadd437f3584e4a8e4f08ef69fccb3, type: 3}
+    _poolAmount: 2
+  - _particleType: 4
+    _particlePrefab: {fileID: 4126359638490815807, guid: 71fadd437f3584e4a8e4f08ef69fccb3, type: 3}
+    _poolAmount: 2
+  - _particleType: 7
+    _particlePrefab: {fileID: 9067600574902102742, guid: 347701318e153d0409f0cc05be0d2393, type: 3}
     _poolAmount: 2

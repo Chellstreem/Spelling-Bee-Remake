@@ -7,7 +7,7 @@ using UserInterface;
 public class HealthBar : UIBar
 {
     [SerializeField] private Image _lifeBarImage;
-    [SerializeField] private InteractableUnit _unit;
+    [SerializeField] private ComplexUnit _unit;
     [SerializeField] private float _transitionSpeed = 5f;
     private Health _health;
     private Coroutine _fillCoroutine;

@@ -1,49 +1,43 @@
-using Sound;
-using UnityEngine;
-using UnityEngine.VFX;
-
 namespace Units
 {
-    public class HostileAnimal : InteractableUnit, IDamageable
+    public class HostileAnimal : ComplexUnit
     {
-        [SerializeField] private SoundUnit _attackSound;
-        [SerializeField] private SoundUnit _deathSound;
+        public override ComplexUnitType ComplexUnitType => ComplexUnitType.HostileAnimal;
 
-        public override InteractableType InteractableType => InteractableType.HostileAnimal;
-        public bool IsDead { get; private set; } = true;
+        public void OnEnable() => IsInteractable = true;
 
-        public void OnEnable() => IsDead = false;
-
-        void IDamageable.Damage(int damage)
+        public override void HandleCollision(Unit other)
         {
-            IsDead = true;
-            InvokeDeath();
-            _deathSound.PlayOneShot();
-        }
-
-        public override void InvokeCharacterSound()
-        {
-            if (IsDead)
+            if (!IsInteractable || !other.IsInteractable)
                 return;
 
-            base.InvokeCharacterSound();
-        }
-
-        public override void HandleCollision(InteractableUnit other)
-        {
-            if (IsDead)
+            if (!StatusController.CurrentStatus.Definition.CanDealDamage)
                 return;
 
-            if (other.TryGetComponent<IDamageable>(out var damageable))
+            if (other.UnitType == UnitType.Letter)
             {
-                if (damageable.IsDead)
-                    return;
-
-                InvokeAttack();
-                damageable.Damage(_damage);
-
-                _attackSound.PlayOneShot();
+                _objectPool.ReturnObject(other.gameObject);
+                return;
             }
+
+            InvokeAttack();
+            other.Damage(_damage);
+        }
+
+        public override void Damage(int damage)
+        {
+            if (!StatusController.CurrentStatus.Definition.CanTakeDamage)
+                return;
+
+            InvokeDeath();
+        }
+
+        public override void InvokeUnitSound()
+        {
+            if (IsInteractable)
+                return;
+
+            base.InvokeUnitSound();
         }
     }
 }

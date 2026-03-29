@@ -365,8 +365,8 @@ GameObject:
   - component: {fileID: 4483028715053200385}
   - component: {fileID: 2172434582972485869}
   - component: {fileID: 7621597769956089434}
-  - component: {fileID: 5588011495103529790}
   - component: {fileID: 3019424171615590620}
+  - component: {fileID: 5588011495103529790}
   - component: {fileID: 6828576126006570869}
   m_Layer: 7
   m_Name: Land Monkey
@@ -463,6 +463,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3019424171615590620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491878870511137018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba78906a327f194b8be0f7fd639ddf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitType: 12
+  _unitSound: {fileID: 11400000, guid: ac5b307bec4346a469862d9c9302ba03, type: 2}
+  _damage: 1
+  _defaultStatus: 0
+  _statuses:
+  - {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
+  _attackSound: {fileID: 11400000, guid: 52f24ecf0b5969f42a00e3e1cb096e68, type: 2}
+  _deathSound: {fileID: 11400000, guid: cdc6ee0d7db2bb74b94f1d1b293218cd, type: 2}
 --- !u!114 &5588011495103529790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,26 +500,6 @@ MonoBehaviour:
     _scale: 1
     _positionOffset: {x: 0, y: 0, z: 0}
   _speedDelta: 4
---- !u!114 &3019424171615590620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491878870511137018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dba78906a327f194b8be0f7fd639ddf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unitType: 12
-  _defaultStatus: 0
-  _statuses:
-  - {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
-  _characterSound: {fileID: 11400000, guid: ac5b307bec4346a469862d9c9302ba03, type: 2}
-  _damage: 1
-  _attackSound: {fileID: 11400000, guid: 52f24ecf0b5969f42a00e3e1cb096e68, type: 2}
-  _deathSound: {fileID: 11400000, guid: cdc6ee0d7db2bb74b94f1d1b293218cd, type: 2}
 --- !u!114 &6828576126006570869
 MonoBehaviour:
   m_ObjectHideFlags: 0

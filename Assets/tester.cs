@@ -23,17 +23,13 @@ public class tester : MonoBehaviour
     {
         _gameStateController.SetState(GameStateType.Countdown);
 
-        _input.OnGameOver += OnEscape;
+        _input.OnGameOver += OnGameOver;
 
 
     }
 
-    private void OnEscape()
+    private void OnGameOver()
     {
-        var damage = _player as IDamageable;
-        damage.Damage(2);
+        _player.StatusController.SetStatus(UnitStatusType.Invincible, 5f);
     }
-
-
-
 }

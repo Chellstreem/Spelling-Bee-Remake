@@ -1,14 +1,18 @@
 using InputControl;
 using Zenject;
 using UnityEngine;
+using VFX;
+using Units;
 
 namespace Movement
 {
+    [RequireComponent(typeof(Player))]
     public class MovablePlayer : MovableUnit
     {
         private IInput _input;
         private ObjectMover _objectMover;
         private GameConfig _gameConfig;
+        private Player _player;
 
         [Inject]
         public void Construct(IInput input, GameConfig config, CoroutineRunner runner)
@@ -26,6 +30,8 @@ namespace Movement
             _input.OnMoveUp += OnMoveUp;
             _input.OnMoveDown += OnMoveDown;
             _stateController.OnStateChanged += OnStateChanged;
+
+            _player = gameObject.GetComponent<Player>();
         }
 
         protected override void OnStateChanged()
@@ -50,12 +56,18 @@ namespace Movement
 
         private void OnMoveUp()
         {
+            if (!_player.StatusController.CurrentStatus.Definition.CanMove)
+                return;
+
             Vector3 position = _gameConfig.PlayerUpperPosition;
             _objectMover.MoveTo(transform, position, _gameConfig.PlayerSpeed, _gameConfig.PlayerPositionTolerance);
         }
 
         private void OnMoveDown()
         {
+            if (!_player.StatusController.CurrentStatus.Definition.CanMove)
+                return;
+
             Vector3 position = _gameConfig.PlayerLowerPosition;
             _objectMover.MoveTo(transform, position, _gameConfig.PlayerSpeed, _gameConfig.PlayerPositionTolerance);
         }
