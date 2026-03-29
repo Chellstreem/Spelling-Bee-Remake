@@ -2,7 +2,7 @@ using System.Collections;
 
 namespace Movement
 {
-    public class ErraticMovable : InteractableUnit
+    public class ErraticMovable : ComplexUnit
     {
         protected override IEnumerator MoveCoroutine()
         {

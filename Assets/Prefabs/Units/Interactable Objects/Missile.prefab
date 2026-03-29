@@ -452,14 +452,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 5
-  _statuses:
-  - {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
-  _characterSound: {fileID: 0}
+  _unitSound: {fileID: 0}
   _damage: 1
+  _allowedCollisions: 00000000
   _collisionSound: {fileID: 11400000, guid: c5dbd43b964a19942b0490716fc68694, type: 2}
-  _explosionEffect:
+  _effect:
     _particleType: 0
-    _scale: 1
+    _scale: 0
     _positionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &1370463172169403166
 MonoBehaviour:

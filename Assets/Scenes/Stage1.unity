@@ -1683,12 +1683,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: _statuses.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: _statuses.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
+      objectReference: {fileID: 11400000, guid: 78c0dee7a3f23de4e98f666cdd2dd054, type: 2}
+    - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _statuses.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: c9c18146c630b384f9d7f4e522483621, type: 2}
     - target: {fileID: 2743076328787933360, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: _deathEffect._particleType
       value: 5

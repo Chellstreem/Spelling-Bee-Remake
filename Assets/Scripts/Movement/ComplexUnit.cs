@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Movement
 {
-    public class InteractableUnit : MovableUnit
+    public class ComplexUnit : MovableUnit
     {
         [SerializeField] private ParticleEffectInfo _returnEffect;
         [Inject] private ParticlePlayer _particlePlayer;

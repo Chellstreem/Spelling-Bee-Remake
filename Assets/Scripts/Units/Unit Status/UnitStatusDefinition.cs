@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Units
 {
-    [CreateAssetMenu(fileName = "Unit Status", menuName = "Scriptable Objects/Unit Status")]
+    [CreateAssetMenu(fileName = "Unit Status", menuName = "Scriptable Objects/Unit Statuses/Unit Status")]
     public class UnitStatusDefinition : ScriptableObject
     {
         [SerializeField] private UnitStatusType _type;

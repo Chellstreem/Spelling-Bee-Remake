@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Movement
 {
-    public class SpecialInteractableObject : InteractableUnit
+    public class SpecialInteractableObject : ComplexUnit
     {
         [Tooltip("How the speed changes compared to other objects.")]
         [SerializeField] private float _speedDelta = 0;

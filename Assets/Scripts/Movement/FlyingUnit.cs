@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Units
 {
-    public class Bird : MovableUnit
+    public class FlyingUnit : MovableUnit
     {
         [Tooltip("How the speed changes compared to other objects.")]
         [SerializeField] private float _speedDelta = 0;

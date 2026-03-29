@@ -36,7 +36,7 @@ MonoBehaviour:
     _spawnDistance: 12
   - _delay: 0
     _binders:
-    - _type: 12
+    - _type: 13
       _weight: 1
       _spawnProbabilty: 1
     _spawnDistance: 50
