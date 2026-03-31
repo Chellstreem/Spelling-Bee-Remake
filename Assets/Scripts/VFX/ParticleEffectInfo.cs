@@ -7,10 +7,12 @@ namespace VFX
     {
         [SerializeField] private ParticleType _particleType;
         [SerializeField] private float _scale;
-        [SerializeField] private Vector3 _positionOffset;
+        [SerializeField] private Vector3 _position;
+        [SerializeField] private bool _isOffset;
 
         public readonly ParticleType Type => _particleType;
         public readonly float Scale => _scale;
-        public readonly Vector3 Offset => _positionOffset;
+        public readonly Vector3 Position => _position;
+        public readonly bool IsOffset => _isOffset;
     }
 }

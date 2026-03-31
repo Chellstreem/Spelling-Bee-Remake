@@ -27,6 +27,7 @@ public class Stage1Installer : MonoInstaller
     private IInput _input;
     private GameplayController _gameplayController;
     private AudioSourcePool _audioSourcePool;
+    private ParticlePlayer _particlePlayer;
 
     public override void InstallBindings()
     {
@@ -36,6 +37,7 @@ public class Stage1Installer : MonoInstaller
         .NonLazy();
 
         InstallSound();
+        InstallVFX();
         InstallInput();
         InstallWordController();
         InstallSpeedController();
@@ -44,7 +46,6 @@ public class Stage1Installer : MonoInstaller
         InstallGameStates();
         InstallUIBarController();
         InstallCamera();
-        InstallVFX();
 
         _wordController.StartGame();
         _objectPool.InitializePool();
@@ -73,7 +74,9 @@ public class Stage1Installer : MonoInstaller
     private void InstallGameStates()
     {
         _stateController = new(_gameConfig.GameStateConfig);
-        _stateController.Initialize(_coroutineRunner, _spawner, _speedController, _audioSourcePool);
+
+        GameStateContext context = new(_stateController, _coroutineRunner, _spawner, _speedController, _audioSourcePool, _particlePlayer);
+        _stateController.Initialize(context);
 
         Container.Bind<GameStateController>()
             .FromInstance(_stateController)
@@ -146,10 +149,10 @@ public class Stage1Installer : MonoInstaller
     private void InstallVFX()
     {
         ParticlePool pool = new(_gameConfig.ParticleConfig);
-        ParticlePlayer particlePlayer = new(pool, _coroutineRunner);
+        _particlePlayer = new(pool, _coroutineRunner);
 
         Container.Bind<ParticlePlayer>()
-            .FromInstance(particlePlayer)
+            .FromInstance(_particlePlayer)
             .AsSingle()
             .NonLazy();
     }

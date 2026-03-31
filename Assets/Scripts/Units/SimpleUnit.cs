@@ -6,32 +6,22 @@ namespace Units
 {
     public class SimpleUnit : Unit
     {
-        [SerializeField] private int _damage = 1;
-        [SerializeField] private UnitType[] _allowedCollisions;
         [SerializeField] private SoundUnit _collisionSound;
+        [SerializeField] private int _damage = 1;
+        [SerializeField] private ParticleEffectInfo _collisionEffect;
 
-        [Header("VFX")]
-        [SerializeField] private ParticleEffectInfo _effect;
-
-        public override void Damage(int damage) => Animate();
+        public override void Damage(int damage) => AnimateAndReturn();
 
         public override void HandleCollision(Unit other)
         {
-            foreach (var type in _allowedCollisions)
-            {
-                if (type == other.UnitType)
-                {
-                    other.Damage(_damage);
-                    Animate();
-                    return;
-                }
-            }
+            other.Damage(_damage);
+            AnimateAndReturn();
         }
 
-        private void Animate()
+        private void AnimateAndReturn()
         {
             _collisionSound.PlayOneShot();
-            ApplyParticleEffect(_effect);
+            ApplyParticleEffect(_collisionEffect);
             _objectPool.ReturnObject(gameObject);
         }
     }

@@ -21,7 +21,7 @@ namespace UserInterface
 
         private void OnStateChanged()
         {
-            var state = stateController.CurrentState.StateType;
+            var state = stateController.CurrentState.Definition.StateType;
 
             foreach (var bar in _uIBars)
             {

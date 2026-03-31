@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7daa4e92ed8b842957e16b0597af01, type: 3}
   m_Name: Countdown State
   m_EditorClassIdentifier: 
-  _allowMoving: 0
-  _killInteractableObjects: 0
-  _allowedTransitions: 0400000003000000
+  _stateType: 0
+  _isMovingState: 0
+  _killUnits: 0
+  _allowedTransitions: 04000000
   _count: 3
   _startFontSize: 320
   _fontSizeDecrement: 45
   _finalFontSize: 350
-  _text: Go!
+  _startText: GO!
   _tickSound: {fileID: 11400000, guid: b0ba909bbeb4773488394df37606ee78, type: 2}
   _startSound: {fileID: 11400000, guid: 56e3ff9e2340e2b4db63c741fe09b73e, type: 2}

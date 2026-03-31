@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9353dcc50e4bcd439ba08059be44edb, type: 3}
   m_Name: Interactive State
   m_EditorClassIdentifier: 
-  _allowMoving: 1
+  _stateType: 4
+  _isMovingState: 1
   _killInteractableObjects: 0
   _allowedTransitions: 01000000020000000300000005000000
   _spawnFlowInfos:
@@ -62,3 +63,9 @@ MonoBehaviour:
       _spawnProbabilty: 1
     _spawnDistance: 10
   _stateSound: {fileID: 11400000, guid: 3cce625a0f459d54b9bedcce8ab3c113, type: 2}
+  _loopSound: 1
+  _stateEffect:
+    _particleType: 6
+    _scale: 0
+    _position: {x: 0, y: 0, z: 0}
+    _isOffset: 0

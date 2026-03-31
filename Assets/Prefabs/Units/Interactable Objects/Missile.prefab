@@ -452,14 +452,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 5
-  _unitSound: {fileID: 0}
-  _damage: 1
   _allowedCollisions: 00000000
+  _unitSound: {fileID: 11400000, guid: 3b5a78d1d5e8fbc4ca16cfe557fa1643, type: 2}
   _collisionSound: {fileID: 11400000, guid: c5dbd43b964a19942b0490716fc68694, type: 2}
-  _effect:
+  _damage: 1
+  _collisionEffect:
     _particleType: 0
-    _scale: 0
-    _positionOffset: {x: 0, y: 0, z: 0}
+    _scale: 1
+    _position: {x: 0, y: 0, z: 0}
+    _isOffset: 1
 --- !u!114 &1370463172169403166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +476,8 @@ MonoBehaviour:
   _returnEffect:
     _particleType: 3
     _scale: 1
-    _positionOffset: {x: 0, y: 0, z: 0}
+    _position: {x: 0, y: 0, z: 0}
+    _isOffset: 1
   _speedDelta: 25
 --- !u!1 &2800955624720243417
 GameObject:

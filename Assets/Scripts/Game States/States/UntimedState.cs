@@ -1,30 +1,28 @@
 using Sound;
 using UnityEngine;
+using VFX;
 using Zenject;
 
 namespace GameStates
 {
-    [CreateAssetMenu(fileName = "Interactive State", menuName = "Game States/Interactive State")]
-    public class InteractiveState : SpawnStateDefinition
+    [CreateAssetMenu(fileName = "Untimed State", menuName = "Game States/Untimed State")]
+    public class IntimedState : SpawnStateDefinition
     {
         [SerializeField] private SoundUnit _stateSound;
-
-        public override GameStateType StateType => GameStateType.Interactive;
+        [SerializeField] private bool _loopSound = true;
+        [SerializeField] private ParticleEffectInfo _stateEffect;
 
         public override void Enter(GameState state)
         {
-            Debug.Log("Entering Interactive State...");
-
             SpawnState spawnState = state as SpawnState;
             spawnState.StartSpawning();
 
-            _stateSound.Play(state.AudioSource, true);
+            _stateSound.Play(state.AudioSource, _loopSound);
+            PlayVisualEffect(_stateEffect, state);
         }
 
         public override void Exit(GameState state)
         {
-            Debug.Log("Exiting Interactive State...");
-
             SpawnState spawnState = state as SpawnState;
             spawnState.StopSpawning();
 

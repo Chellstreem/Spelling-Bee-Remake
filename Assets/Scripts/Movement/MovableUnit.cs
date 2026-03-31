@@ -52,7 +52,7 @@ namespace Movement
 
         protected virtual void OnStateChanged()
         {
-            if (!_stateController.CurrentState.AllowMoving)
+            if (!_stateController.CurrentState.Definition.IsMovingState)
                 StopMoving();
             else
                 StartMoving();

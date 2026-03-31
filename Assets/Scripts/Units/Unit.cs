@@ -11,6 +11,7 @@ namespace Units
     public abstract class Unit : MonoBehaviour
     {
         [SerializeField] protected UnitType _unitType;
+        [SerializeField] private UnitType[] _allowedCollisions;
         [SerializeField] protected SoundUnit _unitSound;
 
         protected Rigidbody _rigidbody;
@@ -51,17 +52,28 @@ namespace Units
 
         public ParticleSystem ApplyParticleEffect(ParticleEffectInfo info, Transform parent = null)
         {
-            Vector3 position = transform.position + info.Offset;
+            Vector3 position = info.IsOffset ? transform.position + info.Position : info.Position;
             var particle = _particlePlayer.Play(info.Type, position, info.Scale);
-            particle.transform.SetParent(parent);
+
+            if (parent != null)
+                particle.transform.SetParent(parent);
 
             return particle;
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Unit unit))
-                HandleCollision(unit);
+            if (!other.TryGetComponent(out Unit unit))
+                return;
+
+            foreach (var type in _allowedCollisions)
+            {
+                if (type == unit.UnitType)
+                {
+                    HandleCollision(unit);
+                    return;
+                }
+            }
         }
     }
 }

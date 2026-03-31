@@ -12,7 +12,7 @@ namespace Movement
 
         private void OnEnable()
         {
-            if (_stateController.CurrentState != null && _stateController.CurrentState.AllowMoving)
+            if (_stateController.CurrentState != null && _stateController.CurrentState.Definition.IsMovingState)
                 StartMoving();
 
             _stateController.OnStateChanged += OnStateChanged;
@@ -22,7 +22,7 @@ namespace Movement
         {
             base.OnStateChanged();
 
-            if (_stateController.CurrentState.KillInteractableObject)
+            if (_stateController.CurrentState.Definition.KillUnits)
             {
                 _particlePlayer.Play(_returnEffect.Type, transform.position, _returnEffect.Scale);
                 _pool.ReturnObject(gameObject);

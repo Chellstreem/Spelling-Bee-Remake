@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Sound;
 using Spawn;
 using UnityEngine;
 
@@ -11,10 +9,9 @@ namespace GameStates
         [Header("Spawn Settings")]
         [SerializeField] protected SpawnFlowInfo[] _spawnFlowInfos;
 
-        public override GameState CreateGameState(GameStateController stateController, CoroutineRunner runner, Spawner spawner,
-         GameSpeedController speedController, AudioSource audioSource)
+        public override GameState CreateGameState(GameStateContext context)
         {
-            return new SpawnState(this, stateController, runner, spawner, speedController, audioSource);
+            return new SpawnState(this, context);
         }
 
         public virtual IEnumerator SpawnCoroutine(Spawner spawner, GameSpeedController speedController)

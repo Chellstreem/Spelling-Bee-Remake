@@ -476,14 +476,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 13
-  _unitSound: {fileID: 11400000, guid: ac5b307bec4346a469862d9c9302ba03, type: 2}
-  _damage: 1
   _allowedCollisions: 00000000
+  _unitSound: {fileID: 11400000, guid: ac5b307bec4346a469862d9c9302ba03, type: 2}
   _collisionSound: {fileID: 11400000, guid: c5dbd43b964a19942b0490716fc68694, type: 2}
-  _effect:
+  _damage: 1
+  _collisionEffect:
     _particleType: 0
     _scale: 1
-    _positionOffset: {x: 0, y: 0, z: 0}
+    _position: {x: 0, y: 0, z: 0}
+    _isOffset: 1
 --- !u!114 &6157293427741002394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b2725e2a2d1bc45a284f58ec6d5396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedDelta: -10
+  _speedDelta: 3
   _verticalCurve:
     serializedVersion: 2
     m_Curve:
@@ -530,8 +531,8 @@ MonoBehaviour:
     m_PreInfinity: 1
     m_PostInfinity: 0
     m_RotationOrder: 4
-  _amplitude: 4
-  _frequency: 1
+  _amplitude: 7
+  _frequency: 0.5
 --- !u!114 &60812215861090155
 MonoBehaviour:
   m_ObjectHideFlags: 0

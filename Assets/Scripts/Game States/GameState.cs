@@ -1,5 +1,6 @@
 using Sound;
 using UnityEngine;
+using VFX;
 using Zenject;
 
 namespace GameStates
@@ -10,22 +11,17 @@ namespace GameStates
         public GameStateController StateController { get; }
         public CoroutineRunner Runner { get; }
         public AudioSource AudioSource { get; }
-        public GameStateType StateType { get; }
-        public bool AllowMoving { get; }
-        public bool KillInteractableObject { get; }
+        public ParticlePlayer ParticlePlayer { get; }
         public Coroutine StateCoroutine { get; set; }
 
 
-        public GameState(GameStateDefinition definition, GameStateController stateController,
-         CoroutineRunner runner, AudioSource audioSource)
+        public GameState(GameStateDefinition definition, GameStateContext context)
         {
             Definition = definition;
-            StateController = stateController;
-            Runner = runner;
-            AudioSource = audioSource;
-            StateType = definition.StateType;
-            AllowMoving = definition.AllowMoving;
-            KillInteractableObject = definition.KillInteractableObject;
+            StateController = context.StateController;
+            Runner = context.Runner;
+            AudioSource = context.AudioSourcePool.GetSource();
+            ParticlePlayer = context.ParticlePlayer;
         }
 
         public void Enter() => Definition.Enter(this);

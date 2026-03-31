@@ -16,13 +16,13 @@ namespace GameStates
 
         public GameStateController(GameStateConfig config) => this.config = config;
 
-        public void Initialize(CoroutineRunner runner, Spawner spawner, GameSpeedController speedController, AudioSourcePool audioSourcePool)
+        public void Initialize(GameStateContext context)
         {
             foreach (var definition in config.GameStates)
             {
                 if (!stateMap.ContainsKey(definition.StateType))
                 {
-                    var state = definition.CreateGameState(this, runner, spawner, speedController, audioSourcePool.GetSource());
+                    var state = definition.CreateGameState(context);
                     stateMap.Add(definition.StateType, state);
                 }
             }

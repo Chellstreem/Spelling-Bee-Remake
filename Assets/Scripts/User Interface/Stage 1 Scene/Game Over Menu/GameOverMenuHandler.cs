@@ -21,7 +21,7 @@ public class GameOverMenuHandler : IInitializable
 
     private void OnStateChanged()
     {
-        switch (_stateController.CurrentState.StateType)
+        switch (_stateController.CurrentState.Definition.StateType)
         {
             case GameStateType.Victory:
                 scaler.ActivateWithScale(gameoverMenu, 1f, 0, Ease.Linear);

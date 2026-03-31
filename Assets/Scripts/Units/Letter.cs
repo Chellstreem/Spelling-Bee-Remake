@@ -26,8 +26,6 @@ namespace Units
 
         public override void HandleCollision(Unit other)
         {
-            if (other.UnitType != UnitType.Player) return;
-
             if (_wordController.IsCorrect(Value))
             {
                 _currectValueSound.PlayOneShot();

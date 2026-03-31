@@ -121,17 +121,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 0
+  _allowedCollisions: 0b0000000c0000000d000000
+  _unitSound: {fileID: 0}
+  _damage: 1
   _defaultStatus: 0
   _statuses:
-  - {fileID: 11400000, guid: 8dede53b55f52924fa0191c4f6c056f1, type: 2}
-  _characterSound: {fileID: 0}
+  - {fileID: 11400000, guid: 78c0dee7a3f23de4e98f666cdd2dd054, type: 2}
   _attackSound: {fileID: 0}
-  _deathSound: {fileID: 0}
-  _damageSound: {fileID: 0}
+  _deathSound: {fileID: 11400000, guid: 2a7d328de864aff44b151d9c80fa5bd0, type: 2}
+  _damageSound: {fileID: 11400000, guid: 2e11385ebc5a10c459a72e016a7f4579, type: 2}
   _deathEffect:
-    _particleType: 0
-    _scale: 0
-    _positionOffset: {x: 0, y: 0, z: 0}
+    _particleType: 5
+    _scale: 1
+    _position: {x: 0, y: 2, z: 0}
+    _isOffset: 1
 --- !u!114 &-7786477865131077828
 MonoBehaviour:
   m_ObjectHideFlags: 0

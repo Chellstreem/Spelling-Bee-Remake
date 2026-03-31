@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7116427268454f746882cfd23c523d20, type: 3}
   m_Name: Whoosh
   m_EditorClassIdentifier: 
-  type: 8
-  clip: {fileID: 8300000, guid: f4febc0b67d526849ae94a5f866c56db, type: 3}
+  _audio: {fileID: 8300000, guid: f4febc0b67d526849ae94a5f866c56db, type: 3}
+  _volume: 1
+  _pitch: 1
+  _spatialBlend: 1
+  _channel: {fileID: 0}

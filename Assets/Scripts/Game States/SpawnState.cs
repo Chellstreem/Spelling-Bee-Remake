@@ -10,16 +10,14 @@ namespace GameStates
         private readonly SpawnStateDefinition spawnDefinition;
         public Spawner Spawner { get; }
         public GameSpeedController SpeedController { get; }
-
         private Coroutine _spawnCoroutine;
 
-        public SpawnState(GameStateDefinition definition, GameStateController stateController, CoroutineRunner runner,
-         Spawner spawner, GameSpeedController speedController, AudioSource audioSource)
-        : base(definition, stateController, runner, audioSource)
+        public SpawnState(GameStateDefinition definition, GameStateContext context)
+        : base(definition, context)
         {
             spawnDefinition = definition as SpawnStateDefinition;
-            Spawner = spawner;
-            SpeedController = speedController;
+            Spawner = context.Spawner;
+            SpeedController = context.SpeedController;
         }
 
         public void StartSpawning() => _spawnCoroutine = Runner.Run(spawnDefinition.SpawnCoroutine(Spawner, SpeedController));

@@ -12,7 +12,7 @@ namespace Movement
         {
             base.OnStateChanged();
 
-            if (_stateController.CurrentState.KillInteractableObject)
+            if (_stateController.CurrentState.Definition.KillUnits)
             {
                 _pool.ReturnObject(gameObject);
                 return;

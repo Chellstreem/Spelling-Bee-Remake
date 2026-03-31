@@ -38,7 +38,7 @@ namespace Movement
         {
             base.OnStateChanged();
 
-            if (_stateController.CurrentState.StateType == GameStates.GameStateType.Victory)
+            if (_stateController.CurrentState.Definition.StateType == GameStates.GameStateType.Victory)
                 OnMoveDown();
         }
 

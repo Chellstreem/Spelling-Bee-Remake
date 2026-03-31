@@ -14,12 +14,6 @@ namespace Units
             if (!StatusController.CurrentStatus.Definition.CanDealDamage)
                 return;
 
-            if (other.UnitType == UnitType.Letter)
-            {
-                _objectPool.ReturnObject(other.gameObject);
-                return;
-            }
-
             InvokeAttack();
             other.Damage(_damage);
         }

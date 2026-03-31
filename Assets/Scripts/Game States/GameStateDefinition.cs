@@ -1,21 +1,20 @@
-using Sound;
-using Spawn;
 using UnityEngine;
-using Zenject;
+using VFX;
 
 namespace GameStates
 {
     public abstract class GameStateDefinition : ScriptableObject
     {
-        [SerializeField] private bool _allowMoving = false;
-        [SerializeField] private bool _killInteractableObjects = false;
+        [SerializeField] private GameStateType _stateType;
+        [SerializeField] private bool _isMovingState = false;
+        [SerializeField] private bool _killUnits = false;
 
         [Tooltip("States that can be transitioned to from this state")]
         [SerializeField] private GameStateType[] _allowedTransitions;
 
-        public abstract GameStateType StateType { get; }
-        public bool AllowMoving => _allowMoving;
-        public bool KillInteractableObject => _killInteractableObjects;
+        public GameStateType StateType => _stateType;
+        public bool IsMovingState => _isMovingState;
+        public bool KillUnits => _killUnits;
 
         public abstract void Enter(GameState state);
         public abstract void Exit(GameState state);
@@ -32,7 +31,14 @@ namespace GameStates
             return false;
         }
 
-        public virtual GameState CreateGameState(GameStateController stateController, CoroutineRunner runner, Spawner spawner,
-         GameSpeedController speedController, AudioSource audioSource) => new(this, stateController, runner, audioSource);
+        public virtual GameState CreateGameState(GameStateContext context) => new(this, context);
+
+        protected void PlayVisualEffect(ParticleEffectInfo info, GameState state)
+        {
+            if (info.Type == ParticleType.None)
+                return;
+
+            state.ParticlePlayer.Play(info.Type, info.Position, info.Scale);
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace CameraControl
 
         private void OnStateChanged()
         {
-            switch (stateController.CurrentState.StateType)
+            switch (stateController.CurrentState.Definition.StateType)
             {
                 case GameStateType.Victory:
                     cameraMover.SetState(cameraTransfrom, CameraStateType.Move);

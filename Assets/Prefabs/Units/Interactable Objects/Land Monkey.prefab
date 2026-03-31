@@ -476,6 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 12
+  _allowedCollisions: 000000000b00000004000000
   _unitSound: {fileID: 11400000, guid: ac5b307bec4346a469862d9c9302ba03, type: 2}
   _damage: 1
   _defaultStatus: 0
@@ -498,7 +499,8 @@ MonoBehaviour:
   _returnEffect:
     _particleType: 3
     _scale: 1
-    _positionOffset: {x: 0, y: 0, z: 0}
+    _position: {x: 0, y: 0, z: 0}
+    _isOffset: 1
   _speedDelta: 4
 --- !u!114 &6828576126006570869
 MonoBehaviour:
