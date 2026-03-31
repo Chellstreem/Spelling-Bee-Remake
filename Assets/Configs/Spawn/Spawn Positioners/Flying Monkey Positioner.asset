@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Flying Monkey Positioner
   m_EditorClassIdentifier: 
   _xPosition: -0.4
-  _yPosition: 6
+  _yPosition: 15

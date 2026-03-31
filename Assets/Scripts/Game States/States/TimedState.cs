@@ -16,7 +16,8 @@ namespace GameStates
             SpawnState spawnState = state as SpawnState;
             state.StateCoroutine = state.Runner.Run(StateCoroutine(spawnState));
 
-            _stateSound.PlayOneShot();
+            if (_stateSound != null)
+                _stateSound.PlayOneShot();
         }
 
         public override void Exit(GameState state)

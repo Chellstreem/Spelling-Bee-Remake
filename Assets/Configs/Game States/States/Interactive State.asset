@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateType: 4
   _isMovingState: 1
-  _killInteractableObjects: 0
-  _allowedTransitions: 01000000020000000300000005000000
+  _killUnits: 0
+  _allowedTransitions: 0100000002000000030000000500000006000000
   _spawnFlowInfos:
   - _delay: 0
     _binders:
@@ -35,12 +35,6 @@ MonoBehaviour:
       _weight: 0.2
       _spawnProbabilty: 1
     _spawnDistance: 12
-  - _delay: 0
-    _binders:
-    - _type: 13
-      _weight: 1
-      _spawnProbabilty: 1
-    _spawnDistance: 50
   - _delay: 0
     _binders:
     - _type: 10

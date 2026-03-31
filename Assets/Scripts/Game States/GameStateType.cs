@@ -7,6 +7,7 @@ namespace GameStates
         Loss,
         Safe,
         Interactive,
-        Missile
+        Missile,
+        MonkeyState
     }
 }

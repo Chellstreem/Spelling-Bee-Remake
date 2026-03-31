@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ca3cf795ca809448f9ff67c42961d1, type: 3}
+  m_Name: Monkey State
+  m_EditorClassIdentifier: 
+  _stateType: 6
+  _isMovingState: 1
+  _killUnits: 1
+  _allowedTransitions: 0300000004000000
+  _spawnFlowInfos:
+  - _delay: 2
+    _binders:
+    - _type: 13
+      _weight: 1
+      _spawnProbabilty: 1
+    _spawnDistance: 10
+  - _delay: 0
+    _binders:
+    - _type: 1
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 2
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 3
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 8
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 9
+      _weight: 0.2
+      _spawnProbabilty: 1
+    _spawnDistance: 13
+  _duration: 5
+  _nextState: 3
+  _stateSound: {fileID: 11400000, guid: 9cb6f4f0a9e330c468d753bfdcd4ab9b, type: 2}
