@@ -50,9 +50,12 @@ MonoBehaviour:
   - _delay: 1
     _binders:
     - _type: 4
-      _weight: 0.9
+      _weight: 0.8
       _spawnProbabilty: 1
     - _type: 11
+      _weight: 0.1
+      _spawnProbabilty: 1
+    - _type: 14
       _weight: 0.1
       _spawnProbabilty: 1
     _spawnDistance: 10

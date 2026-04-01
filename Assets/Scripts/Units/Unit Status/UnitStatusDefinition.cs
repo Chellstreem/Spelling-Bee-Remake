@@ -20,7 +20,7 @@ namespace Units
 
         public UnitStatus CreateStatus(ComplexUnit unit, CoroutineRunner runner) => new(unit, this, runner);
 
-        public void Enter(UnitStatus status)
+        public virtual void Enter(UnitStatus status)
         {
             if (_statusParticle.Type != ParticleType.None)
                 status.StatusEffect = status.Unit.ApplyParticleEffect(_statusParticle, status.Unit.transform);
@@ -29,7 +29,7 @@ namespace Units
                 status.StatusCoroutine = status.CoroutineRunner.Run(StatusCoroutine(status));
         }
 
-        public void Exit(UnitStatus status)
+        public virtual void Exit(UnitStatus status)
         {
             if (status.StatusEffect != null)
                 status.StatusEffect.Stop();
@@ -37,7 +37,7 @@ namespace Units
             StopStatusCoroutine(status);
         }
 
-        private IEnumerator StatusCoroutine(UnitStatus status)
+        protected IEnumerator StatusCoroutine(UnitStatus status)
         {
             yield return new WaitForSeconds(status.Duration);
             status.StatusCoroutine = null;

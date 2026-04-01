@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Player Normal Status
   m_EditorClassIdentifier: 
   _type: 0
-  _canTakeDamage: 0
+  _canTakeDamage: 1
   _canDealDamage: 0
   _canMove: 1
   _statusParticle:
     _particleType: 6
     _scale: 0
-    _positionOffset: {x: 0, y: 0, z: 0}
+    _position: {x: 0, y: 0, z: 0}
+    _isOffset: 0

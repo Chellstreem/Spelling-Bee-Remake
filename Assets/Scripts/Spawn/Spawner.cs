@@ -13,9 +13,9 @@ namespace Spawn
         {
             var spawnableObject = objectPool.GetSpawnableObject(type);
             GameObject obj = spawnableObject.Pool.Dequeue();
+            obj.transform.position = spawnableObject.GetSpawnPosition();
             obj.SetActive(true);
 
-            obj.transform.position = spawnableObject.GetSpawnPosition();
             return obj;
         }
     }

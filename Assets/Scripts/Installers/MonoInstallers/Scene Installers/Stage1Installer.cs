@@ -50,7 +50,7 @@ public class Stage1Installer : MonoInstaller
         _wordController.StartGame();
         _objectPool.InitializePool();
         _input.Enable();
-        _gameplayController = new(_player, _wordController, _stateController);
+        _gameplayController = new(_gameConfig, _player, _wordController, _stateController);
     }
 
     private void InstallCamera()

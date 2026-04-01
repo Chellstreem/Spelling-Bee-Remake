@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 2172434582972485869}
   - component: {fileID: 7621597769956089434}
   - component: {fileID: 2844366712114312539}
-  - component: {fileID: 6157293427741002394}
+  - component: {fileID: 4587179992097857331}
   - component: {fileID: 60812215861090155}
   m_Layer: 7
   m_Name: Flying Monkey
@@ -485,7 +485,7 @@ MonoBehaviour:
     _scale: 1
     _position: {x: 0, y: 0, z: 0}
     _isOffset: 1
---- !u!114 &6157293427741002394
+--- !u!114 &4587179992097857331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -494,36 +494,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6491878870511137018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6b2725e2a2d1bc45a284f58ec6d5396, type: 3}
+  m_Script: {fileID: 11500000, guid: 7150be53f91c7634482a90b158041795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedDelta: -5
-  _verticalCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 0
-    m_PostInfinity: 0
-    m_RotationOrder: 4
-  _amplitude: 12
-  _frequency: 1
+  _returnEffect:
+    _particleType: 0
+    _scale: 1
+    _position: {x: 0, y: 0, z: 0}
+    _isOffset: 1
+  _speedDelta: 5
 --- !u!114 &60812215861090155
 MonoBehaviour:
   m_ObjectHideFlags: 0

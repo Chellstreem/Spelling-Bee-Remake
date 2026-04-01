@@ -4,6 +4,7 @@ namespace Units
     {
         Normal,
         Invincible,
-        Lethal
+        Lethal,
+        None
     }
 }

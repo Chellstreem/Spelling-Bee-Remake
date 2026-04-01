@@ -3,6 +3,7 @@ using CameraControl;
 using WordControl;
 using VFX;
 using Units;
+using GameStates;
 
 [CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
 public class GameConfig : ScriptableObject
@@ -58,6 +59,9 @@ public class GameConfig : ScriptableObject
     //
 
     [Header("Other")]
+    [SerializeField] private GameStateType[] _actionStates;
     [SerializeField] private string _victoryText = "YOU DID IT!";
+
+    public GameStateType[] ActionStates => _actionStates;
     public string VictoryText => _victoryText;
 }

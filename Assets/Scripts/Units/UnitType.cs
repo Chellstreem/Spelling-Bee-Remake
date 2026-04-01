@@ -15,6 +15,7 @@ namespace Units
         Gecko,
         Snake,
         LandMonkey,
-        FlyingMonkey
+        FlyingMonkey,
+        CoolGuy
     }
 }

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 1
   _canTakeDamage: 0
-  _canDealDamage: 1
+  _canDealDamage: 0
   _canMove: 1
   _statusParticle:
     _particleType: 7
     _scale: 1.2
-    _positionOffset: {x: 0, y: 2, z: 0}
+    _position: {x: 0, y: 2.1, z: 0}
+    _isOffset: 1

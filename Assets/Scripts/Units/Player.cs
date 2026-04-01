@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sound;
 using UnityEngine;
 using VFX;
@@ -10,7 +11,9 @@ namespace Units
         [Space(15f)]
         [SerializeField] private SoundUnit _damageSound;
         [SerializeField] private ParticleEffectInfo _deathEffect;
+        [SerializeField] private Renderer _renderer;
         [Inject] private GameConfig _gameConfig;
+
 
         public Health Health { get; private set; }
 
@@ -51,6 +54,8 @@ namespace Units
             if (Health.CurrentHealth <= 0)
                 InvokeDeath();
         }
+
+        public void SetVisible(bool isVisible) => _renderer.enabled = isVisible;
 
         protected override void InvokeDeath()
         {

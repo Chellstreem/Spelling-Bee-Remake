@@ -8,6 +8,6 @@ namespace GameStates
         Safe,
         Interactive,
         Missile,
-        MonkeyState
+        Monkey
     }
 }
