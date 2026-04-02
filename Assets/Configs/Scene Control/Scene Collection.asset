@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f91edb63a655947989e580da1ae9bf, type: 3}
-  m_Name: CameraConfig
+  m_Script: {fileID: 11500000, guid: 6aae65ee63a0ade499ef4b9f9c1d098a, type: 3}
+  m_Name: Scene Collection
   m_EditorClassIdentifier: 
-  _defaultCameraState: {fileID: 11400000, guid: ee78e95f86cbad847a00d31bef0714ae, type: 2}
+  _scenes:
+  - _sceneName: 0
+    _scenePath: Intro
+  - _sceneName: 1
+    _scenePath: Menu
+  - _sceneName: 2
+    _scenePath: Main Stage

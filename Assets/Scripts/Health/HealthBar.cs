@@ -11,7 +11,6 @@ public class HealthBar : UIBar
     [SerializeField] private float _transitionSpeed = 5f;
     private Health _health;
     private Coroutine _fillCoroutine;
-    private bool _isInitialized;
 
     private void Start()
     {

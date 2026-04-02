@@ -9,6 +9,7 @@ namespace GameStates
         [SerializeField] private bool _enableInput = true;
         [SerializeField] private bool _isMovingState = false;
         [SerializeField] private bool _killUnits = false;
+        [SerializeField] private CameraState _cameraState;
 
         [Tooltip("States that can be transitioned to from this state")]
         [SerializeField] private GameStateType[] _allowedTransitions;
@@ -16,6 +17,7 @@ namespace GameStates
         public GameStateType StateType => _stateType;
         public bool IsMovingState => _isMovingState;
         public bool KillUnits => _killUnits;
+        public CameraState CameraState => _cameraState;
 
         public virtual void Enter(GameState state)
         {

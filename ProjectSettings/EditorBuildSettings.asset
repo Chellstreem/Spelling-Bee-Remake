@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: 8ed38416aabefda42b808b6e6fd70020
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Menu.unity
     guid: 732be368701ad0448a42f271960b11e2
   - enabled: 1
-    path: Assets/Scenes/Stage1.unity
+    path: Assets/Scenes/Main Stage.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4132a5fa3ec0da64b82a00ef05b58c8e, type: 2}

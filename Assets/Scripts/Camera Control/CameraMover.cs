@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CameraControl
@@ -7,37 +6,22 @@ namespace CameraControl
     public class CameraMover
     {
         private readonly CoroutineRunner runner;
-        private readonly Dictionary<CameraStateType, CameraState> stateMap = new();
         private Coroutine _coroutine;
 
-        public CameraMover(CoroutineRunner runner, CameraConfig config)
-        {
-            this.runner = runner;
-            InitializeStateMap(config.States);
-        }
+        public CameraMover(CoroutineRunner runner) => this.runner = runner;
 
-        public void SetState(Transform cameraTransform, CameraStateType stateType)
+        public void SetState(Transform cameraTransform, CameraState state)
         {
             if (_coroutine != null)
                 runner.Stop(_coroutine);
 
-            _coroutine = runner.StartCoroutine(RunCameraMovementCoroutine(cameraTransform, stateType));
+            _coroutine = runner.Run(CameraMovementCoroutine(cameraTransform, state));
         }
 
-        private void InitializeStateMap(CameraState[] states)
-        {
-            foreach (CameraState gameState in states)
-            {
-                if (!stateMap.ContainsKey(gameState.State))
-                    stateMap[gameState.State] = gameState;
-            }
-        }
-
-        private IEnumerator RunCameraMovementCoroutine(Transform cameraTransform, CameraStateType stateType)
+        private IEnumerator CameraMovementCoroutine(Transform cameraTransform, CameraState state)
         {
             cameraTransform.GetPositionAndRotation(out Vector3 originalPosition, out Quaternion originalRotation);
 
-            CameraState state = stateMap[stateType];
             Vector3 targetPosition = state.CameraPosition;
             Quaternion targetRotation = Quaternion.Euler(state.CameraRotation);
 
@@ -57,8 +41,7 @@ namespace CameraControl
             }
             finally
             {
-                cameraTransform.position = targetPosition;
-                cameraTransform.rotation = targetRotation;
+                cameraTransform.SetPositionAndRotation(targetPosition, targetRotation);
                 _coroutine = null;
             }
         }

@@ -16,6 +16,7 @@ MonoBehaviour:
   _enableInput: 0
   _isMovingState: 0
   _killUnits: 0
+  _cameraState: {fileID: 11400000, guid: 3346b257064816d45b7ac9de6500dc8f, type: 2}
   _allowedTransitions: 04000000
   _count: 3
   _startFontSize: 320

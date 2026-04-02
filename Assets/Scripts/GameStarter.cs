@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class GameStarter
 {
-    private readonly SceneSwitcher sceneSwitcher;
+    private readonly SceneController sceneSwitcher;
     private readonly InputFieldHandler inputFieldHandler;
 
-    public GameStarter(SceneSwitcher sceneSwitcher, InputFieldHandler inputFieldHandler)
+    public GameStarter(SceneController sceneSwitcher, InputFieldHandler inputFieldHandler)
     {
         this.sceneSwitcher = sceneSwitcher;
         this.inputFieldHandler = inputFieldHandler;
@@ -23,6 +23,6 @@ public class GameStarter
         }
 
         StaticData.SavedWords = words;
-        sceneSwitcher.SwitchScene(SceneName.Stage1);
+        sceneSwitcher.SwitchScene(SceneType.MainStage);
     }
 }

@@ -6,10 +6,10 @@ using UnityEngine;
 public class IntroSceneHandler
 {
     private readonly CoroutineRunner coroutineRunner;
-    private readonly SceneSwitcher sceneSwitcher;
+    private readonly SceneController sceneSwitcher;
     private readonly float sceneDuration;
 
-    public IntroSceneHandler(CoroutineRunner coroutineRunner, SceneSwitcher sceneSwitcher, float sceneDuration)
+    public IntroSceneHandler(CoroutineRunner coroutineRunner, SceneController sceneSwitcher, float sceneDuration)
     {
         this.coroutineRunner = coroutineRunner;
         this.sceneSwitcher = sceneSwitcher;
@@ -21,7 +21,7 @@ public class IntroSceneHandler
     private IEnumerator IntroCoroutine()
     {
         yield return new WaitForSeconds(sceneDuration);
-        sceneSwitcher.SwitchScene(SceneName.MainMenu);
+        sceneSwitcher.SwitchScene(SceneType.MainMenu);
     }
 }
 

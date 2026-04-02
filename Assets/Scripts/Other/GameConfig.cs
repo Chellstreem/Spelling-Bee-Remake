@@ -4,6 +4,7 @@ using WordControl;
 using VFX;
 using Units;
 using GameStates;
+using SceneControl;
 
 [CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
 public class GameConfig : ScriptableObject
@@ -14,6 +15,7 @@ public class GameConfig : ScriptableObject
     [SerializeField] private WordControlConfig _wordControlConfig;
     [SerializeField] private SoundConfig _soundConfig;
     [SerializeField] private ParticleConfig _particleConfig;
+    [SerializeField] private SceneCollection _sceneCollection;
 
     public CameraConfig CameraConfig => _cameraConfig;
     public SpawnConfig SpawnConfig => _spawnConfig;
@@ -21,6 +23,7 @@ public class GameConfig : ScriptableObject
     public WordControlConfig WordControlConfig => _wordControlConfig;
     public SoundConfig SoundConfig => _soundConfig;
     public ParticleConfig ParticleConfig => _particleConfig;
+    public SceneCollection SceneCollection => _sceneCollection;
 
     //
 
