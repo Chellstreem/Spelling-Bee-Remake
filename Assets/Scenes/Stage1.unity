@@ -1805,6 +1805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700035642c7f304489e8bc520e0a2dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameConfig: {fileID: 11400000, guid: 9a437d671443c9244b5317c57da52639, type: 2}
   _mainCamera: {fileID: 45974215}
   _coroutineRunner: {fileID: 415710657}
   _player: {fileID: 1581081631}
@@ -2298,7 +2299,7 @@ GameObject:
   - component: {fileID: 2129670482}
   - component: {fileID: 2129670481}
   m_Layer: 0
-  m_Name: SceneContext
+  m_Name: Context Context
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2316,8 +2317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers:
-  - {fileID: 11400000, guid: a631f5af5f69f1a4cbe0dfaea62df643, type: 2}
+  _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1572737784}
   _installerPrefabs: []

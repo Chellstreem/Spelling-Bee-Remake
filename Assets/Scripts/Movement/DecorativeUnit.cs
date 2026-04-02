@@ -1,9 +1,6 @@
-using Unity.VisualScripting;
-using UnityEngine;
-
 namespace Movement
 {
-    public class NonInteractableObject : MovableUnit
+    public class DecorativeUnit : MovableUnit
     {
         private void OnEnable()
         {

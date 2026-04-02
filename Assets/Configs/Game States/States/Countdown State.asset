@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Countdown State
   m_EditorClassIdentifier: 
   _stateType: 0
+  _enableInput: 0
   _isMovingState: 0
   _killUnits: 0
   _allowedTransitions: 04000000

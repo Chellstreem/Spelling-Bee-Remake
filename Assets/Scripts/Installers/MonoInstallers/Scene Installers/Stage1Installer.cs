@@ -12,12 +12,13 @@ using VFX;
 
 public class Stage1Installer : MonoInstaller
 {
+    [SerializeField] private GameConfig _gameConfig;
+
     [Header("Scene References")]
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private CoroutineRunner _coroutineRunner;
     [SerializeField] private Player _player;
 
-    [Inject] private GameConfig _gameConfig;
     private GameStateController _stateController;
     private UIBarController _uIBarController;
     private GameSpeedController _speedController;
@@ -25,32 +26,45 @@ public class Stage1Installer : MonoInstaller
     private Spawner _spawner;
     private WordController _wordController;
     private IInput _input;
-    private GameplayController _gameplayController;
     private AudioSourcePool _audioSourcePool;
     private ParticlePlayer _particlePlayer;
+    private GameContext _gameContext;
+    private GameplayController _gameplayController;
 
     public override void InstallBindings()
     {
+        Container.Bind<GameConfig>()
+        .FromInstance(_gameConfig)
+        .AsSingle()
+        .NonLazy();
+
         Container.Bind<CoroutineRunner>()
         .FromInstance(_coroutineRunner)
         .AsSingle()
         .NonLazy();
 
-        InstallSound();
         InstallVFX();
+        InstallSound();
         InstallInput();
-        InstallWordController();
-        InstallSpeedController();
         InstallObjectPool();
+        InstallSpeedController();
         InstallSpawner();
+        InstallWordController();
         InstallGameStates();
         InstallUIBarController();
         InstallCamera();
 
-        _wordController.StartGame();
-        _objectPool.InitializePool();
-        _input.Enable();
-        _gameplayController = new(_gameConfig, _player, _wordController, _stateController);
+        _gameContext = new(_stateController, _coroutineRunner, _objectPool, _spawner, _speedController, _audioSourcePool,
+            _particlePlayer, _wordController, _input);
+
+        _stateController.Initialize(_gameContext);
+
+        _gameplayController = new(_gameConfig, _player, _gameContext);
+
+        Container.Bind<GameplayController>()
+           .FromInstance(_gameplayController)
+           .AsSingle()
+           .NonLazy();
     }
 
     private void InstallCamera()
@@ -75,8 +89,6 @@ public class Stage1Installer : MonoInstaller
     {
         _stateController = new(_gameConfig.GameStateConfig);
 
-        GameStateContext context = new(_stateController, _coroutineRunner, _spawner, _speedController, _audioSourcePool, _particlePlayer);
-        _stateController.Initialize(context);
 
         Container.Bind<GameStateController>()
             .FromInstance(_stateController)

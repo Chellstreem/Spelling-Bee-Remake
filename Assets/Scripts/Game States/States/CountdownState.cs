@@ -24,7 +24,8 @@ namespace GameStates
 
         public override void Enter(GameState state)
         {
-            state.Runner.Run(CountDownCoroutine(_count, _startFontSize, state.StateController));
+            base.Enter(state);
+            state.Context.Runner.Run(CountDownCoroutine(_count, _startFontSize, state.Context.StateController));
         }
 
         public override void Exit(GameState state) { }
@@ -35,7 +36,9 @@ namespace GameStates
             {
                 OnCountDownUpdate?.Invoke(count.ToString(), fontSize);
                 _tickSound.PlayOneShot();
+
                 yield return wait;
+
                 count--;
                 fontSize = Mathf.Max(1, fontSize - _fontSizeDecrement);
             }

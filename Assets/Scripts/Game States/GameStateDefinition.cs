@@ -6,6 +6,7 @@ namespace GameStates
     public abstract class GameStateDefinition : ScriptableObject
     {
         [SerializeField] private GameStateType _stateType;
+        [SerializeField] private bool _enableInput = true;
         [SerializeField] private bool _isMovingState = false;
         [SerializeField] private bool _killUnits = false;
 
@@ -16,7 +17,17 @@ namespace GameStates
         public bool IsMovingState => _isMovingState;
         public bool KillUnits => _killUnits;
 
-        public abstract void Enter(GameState state);
+        public virtual void Enter(GameState state)
+        {
+            if (_enableInput)
+            {
+                state.Context.Input.Enable();
+                return;
+            }
+
+            state.Context.Input.Disable();
+        }
+
         public abstract void Exit(GameState state);
 
         public bool AllowTransitionTo(GameStateType newStateType)
@@ -31,14 +42,14 @@ namespace GameStates
             return false;
         }
 
-        public virtual GameState CreateGameState(GameStateContext context) => new(this, context);
+        public virtual GameState CreateGameState(GameContext context) => new(this, context);
 
         protected void PlayVisualEffect(ParticleEffectInfo info, GameState state)
         {
             if (info.Type == ParticleType.None)
                 return;
 
-            state.ParticlePlayer.Play(info.Type, info.Position, info.Scale);
+            state.Context.ParticlePlayer.Play(info.Type, info.Position, info.Scale);
         }
     }
 }

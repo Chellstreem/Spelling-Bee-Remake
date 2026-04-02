@@ -9,7 +9,7 @@ namespace GameStates
         [Header("Spawn Settings")]
         [SerializeField] protected SpawnFlowInfo[] _spawnFlowInfos;
 
-        public override GameState CreateGameState(GameStateContext context)
+        public override GameState CreateGameState(GameContext context)
         {
             return new SpawnState(this, context);
         }

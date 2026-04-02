@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Sound;
-using Spawn;
-using Zenject;
 
 namespace GameStates
 {
@@ -16,7 +13,7 @@ namespace GameStates
 
         public GameStateController(GameStateConfig config) => this.config = config;
 
-        public void Initialize(GameStateContext context)
+        public void Initialize(GameContext context)
         {
             foreach (var definition in config.GameStates)
             {
