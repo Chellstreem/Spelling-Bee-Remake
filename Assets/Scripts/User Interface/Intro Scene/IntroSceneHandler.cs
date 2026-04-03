@@ -15,7 +15,7 @@ public class IntroSceneHandler
         this.sceneSwitcher = sceneSwitcher;
         this.sceneDuration = sceneDuration;
 
-        this.coroutineRunner.StartCoroutine(IntroCoroutine());
+        this.coroutineRunner.Run(IntroCoroutine());
     }
 
     private IEnumerator IntroCoroutine()

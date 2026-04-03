@@ -4,7 +4,7 @@ using UserInterface;
 using WordControl;
 using Zenject;
 
-public class CurrentWordBar : SimpleBar
+public class CurrentWordBar : MainStageBar
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI _currentWordText;

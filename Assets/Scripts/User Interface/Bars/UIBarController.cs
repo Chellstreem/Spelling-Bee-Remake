@@ -9,7 +9,7 @@ namespace UserInterface
     public class UIBarController
     {
         private readonly GameStateController stateController;
-        [SerializeField] private List<UIBar> _uIBars = new();
+        [SerializeField] private List<MainStageBar> _uIBars = new();
 
         public UIBarController(GameStateController stateController)
         {
@@ -17,7 +17,7 @@ namespace UserInterface
             stateController.OnStateChanged += OnStateChanged;
         }
 
-        public void Register(UIBar bar) => _uIBars.Add(bar);
+        public void Register(MainStageBar bar) => _uIBars.Add(bar);
 
         private void OnStateChanged()
         {

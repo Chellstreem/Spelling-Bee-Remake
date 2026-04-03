@@ -4,7 +4,7 @@ using System.Collections;
 using Units;
 using UserInterface;
 
-public class HealthBar : SimpleBar
+public class HealthBar : MainStageBar
 {
     [Header("Health Bar")]
     [SerializeField] private Image _lifeBarImage;

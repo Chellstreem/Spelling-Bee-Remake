@@ -1,9 +1,11 @@
 using UnityEngine;
 using TMPro;
 using Zenject;
+using SceneControl;
 
 public class IntroSceneInstaller : MonoInstaller
 {
+    [SerializeField] private SceneCollection _sceneCollection;
     [SerializeField] private GameObject coroutineRunnerPrefab;
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private float sceneDuration;
@@ -26,6 +28,13 @@ public class IntroSceneInstaller : MonoInstaller
         Container.Bind<int>()
             .FromInstance(finalFontSize)
             .AsSingle();
+
+        SceneController sceneController = new(_sceneCollection);
+
+        Container.Bind<SceneController>()
+        .FromInstance(sceneController)
+        .AsSingle()
+        .NonLazy();
 
         Container.Bind<IntroSceneHandler>().AsSingle().NonLazy();
     }

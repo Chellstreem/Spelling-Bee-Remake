@@ -5,7 +5,7 @@ using SceneControl;
 
 namespace UserInterface
 {
-    public class GameOverBar : SimpleBar
+    public class GameOverBar : MainStageBar
     {
         [SerializeField] private Button _playAgainButton;
         [SerializeField] private Button _mainMenuButton;

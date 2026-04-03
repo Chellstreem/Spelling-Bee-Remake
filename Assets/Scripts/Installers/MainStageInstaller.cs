@@ -11,7 +11,7 @@ using Sound;
 using VFX;
 using SceneControl;
 
-public class SceneInstaller : MonoInstaller
+public class MainStageInstaller : MonoInstaller
 {
     [SerializeField] private GameConfig _gameConfig;
 

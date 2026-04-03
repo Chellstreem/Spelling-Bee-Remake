@@ -1,26 +1,29 @@
 using Zenject;
+using VFX;
+using SceneControl;
 using UnityEngine;
 
 public class MainMenuInstaller : MonoInstaller
 {
-    [SerializeField] private InputFieldHandler inputFieldHandler;
-    [SerializeField] private FieldActivator fieldActivator;
-    [SerializeField] private int initiallyActiveFields;
+    [SerializeField] private SceneCollection _sceneCollection;
 
     public override void InstallBindings()
     {
-        Container.Bind<InputFieldHandler>()
-            .FromInstance(inputFieldHandler)
-            .AsSingle();
-        
-        Container.Bind<FieldActivator>()
-            .FromInstance(fieldActivator)
-            .AsSingle();
+        ObjectScaler scaler = new();
+        VisualEffectServices _visualServices = new();
 
-        Container.Bind<int>()
-            .FromInstance(initiallyActiveFields)
-            .AsSingle();
+        _visualServices.RegisterService(scaler);
 
-        Container.Bind<GameStarter>().AsSingle();
+        Container.Bind<VisualEffectServices>()
+            .FromInstance(_visualServices)
+            .AsSingle()
+            .NonLazy();
+
+        SceneController controller = new(_sceneCollection);
+
+        Container.Bind<SceneController>()
+            .FromInstance(controller)
+            .AsSingle()
+            .NonLazy();
     }
 }

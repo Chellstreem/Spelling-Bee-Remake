@@ -1085,6 +1085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e79e353142a87d341869a98bbd4049d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ease: 0
+  _duration: 0
   _activationStates: 00000000
   _text: {fileID: 914968730}
 --- !u!1 &974872596
@@ -1232,8 +1234,8 @@ GameObject:
   - component: {fileID: 1044337793}
   - component: {fileID: 1044337795}
   - component: {fileID: 1044337794}
-  - component: {fileID: 1044337797}
   - component: {fileID: 1044337796}
+  - component: {fileID: 1044337797}
   m_Layer: 5
   m_Name: Missile Alert Bar
   m_TagString: Untagged
@@ -1324,12 +1326,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1044337792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 912181e3cdea5594593399187f0e52aa, type: 3}
+  m_Script: {fileID: 11500000, guid: e8c716497ade7b64e9a63363c3f56097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationStates: 05000000
-  _duration: 1
   _ease: 1
+  _duration: 0.1
+  _activationStates: 05000000
 --- !u!1 &1092920563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,9 +1422,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a7b71c8fbde7d48a056fabfc348356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationStates: 0200000001000000
-  _duration: 1
   _ease: 31
+  _duration: 1
+  _activationStates: 0200000001000000
   _playAgainButton: {fileID: 266914174}
   _mainMenuButton: {fileID: 1749074212}
 --- !u!1 &1167807756
@@ -1778,6 +1780,14 @@ PrefabInstance:
     - target: {fileID: 7348685912525274161, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: _duration
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348685912525274161, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _activationStates.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348685912525274161, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _activationStates.Array.data[2]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7467245630260491944, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_Enabled
@@ -2250,9 +2260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a708b44b2df2dcc42971ab27bf962c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationStates: 04000000020000000100000003000000
-  _duration: 0.5
   _ease: 1
+  _duration: 0.5
+  _activationStates: 04000000020000000100000003000000
   _currentWordText: {fileID: 1583827430}
   _currentIndexText: {fileID: 524373814}
 --- !u!1 &2129670480

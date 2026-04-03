@@ -5,7 +5,7 @@ using Zenject;
 
 namespace UserInterface
 {
-    public class CountDownBar : UIBar
+    public class CountDownBar : MainStageBar
     {
         [SerializeField] private TextMeshProUGUI _text;
         private CountdownState _state;
