@@ -4,11 +4,11 @@ using UnityEngine;
 public class SpawnConfig : ScriptableObject
 {
     [Header("Spawnable Objects")]
-    [SerializeField] private SpawnableObject[] _spawnableObjects;
+    [SerializeField] private SpawnableObjectInfo[] _spawnableObjects;
 
     [Header("Other")]
     [SerializeField] private Vector3 _spawnPosition;
 
-    public SpawnableObject[] SpawnableObjects => _spawnableObjects;
+    public SpawnableObjectInfo[] SpawnableObjects => _spawnableObjects;
     public Vector3 SpawnPosition => _spawnPosition;
 }

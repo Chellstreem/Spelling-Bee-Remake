@@ -32,7 +32,11 @@ namespace Units
         public virtual void Exit(UnitStatus status)
         {
             if (status.StatusEffect != null)
+            {
                 status.StatusEffect.Stop();
+                status.StatusEffect.gameObject.SetActive(false);
+            }
+
 
             StopStatusCoroutine(status);
         }

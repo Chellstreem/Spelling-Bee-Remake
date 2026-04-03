@@ -7,6 +7,7 @@ namespace GameStates
     {
         [SerializeField] private GameStateType _stateType;
         [SerializeField] private bool _enableInput = true;
+        [SerializeField] private bool _isCursorVisible = false;
         [SerializeField] private bool _isMovingState = false;
         [SerializeField] private bool _killUnits = false;
         [SerializeField] private CameraState _cameraState;
@@ -15,6 +16,7 @@ namespace GameStates
         [SerializeField] private GameStateType[] _allowedTransitions;
 
         public GameStateType StateType => _stateType;
+        public bool IsCursorVisible => _isCursorVisible;
         public bool IsMovingState => _isMovingState;
         public bool KillUnits => _killUnits;
         public CameraState CameraState => _cameraState;

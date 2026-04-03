@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Sound
 {
@@ -26,6 +26,11 @@ namespace Sound
             playOneShotSource.spatialBlend = soundUnit.SpatialBlend;
             playOneShotSource.pitch = soundUnit.Pitch;
             playOneShotSource.PlayOneShot(soundUnit.Clip, soundUnit.Volume);
+        }
+
+        public void Dispose()
+        {
+            _channel.OnSoundEffectRaised -= OnSoundEffectRaised;
         }
     }
 }

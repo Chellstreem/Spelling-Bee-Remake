@@ -15,7 +15,7 @@ namespace Spawn
         [Inject]
         public void Construct(GameConfig config) => _originalSpawnPosition = config.SpawnConfig.SpawnPosition;
 
-        public override Vector3 GetPosition(SpawnableObject spawnableObject)
+        public override Vector3 GetPosition(SpawnableObjectInfo spawnableObject)
         {
             float x = Random.Range(_minX, _maxX);
             return new Vector3(x, _yPosition, _originalSpawnPosition.z);

@@ -9,8 +9,8 @@ namespace Spawn
     {
         private readonly DiContainer container;
         private readonly SpawnConfig config;
-        private readonly Dictionary<UnitType, SpawnableObject> poolDictionary = new();
-        private readonly Dictionary<GameObject, SpawnableObject> returnMap = new();
+        private readonly Dictionary<UnitType, SpawnableObjectPool> poolDictionary = new();
+        private readonly Dictionary<GameObject, SpawnableObjectPool> returnMap = new();
         private Transform _poolHolderTransform;
 
         public ObjectPool(DiContainer container, SpawnConfig config)
@@ -28,7 +28,10 @@ namespace Spawn
                 UnitType type = spawnableObject.Type;
 
                 if (!poolDictionary.ContainsKey(type))
-                    poolDictionary[type] = spawnableObject;
+                {
+                    var pool = new SpawnableObjectPool(spawnableObject);
+                    poolDictionary[type] = pool;
+                }
 
                 for (int i = 0; i < spawnableObject.PoolAmount; i++)
                 {
@@ -36,12 +39,12 @@ namespace Spawn
                     obj.SetActive(false);
 
                     poolDictionary[type].Pool.Enqueue(obj);
-                    returnMap[obj] = spawnableObject;
+                    returnMap[obj] = poolDictionary[type];
                 }
             }
         }
 
-        public SpawnableObject GetSpawnableObject(UnitType type)
+        public SpawnableObjectPool GetPool(UnitType type)
         {
             if (!poolDictionary.ContainsKey(type))
             {
@@ -54,7 +57,7 @@ namespace Spawn
 
         public void ReturnObject(GameObject gameObject)
         {
-            if (!returnMap.TryGetValue(gameObject, out var spawnObject))
+            if (!returnMap.TryGetValue(gameObject, out var pool))
             {
                 Debug.LogError($"Попытка вернуть объект {gameObject.name}, не принадлежащий пулу!");
                 return;
@@ -62,7 +65,7 @@ namespace Spawn
 
             gameObject.SetActive(false);
             gameObject.transform.position = _poolHolderTransform.position;
-            poolDictionary[spawnObject.Type].Pool.Enqueue(gameObject);
+            poolDictionary[pool.Info.Type].Pool.Enqueue(gameObject);
         }
     }
 }

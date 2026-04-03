@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stateType: 1
   _enableInput: 0
+  _isCursorVisible: 1
   _isMovingState: 0
   _killUnits: 0
+  _cameraState: {fileID: 0}
   _allowedTransitions: 
   _spawnFlowInfos: []
   _stateSound: {fileID: 11400000, guid: 9b67268e9f2ac92489ca4a0f7bba890f, type: 2}

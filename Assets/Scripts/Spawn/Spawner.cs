@@ -11,9 +11,9 @@ namespace Spawn
 
         public GameObject SpawnObject(UnitType type)
         {
-            var spawnableObject = objectPool.GetSpawnableObject(type);
-            GameObject obj = spawnableObject.Pool.Dequeue();
-            obj.transform.position = spawnableObject.GetSpawnPosition();
+            var pool = objectPool.GetPool(type);
+            GameObject obj = pool.Pool.Dequeue();
+            obj.transform.position = pool.Info.GetSpawnPosition();
             obj.SetActive(true);
 
             return obj;

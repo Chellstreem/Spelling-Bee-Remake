@@ -1,51 +1,44 @@
+using GameStates;
 using UnityEngine;
 
 namespace UserInterface
 {
     public class CursorController
     {
+        private readonly GameStateController stateController;
+        private readonly CursorMode cursorMode = CursorMode.Auto;
+
         private Texture2D _currentCursor;
         private Vector2 _hotspot;
-        private CursorMode _cursorMode = CursorMode.Auto;
 
-        /// <summary>
-        /// Активировать/деактивировать курсор
-        /// </summary>
-        public void SetActive(bool isActive, bool lockCursor = false)
+        public CursorController(GameStateController stateController)
         {
-            Cursor.visible = isActive;
-
-            Cursor.lockState = lockCursor
-                ? CursorLockMode.Locked
-                : CursorLockMode.None;
+            this.stateController = stateController;
+            stateController.OnStateChanged += OnStateChanged;
         }
 
-        /// <summary>
-        /// Установить кастомный курсор
-        /// </summary>
+        public void SetActive(bool isActive) => Cursor.visible = isActive;
+
         public void SetCursor(Texture2D cursorTexture, Vector2 hotspot)
         {
             _currentCursor = cursorTexture;
             _hotspot = hotspot;
 
-            Cursor.SetCursor(_currentCursor, _hotspot, _cursorMode);
+            Cursor.SetCursor(_currentCursor, _hotspot, cursorMode);
         }
 
-        /// <summary>
-        /// Сбросить курсор на дефолтный
-        /// </summary>
         public void ResetCursor()
         {
             _currentCursor = null;
-            Cursor.SetCursor(null, Vector2.zero, _cursorMode);
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
 
-        /// <summary>
-        /// Повторно применить текущий курсор (например после смены сцены)
-        /// </summary>
-        public void Refresh()
+        public void Refresh() => Cursor.SetCursor(_currentCursor, _hotspot, cursorMode);
+
+        private void OnStateChanged()
         {
-            Cursor.SetCursor(_currentCursor, _hotspot, _cursorMode);
+            bool isVisible = stateController.CurrentState.Definition.IsCursorVisible;
+            SetActive(isVisible);
         }
     }
 }

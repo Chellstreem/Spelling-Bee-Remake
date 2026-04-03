@@ -1,0 +1,32 @@
+using UnityEngine.UI;
+using UnityEngine;
+using Zenject;
+using SceneControl;
+
+namespace UserInterface
+{
+    public class GameOverBar : UIBar
+    {
+        [SerializeField] private Button _playAgainButton;
+        [SerializeField] private Button _mainMenuButton;
+        private SceneController sceneController;
+
+        [Inject]
+        public void Construct(SceneController controller) => sceneController = controller;
+
+        private void OnEnable()
+        {
+            _playAgainButton.onClick.AddListener(PlayAgain);
+            _mainMenuButton.onClick.AddListener(GoToMainMenu);
+        }
+
+        private void PlayAgain() => sceneController.SwitchScene(SceneType.MainStage);
+        private void GoToMainMenu() => sceneController.SwitchScene(SceneType.MainMenu);
+
+        private void OnDisable()
+        {
+            _playAgainButton.onClick.RemoveListener(PlayAgain);
+            _mainMenuButton.onClick.RemoveListener(GoToMainMenu);
+        }
+    }
+}

@@ -29,5 +29,7 @@ namespace UserInterface
                 bar.gameObject.SetActive(isActive);
             }
         }
+
+        public void Dispose() => stateController.OnStateChanged -= OnStateChanged;
     }
 }

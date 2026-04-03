@@ -28,6 +28,7 @@ public class SceneInstaller : MonoInstaller
     private WordController _wordController;
     private IInput _input;
     private AudioSourcePool _audioSourcePool;
+    private SoundController _soundController;
     private ParticlePlayer _particlePlayer;
     private GameContext _gameContext;
     private GameplayController _gameplayController;
@@ -55,6 +56,7 @@ public class SceneInstaller : MonoInstaller
         InstallGameStates();
         InstallUIBarController();
         InstallCamera();
+        InstallCursor();
 
         _gameContext = new(_stateController, _coroutineRunner, _objectPool, _spawner, _speedController, _audioSourcePool,
             _particlePlayer, _wordController, _input);
@@ -160,7 +162,7 @@ public class SceneInstaller : MonoInstaller
             .AsSingle()
             .NonLazy();
 
-        SoundController soundController = new(_audioSourcePool, _gameConfig.SoundConfig);
+        _soundController = new(_audioSourcePool, _gameConfig.SoundConfig);
     }
 
     private void InstallVFX()
@@ -182,5 +184,16 @@ public class SceneInstaller : MonoInstaller
             .FromInstance(sceneController)
             .AsSingle()
             .NonLazy();
+    }
+
+    private void InstallCursor()
+    {
+        CursorController controller = new(_stateController);
+    }
+
+    private void OnDisable()
+    {
+        _soundController.Dispose();
+        _uIBarController.Dispose();
     }
 }

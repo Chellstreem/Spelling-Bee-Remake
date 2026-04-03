@@ -57,6 +57,8 @@ public class HealthBar : UIBar
     private void OnDestroy()
     {
         StopFillTransition();
-        _health.OnHealthChanged -= UpdateHealthBarSmoothly;
+
+        if (_health != null)
+            _health.OnHealthChanged -= UpdateHealthBarSmoothly;
     }
 }

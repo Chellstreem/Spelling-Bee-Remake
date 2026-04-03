@@ -1415,10 +1415,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092920563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 912181e3cdea5594593399187f0e52aa, type: 3}
+  m_Script: {fileID: 11500000, guid: a5a7b71c8fbde7d48a056fabfc348356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _activationStates: 0200000001000000
+  _playAgainButton: {fileID: 266914174}
+  _mainMenuButton: {fileID: 1749074212}
 --- !u!1 &1167807756
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,7 +2040,7 @@ GameObject:
   - component: {fileID: 1749074213}
   - component: {fileID: 1749074212}
   m_Layer: 5
-  m_Name: Game Over Bar
+  m_Name: Main Menu Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

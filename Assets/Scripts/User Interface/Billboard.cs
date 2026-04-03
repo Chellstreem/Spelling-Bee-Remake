@@ -10,7 +10,7 @@ public abstract class Billboard : MonoBehaviour
     [Inject]
     public virtual void Construct(Camera activeCamera)
     {
-        this._camera = activeCamera;
+        _camera = activeCamera;
     }
 
     protected void UpdateTargetCamera()
