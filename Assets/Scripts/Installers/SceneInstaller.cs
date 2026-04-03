@@ -174,6 +174,17 @@ public class SceneInstaller : MonoInstaller
             .FromInstance(_particlePlayer)
             .AsSingle()
             .NonLazy();
+
+        ObjectScaler scaler = new();
+
+        VisualEffectServices services = new();
+        services.RegisterService(_particlePlayer);
+        services.RegisterService(scaler);
+
+        Container.Bind<VisualEffectServices>()
+            .FromInstance(services)
+            .AsSingle()
+            .NonLazy();
     }
 
     private void InstallSceneControl()

@@ -4,8 +4,9 @@ using System.Collections;
 using Units;
 using UserInterface;
 
-public class HealthBar : UIBar
+public class HealthBar : SimpleBar
 {
+    [Header("Health Bar")]
     [SerializeField] private Image _lifeBarImage;
     [SerializeField] private ComplexUnit _unit;
     [SerializeField] private float _transitionSpeed = 5f;

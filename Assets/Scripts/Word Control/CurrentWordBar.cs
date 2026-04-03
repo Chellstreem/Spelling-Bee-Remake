@@ -4,8 +4,9 @@ using UserInterface;
 using WordControl;
 using Zenject;
 
-public class CurrentWordBar : UIBar
+public class CurrentWordBar : SimpleBar
 {
+    [Header("References")]
     [SerializeField] private TextMeshProUGUI _currentWordText;
     [SerializeField] private TextMeshProUGUI _currentIndexText;
     private WordController _wordController;

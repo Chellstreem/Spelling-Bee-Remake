@@ -1,11 +1,12 @@
 using UnityEngine;
 using Zenject;
+using VFX;
 
 public class FieldActivator : MonoBehaviour
 {
     [SerializeField] private GameObject[] fields;
 
-    private ScaleEffect scaler;
+    private ObjectScaler scaler;
     private int initiallyActiveFields;
     private int activeFieldIndex;
 
@@ -13,7 +14,7 @@ public class FieldActivator : MonoBehaviour
     public int FieldsLength => fields.Length;
 
     [Inject]
-    public void Construct(ScaleEffect scaler, int initiallyActiveFields)
+    public void Construct(ObjectScaler scaler, int initiallyActiveFields)
     {
         this.scaler = scaler;
         this.initiallyActiveFields = initiallyActiveFields;

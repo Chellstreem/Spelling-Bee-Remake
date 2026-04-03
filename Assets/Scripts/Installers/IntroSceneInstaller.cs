@@ -13,7 +13,7 @@ public class IntroSceneInstaller : MonoInstaller
     {
         Container.Bind<CoroutineRunner>()
             .FromComponentInNewPrefab(coroutineRunnerPrefab)
-            .AsSingle();            
+            .AsSingle();
 
         Container.Bind<TextMeshProUGUI>()
             .FromInstance(title)
@@ -28,6 +28,5 @@ public class IntroSceneInstaller : MonoInstaller
             .AsSingle();
 
         Container.Bind<IntroSceneHandler>().AsSingle().NonLazy();
-        Container.Bind<TitleController>().AsSingle().NonLazy();
     }
 }

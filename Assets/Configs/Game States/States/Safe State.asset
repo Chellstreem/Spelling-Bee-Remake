@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Safe State
   m_EditorClassIdentifier: 
   _stateType: 3
+  _enableInput: 1
+  _isCursorVisible: 0
   _isMovingState: 1
   _killUnits: 0
-  _allowedTransitions: 04000000
+  _cameraState: {fileID: 0}
+  _allowedTransitions: 040000000200000001000000
   _spawnFlowInfos: []
   _duration: 3
   _nextState: 4

@@ -21,12 +21,20 @@ namespace UserInterface
 
         private void OnStateChanged()
         {
-            var state = stateController.CurrentState.Definition.StateType;
+            var type = stateController.CurrentState.Definition.StateType;
 
             foreach (var bar in _uIBars)
             {
-                bool isActive = bar.ActivationStates.Contains(state);
-                bar.gameObject.SetActive(isActive);
+                bool shouldBeActive = bar.ActivationStates.Contains(type);
+                bool isActive = bar.gameObject.activeSelf;
+
+                if (shouldBeActive == isActive)
+                    continue;
+
+                if (shouldBeActive)
+                    bar.Activate();
+                else
+                    bar.Deactivate();
             }
         }
 

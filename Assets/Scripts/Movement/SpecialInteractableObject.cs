@@ -10,8 +10,6 @@ namespace Movement
 
         protected override void OnStateChanged()
         {
-            base.OnStateChanged();
-
             if (_stateController.CurrentState.Definition.KillUnits)
             {
                 _pool.ReturnObject(gameObject);

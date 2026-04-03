@@ -1240,7 +1240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1044337793
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1328,6 +1328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activationStates: 05000000
+  _duration: 1
+  _ease: 1
 --- !u!1 &1092920563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,7 +1348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1092920564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1419,6 +1421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activationStates: 0200000001000000
+  _duration: 1
+  _ease: 31
   _playAgainButton: {fileID: 266914174}
   _mainMenuButton: {fileID: 1749074212}
 --- !u!1 &1167807756
@@ -1766,6 +1770,14 @@ PrefabInstance:
     - target: {fileID: 7293273079386275849, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348685912525274161, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _ease
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348685912525274161, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
+      propertyPath: _duration
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7467245630260491944, guid: e0763cdeb3aea7740842ec6cb95054c3, type: 3}
       propertyPath: m_Enabled
@@ -2166,7 +2178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2113536320
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2238,7 +2250,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a708b44b2df2dcc42971ab27bf962c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activationStates: 040000000200000001000000
+  _activationStates: 04000000020000000100000003000000
+  _duration: 0.5
+  _ease: 1
   _currentWordText: {fileID: 1583827430}
   _currentIndexText: {fileID: 524373814}
 --- !u!1 &2129670480
