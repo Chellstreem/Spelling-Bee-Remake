@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace VFX
 {
-    public class ObjectScaler
+    public class ObjectScaler : IVisualEffectService
     {
         private readonly Dictionary<Transform, Vector3> originalScales = new();
 

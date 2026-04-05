@@ -16,7 +16,7 @@ namespace GameStates
             base.Enter(state);
 
             SpawnState spawnState = state as SpawnState;
-            state.StateCoroutine = state.Context.Runner.Run(StateCoroutine(spawnState));
+            state.StateCoroutine = state.Context.Get<CoroutineRunner>().Run(StateCoroutine(spawnState));
 
             if (_stateSound != null)
                 _stateSound.PlayOneShot();
@@ -29,7 +29,7 @@ namespace GameStates
             if (state.StateCoroutine != null)
             {
                 spawnState.StopSpawning();
-                state.Context.Runner.Stop(state.StateCoroutine);
+                state.Context.Get<CoroutineRunner>().Stop(state.StateCoroutine);
                 state.StateCoroutine = null;
             }
         }
@@ -39,7 +39,7 @@ namespace GameStates
             spawnState.StartSpawning();
             yield return new WaitForSeconds(_duration);
             spawnState.StopSpawning();
-            spawnState.Context.StateController.SetState(_nextState);
+            spawnState.Context.Get<GameStateController>().SetState(_nextState);
         }
     }
 }

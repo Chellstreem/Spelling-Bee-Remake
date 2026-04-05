@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 namespace VFX
 {
+    public interface IVisualEffectService { }
+
     public class VisualEffectServices
     {
         private readonly Dictionary<Type, object> services = new();
 
-        public void RegisterService<T>(T service)
+        public void RegisterService<T>(T service) where T : IVisualEffectService
         {
             var type = typeof(T);
 
@@ -15,7 +17,7 @@ namespace VFX
                 services[type] = service;
         }
 
-        public T GetService<T>()
+        public T GetService<T>() where T : IVisualEffectService
         {
             var type = typeof(T);
 

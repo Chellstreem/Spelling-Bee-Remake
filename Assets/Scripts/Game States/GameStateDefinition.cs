@@ -1,3 +1,4 @@
+using InputControl;
 using UnityEngine;
 using VFX;
 
@@ -23,13 +24,15 @@ namespace GameStates
 
         public virtual void Enter(GameState state)
         {
+            var input = state.Context.Get<IInput>();
+
             if (_enableInput)
             {
-                state.Context.Input.Enable();
+                input.Enable();
                 return;
             }
 
-            state.Context.Input.Disable();
+            input.Disable();
         }
 
         public abstract void Exit(GameState state);
@@ -53,7 +56,7 @@ namespace GameStates
             if (info.Type == ParticleType.None)
                 return;
 
-            state.Context.ParticlePlayer.Play(info.Type, info.Position, info.Scale);
+            state.Context.Get<ParticlePlayer>().Play(info.Type, info.Position, info.Scale);
         }
     }
 }

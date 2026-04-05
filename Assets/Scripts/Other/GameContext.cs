@@ -1,34 +1,32 @@
+using System.Collections.Generic;
+using System;
+using System.Diagnostics;
 using Sound;
-using Spawn;
-using VFX;
-using GameStates;
-using WordControl;
-using InputControl;
 
 public class GameContext
 {
-    public GameStateController StateController { get; }
-    public CoroutineRunner Runner { get; }
-    public UnitPool UnitPool { get; }
-    public Spawner Spawner { get; }
-    public GameSpeedController SpeedController { get; }
-    public AudioSourcePool AudioSourcePool { get; }
-    public ParticlePlayer ParticlePlayer { get; }
-    public WordController WordController { get; }
-    public IInput Input { get; }
+    private readonly Dictionary<Type, object> _services = new();
 
-    public GameContext(GameStateController stateController, CoroutineRunner runner, UnitPool unitPool,
-        Spawner spawner, GameSpeedController speedController, AudioSourcePool audioSourcePool,
-        ParticlePlayer particlePlayer, WordController wordController, IInput input)
+    public void Register<T>(T service)
     {
-        StateController = stateController;
-        Runner = runner;
-        UnitPool = unitPool;
-        Spawner = spawner;
-        SpeedController = speedController;
-        AudioSourcePool = audioSourcePool;
-        ParticlePlayer = particlePlayer;
-        WordController = wordController;
-        Input = input;
+        if (service.Equals(typeof(AudioSourcePool)))
+            UnityEngine.Debug.Log("sadad");
+
+        var type = typeof(T);
+
+        if (_services.ContainsKey(type))
+            throw new Exception($"Service {type} already registered");
+
+        _services[type] = service;
+    }
+
+    public T Get<T>()
+    {
+        var type = typeof(T);
+
+        if (_services.TryGetValue(type, out var service))
+            return (T)service;
+
+        throw new Exception($"Service {type} not found");
     }
 }

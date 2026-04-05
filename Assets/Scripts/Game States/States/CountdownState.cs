@@ -25,7 +25,7 @@ namespace GameStates
         public override void Enter(GameState state)
         {
             base.Enter(state);
-            state.Context.Runner.Run(CountDownCoroutine(_count, _startFontSize, state.Context.StateController));
+            state.Context.Get<CoroutineRunner>().Run(CountDownCoroutine(_count, _startFontSize, state.Context.Get<GameStateController>()));
         }
 
         public override void Exit(GameState state) { }

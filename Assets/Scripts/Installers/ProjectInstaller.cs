@@ -1,6 +1,5 @@
 using SceneControl;
 using UnityEngine;
-using VFX;
 using Zenject;
 
 namespace Installers
@@ -19,7 +18,6 @@ namespace Installers
                 .NonLazy();
 
             InstallCoroutineRunner();
-            InstallVFX();
             InstallSceneController();
         }
 
@@ -30,28 +28,6 @@ namespace Installers
 
             Container.Bind<CoroutineRunner>()
                 .FromInstance(_runner)
-                .AsSingle()
-                .NonLazy();
-        }
-
-        private void InstallVFX()
-        {
-            ParticlePool pool = new(_config.ParticleConfig);
-            ParticlePlayer particlePlayer = new(pool, _runner);
-
-            Container.Bind<ParticlePlayer>()
-                .FromInstance(particlePlayer)
-                .AsSingle()
-                .NonLazy();
-
-            ObjectScaler scaler = new();
-
-            VisualEffectServices services = new();
-            services.RegisterService(particlePlayer);
-            services.RegisterService(scaler);
-
-            Container.Bind<VisualEffectServices>()
-                .FromInstance(services)
                 .AsSingle()
                 .NonLazy();
         }

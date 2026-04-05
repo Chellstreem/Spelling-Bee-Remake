@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace VFX
 {
-    public class ParticlePlayer
+    public class ParticlePlayer : IVisualEffectService
     {
         private readonly ParticlePool particlePool;
         private readonly CoroutineRunner runner;

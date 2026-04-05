@@ -15,7 +15,7 @@ namespace GameStates
         {
             Definition = definition;
             Context = context;
-            AudioSourcePool = context.AudioSourcePool;
+            AudioSourcePool = context.Get<AudioSourcePool>();
         }
 
         public void Enter() => Definition.Enter(this);
