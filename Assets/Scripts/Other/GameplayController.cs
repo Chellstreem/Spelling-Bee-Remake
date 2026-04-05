@@ -18,7 +18,7 @@ public class GameplayController
     public void StartGame()
     {
         context.WordController.StartGame();
-        context.ObjectPool.InitializePool();
+        context.UnitPool.InitializePool();
         context.Input.Enable();
 
         context.StateController.SetState(GameStateType.Countdown);

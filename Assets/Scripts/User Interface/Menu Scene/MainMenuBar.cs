@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using Zenject;
 using SceneControl;
+using WordControl;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -42,7 +44,11 @@ namespace UserInterface
             if (words.Count == 0)
                 return;
 
-            StaticData.SavedWords = words;
+            WordController.Words = words;
+
+            foreach (var word in WordController.Words)
+                Debug.Log(word);
+
             _sceneController.SwitchScene(SceneType.MainStage);
         }
 
@@ -58,7 +64,6 @@ namespace UserInterface
                 var word = field.Input.text.Trim();
                 if (!string.IsNullOrEmpty(word))
                     words.Add(word);
-
             }
 
             return words;

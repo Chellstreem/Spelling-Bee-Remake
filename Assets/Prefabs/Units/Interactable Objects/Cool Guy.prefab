@@ -159,7 +159,7 @@ MonoBehaviour:
     _position: {x: 0, y: 0, z: 0}
     _isOffset: 1
   _collisionStatus: 1
-  _statusDuration: 1
+  _statusDuration: 3
 --- !u!114 &6608492100268292977
 MonoBehaviour:
   m_ObjectHideFlags: 0

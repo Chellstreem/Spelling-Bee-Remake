@@ -19,7 +19,7 @@ namespace GameStates
             SpawnState spawnState = state as SpawnState;
             spawnState.StartSpawning();
 
-            _stateSound.Play(state.AudioSource, _loopSound);
+            state.PlaySound(_stateSound, _loopSound);
             PlayVisualEffect(_stateEffect, state);
         }
 
@@ -28,7 +28,7 @@ namespace GameStates
             SpawnState spawnState = state as SpawnState;
             spawnState.StopSpawning();
 
-            _stateSound.Stop(state.AudioSource);
+            state.StopSound();
         }
     }
 }

@@ -19,7 +19,37 @@ MonoBehaviour:
   _killUnits: 0
   _cameraState: {fileID: 0}
   _allowedTransitions: 040000000200000001000000
-  _spawnFlowInfos: []
+  _spawnFlowInfos:
+  - _delay: 0
+    _binders:
+    - _type: 7
+      _weight: 0.25
+      _spawnProbabilty: 1
+    - _type: 2
+      _weight: 0.15
+      _spawnProbabilty: 1
+    - _type: 1
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 3
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 6
+      _weight: 0.2
+      _spawnProbabilty: 1
+    _spawnDistance: 12
+  - _delay: 0
+    _binders:
+    - _type: 10
+      _weight: 0.4
+      _spawnProbabilty: 1
+    - _type: 9
+      _weight: 0.4
+      _spawnProbabilty: 1
+    - _type: 8
+      _weight: 0.2
+      _spawnProbabilty: 1
+    _spawnDistance: 20
   _duration: 3
   _nextState: 4
   _stateSound: {fileID: 0}

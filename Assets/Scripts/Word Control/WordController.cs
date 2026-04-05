@@ -7,10 +7,10 @@ namespace WordControl
     public class WordController
     {
         private readonly WordControlConfig config;
-        private List<string> _words;
         private string _availableSymbols;
 
-        public string CurrentWord => _words[CurrentWordIndex];
+        public static List<string> Words { get; set; } = new() { "robot", "chicken" };
+        public string CurrentWord => Words[CurrentWordIndex];
         public int CurrentWordIndex { get; private set; }
         public MaskedWord MaskedWord { get; private set; }
 
@@ -23,7 +23,6 @@ namespace WordControl
 
         public void StartGame()
         {
-            _words = StaticData.SavedWords;
             CurrentWordIndex = 0;
 
             MaskCurrentWord();
@@ -47,8 +46,8 @@ namespace WordControl
         }
 
         public string GetRandomSymbol() => _availableSymbols[UnityEngine.Random.Range(0, _availableSymbols.Length)].ToString();
-        public bool IsCurrentIndexLast() => CurrentWordIndex == _words.Count - 1;
-        public int GetWordCount() => _words.Count;
+        public bool IsCurrentIndexLast() => CurrentWordIndex == Words.Count - 1;
+        public int GetWordCount() => Words.Count;
 
         private void OnCorrectValue(string value, int index)
         {

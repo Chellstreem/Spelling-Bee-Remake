@@ -6,23 +6,23 @@ namespace VFX
     public class ParticlePlayer
     {
         private readonly ParticlePool particlePool;
-        private readonly CoroutineRunner coroutineRunner;
+        private readonly CoroutineRunner runner;
 
         public ParticlePlayer(ParticlePool particlePool, CoroutineRunner coroutineRunner)
         {
             this.particlePool = particlePool;
-            this.coroutineRunner = coroutineRunner;
+            runner = coroutineRunner;
         }
 
-        public ParticleSystem Play(ParticleType particleType, Vector3 position, float scale = 1f)
+        public ParticleSystem Play(ParticleType type, Vector3 position, float scale = 1f)
         {
-            ParticleSystem particle = particlePool.GetParticle(particleType);
+            ParticleSystem particle = particlePool.GetParticle(type);
             particle.transform.position = position;
             particle.transform.localScale = Vector3.one * scale;
             particle.gameObject.SetActive(true);
             particle.Play();
 
-            coroutineRunner.StartCoroutine(ReturnToPoolAfterPlay(particleType, particle));
+            runner.Run(ReturnToPoolAfterPlay(type, particle));
             return particle;
         }
 

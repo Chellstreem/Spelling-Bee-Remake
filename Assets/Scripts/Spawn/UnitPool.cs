@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Spawn
 {
-    public class ObjectPool
+    public class UnitPool
     {
         private readonly DiContainer container;
         private readonly SpawnConfig config;
@@ -13,7 +13,7 @@ namespace Spawn
         private readonly Dictionary<GameObject, SpawnableObjectPool> returnMap = new();
         private Transform _poolHolderTransform;
 
-        public ObjectPool(DiContainer container, SpawnConfig config)
+        public UnitPool(DiContainer container, SpawnConfig config)
         {
             this.config = config;
             this.container = container;
@@ -21,7 +21,7 @@ namespace Spawn
 
         public void InitializePool()
         {
-            _poolHolderTransform = new GameObject("Object Pool").GetComponent<Transform>();
+            _poolHolderTransform = new GameObject("Unit Pool").GetComponent<Transform>();
 
             foreach (var spawnableObject in config.SpawnableObjects)
             {

@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Monkey State
   m_EditorClassIdentifier: 
   _stateType: 6
+  _enableInput: 1
+  _isCursorVisible: 0
   _isMovingState: 1
   _killUnits: 1
+  _cameraState: {fileID: 0}
   _allowedTransitions: 040000000300000002000000
   _spawnFlowInfos:
   - _delay: 0.5
@@ -23,6 +26,24 @@ MonoBehaviour:
       _weight: 1
       _spawnProbabilty: 1
     _spawnDistance: 6
+  - _delay: 0
+    _binders:
+    - _type: 7
+      _weight: 0.25
+      _spawnProbabilty: 1
+    - _type: 2
+      _weight: 0.15
+      _spawnProbabilty: 1
+    - _type: 1
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 3
+      _weight: 0.2
+      _spawnProbabilty: 1
+    - _type: 6
+      _weight: 0.2
+      _spawnProbabilty: 1
+    _spawnDistance: 12
   _duration: 5
   _nextState: 4
   _stateSound: {fileID: 0}

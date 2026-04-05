@@ -16,7 +16,7 @@ namespace Units
 
         protected Rigidbody _rigidbody;
         protected Collider _collider;
-        protected ObjectPool _objectPool;
+        protected UnitPool _objectPool;
         protected ParticlePlayer _particlePlayer;
         protected CoroutineRunner _coroutineRunner;
 
@@ -24,7 +24,7 @@ namespace Units
         public bool IsInteractable { get; protected set; } = true;
 
         [Inject]
-        public virtual void Construct(ObjectPool objectPool, ParticlePlayer particlePlayer, CoroutineRunner coroutineRunner)
+        public virtual void Construct(UnitPool objectPool, ParticlePlayer particlePlayer, CoroutineRunner coroutineRunner)
         {
             _objectPool = objectPool;
             _particlePlayer = particlePlayer;

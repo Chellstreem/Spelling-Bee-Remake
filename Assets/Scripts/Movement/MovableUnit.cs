@@ -11,7 +11,7 @@ namespace Movement
     {
         protected GameStateController _stateController;
         protected GameSpeedController _speedController;
-        protected ObjectPool _pool;
+        protected UnitPool _pool;
         protected GameConfig _config;
         private Coroutine _moveCoroutine;
 
@@ -20,7 +20,7 @@ namespace Movement
 
         [Inject]
         public virtual void Construct(GameStateController stateController, GameSpeedController speedController,
-         ObjectPool pool, GameConfig gameConfig)
+         UnitPool pool, GameConfig gameConfig)
         {
             _stateController = stateController;
             _speedController = speedController;

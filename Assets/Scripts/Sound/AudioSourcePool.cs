@@ -7,13 +7,13 @@ namespace Sound
     public class AudioSourcePool
     {
         private readonly SoundConfig config;
-        private readonly Transform poolHolder;
+        private readonly Transform cameraTransform;
         private readonly List<AudioSource> sources = new();
 
-        public AudioSourcePool(SoundConfig soundConfig)
+        public AudioSourcePool(SoundConfig soundConfig, Camera camera)
         {
             config = soundConfig;
-            poolHolder = new GameObject("Audio Source Pool Holder").transform;
+            cameraTransform = camera.transform;
             InitializePool();
         }
 
@@ -36,7 +36,8 @@ namespace Sound
         public AudioSource CreateSource()
         {
             GameObject gameObject = new("Audio Source");
-            gameObject.transform.SetParent(poolHolder);
+            gameObject.transform.SetParent(cameraTransform);
+            gameObject.transform.localPosition = Vector3.zero;
 
             var source = gameObject.AddComponent<AudioSource>();
             source.playOnAwake = false;

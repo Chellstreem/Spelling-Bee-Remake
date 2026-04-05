@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Missile State
   m_EditorClassIdentifier: 
   _stateType: 5
+  _enableInput: 1
+  _isCursorVisible: 0
   _isMovingState: 1
   _killUnits: 1
+  _cameraState: {fileID: 0}
   _allowedTransitions: 030000000400000002000000
   _spawnFlowInfos:
   - _delay: 1.5
@@ -25,22 +28,22 @@ MonoBehaviour:
     _spawnDistance: 12
   - _delay: 0
     _binders:
-    - _type: 1
-      _weight: 0.2
+    - _type: 7
+      _weight: 0.25
       _spawnProbabilty: 1
     - _type: 2
+      _weight: 0.15
+      _spawnProbabilty: 1
+    - _type: 1
       _weight: 0.2
       _spawnProbabilty: 1
     - _type: 3
       _weight: 0.2
       _spawnProbabilty: 1
-    - _type: 8
+    - _type: 6
       _weight: 0.2
       _spawnProbabilty: 1
-    - _type: 9
-      _weight: 0.2
-      _spawnProbabilty: 1
-    _spawnDistance: 13
+    _spawnDistance: 12
   _duration: 5
   _nextState: 3
   _stateSound: {fileID: 11400000, guid: 9cb6f4f0a9e330c468d753bfdcd4ab9b, type: 2}

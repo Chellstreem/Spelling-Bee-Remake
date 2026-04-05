@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Interactive State
   m_EditorClassIdentifier: 
   _stateType: 4
+  _enableInput: 1
+  _isCursorVisible: 0
   _isMovingState: 1
   _killUnits: 0
+  _cameraState: {fileID: 0}
   _allowedTransitions: 0100000002000000030000000500000006000000
   _spawnFlowInfos:
   - _delay: 0
@@ -50,14 +53,17 @@ MonoBehaviour:
   - _delay: 1
     _binders:
     - _type: 4
-      _weight: 0.8
+      _weight: 0.75
       _spawnProbabilty: 1
     - _type: 11
-      _weight: 0.1
+      _weight: 0.15
       _spawnProbabilty: 1
     - _type: 14
-      _weight: 0.1
+      _weight: 0.05
       _spawnProbabilty: 1
+    - _type: 12
+      _weight: 0.05
+      _spawnProbabilty: 0.85
     _spawnDistance: 10
   _stateSound: {fileID: 11400000, guid: 3cce625a0f459d54b9bedcce8ab3c113, type: 2}
   _loopSound: 1

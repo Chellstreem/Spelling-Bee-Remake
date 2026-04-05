@@ -9,202 +9,165 @@ using Units;
 using UserInterface;
 using Sound;
 using VFX;
-using SceneControl;
 
-public class MainStageInstaller : MonoInstaller
+namespace Installers
 {
-    [SerializeField] private GameConfig _gameConfig;
-
-    [Header("Scene References")]
-    [SerializeField] private Camera _mainCamera;
-    [SerializeField] private CoroutineRunner _coroutineRunner;
-    [SerializeField] private Player _player;
-
-    private GameStateController _stateController;
-    private UIBarController _uIBarController;
-    private GameSpeedController _speedController;
-    private ObjectPool _objectPool;
-    private Spawner _spawner;
-    private WordController _wordController;
-    private IInput _input;
-    private AudioSourcePool _audioSourcePool;
-    private SoundController _soundController;
-    private ParticlePlayer _particlePlayer;
-    private GameContext _gameContext;
-    private GameplayController _gameplayController;
-
-    public override void InstallBindings()
+    public class MainStageInstaller : MonoInstaller
     {
-        Container.Bind<GameConfig>()
-        .FromInstance(_gameConfig)
-        .AsSingle()
-        .NonLazy();
+        [SerializeField] private Camera _mainCamera;
+        [SerializeField] private Player _player;
 
-        Container.Bind<CoroutineRunner>()
-        .FromInstance(_coroutineRunner)
-        .AsSingle()
-        .NonLazy();
+        private GameConfig _gameConfig;
+        private CoroutineRunner _coroutineRunner;
+        private ParticlePlayer _particlePlayer;
+        private GameStateController _stateController;
+        private UIBarController _uIBarController;
+        private GameSpeedController _speedController;
+        private UnitPool _unitPool;
+        private Spawner _spawner;
+        private WordController _wordController;
+        private IInput _input;
+        private AudioSourcePool _audioSourcePool;
+        private SoundController _soundController;
+        private GameContext _gameContext;
+        private GameplayController _gameplayController;
 
-        InstallSceneControl();
-        InstallVFX();
-        InstallSound();
-        InstallInput();
-        InstallObjectPool();
-        InstallSpeedController();
-        InstallSpawner();
-        InstallWordController();
-        InstallGameStates();
-        InstallUIBarController();
-        InstallCamera();
-        InstallCursor();
+        [Inject]
+        public void Construct(GameConfig gameConfig, CoroutineRunner coroutineRunner, ParticlePlayer particlePlayer)
+        {
+            _gameConfig = gameConfig;
+            _coroutineRunner = coroutineRunner;
+            _particlePlayer = particlePlayer;
+        }
 
-        _gameContext = new(_stateController, _coroutineRunner, _objectPool, _spawner, _speedController, _audioSourcePool,
-            _particlePlayer, _wordController, _input);
+        public override void InstallBindings()
+        {
+            InstallSound();
+            InstallInput();
+            InstallObjectPool();
+            InstallSpeedController();
+            InstallSpawner();
+            InstallWordController();
+            InstallGameStates();
+            InstallUIBarController();
+            InstallCamera();
+            InstallCursor();
 
-        _stateController.Initialize(_gameContext);
+            _gameContext = new(_stateController, _coroutineRunner, _unitPool, _spawner, _speedController, _audioSourcePool,
+                _particlePlayer, _wordController, _input);
 
-        _gameplayController = new(_gameConfig, _player, _gameContext);
+            _stateController.Initialize(_gameContext);
 
-        Container.Bind<GameplayController>()
-           .FromInstance(_gameplayController)
-           .AsSingle()
-           .NonLazy();
-    }
+            _gameplayController = new(_gameConfig, _player, _gameContext);
 
-    private void InstallCamera()
-    {
-        Container.Bind<Camera>()
-           .FromInstance(_mainCamera)
-           .AsSingle()
-           .NonLazy();
+            Container.Bind<GameplayController>()
+               .FromInstance(_gameplayController)
+               .AsSingle()
+               .NonLazy();
+        }
 
-        CameraMover cameraMover = new(_coroutineRunner);
-        CameraController cameraController = new(_gameConfig.CameraConfig, _mainCamera, cameraMover, _stateController);
-    }
+        private void InstallCamera()
+        {
+            Container.Bind<Camera>()
+               .FromInstance(_mainCamera)
+               .AsSingle()
+               .NonLazy();
 
-    private void InstallSpeedController()
-    {
-        _speedController = new(_coroutineRunner, _gameConfig);
+            CameraMover cameraMover = new(_coroutineRunner);
+            CameraController cameraController = new(_gameConfig.CameraConfig, _mainCamera, cameraMover, _stateController);
+        }
 
-        Container.Bind<GameSpeedController>()
-            .FromInstance(_speedController)
-            .AsSingle()
-            .NonLazy();
-    }
+        private void InstallSpeedController()
+        {
+            _speedController = new(_coroutineRunner, _gameConfig);
 
-    private void InstallGameStates()
-    {
-        _stateController = new(_gameConfig.GameStateConfig);
+            Container.Bind<GameSpeedController>()
+                .FromInstance(_speedController)
+                .AsSingle()
+                .NonLazy();
+        }
 
+        private void InstallGameStates()
+        {
+            _stateController = new(_gameConfig.GameStateConfig);
 
-        Container.Bind<GameStateController>()
-            .FromInstance(_stateController)
-            .AsSingle()
-            .NonLazy();
-    }
+            Container.Bind<GameStateController>()
+                .FromInstance(_stateController)
+                .AsSingle()
+                .NonLazy();
+        }
 
-    private void InstallObjectPool()
-    {
-        _objectPool = new(Container, _gameConfig.SpawnConfig);
+        private void InstallObjectPool()
+        {
+            _unitPool = new(Container, _gameConfig.SpawnConfig);
 
-        Container.Bind<ObjectPool>()
-            .FromInstance(_objectPool)
-            .AsSingle()
-            .NonLazy();
-    }
+            Container.Bind<UnitPool>()
+                .FromInstance(_unitPool)
+                .AsSingle()
+                .NonLazy();
+        }
 
-    private void InstallSpawner()
-    {
-        _spawner = new(_objectPool);
+        private void InstallSpawner()
+        {
+            _spawner = new(_unitPool);
 
-        Container.Bind<Spawner>()
-            .FromInstance(_spawner)
-            .AsSingle()
-            .NonLazy();
-    }
+            Container.Bind<Spawner>()
+                .FromInstance(_spawner)
+                .AsSingle()
+                .NonLazy();
+        }
 
-    private void InstallWordController()
-    {
-        _wordController = new(_gameConfig.WordControlConfig);
+        private void InstallWordController()
+        {
+            _wordController = new(_gameConfig.WordControlConfig);
 
-        Container.Bind<WordController>()
-            .FromInstance(_wordController)
-            .AsSingle()
-            .NonLazy();
-    }
+            Container.Bind<WordController>()
+                .FromInstance(_wordController)
+                .AsSingle()
+                .NonLazy();
+        }
 
-    private void InstallInput()
-    {
-        _input = new DesktopInput();
+        private void InstallInput()
+        {
+            _input = new DesktopInput();
 
-        Container.Bind<IInput>()
-            .FromInstance(_input)
-            .AsSingle()
-            .NonLazy();
-    }
+            Container.Bind<IInput>()
+                .FromInstance(_input)
+                .AsSingle()
+                .NonLazy();
+        }
 
-    private void InstallUIBarController()
-    {
-        _uIBarController = new(_stateController);
+        private void InstallUIBarController()
+        {
+            _uIBarController = new(_stateController);
 
-        Container.Bind<UIBarController>()
-            .FromInstance(_uIBarController)
-            .AsSingle()
-            .NonLazy();
-    }
+            Container.Bind<UIBarController>()
+                .FromInstance(_uIBarController)
+                .AsSingle()
+                .NonLazy();
+        }
 
-    private void InstallSound()
-    {
-        _audioSourcePool = new(_gameConfig.SoundConfig);
+        private void InstallSound()
+        {
+            _audioSourcePool = new(_gameConfig.SoundConfig, _mainCamera);
 
-        Container.Bind<AudioSourcePool>()
-            .FromInstance(_audioSourcePool)
-            .AsSingle()
-            .NonLazy();
+            Container.Bind<AudioSourcePool>()
+                .FromInstance(_audioSourcePool)
+                .AsSingle()
+                .NonLazy();
 
-        _soundController = new(_audioSourcePool, _gameConfig.SoundConfig);
-    }
+            _soundController = new(_audioSourcePool, _gameConfig.SoundConfig);
+        }
 
-    private void InstallVFX()
-    {
-        ParticlePool pool = new(_gameConfig.ParticleConfig);
-        _particlePlayer = new(pool, _coroutineRunner);
+        private void InstallCursor()
+        {
+            CursorController controller = new(_stateController);
+        }
 
-        Container.Bind<ParticlePlayer>()
-            .FromInstance(_particlePlayer)
-            .AsSingle()
-            .NonLazy();
-
-        ObjectScaler scaler = new();
-
-        VisualEffectServices services = new();
-        services.RegisterService(_particlePlayer);
-        services.RegisterService(scaler);
-
-        Container.Bind<VisualEffectServices>()
-            .FromInstance(services)
-            .AsSingle()
-            .NonLazy();
-    }
-
-    private void InstallSceneControl()
-    {
-        SceneController sceneController = new(_gameConfig.SceneCollection);
-
-        Container.Bind<SceneController>()
-            .FromInstance(sceneController)
-            .AsSingle()
-            .NonLazy();
-    }
-
-    private void InstallCursor()
-    {
-        CursorController controller = new(_stateController);
-    }
-
-    private void OnDisable()
-    {
-        _soundController.Dispose();
-        _uIBarController.Dispose();
+        private void OnDisable()
+        {
+            _soundController.Dispose();
+            _uIBarController.Dispose();
+        }
     }
 }
