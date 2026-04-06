@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Spawn
 {
-    public class UnitPool
+    public class UnitPool : IService
     {
         private readonly DiContainer container;
         private readonly SpawnConfig config;

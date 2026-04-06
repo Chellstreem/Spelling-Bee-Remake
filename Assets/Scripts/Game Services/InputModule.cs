@@ -9,20 +9,18 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Input Module", menuName = "Scriptable Objects/Services/Input Module")]
     public class InputModule : GameModule
     {
-        public override void Install(GameContext context, MainStageInstaller installer, GameConfig config)
+        public override void Install(GameServices services, Installer installer, GameConfig config)
         {
-            var stateController = context.Get<GameStateController>();
-            CursorController controller = new(stateController);
+            CursorController controller = new(services.Get<GameStateController>());
 
             IInput input = new DesktopInput();
-            context.Register(input);
+            services.Register(input);
+            input.Disable();
 
             installer.DiContainer.Bind<IInput>()
                 .FromInstance(input)
                 .AsSingle()
                 .NonLazy();
-
-            input.Disable();
         }
     }
 }

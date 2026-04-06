@@ -2,7 +2,7 @@ using System;
 
 namespace InputControl
 {
-    public interface IInput
+    public interface IInput : IService
     {
         public event Action OnMoveUp;
         public event Action OnMoveDown;

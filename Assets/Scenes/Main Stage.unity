@@ -2302,9 +2302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700035642c7f304489e8bc520e0a2dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainCamera: {fileID: 45974215}
-  _player: {fileID: 1581081631}
-  _gameServices:
+  _camera: {fileID: 45974215}
+  _gameModules:
   - {fileID: 11400000, guid: e94ecdf0ee94970498290e37678b2d49, type: 2}
   - {fileID: 11400000, guid: 49e6d95fde0289d4d8919b2f728994ef, type: 2}
   - {fileID: 11400000, guid: 5a9cce5847239404f86968947950cb20, type: 2}
@@ -2314,6 +2313,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 869215ca477b2954a95537643567d5ba, type: 2}
   - {fileID: 11400000, guid: 8b72500b47d221a468c18f295a6e6092, type: 2}
   - {fileID: 11400000, guid: b046c36c4ce17b9458bcf6823983a9ef, type: 2}
+  _player: {fileID: 1581081631}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ namespace GameStates
             return false;
         }
 
-        public virtual GameState CreateGameState(GameContext context) => new(this, context);
+        public virtual GameState CreateGameState(GameServices context) => new(this, context);
 
         protected void PlayVisualEffect(ParticleEffectInfo info, GameState state)
         {

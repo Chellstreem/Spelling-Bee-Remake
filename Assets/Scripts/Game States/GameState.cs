@@ -7,11 +7,11 @@ namespace GameStates
     {
         private AudioSource _currentSource;
         public GameStateDefinition Definition { get; }
-        public GameContext Context { get; }
+        public GameServices Context { get; }
         public AudioSourcePool AudioSourcePool { get; }
         public Coroutine StateCoroutine { get; set; }
 
-        public GameState(GameStateDefinition definition, GameContext context)
+        public GameState(GameStateDefinition definition, GameServices context)
         {
             Definition = definition;
             Context = context;

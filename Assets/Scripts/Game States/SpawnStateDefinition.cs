@@ -9,12 +9,12 @@ namespace GameStates
         [Header("Spawn Settings")]
         [SerializeField] protected SpawnFlowInfo[] _spawnFlowInfos;
 
-        public override GameState CreateGameState(GameContext context)
+        public override GameState CreateGameState(GameServices context)
         {
             return new SpawnState(this, context);
         }
 
-        public virtual IEnumerator SpawnCoroutine(Spawner spawner, GameSpeedController speedController)
+        public virtual IEnumerator SpawnCoroutine(UnitSpawner spawner, GameSpeedController speedController)
         {
             float[] timers = new float[_spawnFlowInfos.Length];
 

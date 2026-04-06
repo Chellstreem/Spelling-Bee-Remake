@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace GameModules
 {
-    [CreateAssetMenu(fileName = "Speed Control Service", menuName = "Scriptable Objects/Services/Speed Control Service")]
+    [CreateAssetMenu(fileName = "Speed Control Module", menuName = "Scriptable Objects/Services/Speed Control Module")]
     public class SpeedControlService : GameModule
     {
-        public override void Install(GameContext gameContext, MainStageInstaller installer, GameConfig config)
+        public override void Install(GameServices services, Installer installer, GameConfig config)
         {
-            GameSpeedController speedController = new(gameContext.Get<CoroutineRunner>(), config);
-            gameContext.Register(speedController);
+            GameSpeedController speedController = new(services.Get<CoroutineRunner>(), config);
+            services.Register(speedController);
 
             installer.DiContainer.Bind<GameSpeedController>()
                 .FromInstance(speedController)

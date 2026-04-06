@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CoroutineRunner : MonoBehaviour
+public class CoroutineRunner : MonoBehaviour, IService
 {
     public Coroutine Run(IEnumerator coroutine)
     {

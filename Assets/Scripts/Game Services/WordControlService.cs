@@ -4,13 +4,13 @@ using WordControl;
 
 namespace GameModules
 {
-    [CreateAssetMenu(fileName = "Word Control Service", menuName = "Scriptable Objects/Services/Word Control Service")]
+    [CreateAssetMenu(fileName = "Word Control Module", menuName = "Scriptable Objects/Services/Word Control Module")]
     public class WordControlService : GameModule
     {
-        public override void Install(GameContext gameContext, MainStageInstaller installer, GameConfig config)
+        public override void Install(GameServices services, Installer installer, GameConfig config)
         {
             WordController wordController = new(config.WordControlConfig);
-            gameContext.Register(wordController);
+            services.Register(wordController);
 
             installer.DiContainer.Bind<WordController>()
                  .FromInstance(wordController)

@@ -7,12 +7,12 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Visual Effect Module", menuName = "Scriptable Objects/Services/Visual Effect Module")]
     public class VisualEffectModule : GameModule
     {
-        public override void Install(GameContext context, MainStageInstaller installer, GameConfig config)
+        public override void Install(GameServices gameServices, Installer installer, GameConfig config)
         {
             VisualEffectServices services = new();
 
             ParticlePool pool = new(config.ParticleConfig);
-            ParticlePlayer particlePlayer = new(pool, context.Get<CoroutineRunner>());
+            ParticlePlayer particlePlayer = new(pool, gameServices.Get<CoroutineRunner>());
             services.RegisterService(particlePlayer);
 
             ObjectScaler scaler = new();

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class GameSpeedController
+public class GameSpeedController : IService
 {
     private readonly CoroutineRunner runner;
     private readonly float originalSpeed;

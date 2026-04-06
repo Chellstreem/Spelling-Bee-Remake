@@ -1,17 +1,14 @@
 using System.Collections.Generic;
 using System;
-using System.Diagnostics;
-using Sound;
 
-public class GameContext
+public interface IService { }
+
+public class GameServices
 {
     private readonly Dictionary<Type, object> _services = new();
 
-    public void Register<T>(T service)
+    public void Register<T>(T service) where T : IService
     {
-        if (service.Equals(typeof(AudioSourcePool)))
-            UnityEngine.Debug.Log("sadad");
-
         var type = typeof(T);
 
         if (_services.ContainsKey(type))

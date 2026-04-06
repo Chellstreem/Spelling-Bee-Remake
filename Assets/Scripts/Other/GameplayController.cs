@@ -10,10 +10,10 @@ public class GameplayController
     private readonly GameConfig gameConfig;
     private readonly Player player;
     private readonly WordController wordController;
-    private readonly GameContext context;
+    private readonly GameServices context;
     private readonly GameStateController stateController;
 
-    public GameplayController(GameConfig config, Player player, GameContext context)
+    public GameplayController(GameConfig config, Player player, GameServices context)
     {
         gameConfig = config;
         this.player = player;

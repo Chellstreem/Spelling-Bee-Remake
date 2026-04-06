@@ -1,30 +1,28 @@
-using Installers;
-using Sound;
 using Spawn;
 using UnityEngine;
 using Zenject;
 
 namespace GameModules
 {
-    [CreateAssetMenu(fileName = "Spawn Service", menuName = "Scriptable Objects/Services/Spawn Service")]
-    public class SpawnService : GameModule
+    [CreateAssetMenu(fileName = "Spawn Module", menuName = "Scriptable Objects/Services/Spawn Module")]
+    public class SpawnModule : GameModule
     {
-        public override void Install(GameContext gameContext, MainStageInstaller installer, GameConfig config)
+        public override void Install(GameServices services, Installers.Installer installer, GameConfig config)
         {
             DiContainer container = installer.DiContainer;
 
             UnitPool unitPool = new(container, config.SpawnConfig);
-            gameContext.Register(unitPool);
+            services.Register(unitPool);
 
             installer.DiContainer.Bind<UnitPool>()
                 .FromInstance(unitPool)
                 .AsSingle()
                 .NonLazy();
 
-            Spawner spawner = new(unitPool);
-            gameContext.Register(spawner);
+            UnitSpawner spawner = new(unitPool);
+            services.Register(spawner);
 
-            container.Bind<Spawner>()
+            container.Bind<UnitSpawner>()
                 .FromInstance(spawner)
                 .AsSingle()
                 .NonLazy();

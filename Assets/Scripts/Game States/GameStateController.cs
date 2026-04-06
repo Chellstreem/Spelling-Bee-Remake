@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GameStates
 {
-    public class GameStateController
+    public class GameStateController : IService
     {
         private readonly GameStateConfig config;
         private readonly Dictionary<GameStateType, GameState> stateMap = new();
@@ -13,7 +13,7 @@ namespace GameStates
 
         public GameStateController(GameStateConfig config) => this.config = config;
 
-        public void Initialize(GameContext context)
+        public void Initialize(GameServices context)
         {
             foreach (var definition in config.GameStates)
             {

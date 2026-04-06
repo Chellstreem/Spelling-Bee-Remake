@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WordControl
 {
-    public class WordController
+    public class WordController : IService
     {
         private readonly WordControlConfig config;
         private string _availableSymbols;

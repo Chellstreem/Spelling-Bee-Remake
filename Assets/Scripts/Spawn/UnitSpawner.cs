@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Spawn
 {
-    public class Spawner
+    public class UnitSpawner : IService
     {
         private readonly UnitPool pool;
 
-        public Spawner(UnitPool unitPool) => pool = unitPool;
+        public UnitSpawner(UnitPool unitPool) => pool = unitPool;
 
         public GameObject SpawnObject(UnitType type)
         {

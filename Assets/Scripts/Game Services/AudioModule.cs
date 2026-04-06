@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace GameModules
 {
-    [CreateAssetMenu(fileName = "Audio Service", menuName = "Scriptable Objects/Services/Audio Service")]
-    public class AudioService : GameModule
+    [CreateAssetMenu(fileName = "Audio Module", menuName = "Scriptable Objects/Services/Audio Module")]
+    public class AudioModule : GameModule
     {
-        public override void Install(GameContext gameContext, MainStageInstaller installer, GameConfig config)
+        public override void Install(GameServices services, Installer installer, GameConfig config)
         {
             AudioSourcePool audioSourcePool = new(config.SoundConfig, installer.Camera);
-            gameContext.Register(audioSourcePool);
+            services.Register(audioSourcePool);
 
             installer.DiContainer.Bind<AudioSourcePool>()
                 .FromInstance(audioSourcePool)
