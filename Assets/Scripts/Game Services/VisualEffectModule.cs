@@ -7,7 +7,7 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Visual Effect Module", menuName = "Scriptable Objects/Services/Visual Effect Module")]
     public class VisualEffectModule : GameModule
     {
-        public override void Install(GameServices gameServices, Installer installer, GameConfig config)
+        public override void Install(GameServices gameServices, SceneInstaller installer, GameConfig config)
         {
             VisualEffectServices services = new();
 

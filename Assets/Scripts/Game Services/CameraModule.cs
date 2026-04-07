@@ -8,7 +8,7 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Camera Module", menuName = "Scriptable Objects/Services/Camera Module")]
     public class CameraModule : GameModule
     {
-        public override void Install(GameServices services, Installer installer, GameConfig config)
+        public override void Install(GameServices services, SceneInstaller installer, GameConfig config)
         {
             Camera camera = installer.Camera;
 

@@ -7,7 +7,7 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Spawn Module", menuName = "Scriptable Objects/Services/Spawn Module")]
     public class SpawnModule : GameModule
     {
-        public override void Install(GameServices services, Installers.Installer installer, GameConfig config)
+        public override void Install(GameServices services, Installers.SceneInstaller installer, GameConfig config)
         {
             DiContainer container = installer.DiContainer;
 

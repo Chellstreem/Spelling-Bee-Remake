@@ -1,17 +1,14 @@
 using UnityEngine;
-using Zenject;
 
 namespace Sound
 {
     public class SoundController
     {
-        private readonly AudioSourcePool pool;
         private readonly SoundEffectChannel _channel;
         private readonly AudioSource playOneShotSource;
 
         public SoundController(AudioSourcePool pool, SoundConfig config)
         {
-            this.pool = pool;
             _channel = config.Channel;
             playOneShotSource = pool.CreateSource();
 
@@ -28,9 +25,6 @@ namespace Sound
             playOneShotSource.PlayOneShot(soundUnit.Clip, soundUnit.Volume);
         }
 
-        public void Dispose()
-        {
-            _channel.OnSoundEffectRaised -= OnSoundEffectRaised;
-        }
+        public void Dispose() => _channel.OnSoundEffectRaised -= OnSoundEffectRaised;
     }
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Movement;
-using Units;
 using UnityEngine;
 
 namespace Animation
@@ -36,12 +33,7 @@ namespace Animation
             _unit.OnMovementChanged += SetAnimation;
         }
 
-        private void SetAnimation()
-        {
-            _animator.SetBool(moveBoolHash, _unit.IsMoving);
-            _animator.speed = _unit.IsMoving ? _moveSpeed : _idleSpeed;
-        }
-
+        private void SetAnimation() => _animator.SetBool(moveBoolHash, _unit.IsMoving);
         protected virtual void OnDisable() => _unit.OnMovementChanged -= SetAnimation;
     }
 }

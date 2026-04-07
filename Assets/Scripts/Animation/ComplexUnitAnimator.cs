@@ -9,7 +9,7 @@ namespace Animation
         [SerializeField, Min(0.01f)] private float _deathAnimationSpeed = 1f;
         [SerializeField, Min(0.01f)] private float _attackAnimationSpeed = 1f;
         [SerializeField, Min(0.01f)] private float _danceAnimationSpeed = 1f;
-        private ComplexUnit _interactable;
+        private ComplexUnit _complexUnit;
 
         private readonly int deathTriggerHash = Animator.StringToHash("Die");
         private readonly int deathSpeedHash = Animator.StringToHash("DeathSpeed");
@@ -22,7 +22,7 @@ namespace Animation
         {
             base.Awake();
 
-            _interactable = GetComponent<ComplexUnit>();
+            _complexUnit = GetComponent<ComplexUnit>();
 
             _animator.SetFloat(deathSpeedHash, _deathAnimationSpeed);
             _animator.SetFloat(attackSpeedHash, _attackAnimationSpeed);
@@ -33,9 +33,9 @@ namespace Animation
         {
             base.OnEnable();
 
-            _interactable.OnDeath += SetDeathAnimation;
-            _interactable.OnAttack += SetAttackAnimation;
-            _interactable.OnDance += SetDanceAnimation;
+            _complexUnit.OnDeath += SetDeathAnimation;
+            _complexUnit.OnAttack += SetAttackAnimation;
+            _complexUnit.OnDance += SetDanceAnimation;
         }
 
         private void SetDeathAnimation() => _animator.SetTrigger(deathTriggerHash);
@@ -45,9 +45,9 @@ namespace Animation
         protected override void OnDisable()
         {
             base.OnDisable();
-            _interactable.OnDeath -= SetDeathAnimation;
-            _interactable.OnAttack -= SetAttackAnimation;
-            _interactable.OnDance -= SetDanceAnimation;
+            _complexUnit.OnDeath -= SetDeathAnimation;
+            _complexUnit.OnAttack -= SetAttackAnimation;
+            _complexUnit.OnDance -= SetDanceAnimation;
         }
     }
 }

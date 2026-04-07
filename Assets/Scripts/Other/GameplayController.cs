@@ -9,24 +9,24 @@ public class GameplayController
 {
     private readonly GameConfig gameConfig;
     private readonly Player player;
+    private readonly GameServices services;
     private readonly WordController wordController;
-    private readonly GameServices context;
     private readonly GameStateController stateController;
 
-    public GameplayController(GameConfig config, Player player, GameServices context)
+    public GameplayController(GameConfig config, Player player, GameServices services)
     {
         gameConfig = config;
         this.player = player;
-        wordController = context.Get<WordController>();
-        this.context = context;
-        stateController = context.Get<GameStateController>();
+        this.services = services;
+        wordController = services.Get<WordController>();
+        stateController = services.Get<GameStateController>();
     }
 
     public void StartGame()
     {
         wordController.StartGame();
-        context.Get<UnitPool>().InitializePool();
-        context.Get<IInput>().Enable();
+        services.Get<UnitPool>().InitializePool();
+        services.Get<IInput>().Enable();
 
         stateController.SetState(GameStateType.Countdown);
         SubscribeToEvents();

@@ -422,6 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 91210442}
   - component: {fileID: 91210441}
+  - component: {fileID: 91210443}
   m_Layer: 0
   m_Name: Scene Context
   m_TagString: Untagged
@@ -442,7 +443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 91210443}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -475,6 +477,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &91210443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91210440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c76466a9bf562545b6b7503a2fc981a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 963194227}
+  _gameModules:
+  - {fileID: 11400000, guid: b046c36c4ce17b9458bcf6823983a9ef, type: 2}
 --- !u!1 &104486403
 GameObject:
   m_ObjectHideFlags: 0
@@ -5934,7 +5951,7 @@ GameObject:
   - component: {fileID: 1935105972}
   - component: {fileID: 1935105971}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7641,7 +7658,7 @@ GameObject:
   - component: {fileID: 5466187386620552756}
   - component: {fileID: 87563898296740979}
   m_Layer: 0
-  m_Name: Forest Background
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,9 +3,7 @@ using UnityEngine;
 namespace Spawn
 {
     public enum SpawnPositionType
-    {
-        Random, Fixed
-    }
+    { Random, Fixed }
 
     public abstract class SpawnPositioner : ScriptableObject
     {

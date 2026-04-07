@@ -1,4 +1,4 @@
-using DG.Tweening;
+using HealthSystem;
 using Sound;
 using UnityEngine;
 using VFX;
@@ -14,9 +14,7 @@ namespace Units
         [SerializeField] private Renderer _renderer;
         [Inject] private GameConfig _gameConfig;
 
-
         public Health Health { get; private set; }
-
         public override ComplexUnitType ComplexUnitType => ComplexUnitType.Player;
 
         protected override void Awake()

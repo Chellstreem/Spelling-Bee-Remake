@@ -2,6 +2,9 @@ using UnityEngine.SceneManagement;
 
 namespace SceneControl
 {
+    public enum SceneType
+    { Intro, MainMenu, MainStage }
+
     public class SceneController
     {
         private readonly SceneCollection sceneCollection;

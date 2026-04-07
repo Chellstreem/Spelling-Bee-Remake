@@ -19,6 +19,7 @@ MonoBehaviour:
   _soundConfig: {fileID: 11400000, guid: b56233ec6cde3c1439deb61f1fc64281, type: 2}
   _particleConfig: {fileID: 11400000, guid: f38655f963ee1ca459e5520702d8ab18, type: 2}
   _sceneCollection: {fileID: 11400000, guid: d042a8b39583aa049b8f0059b04bb1a8, type: 2}
+  _backgroundConfig: {fileID: 11400000, guid: c62fb42239d05a24f80956dc47ec2064, type: 2}
   _minGameSpeed: 5
   _gameSpeed: 20
   _moveDirection: {x: 0, y: 0, z: -1}

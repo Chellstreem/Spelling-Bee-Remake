@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ConstantRotation : MonoBehaviour
+public class RotationEffect : MonoBehaviour
 {
     [SerializeField] private float _speed = 120f;
     [SerializeField] private Vector3 _rotationAxis = Vector3.up;

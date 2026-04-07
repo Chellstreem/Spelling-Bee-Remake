@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Installers
 {
-    public abstract class Installer : MonoInstaller
+    public class SceneInstaller : MonoInstaller
     {
         [SerializeField] private Camera _camera;
         [SerializeField] private GameModule[] _gameModules;

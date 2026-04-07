@@ -7,7 +7,7 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Audio Module", menuName = "Scriptable Objects/Services/Audio Module")]
     public class AudioModule : GameModule
     {
-        public override void Install(GameServices services, Installer installer, GameConfig config)
+        public override void Install(GameServices services, SceneInstaller installer, GameConfig config)
         {
             AudioSourcePool audioSourcePool = new(config.SoundConfig, installer.Camera);
             services.Register(audioSourcePool);

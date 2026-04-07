@@ -1,4 +1,3 @@
-using CameraControl;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Camera State", menuName = "Scriptable Objects/Camera/Camera State")]

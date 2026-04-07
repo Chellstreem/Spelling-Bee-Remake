@@ -1,5 +1,3 @@
-using InputControl;
-using Units;
 using UnityEngine;
 using Zenject;
 

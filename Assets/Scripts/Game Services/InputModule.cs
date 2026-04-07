@@ -9,7 +9,7 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Input Module", menuName = "Scriptable Objects/Services/Input Module")]
     public class InputModule : GameModule
     {
-        public override void Install(GameServices services, Installer installer, GameConfig config)
+        public override void Install(GameServices services, SceneInstaller installer, GameConfig config)
         {
             CursorController controller = new(services.Get<GameStateController>());
 
