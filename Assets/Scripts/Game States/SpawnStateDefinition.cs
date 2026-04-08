@@ -1,6 +1,8 @@
 using System.Collections;
+using Sound;
 using Spawn;
 using UnityEngine;
+using VFX;
 
 namespace GameStates
 {
@@ -8,11 +10,6 @@ namespace GameStates
     {
         [Header("Spawn Settings")]
         [SerializeField] protected SpawnFlowInfo[] _spawnFlowInfos;
-
-        public override GameState CreateGameState(GameServices services)
-        {
-            return new SpawnState(this, services);
-        }
 
         public virtual IEnumerator SpawnCoroutine(UnitSpawner spawner, GameSpeedController speedController)
         {

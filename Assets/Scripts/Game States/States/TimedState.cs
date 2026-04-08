@@ -13,10 +13,8 @@ namespace GameStates
 
         public override void Enter(GameState state)
         {
-            base.Enter(state);
-
             SpawnState spawnState = state as SpawnState;
-            state.StateCoroutine = state.GameServices.Get<CoroutineRunner>().Run(StateCoroutine(spawnState));
+            state.StateCoroutine = state.Runner.Run(StateCoroutine(spawnState));
 
             if (_stateSound != null)
                 _stateSound.PlayOneShot();
@@ -29,7 +27,7 @@ namespace GameStates
             if (state.StateCoroutine != null)
             {
                 spawnState.StopSpawning();
-                state.GameServices.Get<CoroutineRunner>().Stop(state.StateCoroutine);
+                state.Runner.Stop(state.StateCoroutine);
                 state.StateCoroutine = null;
             }
         }
@@ -39,7 +37,7 @@ namespace GameStates
             spawnState.StartSpawning();
             yield return new WaitForSeconds(_duration);
             spawnState.StopSpawning();
-            spawnState.GameServices.Get<GameStateController>().SetState(_nextState);
+            spawnState.StateController.SetState(_nextState);
         }
     }
 }

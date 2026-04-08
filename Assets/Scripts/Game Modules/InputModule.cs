@@ -14,8 +14,11 @@ namespace GameModules
             CursorController controller = new(services.Get<GameStateController>());
 
             IInput input = new DesktopInput();
-            services.Register(input);
             input.Disable();
+
+            services.Register(input);
+
+            InputController inputController = new(input, services.Get<GameStateController>());
 
             installer.DiContainer.Bind<IInput>()
                 .FromInstance(input)

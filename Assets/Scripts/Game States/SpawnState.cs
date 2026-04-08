@@ -1,6 +1,7 @@
 using Sound;
 using Spawn;
 using UnityEngine;
+using VFX;
 using Zenject;
 
 namespace GameStates
@@ -8,21 +9,23 @@ namespace GameStates
     public class SpawnState : GameState
     {
         private readonly SpawnStateDefinition spawnDefinition;
-        public UnitSpawner Spawner { get; }
-        public GameSpeedController SpeedController { get; }
-        public CoroutineRunner Runner { get; }
+        public UnitSpawner UnitSpawner { get; private set; }
+        public GameSpeedController SpeedController { get; private set; }
         private Coroutine _spawnCoroutine;
 
-        public SpawnState(GameStateDefinition definition, GameServices context)
-        : base(definition, context)
+        public SpawnState(GameStateDefinition definition) : base(definition)
         {
             spawnDefinition = definition as SpawnStateDefinition;
-            Spawner = context.Get<UnitSpawner>();
-            SpeedController = context.Get<GameSpeedController>();
-            Runner = context.Get<CoroutineRunner>();
         }
 
-        public void StartSpawning() => _spawnCoroutine = Runner.Run(spawnDefinition.SpawnCoroutine(Spawner, SpeedController));
+        [Inject]
+        public void Construct(UnitSpawner spawner, GameSpeedController speedController)
+        {
+            UnitSpawner = spawner;
+            SpeedController = speedController;
+        }
+
+        public void StartSpawning() => _spawnCoroutine = Runner.Run(spawnDefinition.SpawnCoroutine(UnitSpawner, SpeedController));
 
         public void StopSpawning()
         {

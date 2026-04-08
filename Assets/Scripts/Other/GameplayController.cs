@@ -26,8 +26,8 @@ public class GameplayController
     {
         wordController.StartGame();
         services.Get<UnitPool>().InitializePool();
-        services.Get<IInput>().Enable();
 
+        stateController.Initialize();
         stateController.SetState(GameStateType.Countdown);
         SubscribeToEvents();
     }

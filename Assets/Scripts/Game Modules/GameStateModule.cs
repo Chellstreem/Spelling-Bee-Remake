@@ -9,10 +9,8 @@ namespace GameModules
     {
         public override void Install(GameServices services, SceneInstaller installer, GameConfig config)
         {
-            GameStateController stateController = new(config.GameStateConfig);
-
+            GameStateController stateController = new(config.GameStateConfig, installer.DiContainer);
             services.Register(stateController);
-            stateController.Initialize(services);
 
             installer.DiContainer.Bind<GameStateController>()
                 .FromInstance(stateController)

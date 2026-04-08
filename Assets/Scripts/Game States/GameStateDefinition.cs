@@ -1,4 +1,4 @@
-using InputControl;
+using Sound;
 using UnityEngine;
 using VFX;
 
@@ -17,25 +17,16 @@ namespace GameStates
         [SerializeField] private GameStateType[] _allowedTransitions;
 
         public GameStateType StateType => _stateType;
+        public bool EnableInput => _enableInput;
         public bool IsCursorVisible => _isCursorVisible;
         public bool IsMovingState => _isMovingState;
         public bool KillUnits => _killUnits;
         public CameraState CameraState => _cameraState;
 
-        public virtual void Enter(GameState state)
-        {
-            var input = state.GameServices.Get<IInput>();
-
-            if (_enableInput)
-            {
-                input.Enable();
-                return;
-            }
-
-            input.Disable();
-        }
-
+        public abstract void Enter(GameState state);
         public abstract void Exit(GameState state);
+
+        public virtual GameState CreateGameState() => new(this);
 
         public bool AllowTransitionTo(GameStateType newStateType)
         {
@@ -49,14 +40,12 @@ namespace GameStates
             return false;
         }
 
-        public virtual GameState CreateGameState(GameServices context) => new(this, context);
-
         protected void PlayVisualEffect(ParticleEffectInfo info, GameState state)
         {
             if (info.Type == ParticleType.None)
                 return;
 
-            state.GameServices.Get<ParticlePlayer>().Play(info.Type, info.Position, info.Scale);
+            state.ParticlePlayer.Play(info.Type, info.Position, info.Scale);
         }
     }
 }

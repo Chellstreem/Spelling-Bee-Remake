@@ -1,6 +1,5 @@
 using UnityEngine;
 using Units;
-using BackgroundControl;
 
 namespace Installers
 {

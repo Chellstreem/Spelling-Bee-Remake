@@ -1,5 +1,7 @@
 using Sound;
 using UnityEngine;
+using VFX;
+using Zenject;
 
 namespace GameStates
 {
@@ -7,15 +9,22 @@ namespace GameStates
     {
         private AudioSource _currentSource;
         public GameStateDefinition Definition { get; }
-        public GameServices GameServices { get; }
-        public AudioSourcePool AudioSourcePool { get; }
+        public GameStateController StateController { get; private set; }
+        public AudioSourcePool AudioSourcePool { get; private set; }
+        public ParticlePlayer ParticlePlayer { get; private set; }
+        public CoroutineRunner Runner { get; private set; }
         public Coroutine StateCoroutine { get; set; }
 
-        public GameState(GameStateDefinition definition, GameServices context)
+        public GameState(GameStateDefinition definition) => Definition = definition;
+
+        [Inject]
+        public void Construct(GameStateController stateController, AudioSourcePool audioSourcePool,
+         ParticlePlayer particlePlayer, CoroutineRunner runner)
         {
-            Definition = definition;
-            GameServices = context;
-            AudioSourcePool = context.Get<AudioSourcePool>();
+            StateController = stateController;
+            AudioSourcePool = audioSourcePool;
+            ParticlePlayer = particlePlayer;
+            Runner = runner;
         }
 
         public void Enter() => Definition.Enter(this);
@@ -28,6 +37,12 @@ namespace GameStates
             unit.Play(_currentSource, isLoop);
         }
 
-        public void StopSound() => _currentSource?.Stop();
+        public void StopSound()
+        {
+            if (_currentSource == null)
+                return;
+
+            _currentSource.Stop();
+        }
     }
 }

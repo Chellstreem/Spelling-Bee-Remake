@@ -14,8 +14,6 @@ namespace GameStates
 
         public override void Enter(GameState state)
         {
-            base.Enter(state);
-
             SpawnState spawnState = state as SpawnState;
             spawnState.StartSpawning();
 
