@@ -1,6 +1,5 @@
 using UnityEngine;
 using Movement;
-using System.Collections;
 
 namespace Units
 {
@@ -12,25 +11,21 @@ namespace Units
         private void OnEnable() => StartMoving();
         private void OnDisable() => StopMoving();
 
-        protected override IEnumerator MoveCoroutine()
+        protected override void Move()
         {
-            while (true)
+            Vector3 newPosition = transform.position;
+            float speed = _speedController.CurrentSpeed + _speedDelta;
+
+            newPosition += _config.MoveDirection * (speed * Time.deltaTime);
+
+            if (newPosition.z <= _config.ReturnThreshold)
             {
-                Vector3 newPosition = transform.position;
-                float speed = _speedController.CurrentSpeed + _speedDelta;
-
-                newPosition += _config.MoveDirection * (speed * Time.deltaTime);
-
-                if (newPosition.z <= _config.ReturnThreshold)
-                {
-                    StopMoving();
-                    _pool.ReturnObject(gameObject);
-                    yield break;
-                }
-
-                transform.position = newPosition;
-                yield return null;
+                StopMoving();
+                _pool.ReturnObject(gameObject);
+                return;
             }
+
+            transform.position = newPosition;
         }
     }
 }

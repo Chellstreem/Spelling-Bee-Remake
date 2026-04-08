@@ -7,7 +7,6 @@ namespace Installers
     public class MainStageInstaller : SceneInstaller
     {
         [SerializeField] private Player _player;
-        [SerializeField] private Background _background;
 
         public override void InstallBindings()
         {

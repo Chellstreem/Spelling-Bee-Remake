@@ -13,7 +13,6 @@ namespace Movement
         protected GameSpeedController _speedController;
         protected UnitPool _pool;
         protected GameConfig _config;
-        private Coroutine _moveCoroutine;
 
         public bool IsMoving { get; protected set; }
         public event Action OnMovementChanged;
@@ -28,25 +27,44 @@ namespace Movement
             _config = gameConfig;
         }
 
+        private void Update()
+        {
+            if (!IsMoving)
+                return;
+
+            Move();
+        }
+
+        protected virtual void Move()
+        {
+            Vector3 newPosition = transform.position;
+            newPosition += _config.MoveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
+
+            if (newPosition.z <= _config.ReturnThreshold)
+            {
+                StopMoving();
+                _pool.ReturnObject(gameObject);
+                return;
+            }
+
+            transform.position = newPosition;
+        }
+
         protected virtual void StartMoving()
         {
-            if (_moveCoroutine == null)
-            {
-                _moveCoroutine = StartCoroutine(MoveCoroutine());
-                IsMoving = true;
-                InvokeMovementChanged();
-            }
+            if (IsMoving)
+                return;
+
+            IsMoving = true;
+            InvokeMovementChanged();
         }
 
         protected virtual void StopMoving()
         {
-            if (_moveCoroutine == null)
+            if (!IsMoving)
                 return;
 
-            StopCoroutine(_moveCoroutine);
-            _moveCoroutine = null;
             IsMoving = false;
-
             InvokeMovementChanged();
         }
 
@@ -59,24 +77,5 @@ namespace Movement
         }
 
         protected void InvokeMovementChanged() => OnMovementChanged?.Invoke();
-
-        protected virtual IEnumerator MoveCoroutine()
-        {
-            while (true)
-            {
-                Vector3 newPosition = transform.position;
-                newPosition += _config.MoveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
-
-                if (newPosition.z <= _config.ReturnThreshold)
-                {
-                    StopMoving();
-                    _pool.ReturnObject(gameObject);
-                    yield break;
-                }
-
-                transform.position = newPosition;
-                yield return null;
-            }
-        }
     }
 }

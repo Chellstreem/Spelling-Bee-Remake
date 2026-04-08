@@ -1,7 +1,6 @@
 using InputControl;
 using Zenject;
 using UnityEngine;
-using VFX;
 using Units;
 
 namespace Movement
@@ -11,15 +10,13 @@ namespace Movement
     {
         private IInput _input;
         private ObjectMover _objectMover;
-        private GameConfig _gameConfig;
         private Player _player;
 
         [Inject]
-        public void Construct(IInput input, GameConfig config, CoroutineRunner runner)
+        public void Construct(IInput input, CoroutineRunner runner)
         {
             _input = input;
             _objectMover = new ObjectMover(runner);
-            _gameConfig = config;
         }
 
         private void OnEnable()
@@ -54,13 +51,15 @@ namespace Movement
             InvokeMovementChanged();
         }
 
+        protected override void Move() { }
+
         private void OnMoveUp()
         {
             if (!_player.StatusController.CurrentStatus.Definition.CanMove)
                 return;
 
-            Vector3 position = _gameConfig.PlayerUpperPosition;
-            _objectMover.MoveTo(transform, position, _gameConfig.PlayerSpeed, _gameConfig.PlayerPositionTolerance);
+            Vector3 position = _config.PlayerUpperPosition;
+            _objectMover.MoveTo(transform, position, _config.PlayerSpeed, _config.PlayerPositionTolerance);
         }
 
         private void OnMoveDown()
@@ -68,8 +67,8 @@ namespace Movement
             if (!_player.StatusController.CurrentStatus.Definition.CanMove)
                 return;
 
-            Vector3 position = _gameConfig.PlayerLowerPosition;
-            _objectMover.MoveTo(transform, position, _gameConfig.PlayerSpeed, _gameConfig.PlayerPositionTolerance);
+            Vector3 position = _config.PlayerLowerPosition;
+            _objectMover.MoveTo(transform, position, _config.PlayerSpeed, _config.PlayerPositionTolerance);
         }
 
         private void OnDisable()

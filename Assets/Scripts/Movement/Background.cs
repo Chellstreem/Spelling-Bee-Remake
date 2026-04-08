@@ -13,19 +13,15 @@ namespace Movement
             _stateController.OnStateChanged += OnStateChanged;
         }
 
-        protected override IEnumerator MoveCoroutine()
+        protected override void Move()
         {
-            while (true)
-            {
-                Vector3 newPosition = transform.position;
-                newPosition += _config.MoveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
+            Vector3 newPosition = transform.position;
+            newPosition += _config.MoveDirection * (_speedController.CurrentSpeed * Time.deltaTime);
 
-                if (newPosition.z < _config.ReturnThreshold)
-                    newPosition = _startPosition;
+            if (newPosition.z < _config.ReturnThreshold)
+                newPosition = _startPosition;
 
-                transform.position = newPosition;
-                yield return null;
-            }
+            transform.position = newPosition;
         }
 
         private void OnDisable() => _stateController.OnStateChanged -= OnStateChanged;
