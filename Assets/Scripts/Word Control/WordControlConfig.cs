@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace WordControl
 {
@@ -11,9 +12,11 @@ namespace WordControl
         [SerializeField] private int _maskedLetterThreshold = 5;
         [SerializeField] private int _maskedLetterMinNum = 1;
         [SerializeField] private int _maskedLetterMaxNum = 2;
+        [SerializeField] private List<string> _defaultWords;
 
         public int ExtraSymbolCount => _extraSymbolCount;
         public string ExtraSymbols => _availableExtraSymbols;
+        public List<string> DefaultWords => _defaultWords;
 
         public int GetLettersToMask(int wordLength)
         {

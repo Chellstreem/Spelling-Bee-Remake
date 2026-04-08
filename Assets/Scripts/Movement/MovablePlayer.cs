@@ -13,10 +13,12 @@ namespace Movement
         private Player _player;
 
         [Inject]
-        public void Construct(IInput input, CoroutineRunner runner)
+        public override void Construct(GameServices services, GameConfig gameConfig)
         {
-            _input = input;
-            _objectMover = new ObjectMover(runner);
+            base.Construct(services, gameConfig);
+
+            _input = services.Get<IInput>();
+            _objectMover = new ObjectMover(services.Get<CoroutineRunner>());
         }
 
         private void OnEnable()

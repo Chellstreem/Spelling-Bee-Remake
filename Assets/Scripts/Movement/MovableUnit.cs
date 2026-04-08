@@ -18,12 +18,11 @@ namespace Movement
         public event Action OnMovementChanged;
 
         [Inject]
-        public virtual void Construct(GameStateController stateController, GameSpeedController speedController,
-         UnitPool pool, GameConfig gameConfig)
+        public virtual void Construct(GameServices services, GameConfig gameConfig)
         {
-            _stateController = stateController;
-            _speedController = speedController;
-            _pool = pool;
+            _stateController = services.Get<GameStateController>();
+            _speedController = services.Get<GameSpeedController>();
+            _pool = services.Get<UnitPool>();
             _config = gameConfig;
         }
 

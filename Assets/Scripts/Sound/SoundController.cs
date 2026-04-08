@@ -24,7 +24,5 @@ namespace Sound
             playOneShotSource.pitch = soundUnit.Pitch;
             playOneShotSource.PlayOneShot(soundUnit.Clip, soundUnit.Volume);
         }
-
-        public void Dispose() => _channel.OnSoundEffectRaised -= OnSoundEffectRaised;
     }
 }

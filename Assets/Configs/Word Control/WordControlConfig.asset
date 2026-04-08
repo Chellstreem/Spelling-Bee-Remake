@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf7f0c2291a1654db27a5db0971526e, type: 3}
   m_Name: WordControlConfig
   m_EditorClassIdentifier: 
-  maskedLetterThreshold: 5
-  maskedLetterMinNum: 1
-  maskedLetterMaxNum: 2
+  _extraSymbolCount: 5
+  _availableExtraSymbols: _abcdefghijklmnopqrstuvwxyz
+  _maskedLetterThreshold: 5
+  _maskedLetterMinNum: 1
+  _maskedLetterMaxNum: 2
+  _defaultWords:
+  - chicken
+  - baby

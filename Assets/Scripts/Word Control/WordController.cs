@@ -9,7 +9,7 @@ namespace WordControl
         private readonly WordControlConfig config;
         private string _availableSymbols;
 
-        public static List<string> Words { get; set; } = new() { "robot", "chicken" };
+        public static List<string> Words { get; set; }
         public string CurrentWord => Words[CurrentWordIndex];
         public int CurrentWordIndex { get; private set; }
         public MaskedWord MaskedWord { get; private set; }
@@ -18,7 +18,11 @@ namespace WordControl
         public event Action OnWordCompleted;
         public event Action OnAllWordsComleted;
 
-        public WordController(WordControlConfig config) => this.config = config;
+        public WordController(WordControlConfig config)
+        {
+            this.config = config;
+            Words = config.DefaultWords;
+        }
 
         public void StartGame()
         {

@@ -25,6 +25,12 @@ namespace Installers
         public override void InstallBindings()
         {
             _services = new();
+
+            Container.Bind<GameServices>()
+                .FromInstance(_services)
+                .AsSingle()
+                .NonLazy();
+
             _services.Register(_coroutineRunner);
 
             foreach (var module in _gameModules)
