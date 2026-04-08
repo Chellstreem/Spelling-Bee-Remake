@@ -11,7 +11,7 @@ namespace SceneControl
 
         public SceneController(SceneCollection sceneCollection) => this.sceneCollection = sceneCollection;
 
-        public void SwitchScene(SceneType sceneName)
+        public void LoadScene(SceneType sceneName)
         {
             string scenePath = sceneCollection.GetScenePath(sceneName);
 

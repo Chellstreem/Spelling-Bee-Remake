@@ -14,7 +14,6 @@ namespace WordControl
         public int CurrentWordIndex { get; private set; }
         public MaskedWord MaskedWord { get; private set; }
 
-
         public event Action OnLetterRevealed;
         public event Action OnWordCompleted;
         public event Action OnAllWordsComleted;

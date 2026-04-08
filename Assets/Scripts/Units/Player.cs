@@ -1,4 +1,5 @@
 using HealthSystem;
+using InputControl;
 using Sound;
 using UnityEngine;
 using VFX;
@@ -12,21 +13,31 @@ namespace Units
         [SerializeField] private SoundUnit _damageSound;
         [SerializeField] private ParticleEffectInfo _deathEffect;
         [SerializeField] private Renderer _renderer;
-        [Inject] private GameConfig _gameConfig;
+        private GameConfig _config;
+        private IInput _input;
 
         public Health Health { get; private set; }
         public override ComplexUnitType ComplexUnitType => ComplexUnitType.Player;
 
+        [Inject]
+        public void Construct(GameConfig config, IInput input)
+        {
+            _config = config;
+            _input = input;
+        }
+
         protected override void Awake()
         {
             base.Awake();
-            Health = new(_gameConfig.PlayerMaxLives, _gameConfig.PlayerStartLives);
+            Health = new(_config.PlayerMaxLives, _config.PlayerStartLives);
         }
 
         private void OnEnable()
         {
-            transform.position = _gameConfig.PlayerLowerPosition;
+            transform.position = _config.PlayerLowerPosition;
             Health?.Refresh();
+
+            _input.OnGameOver += OnGameOver;
         }
 
         public override void HandleCollision(Unit other)
@@ -62,10 +73,16 @@ namespace Units
             _collider.isTrigger = false;
 
             if (_collider is BoxCollider boxCollider)
-                boxCollider.center = _gameConfig.PlayerDeathColliderCenter;
+                boxCollider.center = _config.PlayerDeathColliderCenter;
 
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = true;
+        }
+
+        private void OnGameOver()
+        {
+            if (!IsInteractable) return;
+            InvokeDeath();
         }
     }
 }

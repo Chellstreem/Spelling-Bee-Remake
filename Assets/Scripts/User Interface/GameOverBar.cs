@@ -17,8 +17,8 @@ namespace UserInterface
             _mainMenuButton.onClick.AddListener(GoToMainMenu);
         }
 
-        private void PlayAgain() => _sceneController.SwitchScene(SceneType.MainStage);
-        private void GoToMainMenu() => _sceneController.SwitchScene(SceneType.MainMenu);
+        private void PlayAgain() => _sceneController.LoadScene(SceneType.MainStage);
+        private void GoToMainMenu() => _sceneController.LoadScene(SceneType.MainMenu);
 
         private void OnDisable()
         {

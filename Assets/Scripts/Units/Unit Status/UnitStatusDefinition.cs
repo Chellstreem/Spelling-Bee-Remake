@@ -11,12 +11,14 @@ namespace Units
         [SerializeField] private bool _canTakeDamage = true;
         [SerializeField] private bool _canDealDamage = true;
         [SerializeField] private bool _canMove = true;
+        [SerializeField] private bool _isVisible = true;
         [SerializeField] protected ParticleEffectInfo _statusParticle;
 
         public UnitStatusType Type => _type;
         public bool CanTakeDamage => _canTakeDamage;
         public bool CanDealDamage => _canDealDamage;
         public bool CanMove => _canMove;
+        public bool IsVisible => _isVisible;
 
         public UnitStatus CreateStatus(ComplexUnit unit, CoroutineRunner runner) => new(unit, this, runner);
 
@@ -27,6 +29,12 @@ namespace Units
 
             if (status.Duration > 0)
                 status.StatusCoroutine = status.CoroutineRunner.Run(StatusCoroutine(status));
+
+            if (_isVisible)
+                return;
+
+            if (status.Unit is Player player)
+                player.SetVisible(false);
         }
 
         public virtual void Exit(UnitStatus status)
@@ -37,8 +45,10 @@ namespace Units
                 status.StatusEffect.gameObject.SetActive(false);
             }
 
-
             StopStatusCoroutine(status);
+
+            if (status.Unit is Player player)
+                player.SetVisible(true);
         }
 
         protected IEnumerator StatusCoroutine(UnitStatus status)

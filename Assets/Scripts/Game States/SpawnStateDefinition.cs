@@ -9,9 +9,9 @@ namespace GameStates
         [Header("Spawn Settings")]
         [SerializeField] protected SpawnFlowInfo[] _spawnFlowInfos;
 
-        public override GameState CreateGameState(GameServices context)
+        public override GameState CreateGameState(GameServices services)
         {
-            return new SpawnState(this, context);
+            return new SpawnState(this, services);
         }
 
         public virtual IEnumerator SpawnCoroutine(UnitSpawner spawner, GameSpeedController speedController)

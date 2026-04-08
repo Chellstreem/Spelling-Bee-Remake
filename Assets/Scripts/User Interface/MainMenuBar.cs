@@ -49,7 +49,7 @@ namespace UserInterface
             foreach (var word in WordController.Words)
                 Debug.Log(word);
 
-            _sceneController.SwitchScene(SceneType.MainStage);
+            _sceneController.LoadScene(SceneType.MainStage);
         }
 
         private List<string> CollectWords()

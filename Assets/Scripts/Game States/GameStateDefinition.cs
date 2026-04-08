@@ -24,7 +24,7 @@ namespace GameStates
 
         public virtual void Enter(GameState state)
         {
-            var input = state.Context.Get<IInput>();
+            var input = state.GameServices.Get<IInput>();
 
             if (_enableInput)
             {
@@ -56,7 +56,7 @@ namespace GameStates
             if (info.Type == ParticleType.None)
                 return;
 
-            state.Context.Get<ParticlePlayer>().Play(info.Type, info.Position, info.Scale);
+            state.GameServices.Get<ParticlePlayer>().Play(info.Type, info.Position, info.Scale);
         }
     }
 }

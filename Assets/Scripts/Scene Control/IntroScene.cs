@@ -22,7 +22,7 @@ namespace SceneControl
         private IEnumerator IntroCoroutine()
         {
             yield return new WaitForSeconds(_sceneDuration);
-            _sceneController.SwitchScene(SceneType.MainMenu);
+            _sceneController.LoadScene(SceneType.MainMenu);
         }
     }
 }
