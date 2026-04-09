@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Timed State", menuName = "Game States/Timed State")]
-    public class TimedState : SpawnStateDefinition
+    public class TimedState : GameStateDefinition
     {
         [SerializeField] private float _duration = 5f;
         [SerializeField] private GameStateType _nextState = GameStateType.Interactive;
@@ -13,8 +13,7 @@ namespace GameStates
 
         public override void Enter(GameState state)
         {
-            SpawnState spawnState = state as SpawnState;
-            state.StateCoroutine = state.Runner.Run(StateCoroutine(spawnState));
+            state.StateCoroutine = state.Runner.Run(StateCoroutine(state));
 
             if (_stateSound != null)
                 _stateSound.PlayOneShot();
@@ -22,17 +21,15 @@ namespace GameStates
 
         public override void Exit(GameState state)
         {
-            SpawnState spawnState = state as SpawnState;
-
             if (state.StateCoroutine != null)
             {
-                spawnState.StopSpawning();
+                state.StopSpawning();
                 state.Runner.Stop(state.StateCoroutine);
                 state.StateCoroutine = null;
             }
         }
 
-        private IEnumerator StateCoroutine(SpawnState spawnState)
+        private IEnumerator StateCoroutine(GameState spawnState)
         {
             spawnState.StartSpawning();
             yield return new WaitForSeconds(_duration);

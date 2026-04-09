@@ -6,7 +6,7 @@ using Zenject;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Untimed State", menuName = "Game States/Untimed State")]
-    public class IntimedState : SpawnStateDefinition
+    public class UntimedState : GameStateDefinition
     {
         [SerializeField] private SoundUnit _stateSound;
         [SerializeField] private bool _loopSound = true;
@@ -14,8 +14,7 @@ namespace GameStates
 
         public override void Enter(GameState state)
         {
-            SpawnState spawnState = state as SpawnState;
-            spawnState.StartSpawning();
+            state.StartSpawning();
 
             state.PlaySound(_stateSound, _loopSound);
             PlayVisualEffect(_stateEffect, state);
@@ -23,9 +22,7 @@ namespace GameStates
 
         public override void Exit(GameState state)
         {
-            SpawnState spawnState = state as SpawnState;
-            spawnState.StopSpawning();
-
+            state.StopSpawning();
             state.StopSound();
         }
     }

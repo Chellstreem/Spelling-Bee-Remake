@@ -1,5 +1,4 @@
 using CameraControl;
-using GameStates;
 using Installers;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Camera Module", menuName = "Scriptable Objects/Services/Camera Module")]
     public class CameraModule : GameModule
     {
-        public override void Install(GameServices services, SceneInstaller installer, GameConfig config)
+        public override void Install(SceneInstaller installer, GameConfig config)
         {
             Camera camera = installer.Camera;
 
@@ -17,10 +16,12 @@ namespace GameModules
                .AsSingle()
                .NonLazy();
 
-            CameraMover cameraMover = new(services.Get<CoroutineRunner>());
-            var stateController = services.Get<GameStateController>();
+            var cameraMover = installer.DiContainer.Instantiate<CameraMover>();
 
-            CameraController cameraController = new(config.CameraConfig, camera, cameraMover, stateController);
+            installer.DiContainer.Bind<CameraController>()
+                .AsSingle()
+                .WithArguments(cameraMover)
+                .NonLazy();
         }
     }
 }

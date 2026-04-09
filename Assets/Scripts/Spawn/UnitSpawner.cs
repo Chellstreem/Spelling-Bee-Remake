@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Spawn
 {
-    public class UnitSpawner : IService
+    public class UnitSpawner
     {
         private readonly UnitPool pool;
 

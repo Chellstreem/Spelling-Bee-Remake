@@ -10,10 +10,10 @@ namespace UserInterface
         [Header("Activation/Deactivation")]
         [SerializeField] private Ease _ease = Ease.Linear;
         [SerializeField] private float _duration = 1f;
-        protected VisualEffectServices _visualServices;
+        protected ObjectScaler _scaler;
 
         [Inject]
-        public void Construct(VisualEffectServices visualServices) => _visualServices = visualServices;
+        public void Construct(ObjectScaler scaler) => _scaler = scaler;
 
         public virtual void Activate()
         {
@@ -23,7 +23,7 @@ namespace UserInterface
                 return;
             }
 
-            _visualServices.GetService<ObjectScaler>().ActivateWithScale(transform, _duration, easeType: _ease);
+            _scaler.ActivateWithScale(transform, _duration, easeType: _ease);
         }
 
         public virtual void Deactivate()
@@ -34,7 +34,7 @@ namespace UserInterface
                 return;
             }
 
-            _visualServices.GetService<ObjectScaler>().DeactivateWithScale(transform, _duration, easeType: _ease);
+            _scaler.DeactivateWithScale(transform, _duration, easeType: _ease);
         }
     }
 }

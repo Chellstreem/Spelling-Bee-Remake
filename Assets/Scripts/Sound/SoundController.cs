@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Zenject;
 
 namespace Sound
 {
@@ -24,5 +26,7 @@ namespace Sound
             playOneShotSource.pitch = soundUnit.Pitch;
             playOneShotSource.PlayOneShot(soundUnit.Clip, soundUnit.Volume);
         }
+
+        public void Dispose() => _channel.OnSoundEffectRaised -= OnSoundEffectRaised;
     }
 }

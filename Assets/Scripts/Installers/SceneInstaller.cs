@@ -10,7 +10,6 @@ namespace Installers
         [SerializeField] private GameModule[] _gameModules;
         protected GameConfig _gameConfig;
         protected CoroutineRunner _coroutineRunner;
-        protected GameServices _services;
 
         public Camera Camera => _camera;
         public DiContainer DiContainer => Container;
@@ -24,17 +23,14 @@ namespace Installers
 
         public override void InstallBindings()
         {
-            _services = new();
-
-            Container.Bind<GameServices>()
-                .FromInstance(_services)
-                .AsSingle()
-                .NonLazy();
-
-            _services.Register(_coroutineRunner);
-
             foreach (var module in _gameModules)
-                module.Install(_services, this, _gameConfig);
+                module.Install(this, _gameConfig);
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var module in _gameModules)
+                module.Dispose(this);
         }
     }
 }

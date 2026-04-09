@@ -7,17 +7,25 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Audio Module", menuName = "Scriptable Objects/Services/Audio Module")]
     public class AudioModule : GameModule
     {
-        public override void Install(GameServices services, SceneInstaller installer, GameConfig config)
+        public override void Install(SceneInstaller installer, GameConfig config)
         {
             AudioSourcePool audioSourcePool = new(config.SoundConfig, installer.Camera);
-            services.Register(audioSourcePool);
 
             installer.DiContainer.Bind<AudioSourcePool>()
                 .FromInstance(audioSourcePool)
                 .AsSingle()
                 .NonLazy();
 
-            SoundController soundController = new(audioSourcePool, config.SoundConfig);
+            installer.DiContainer.Bind<SoundController>()
+                .FromInstance(new SoundController(audioSourcePool, config.SoundConfig))
+                .AsSingle()
+                .NonLazy();
+        }
+
+        public override void Dispose(SceneInstaller installer)
+        {
+            var controller = installer.DiContainer.Resolve<SoundController>();
+            controller.Dispose();
         }
     }
 }

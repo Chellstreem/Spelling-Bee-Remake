@@ -7,12 +7,11 @@ namespace GameModules
     [CreateAssetMenu(fileName = "Spawn Module", menuName = "Scriptable Objects/Services/Spawn Module")]
     public class SpawnModule : GameModule
     {
-        public override void Install(GameServices services, Installers.SceneInstaller installer, GameConfig config)
+        public override void Install(Installers.SceneInstaller installer, GameConfig config)
         {
             DiContainer container = installer.DiContainer;
 
             UnitPool unitPool = new(container, config.SpawnConfig);
-            services.Register(unitPool);
 
             installer.DiContainer.Bind<UnitPool>()
                 .FromInstance(unitPool)
@@ -20,7 +19,6 @@ namespace GameModules
                 .NonLazy();
 
             UnitSpawner spawner = new(unitPool);
-            services.Register(spawner);
 
             container.Bind<UnitSpawner>()
                 .FromInstance(spawner)

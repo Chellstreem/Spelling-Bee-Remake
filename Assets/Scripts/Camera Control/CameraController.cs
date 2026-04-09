@@ -10,9 +10,9 @@ namespace CameraControl
         private readonly CameraMover cameraMover;
         private readonly GameStateController stateController;
 
-        public CameraController(CameraConfig config, Camera camera, CameraMover cameraMover, GameStateController stateController)
+        public CameraController(GameConfig config, Camera camera, CameraMover cameraMover, GameStateController stateController)
         {
-            this.config = config;
+            this.config = config.CameraConfig;
             cameraTransfrom = camera.transform;
             this.cameraMover = cameraMover;
             this.stateController = stateController;

@@ -11,11 +11,9 @@ namespace Installers
         {
             base.InstallBindings();
 
-            GameplayController gameplayController = new(_gameConfig, _player, _services);
-
             Container.Bind<GameplayController>()
-               .FromInstance(gameplayController)
                .AsSingle()
+               .WithArguments(_player)
                .NonLazy();
         }
     }

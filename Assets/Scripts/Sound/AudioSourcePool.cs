@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sound
 {
-    public class AudioSourcePool : IService
+    public class AudioSourcePool
     {
         private readonly SoundConfig config;
         private readonly Transform cameraTransform;

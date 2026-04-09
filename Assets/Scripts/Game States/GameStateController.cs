@@ -4,7 +4,7 @@ using Zenject;
 
 namespace GameStates
 {
-    public class GameStateController : IService
+    public class GameStateController
     {
         private readonly GameStateConfig config;
         private readonly DiContainer container;
