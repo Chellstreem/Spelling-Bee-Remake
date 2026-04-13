@@ -16,11 +16,12 @@ namespace GameModules
                .AsSingle()
                .NonLazy();
 
-            var cameraMover = installer.DiContainer.Instantiate<CameraMover>();
+            var cameraMover = installer.DiContainer.Bind<CameraMover>()
+                .AsSingle()
+                .NonLazy();
 
             installer.DiContainer.Bind<CameraController>()
                 .AsSingle()
-                .WithArguments(cameraMover)
                 .NonLazy();
         }
     }

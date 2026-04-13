@@ -7,6 +7,7 @@ namespace UserInterface
 {
     public class CountDownBar : MainStageBar
     {
+        [Tooltip("Text element used to display countdown numbers and messages")]
         [SerializeField] private TextMeshProUGUI _text;
         private CountdownState _state;
 

@@ -17,8 +17,24 @@ namespace GameModules
                 .AsSingle()
                 .NonLazy();
 
-            installer.DiContainer.Instantiate<InputController>();
-            installer.DiContainer.Instantiate<CursorController>();
+            installer.DiContainer
+                .Bind<InputController>()
+                .AsSingle()
+                .NonLazy();
+
+            installer.DiContainer
+                .Bind<CursorController>()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        public override void Dispose(SceneInstaller installer)
+        {
+            var inputController = installer.DiContainer.Resolve<InputController>();
+            inputController.Dispose();
+
+            var cursorController = installer.DiContainer.Resolve<CursorController>();
+            cursorController.Dispose();
         }
     }
 }

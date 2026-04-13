@@ -6,6 +6,7 @@ namespace BackgroundControl
     [RequireComponent(typeof(SpriteRenderer))]
     public class Background : MonoBehaviour
     {
+        [Tooltip("Mesh renderer used for ground or foreground elements of the background")]
         [SerializeField] private MeshRenderer _groundRenderer;
         private SpriteRenderer _spriteRenderer;
         private BackgroundConfig _config;

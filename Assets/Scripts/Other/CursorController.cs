@@ -38,5 +38,7 @@ public class CursorController
         bool isVisible = stateController.CurrentState.Definition.IsCursorVisible;
         SetActive(isVisible);
     }
+
+    public void Dispose() => stateController.OnStateChanged -= OnStateChanged;
 }
 

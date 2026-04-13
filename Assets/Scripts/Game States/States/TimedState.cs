@@ -5,10 +5,13 @@ using UnityEngine;
 namespace GameStates
 {
     [CreateAssetMenu(fileName = "Timed State", menuName = "Game States/Timed State")]
-    public class TimedState : GameStateDefinition
+    public class TimedState : SpawnStateDefinition
     {
+        [Tooltip("Duration of the timed state in seconds")]
         [SerializeField] private float _duration = 5f;
+        [Tooltip("State to transition to when this timed state completes")]
         [SerializeField] private GameStateType _nextState = GameStateType.Interactive;
+        [Tooltip("Optional sound to play while this state is active")]
         [SerializeField] private SoundUnit _stateSound;
 
         public override void Enter(GameState state)
@@ -21,20 +24,24 @@ namespace GameStates
 
         public override void Exit(GameState state)
         {
+            var spawnState = state as SpawnState;
+
             if (state.StateCoroutine != null)
             {
-                state.StopSpawning();
+                StopSpawning(spawnState);
                 state.Runner.Stop(state.StateCoroutine);
                 state.StateCoroutine = null;
             }
         }
 
-        private IEnumerator StateCoroutine(GameState spawnState)
+        private IEnumerator StateCoroutine(GameState state)
         {
-            spawnState.StartSpawning();
+            var spawnState = state as SpawnState;
+
+            StartSpawning(spawnState);
             yield return new WaitForSeconds(_duration);
-            spawnState.StopSpawning();
-            spawnState.StateController.SetState(_nextState);
+            StopSpawning(spawnState);
+            state.StateController.SetState(_nextState);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Installers
     [CreateAssetMenu(fileName = "Project Installer", menuName = "Scriptable Objects/Project Installer")]
     public class ProjectInstaller : ScriptableObjectInstaller
     {
+        [Tooltip("Project-wide configuration asset injected into the DI container")]
         [SerializeField] private GameConfig _config;
 
         public override void InstallBindings()

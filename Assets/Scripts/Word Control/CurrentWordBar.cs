@@ -7,7 +7,9 @@ using Zenject;
 public class CurrentWordBar : MainStageBar
 {
     [Header("References")]
+    [Tooltip("Text element that displays the currently active masked word")]
     [SerializeField] private TextMeshProUGUI _currentWordText;
+    [Tooltip("Text element that displays the current word index / total count")]
     [SerializeField] private TextMeshProUGUI _currentIndexText;
     private WordController _wordController;
     private string _victoryMessage;

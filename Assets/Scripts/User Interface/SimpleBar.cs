@@ -8,7 +8,9 @@ namespace UserInterface
     public class SimpleBar : MonoBehaviour
     {
         [Header("Activation/Deactivation")]
+        [Tooltip("Easing type applied to activation/deactivation animations")]
         [SerializeField] private Ease _ease = Ease.Linear;
+        [Tooltip("Duration in seconds for activation/deactivation animations")]
         [SerializeField] private float _duration = 1f;
         protected ObjectScaler _scaler;
 

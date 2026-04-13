@@ -6,6 +6,7 @@ namespace UserInterface
 {
     public class MainStageBar : SimpleBar
     {
+        [Tooltip("Game states for which this bar should be active (shown)")]
         [SerializeField] private GameStateType[] _activationStates;
 
         public GameStateType[] ActivationStates => _activationStates;

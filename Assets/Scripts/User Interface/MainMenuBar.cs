@@ -13,16 +13,22 @@ namespace UserInterface
 {
     public class MainMenuBar : MonoBehaviour
     {
+        [Tooltip("Number of word input fields that are active when the menu is first shown")]
         [SerializeField] private int _activeFieldsOnStart = 1;
         [Inject] private SceneController _sceneController;
 
         [Header("Buttons")]
+        [Tooltip("Button that adds an extra word input field when clicked")]
         [SerializeField] private Button _addWordButton;
+        [Tooltip("Button that deletes the last active input field when clicked")]
         [SerializeField] private Button _deleteButton;
+        [Tooltip("Button that starts the game using the entered words")]
         [SerializeField] private Button _startButton;
+        [Tooltip("Button that quits the application or stops play mode in editor")]
         [SerializeField] private Button _exitButton;
 
         [Header("Input Fields")]
+        [Tooltip("Array of word input UI fields available in the main menu")]
         [SerializeField] private InputField[] _inputFields;
         private int _activeFieldIndex;
 
@@ -45,9 +51,6 @@ namespace UserInterface
                 return;
 
             WordController.Words = words;
-
-            foreach (var word in WordController.Words)
-                Debug.Log(word);
 
             _sceneController.LoadScene(SceneType.MainStage);
         }

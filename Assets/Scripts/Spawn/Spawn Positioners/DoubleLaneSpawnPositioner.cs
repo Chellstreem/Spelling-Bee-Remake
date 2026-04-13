@@ -6,8 +6,11 @@ namespace Spawn
     [CreateAssetMenu(fileName = "Double Lane Positioner", menuName = "Scriptable Objects/Spawn/Double Lane Positioner")]
     public class DoubleLaneSpawnPositioner : SpawnPositioner
     {
+        [Tooltip("X coordinate used for both lanes when spawning")]
         [SerializeField] private float _xPosition = 3f;
+        [Tooltip("Y coordinate for the top lane spawn position")]
         [SerializeField] private float _topYPosition = 0f;
+        [Tooltip("Y coordinate for the bottom lane spawn position")]
         [SerializeField] private float _bottomYPosition = 0f;
         private Vector3 _originalSpawnPosition;
 

@@ -7,11 +7,17 @@ namespace Units
     [CreateAssetMenu(fileName = "Unit Status", menuName = "Scriptable Objects/Unit Statuses/Unit Status")]
     public class UnitStatusDefinition : ScriptableObject
     {
+        [Tooltip("Status type identifier")]
         [SerializeField] private UnitStatusType _type;
+        [Tooltip("Whether units in this status can receive damage")]
         [SerializeField] private bool _canTakeDamage = true;
+        [Tooltip("Whether units in this status can deal damage")]
         [SerializeField] private bool _canDealDamage = true;
+        [Tooltip("Whether units in this status are allowed to move")]
         [SerializeField] private bool _canMove = true;
+        [Tooltip("Whether units in this status are visible")]
         [SerializeField] private bool _isVisible = true;
+        [Tooltip("Optional particle effect played while unit has this status")]
         [SerializeField] protected ParticleEffectInfo _statusParticle;
 
         public UnitStatusType Type => _type;

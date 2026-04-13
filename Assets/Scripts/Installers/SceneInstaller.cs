@@ -6,7 +6,9 @@ namespace Installers
 {
     public class SceneInstaller : MonoInstaller
     {
+        [Tooltip("Main scene camera reference exposed in the inspector")]
         [SerializeField] private Camera _camera;
+        [Tooltip("List of GameModule assets that will be installed for this scene")]
         [SerializeField] private GameModule[] _gameModules;
         protected GameConfig _gameConfig;
         protected CoroutineRunner _coroutineRunner;

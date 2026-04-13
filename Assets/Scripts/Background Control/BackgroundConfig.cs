@@ -5,6 +5,7 @@ namespace BackgroundControl
     [CreateAssetMenu(fileName = "Background Config", menuName = "Scriptable Objects/Background Config")]
     public class BackgroundConfig : ScriptableObject
     {
+        [Tooltip("Array of background entries available to the game")]
         [SerializeField] private BackgroundInfo[] _infos;
 
         public BackgroundInfo[] Infos => _infos;

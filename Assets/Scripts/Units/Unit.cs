@@ -10,8 +10,11 @@ namespace Units
     [RequireComponent(typeof(Rigidbody))]
     public abstract class Unit : MonoBehaviour
     {
+        [Tooltip("Type identifier for this unit used in collision and spawn logic")]
         [SerializeField] protected UnitType _unitType;
+        [Tooltip("List of unit types this unit can interact with via collisions")]
         [SerializeField] private UnitType[] _allowedCollisions;
+        [Tooltip("Optional sound played by this unit when triggered")]
         [SerializeField] protected SoundUnit _unitSound;
 
         protected Rigidbody _rigidbody;

@@ -22,5 +22,7 @@ namespace InputControl
             else
                 input.Disable();
         }
+
+        public void Dispose() => stateController.OnStateChanged -= OnStateChanged;
     }
 }

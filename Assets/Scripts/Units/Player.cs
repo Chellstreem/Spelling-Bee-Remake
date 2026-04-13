@@ -10,8 +10,11 @@ namespace Units
     public class Player : ComplexUnit, IHealth
     {
         [Space(15f)]
+        [Tooltip("Sound played when the player takes damage")]
         [SerializeField] private SoundUnit _damageSound;
+        [Tooltip("Particle effect played when the player dies")]
         [SerializeField] private ParticleEffectInfo _deathEffect;
+        [Tooltip("Renderer used to toggle player visibility")]
         [SerializeField] private Renderer _renderer;
         private GameConfig _config;
         private IInput _input;

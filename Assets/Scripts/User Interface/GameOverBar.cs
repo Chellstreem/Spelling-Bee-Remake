@@ -7,7 +7,9 @@ namespace UserInterface
 {
     public class GameOverBar : MainStageBar
     {
+        [Tooltip("Button that restarts the current gameplay scene when clicked")]
         [SerializeField] private Button _playAgainButton;
+        [Tooltip("Button that returns the player to the main menu when clicked")]
         [SerializeField] private Button _mainMenuButton;
         [Inject] private SceneController _sceneController;
 

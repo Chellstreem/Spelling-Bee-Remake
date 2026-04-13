@@ -6,8 +6,11 @@ namespace Animation
     [RequireComponent(typeof(ComplexUnit))]
     public class ComplexUnitAnimator : MovableUnitAnimator
     {
+        [Tooltip("Playback speed multiplier for death animation")]
         [SerializeField, Min(0.01f)] private float _deathAnimationSpeed = 1f;
+        [Tooltip("Playback speed multiplier for attack animation")]
         [SerializeField, Min(0.01f)] private float _attackAnimationSpeed = 1f;
+        [Tooltip("Playback speed multiplier for dance animation")]
         [SerializeField, Min(0.01f)] private float _danceAnimationSpeed = 1f;
         private ComplexUnit _complexUnit;
 

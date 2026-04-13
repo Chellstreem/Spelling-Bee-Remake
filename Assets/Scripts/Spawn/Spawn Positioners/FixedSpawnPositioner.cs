@@ -6,7 +6,9 @@ namespace Spawn
     [CreateAssetMenu(fileName = "Fixed Spawn Positioner", menuName = "Scriptable Objects/Spawn/Fixed Spawn Positioner")]
     public class FixedSpawnPositioner : SpawnPositioner
     {
+        [Tooltip("Fixed x coordinate used for spawned objects")]
         [SerializeField] private float _xPosition = 3f;
+        [Tooltip("Fixed y coordinate used for spawned objects")]
         [SerializeField] private float _yPosition = 0f;
         private Vector3 _originalSpawnPosition;
 

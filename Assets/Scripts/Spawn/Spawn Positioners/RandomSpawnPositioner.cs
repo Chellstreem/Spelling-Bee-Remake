@@ -7,8 +7,11 @@ namespace Spawn
     public class RandomSpawnPositioner : SpawnPositioner
     {
         [Header("Spawn Range")]
+        [Tooltip("Minimum x coordinate for random spawn range")]
         [SerializeField] private float _minX;
+        [Tooltip("Maximum x coordinate for random spawn range")]
         [SerializeField] private float _maxX;
+        [Tooltip("Y coordinate used for spawned objects")]
         [SerializeField] private float _yPosition;
         private Vector3 _originalSpawnPosition;
 

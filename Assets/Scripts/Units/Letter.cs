@@ -9,12 +9,17 @@ namespace Units
 {
     public class Letter : Unit
     {
+        [Tooltip("Damage applied to the player when this letter is incorrect (used for enemy letters)")]
         [SerializeField] private int _damage = 1;
+        [Tooltip("Sound played when this letter is selected and is correct")]
         [SerializeField] private SoundUnit _currectValueSound;
+        [Tooltip("Sound played when this letter is selected and is incorrect")]
         [SerializeField] private SoundUnit _incorrectValueSound;
 
         [Header("VFX")]
+        [Tooltip("Particle effect played when the letter is correct")]
         [SerializeField] private ParticleEffectInfo _correctValueEffect;
+        [Tooltip("Particle effect played when the letter is incorrect")]
         [SerializeField] private ParticleEffectInfo _wrongValueEffect;
         [Inject] private WordController _wordController;
 

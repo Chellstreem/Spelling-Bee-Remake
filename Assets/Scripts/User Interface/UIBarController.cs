@@ -9,6 +9,7 @@ namespace UserInterface
     public class UIBarController
     {
         private readonly GameStateController stateController;
+        [Tooltip("List of UI bars that will be toggled based on game state")]
         [SerializeField] private List<MainStageBar> _uIBars = new();
 
         public UIBarController(GameStateController stateController)

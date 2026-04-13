@@ -8,7 +8,9 @@ namespace Animation
     public class MovableUnitAnimator : MonoBehaviour
     {
         [Header("Speed Settings")]
+        [Tooltip("Playback speed multiplier for idle animation")]
         [SerializeField, Min(0.01f)] private float _idleSpeed = 1f;
+        [Tooltip("Playback speed multiplier for move animation")]
         [SerializeField, Min(0.01f)] private float _moveSpeed = 1f;
 
         protected MovableUnit _unit;

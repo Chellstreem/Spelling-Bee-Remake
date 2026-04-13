@@ -6,6 +6,7 @@ namespace SceneControl
 {
     public class IntroScene : MonoBehaviour
     {
+        [Tooltip("Duration in seconds the intro scene stays visible before loading next scene")]
         [SerializeField] private float _sceneDuration;
         private CoroutineRunner _runner;
         private SceneController _sceneController;

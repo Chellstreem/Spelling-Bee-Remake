@@ -21,7 +21,9 @@ namespace WordControl
         public WordController(WordControlConfig config)
         {
             this.config = config;
-            Words = config.DefaultWords;
+
+            if (Words == null)
+                Words = config.DefaultWords;
         }
 
         public void StartGame()

@@ -14,14 +14,19 @@ namespace Units
 
     public abstract class ComplexUnit : Unit
     {
+        [Tooltip("Damage value applied by this unit when it attacks")]
         [SerializeField] protected int _damage = 0;
 
         [Header("Statuses")]
+        [Tooltip("Default status assigned to the unit on spawn")]
         [SerializeField] private UnitStatusType _defaultStatus = UnitStatusType.Normal;
+        [Tooltip("Definitions of status types available to this unit")]
         [SerializeField] private UnitStatusDefinition[] _statuses;
 
         [Header("Sound")]
+        [Tooltip("Sound played when the unit performs an attack")]
         [SerializeField] private SoundUnit _attackSound;
+        [Tooltip("Sound played when the unit dies")]
         [SerializeField] private SoundUnit _deathSound;
 
         public abstract ComplexUnitType ComplexUnitType { get; }

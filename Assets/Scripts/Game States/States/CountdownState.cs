@@ -7,14 +7,21 @@ namespace GameStates
     [CreateAssetMenu(fileName = "Countdown State", menuName = "Game States/Countdown State")]
     public class CountdownState : GameStateDefinition
     {
+        [Tooltip("Number of steps in the countdown")]
         [SerializeField] private int _count = 3;
+        [Tooltip("Font size used for the first countdown number")]
         [SerializeField] private int _startFontSize = 320;
+        [Tooltip("Amount to decrease font size on each countdown step")]
         [SerializeField] private int _fontSizeDecrement = 45;
+        [Tooltip("Font size used for the final message")]
         [SerializeField] private int _finalFontSize = 350;
+        [Tooltip("Text displayed on countdown completion (e.g. GO!)")]
         [SerializeField] private string _startText = "GO!";
 
         [Header("Sound")]
+        [Tooltip("Sound played each tick of the countdown")]
         [SerializeField] private SoundUnit _tickSound;
+        [Tooltip("Sound played on countdown start/completion")]
         [SerializeField] private SoundUnit _startSound;
 
         private readonly WaitForSeconds wait = new(1f);

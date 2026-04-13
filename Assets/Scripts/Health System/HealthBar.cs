@@ -9,8 +9,11 @@ namespace HealthSystem
     public class HealthBar : MainStageBar
     {
         [Header("Health Bar")]
+        [Tooltip("Image component representing the life fill amount")]
         [SerializeField] private Image _lifeBarImage;
+        [Tooltip("Reference to the unit whose health is shown by this bar")]
         [SerializeField] private ComplexUnit _unit;
+        [Tooltip("Speed multiplier controlling how fast the bar interpolates to the new value")]
         [SerializeField] private float _transitionSpeed = 5f;
         private Health _health;
         private Coroutine _fillCoroutine;

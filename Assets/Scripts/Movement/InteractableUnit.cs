@@ -7,6 +7,7 @@ namespace Movement
 {
     public class InteractableUnit : MovableUnit
     {
+        [Tooltip("Particle effect played when this unit returns or is removed from the scene")]
         [SerializeField] private ParticleEffectInfo _returnEffect;
         [Inject] private ParticlePlayer _particlePlayer;
 
