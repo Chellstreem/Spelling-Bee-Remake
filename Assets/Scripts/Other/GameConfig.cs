@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using CameraControl;
+using CameraModule;
 using WordControl;
 using VFX;
 using Units;

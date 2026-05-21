@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace CameraControl
+namespace CameraModule
 {
     public class CameraMover
     {

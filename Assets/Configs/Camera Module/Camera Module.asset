@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd06aaaf85471245918c9e3f213e115, type: 3}
   m_Name: Camera Module
   m_EditorClassIdentifier: 
+  _cameraConfig: {fileID: 11400000, guid: 23e74e387a379c546bcce34712556068, type: 2}

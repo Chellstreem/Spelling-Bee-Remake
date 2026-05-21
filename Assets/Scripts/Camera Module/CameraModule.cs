@@ -1,16 +1,14 @@
-using CameraControl;
+using CameraModule;
 using Installers;
 using UnityEngine;
+using GameModules;
 
-namespace GameModules
+namespace CameraModule
 {
     [CreateAssetMenu(fileName = "Camera Module", menuName = "Scriptable Objects/Services/Camera Module")]
     public class CameraModule : GameModule
     {
-        [Tooltip("Default camera state used when the scene starts or when camera resets")]
-        [SerializeField] private CameraState _defaultCameraState;
-
-        public CameraState DefaultState => _defaultCameraState;
+        [SerializeField] private CameraConfig _cameraConfig;
 
         public override void Install(SceneInstaller installer, GameConfig config)
         {
@@ -27,7 +25,7 @@ namespace GameModules
 
             installer.DiContainer.Bind<CameraController>()
                 .AsSingle()
-                .WithArguments(this)
+                .WithArguments(_cameraConfig)
                 .NonLazy();
         }
     }

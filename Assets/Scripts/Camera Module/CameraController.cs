@@ -2,18 +2,18 @@
 using GameStates;
 using UnityEngine;
 
-namespace CameraControl
+namespace CameraModule
 {
     public class CameraController
     {
-        private readonly CameraModule _module;
+        private readonly CameraConfig config;
         private readonly GameStateController stateController;
         private readonly Transform cameraTransfrom;
         private readonly CameraMover cameraMover;
 
-        public CameraController(CameraModule cameraModule, Camera camera, CameraMover cameraMover, GameStateController stateController)
+        public CameraController(CameraConfig config, Camera camera, CameraMover cameraMover, GameStateController stateController)
         {
-            _module = cameraModule;
+            this.config = config;
             cameraTransfrom = camera.transform;
             this.cameraMover = cameraMover;
             this.stateController = stateController;
@@ -24,7 +24,7 @@ namespace CameraControl
         private void OnStateChanged()
         {
             CameraState state = stateController.CurrentState.Definition.CameraState;
-            cameraMover.SetState(cameraTransfrom, state != null ? state : _module.DefaultState);
+            cameraMover.SetState(cameraTransfrom, state != null ? state : config.DefaultState);
         }
 
         public void Dispose() => stateController.OnStateChanged -= OnStateChanged;

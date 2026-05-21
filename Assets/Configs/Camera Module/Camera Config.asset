@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f91edb63a655947989e580da1ae9bf, type: 3}
-  m_Name: CameraConfig
+  m_Script: {fileID: 11500000, guid: 317d2812232ba434a9737e03fc00083f, type: 3}
+  m_Name: Camera Config
   m_EditorClassIdentifier: 
   _defaultCameraState: {fileID: 11400000, guid: ee78e95f86cbad847a00d31bef0714ae, type: 2}
