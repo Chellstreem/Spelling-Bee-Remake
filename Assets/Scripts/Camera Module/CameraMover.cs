@@ -1,24 +1,23 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace CameraControl
 {
     public class CameraMover
     {
-        private readonly CoroutineRunner runner;
-        private Coroutine _coroutine;
-
-        public CameraMover(CoroutineRunner runner) => this.runner = runner;
+        private CancellationTokenSource _cts;
 
         public void SetState(Transform cameraTransform, CameraState state)
         {
-            if (_coroutine != null)
-                runner.Stop(_coroutine);
+            _cts?.Cancel();
+            _cts?.Dispose();
 
-            _coroutine = runner.Run(CameraMovementCoroutine(cameraTransform, state));
+            _cts = new CancellationTokenSource();
+            MoveCameraAsync(cameraTransform, state, _cts.Token).Forget();
         }
 
-        private IEnumerator CameraMovementCoroutine(Transform cameraTransform, CameraState state)
+        private async UniTaskVoid MoveCameraAsync(Transform cameraTransform, CameraState state, CancellationToken token)
         {
             cameraTransform.GetPositionAndRotation(out Vector3 originalPosition, out Quaternion originalRotation);
 
@@ -26,25 +25,31 @@ namespace CameraControl
             Quaternion targetRotation = Quaternion.Euler(state.CameraRotation);
 
             float elapsedTime = 0f;
+
             try
             {
                 while (elapsedTime < state.TransitionDuration)
                 {
+                    token.ThrowIfCancellationRequested();
+
                     float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsedTime / state.TransitionDuration));
+
                     Vector3 pos = Vector3.Lerp(originalPosition, targetPosition, t);
                     Quaternion rot = Quaternion.Slerp(originalRotation, targetRotation, t);
 
                     cameraTransform.SetPositionAndRotation(pos, rot);
+
                     elapsedTime += Time.deltaTime;
-                    yield return null;
+                    await UniTask.Yield(PlayerLoopTiming.Update, token);
                 }
             }
             finally
             {
-                cameraTransform.SetPositionAndRotation(targetPosition, targetRotation);
-                _coroutine = null;
+                if (!token.IsCancellationRequested)
+                {
+                    cameraTransform.SetPositionAndRotation(targetPosition, targetRotation);
+                }
             }
         }
     }
 }
-

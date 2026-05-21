@@ -10,8 +10,6 @@ using BackgroundControl;
 [CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
 public class GameConfig : ScriptableObject
 {
-    [Tooltip("Configuration for camera states and transitions")]
-    [SerializeField] private CameraConfig _cameraConfig;
     [Tooltip("Configuration for spawnable objects and spawn flows")]
     [SerializeField] private SpawnConfig _spawnConfig;
     [Tooltip("Definitions for game states used by the GameStateController")]
@@ -27,7 +25,6 @@ public class GameConfig : ScriptableObject
     [Tooltip("Background configuration used to select background visuals")]
     [SerializeField] private BackgroundConfig _backgroundConfig;
 
-    public CameraConfig CameraConfig => _cameraConfig;
     public SpawnConfig SpawnConfig => _spawnConfig;
     public GameStateConfig GameStateConfig => _gameStateConfig;
     public WordControlConfig WordControlConfig => _wordControlConfig;
