@@ -1,8 +1,8 @@
 using System;
-using Sound;
-using Spawn;
+using SoundModule;
+using SpawnModule;
 using UnityEngine;
-using VFX;
+using VFXModule;
 using Zenject;
 
 namespace Units

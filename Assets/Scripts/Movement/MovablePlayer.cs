@@ -1,4 +1,4 @@
-using InputControl;
+using InputModule;
 using Zenject;
 using UnityEngine;
 using Units;
@@ -24,8 +24,8 @@ namespace Movement
             if (_stateController.CurrentState != null)
                 OnStateChanged();
 
-            _input.OnMoveUp += OnMoveUp;
-            _input.OnMoveDown += OnMoveDown;
+            _input.OnKeyUp += OnMoveUp;
+            _input.OnKeyDown += OnMoveDown;
             _stateController.OnStateChanged += OnStateChanged;
 
             _player = gameObject.GetComponent<Player>();
@@ -35,7 +35,7 @@ namespace Movement
         {
             base.OnStateChanged();
 
-            if (_stateController.CurrentState.Definition.StateType == GameStates.GameStateType.Victory)
+            if (_stateController.CurrentState.Definition.StateType == GameStateModule.GameStateType.Victory)
                 OnMoveDown();
         }
 
@@ -73,8 +73,8 @@ namespace Movement
 
         private void OnDisable()
         {
-            _input.OnMoveUp -= OnMoveUp;
-            _input.OnMoveDown -= OnMoveDown;
+            _input.OnKeyUp -= OnMoveUp;
+            _input.OnKeyDown -= OnMoveDown;
             _stateController.OnStateChanged -= OnStateChanged;
         }
     }

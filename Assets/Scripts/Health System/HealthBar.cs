@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Units;
-using UserInterface;
+using UIModule;
 
 namespace HealthSystem
 {

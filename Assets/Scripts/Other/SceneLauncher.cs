@@ -1,4 +1,4 @@
-using Sound;
+using SoundModule;
 using UnityEngine;
 using Zenject;
 

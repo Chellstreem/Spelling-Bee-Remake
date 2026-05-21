@@ -1,8 +1,9 @@
 ﻿using System;
-using GameStates;
-using Spawn;
+using GameStateModule;
+using SpawnModule;
 using UnityEngine;
 using Zenject;
+using SpeedControlModule;
 
 namespace Movement
 {

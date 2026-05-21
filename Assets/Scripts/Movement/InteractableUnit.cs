@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using VFX;
+using VFXModule;
 using Zenject;
 
 namespace Movement

@@ -1,0 +1,121 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
+using Zenject;
+using SceneControl;
+using WordControlModule;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+namespace UIModule
+{
+    public class MainMenuBar : MonoBehaviour
+    {
+        [Tooltip("Number of word input fields that are active when the menu is first shown")]
+        [SerializeField] private int _activeFieldsOnStart = 1;
+        [Inject] private SceneController _sceneController;
+
+        [Header("Buttons")]
+        [Tooltip("Button that adds an extra word input field when clicked")]
+        [SerializeField] private Button _addWordButton;
+        [Tooltip("Button that deletes the last active input field when clicked")]
+        [SerializeField] private Button _deleteButton;
+        [Tooltip("Button that starts the game using the entered words")]
+        [SerializeField] private Button _startButton;
+        [Tooltip("Button that quits the application or stops play mode in editor")]
+        [SerializeField] private Button _exitButton;
+
+        [Header("Input Fields")]
+        [Tooltip("Array of word input UI fields available in the main menu")]
+        [SerializeField] private InputField[] _inputFields;
+        private int _activeFieldIndex;
+
+        private void Start()
+        {
+            for (int i = 0; i < _inputFields.Length; i++)
+                _inputFields[i].gameObject.SetActive(i < _activeFieldsOnStart);
+
+            _activeFieldIndex = _activeFieldsOnStart - 1;
+
+            AddListeners();
+            UpdateButtonStates();
+        }
+
+        private void StartGame()
+        {
+            var words = CollectWords();
+
+            if (words.Count == 0)
+                return;
+
+            WordController.Words = words;
+
+            _sceneController.LoadScene(SceneType.MainStage);
+        }
+
+        private List<string> CollectWords()
+        {
+            var words = new List<string>();
+
+            foreach (var field in _inputFields)
+            {
+                if (!field.gameObject.activeSelf)
+                    continue;
+
+                var word = field.Input.text.Trim();
+                if (!string.IsNullOrEmpty(word))
+                    words.Add(word);
+            }
+
+            return words;
+        }
+
+        private void ActivateNextField()
+        {
+            if (_activeFieldIndex < _inputFields.Length - 1)
+            {
+                _activeFieldIndex++;
+                _inputFields[_activeFieldIndex].Activate();
+
+                UpdateButtonStates();
+            }
+        }
+
+        private void DeactivateLastField()
+        {
+            if (_activeFieldIndex > 0)
+            {
+                _inputFields[_activeFieldIndex].Deactivate();
+                _activeFieldIndex--;
+
+                UpdateButtonStates();
+            }
+        }
+
+        private void UpdateButtonStates()
+        {
+            _addWordButton.interactable = _activeFieldIndex < _inputFields.Length - 1;
+            _deleteButton.interactable = _activeFieldIndex > 0;
+        }
+
+        private void QuitGame()
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        }
+
+        private void AddListeners()
+        {
+            _addWordButton.onClick.AddListener(ActivateNextField);
+            _deleteButton.onClick.AddListener(DeactivateLastField);
+            _startButton.onClick.AddListener(StartGame);
+            _exitButton.onClick.AddListener(QuitGame);
+        }
+    }
+}
+

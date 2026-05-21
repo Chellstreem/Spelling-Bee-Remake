@@ -14,7 +14,7 @@ namespace SceneControl
         public readonly string ScenePath => _scenePath;
     }
 
-    [CreateAssetMenu(fileName = "Scene Collection", menuName = "Scriptable Objects/Scene Collection")]
+    [CreateAssetMenu(fileName = "Scene Collection", menuName = "Game/Scene Collection")]
     public class SceneCollection : ScriptableObject
     {
         [Tooltip("Array of scene entries that can be loaded by name")]

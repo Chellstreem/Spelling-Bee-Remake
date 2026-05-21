@@ -1,8 +1,8 @@
 using HealthSystem;
-using InputControl;
-using Sound;
+using InputModule;
+using SoundModule;
 using UnityEngine;
-using VFX;
+using VFXModule;
 using Zenject;
 
 namespace Units
@@ -40,7 +40,7 @@ namespace Units
             transform.position = _config.PlayerLowerPosition;
             Health?.Refresh();
 
-            _input.OnGameOver += OnGameOver;
+            _input.OnKeyEscape += OnGameOver;
         }
 
         public override void HandleCollision(Unit other)

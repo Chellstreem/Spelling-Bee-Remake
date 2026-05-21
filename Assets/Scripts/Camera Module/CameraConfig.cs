@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CameraModule
 {
-    [CreateAssetMenu(fileName = "Camera Config", menuName = "Scriptable Objects/Camera/Camera Config")]
+    [CreateAssetMenu(fileName = "Camera Config", menuName = "Game/Camera/Camera Config")]
     public class CameraConfig : ScriptableObject
     {
         [Tooltip("Default camera state used when the scene starts or when camera resets")]

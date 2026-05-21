@@ -1,10 +1,10 @@
 using UnityEngine;
-using VFX;
+using VFXModule;
 using System.Collections;
 
 namespace Units
 {
-    [CreateAssetMenu(fileName = "Unit Status", menuName = "Scriptable Objects/Unit Statuses/Unit Status")]
+    [CreateAssetMenu(fileName = "Unit Status", menuName = "Game/Unit Statuses/Unit Status")]
     public class UnitStatusDefinition : ScriptableObject
     {
         [Tooltip("Status type identifier")]

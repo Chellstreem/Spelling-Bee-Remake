@@ -1,6 +1,6 @@
-using Sound;
+using SoundModule;
 using UnityEngine;
-using VFX;
+using VFXModule;
 
 namespace Units
 {

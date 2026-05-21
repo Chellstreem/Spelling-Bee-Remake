@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Units;
 
-namespace VFX
+namespace VFXModule
 {
     public class UnitStatusController
     {

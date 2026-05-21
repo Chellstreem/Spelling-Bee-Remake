@@ -1,5 +1,5 @@
 ﻿using GameModules;
-using GameStates;
+using GameStateModule;
 using UnityEngine;
 
 namespace CameraModule

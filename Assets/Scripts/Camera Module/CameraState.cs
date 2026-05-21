@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Camera State", menuName = "Scriptable Objects/Camera/Camera State")]
+[CreateAssetMenu(fileName = "Camera State", menuName = "Game/Camera/Camera State")]
 public class CameraState : ScriptableObject
 {
     [Tooltip("Local position of the camera in this camera state")]

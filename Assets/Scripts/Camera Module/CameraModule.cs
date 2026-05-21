@@ -5,7 +5,7 @@ using GameModules;
 
 namespace CameraModule
 {
-    [CreateAssetMenu(fileName = "Camera Module", menuName = "Scriptable Objects/Services/Camera Module")]
+    [CreateAssetMenu(fileName = "Camera Module", menuName = "Game/Camera/Camera Module")]
     public class CameraModule : GameModule
     {
         [SerializeField] private CameraConfig _cameraConfig;

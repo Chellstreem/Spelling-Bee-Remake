@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Installers
 {
-    [CreateAssetMenu(fileName = "Project Installer", menuName = "Scriptable Objects/Project Installer")]
+    [CreateAssetMenu(fileName = "Project Installer", menuName = "Game/Project Installer")]
     public class ProjectInstaller : ScriptableObjectInstaller
     {
         [Tooltip("Project-wide configuration asset injected into the DI container")]

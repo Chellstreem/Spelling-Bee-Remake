@@ -1,10 +1,10 @@
 using Units;
-using GameStates;
+using GameStateModule;
 using UnityEngine;
-using WordControl;
-using Spawn;
+using WordControlModule;
+using SpawnModule;
 using Zenject;
-using Sound;
+using SoundModule;
 
 public class GameplayController
 {

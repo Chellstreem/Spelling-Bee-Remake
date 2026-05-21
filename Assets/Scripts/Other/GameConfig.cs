@@ -1,35 +1,20 @@
-﻿using UnityEngine;
+using UnityEngine;
 using CameraModule;
-using WordControl;
-using VFX;
+using WordControlModule;
+using VFXModule;
 using Units;
-using GameStates;
+using GameStateModule;
 using SceneControl;
 using BackgroundControl;
 
-[CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
+[CreateAssetMenu(fileName = "GameConfig", menuName = "Game/GameConfig")]
 public class GameConfig : ScriptableObject
 {
-    [Tooltip("Configuration for spawnable objects and spawn flows")]
-    [SerializeField] private SpawnConfig _spawnConfig;
-    [Tooltip("Definitions for game states used by the GameStateController")]
-    [SerializeField] private GameStateConfig _gameStateConfig;
-    [Tooltip("Settings for word control (masking, defaults, extras)")]
-    [SerializeField] private WordControlConfig _wordControlConfig;
-    [Tooltip("Audio system configuration and pool sizes")]
-    [SerializeField] private SoundConfig _soundConfig;
-    [Tooltip("Particle system pool and effect configurations")]
-    [SerializeField] private ParticleConfig _particleConfig;
     [Tooltip("Collection of scene assets and their load paths")]
     [SerializeField] private SceneCollection _sceneCollection;
     [Tooltip("Background configuration used to select background visuals")]
     [SerializeField] private BackgroundConfig _backgroundConfig;
 
-    public SpawnConfig SpawnConfig => _spawnConfig;
-    public GameStateConfig GameStateConfig => _gameStateConfig;
-    public WordControlConfig WordControlConfig => _wordControlConfig;
-    public SoundConfig SoundConfig => _soundConfig;
-    public ParticleConfig ParticleConfig => _particleConfig;
     public SceneCollection SceneCollection => _sceneCollection;
     public BackgroundConfig BackgroundConfig => _backgroundConfig;
 

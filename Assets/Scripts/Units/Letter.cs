@@ -1,9 +1,9 @@
 using System;
-using WordControl;
+using WordControlModule;
 using Zenject;
 using UnityEngine;
-using Sound;
-using VFX;
+using SoundModule;
+using VFXModule;
 
 namespace Units
 {

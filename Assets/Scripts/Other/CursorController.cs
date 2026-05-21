@@ -1,4 +1,4 @@
-using GameStates;
+using GameStateModule;
 using UnityEngine;
 
 public class CursorController
