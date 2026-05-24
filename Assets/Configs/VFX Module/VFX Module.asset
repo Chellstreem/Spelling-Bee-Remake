@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5579b65b6f7b894692c141753df533d, type: 3}
   m_Name: VFX Module
   m_EditorClassIdentifier: 
+  _particleConfig: {fileID: 11400000, guid: f38655f963ee1ca459e5520702d8ab18, type: 2}

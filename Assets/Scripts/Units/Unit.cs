@@ -21,17 +21,15 @@ namespace Units
         protected Collider _collider;
         protected UnitPool _objectPool;
         protected ParticlePlayer _particlePlayer;
-        protected CoroutineRunner _coroutineRunner;
 
         public UnitType UnitType => _unitType;
         public bool IsInteractable { get; protected set; } = true;
 
         [Inject]
-        public virtual void Construct(UnitPool objectPool, ParticlePlayer particlePlayer, CoroutineRunner coroutineRunner)
+        public virtual void Construct(UnitPool objectPool, ParticlePlayer particlePlayer)
         {
             _objectPool = objectPool;
             _particlePlayer = particlePlayer;
-            _coroutineRunner = coroutineRunner;
         }
 
         protected virtual void Awake()

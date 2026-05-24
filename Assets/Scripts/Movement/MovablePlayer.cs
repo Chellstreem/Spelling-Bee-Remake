@@ -2,6 +2,7 @@ using InputModule;
 using Zenject;
 using UnityEngine;
 using Units;
+using Cysharp.Threading.Tasks;
 
 namespace Movement
 {
@@ -13,10 +14,10 @@ namespace Movement
         private Player _player;
 
         [Inject]
-        public void Construct(IInput input, CoroutineRunner runner)
+        public void Construct(IInput input)
         {
             _input = input;
-            _objectMover = new ObjectMover(runner);
+            _objectMover = new();
         }
 
         private void OnEnable()
@@ -59,7 +60,7 @@ namespace Movement
                 return;
 
             Vector3 position = _config.PlayerUpperPosition;
-            _objectMover.MoveTo(transform, position, _config.PlayerSpeed, _config.PlayerPositionTolerance);
+            _objectMover.MoveTo(transform, position, _config.PlayerSpeed, _config.PlayerPositionTolerance).Forget();
         }
 
         private void OnMoveDown()
@@ -68,7 +69,7 @@ namespace Movement
                 return;
 
             Vector3 position = _config.PlayerLowerPosition;
-            _objectMover.MoveTo(transform, position, _config.PlayerSpeed, _config.PlayerPositionTolerance);
+            _objectMover.MoveTo(transform, position, _config.PlayerSpeed, _config.PlayerPositionTolerance).Forget();
         }
 
         private void OnDisable()

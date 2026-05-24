@@ -42,7 +42,7 @@ namespace Units
         {
             base.Awake();
 
-            StatusController = new(this, _coroutineRunner);
+            StatusController = new(this);
             StatusController.SetStatus(_defaultStatus);
         }
 

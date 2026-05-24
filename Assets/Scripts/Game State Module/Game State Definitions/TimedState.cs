@@ -1,6 +1,8 @@
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using SoundModule;
 using UnityEngine;
+using System.Threading;
+using System;
 
 namespace GameStateModule
 {
@@ -9,14 +11,18 @@ namespace GameStateModule
     {
         [Tooltip("Duration of the timed state in seconds")]
         [SerializeField] private float _duration = 5f;
+
         [Tooltip("State to transition to when this timed state completes")]
         [SerializeField] private GameStateType _nextState = GameStateType.Interactive;
+
         [Tooltip("Optional sound to play while this state is active")]
         [SerializeField] private SoundUnit _stateSound;
 
         public override void Enter(GameState state)
         {
-            state.StateCoroutine = state.Runner.Run(StateCoroutine(state));
+            state.StateCTS = new CancellationTokenSource();
+
+            RunStateAsync(state, state.StateCTS.Token).Forget();
 
             if (_stateSound != null)
                 _stateSound.PlayOneShot();
@@ -26,22 +32,27 @@ namespace GameStateModule
         {
             var spawnState = state as SpawnState;
 
-            if (state.StateCoroutine != null)
-            {
-                StopSpawning(spawnState);
-                state.Runner.Stop(state.StateCoroutine);
-                state.StateCoroutine = null;
-            }
+            StopSpawning(spawnState);
+
+            state.StateCTS?.Cancel();
+            state.StateCTS?.Dispose();
+            state.StateCTS = null;
         }
 
-        private IEnumerator StateCoroutine(GameState state)
+        private async UniTaskVoid RunStateAsync(GameState state, CancellationToken token)
         {
             var spawnState = state as SpawnState;
-
             StartSpawning(spawnState);
-            yield return new WaitForSeconds(_duration);
-            StopSpawning(spawnState);
-            state.StateController.SetState(_nextState);
+
+            try
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(_duration), cancellationToken: token);
+                StopSpawning(spawnState);
+                state.StateController.SetState(_nextState);
+            }
+            catch (OperationCanceledException)
+            {
+            }
         }
     }
 }

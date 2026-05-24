@@ -1,7 +1,8 @@
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using SpawnModule;
 using UnityEngine;
 using SpeedControlModule;
+using System.Threading;
 
 namespace GameStateModule
 {
@@ -15,26 +16,29 @@ namespace GameStateModule
 
         protected void StartSpawning(SpawnState state)
         {
-            state.SpawnCoroutine = state.Runner.Run(SpawnCoroutine(state.UnitSpawner, state.SpeedController));
+            state.SpawnCTS = new CancellationTokenSource();
+            SpawnLoop(state.UnitSpawner, state.SpeedController, state.SpawnCTS.Token).Forget();
         }
 
         protected void StopSpawning(SpawnState state)
         {
-            if (state.SpawnCoroutine != null)
-            {
-                state.Runner.Stop(state.SpawnCoroutine);
-                state.SpawnCoroutine = null;
-            }
+            if (state.SpawnCTS == null)
+                return;
+
+            state.SpawnCTS.Cancel();
+            state.SpawnCTS.Dispose();
+            state.SpawnCTS = null;
         }
 
-        public virtual IEnumerator SpawnCoroutine(UnitSpawner spawner, GameSpeedController speedController)
+        public virtual async UniTaskVoid SpawnLoop(UnitSpawner spawner, GameSpeedController speedController,
+            CancellationToken cancellationToken)
         {
             float[] timers = new float[_spawnFlowInfos.Length];
 
             for (int i = 0; i < timers.Length; i++)
                 timers[i] = -_spawnFlowInfos[i].SpawnDelay;
 
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 float deltaTime = Time.deltaTime;
 
@@ -58,7 +62,7 @@ namespace GameStateModule
                     }
                 }
 
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
         }
 

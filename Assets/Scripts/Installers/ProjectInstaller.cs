@@ -14,14 +14,6 @@ namespace Installers
         {
             Container.Bind<GameConfig>().FromInstance(_config).AsSingle().NonLazy();
 
-            CoroutineRunner runner = new GameObject("Coroutine Runner").AddComponent<CoroutineRunner>();
-            DontDestroyOnLoad(runner);
-
-            Container.Bind<CoroutineRunner>()
-                .FromInstance(runner)
-                .AsSingle()
-                .NonLazy();
-
             SceneController sceneController = new(_config.SceneCollection);
             Container.Bind<SceneController>().FromInstance(sceneController).AsSingle().NonLazy();
         }

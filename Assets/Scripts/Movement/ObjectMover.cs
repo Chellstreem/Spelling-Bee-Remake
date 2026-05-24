@@ -1,42 +1,49 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
+using System.Threading;
 
 namespace Movement
 {
     public class ObjectMover
     {
-        private readonly CoroutineRunner coroutineRunner;
-        private Coroutine _moveCoroutine;
+        private CancellationTokenSource _moveCancellation;
 
-        public ObjectMover(CoroutineRunner coroutineRunner)
-        {
-            this.coroutineRunner = coroutineRunner;
-        }
-
-        public void MoveTo(Transform objectTransform, Vector3 targetPosition, float speed, float tolerance = 0.01f)
+        public async UniTask MoveTo(Transform objTransform, Vector3 targetPosition, float speed, float tolerance = 0.01f)
         {
             float sqrTolerance = tolerance * tolerance;
 
-            if (IsClose(objectTransform.position, targetPosition, sqrTolerance))
+            if (IsClose(objTransform.position, targetPosition, sqrTolerance))
                 return;
 
-            if (_moveCoroutine != null)
-                coroutineRunner.Stop(_moveCoroutine);
+            _moveCancellation?.Cancel();
+            _moveCancellation?.Dispose();
 
-            _moveCoroutine = coroutineRunner.Run(RunMoveCoroutine(objectTransform, targetPosition, speed, sqrTolerance));
+            _moveCancellation = new CancellationTokenSource();
+
+            await RunMoveTask(objTransform, targetPosition, speed, sqrTolerance, _moveCancellation.Token);
         }
 
-        private IEnumerator RunMoveCoroutine(Transform objectTransform, Vector3 targetPosition, float speed, float sqrTolerance)
+        private async UniTask RunMoveTask(Transform objTransform, Vector3 targetPosition, float speed,
+            float sqrTolerance, CancellationToken cancellationToken)
         {
-            while ((objectTransform.position - targetPosition).sqrMagnitude > sqrTolerance)
+            while ((objTransform.position - targetPosition).sqrMagnitude > sqrTolerance)
             {
-                objectTransform.position = Vector3.MoveTowards(objectTransform.position, targetPosition, speed * Time.deltaTime);
-                yield return null;
+                cancellationToken.ThrowIfCancellationRequested();
+
+                objTransform.position = Vector3.MoveTowards(
+                    objTransform.position,
+                    targetPosition,
+                    speed * Time.deltaTime);
+
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
 
-            objectTransform.position = targetPosition;
+            objTransform.position = targetPosition;
         }
 
-        private bool IsClose(Vector3 a, Vector3 b, float sqrTolerance) => (a - b).sqrMagnitude < sqrTolerance;
+        private bool IsClose(Vector3 a, Vector3 b, float sqrTolerance)
+        {
+            return (a - b).sqrMagnitude < sqrTolerance;
+        }
     }
 }

@@ -11,17 +11,12 @@ namespace Installers
         [Tooltip("List of GameModule assets that will be installed for this scene")]
         [SerializeField] private GameModule[] _gameModules;
         protected GameConfig _gameConfig;
-        protected CoroutineRunner _coroutineRunner;
 
         public Camera Camera => _camera;
         public DiContainer DiContainer => Container;
 
         [Inject]
-        public void Construct(GameConfig gameConfig, CoroutineRunner coroutineRunner)
-        {
-            _gameConfig = gameConfig;
-            _coroutineRunner = coroutineRunner;
-        }
+        public void Construct(GameConfig gameConfig) => _gameConfig = gameConfig;
 
         public override void InstallBindings()
         {

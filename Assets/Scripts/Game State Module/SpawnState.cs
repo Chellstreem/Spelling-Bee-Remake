@@ -1,5 +1,5 @@
 using SpawnModule;
-using UnityEngine;
+using System.Threading;
 using Zenject;
 using SpeedControlModule;
 
@@ -10,7 +10,7 @@ namespace GameStateModule
         public SpawnStateDefinition SpawnDefinition { get; }
         public UnitSpawner UnitSpawner { get; private set; }
         public GameSpeedController SpeedController { get; private set; }
-        public Coroutine SpawnCoroutine { get; set; }
+        public CancellationTokenSource SpawnCTS { get; set; }
 
         public SpawnState(SpawnStateDefinition definition) : base(definition)
         {

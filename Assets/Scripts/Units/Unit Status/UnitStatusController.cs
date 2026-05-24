@@ -6,15 +6,13 @@ namespace VFXModule
     public class UnitStatusController
     {
         private readonly ComplexUnit unit;
-        private readonly CoroutineRunner coroutineRunner;
         private readonly Dictionary<UnitStatusType, UnitStatus> _statusMap = new();
 
         public UnitStatus CurrentStatus { get; private set; }
 
-        public UnitStatusController(ComplexUnit unit, CoroutineRunner coroutineRunner)
+        public UnitStatusController(ComplexUnit unit)
         {
             this.unit = unit;
-            this.coroutineRunner = coroutineRunner;
             InitializeStatusMap(unit.Statuses);
         }
 
@@ -32,7 +30,7 @@ namespace VFXModule
             {
                 if (_statusMap.ContainsKey(definition.Type)) return;
 
-                UnitStatus status = definition.CreateStatus(unit, coroutineRunner);
+                UnitStatus status = definition.CreateStatus(unit);
                 _statusMap[definition.Type] = status;
             }
         }
